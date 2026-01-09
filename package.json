@@ -1,6 +1,6 @@
 {
   "private": false,
-  "name": "design_system",
+  "name": "design-system",
   "version": "0.0.1",
   "keywords": [
     "react",
@@ -16,15 +16,15 @@
     "Romana Ďuráčiová <duraciova@mail.muni.cz>",
     "Michal Mikuš <553650@mail.muni.cz>"
   ],
-  "license": "MIT",
+  "license": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/xcillik/ics-design-system"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/xcillik/ics-design-system/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/xcillik/ics-design-system",
   "type": "module",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
