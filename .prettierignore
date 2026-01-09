@@ -1,0 +1,12 @@
+node_modules
+.next
+.vercel
+*.log
+dist
+build
+.DS_Store
+coverage
+.nyc_output
+.cache
+.temp
+*.tsbuildinfo
