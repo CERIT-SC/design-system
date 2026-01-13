@@ -16,6 +16,11 @@ export default defineConfig({
       outDir: "dist/types",
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./lib"),
+    },
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "lib/index.ts"),

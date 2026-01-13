@@ -32,14 +32,13 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
-    // Strictest type checking options
-    "exactOptionalPropertyTypes": true,
+    // Strictest type checking options (with some relaxed for shadcn compatibility)
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": false,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
@@ -48,6 +47,12 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
+    "exactOptionalPropertyTypes": false,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./lib/*"]
+    }
   },
   "include": ["src", "lib"]
 }
