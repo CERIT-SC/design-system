@@ -54,5 +54,5 @@
       "@/*": ["./lib/*"]
     }
   },
-  "include": ["src", "lib"]
+  "include": ["src", "lib"], "exclude": ["**/*.stories.tsx", "**/*.stories.ts"]
 }

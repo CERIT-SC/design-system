@@ -1,0 +1,25 @@
+# Source files
+src/
+lib/
+
+# Config files
+vite.config.ts
+tsconfig*.json
+eslint.config.ts
+
+# Development files
+.vscode/
+node_modules/
+.git/
+.gitignore
+
+# Build artifacts
+*.log
+.DS_Store
+
+# Documentation
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+
+# Only include dist/ in the package

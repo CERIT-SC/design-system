@@ -1,3 +1,5 @@
+"use client";
+
 import TestComponent from "./TestComponent";
 
 // Export all UI components
