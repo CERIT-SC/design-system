@@ -1,24 +1,11 @@
 import { defineConfig } from "vite";
-import type { Plugin } from "vite";
+// import type { Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
 import dts from "vite-plugin-dts";
 import path from "node:path";
-
-// Plugin to preserve "use client" directive in the output
-function preserveUseClient(): Plugin {
-  return {
-    name: "preserve-use-client",
-    enforce: "post",
-    generateBundle(_, bundle) {
-      for (const chunk of Object.values(bundle)) {
-        if (chunk.type === "chunk") {
-          chunk.code = `"use client";\n${chunk.code}`;
-        }
-      }
-    },
-  };
-}
+import preserveDirectives from "rollup-preserve-directives";
+import autoprefixer from "autoprefixer";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -32,8 +19,15 @@ export default defineConfig({
       tsconfigPath: "tsconfig.app.json",
       outDir: "dist/types",
     }),
-    preserveUseClient(),
+    // preserveUseClient(),
   ],
+  css: {
+    postcss: {
+      plugins: [
+        autoprefixer(),
+      ],
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./lib"),
@@ -41,15 +35,24 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "lib/index.ts"),
-      name: "design_system",
+      entry: {
+        index: path.resolve(__dirname, "lib/index.ts"),
+        components: path.resolve(__dirname, "lib/index.ts"),
+        hooks: path.resolve(__dirname, "lib/index.ts"),
+      },
+      // UMD name
+      name: "E-InfraDesignSystem",
       formats: ["es", "cjs"],
       fileName: (format) => `index.${format}.js`,
     },
     sourcemap: true,
+    // Allow consumer build tools to handle minification
     minify: false,
     copyPublicDir: false,
     rollupOptions: {
+      plugins: [
+        preserveDirectives(),
+      ],
       external: [
         "react",
         "react-dom",
@@ -74,11 +77,15 @@ export default defineConfig({
         "vaul",
       ],
       output: {
+        // Rollup globals - Needed only for UMD builds
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           "react/jsx-runtime": "jsxRuntime",
         },
+        preserveModules: true,
+        preserveModulesRoot: "lib",
+        inlineDynamicImports: false,
       },
     },
   },
