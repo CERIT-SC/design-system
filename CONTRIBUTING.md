@@ -126,13 +126,4 @@ Use descriptive branch names with appropriate prefixes:
 
 ### Documentation
 
-- [Plugin Instance Documentation](https://molstar.org/docs/plugin/instance/#plugincontext-with-built-in-react-ui)
-- [Viewer Application Source](https://github.com/molstar/molstar/blob/master/src/apps/viewer/app.ts)
-- [MVS Frontend Integration](https://molstar.org/mol-view-spec-docs/mvs-molstar-extension/integration/#construct-mvs-view-on-frontend-and-pass-to-the-viewer)
-- [MVS Load Extensions](https://molstar.org/mol-view-spec-docs/mvs-molstar-extension/load-extensions/)
-
-### Implementation Reference
-
-```typescript
-import { Viewer as ViewerMolstar } from "molstar/lib/apps/viewer/app.js";
-```
+TODO

@@ -90,24 +90,31 @@ function App() {
 ## 📚 Available Components
 
 ### Layout
+
 - Card, Separator, AspectRatio, Sidebar
 
 ### Forms
+
 - Button, Input, Textarea, Label, Checkbox, Radio Group, Select, Switch, Slider
 
 ### Data Display
+
 - Table, Badge, Avatar, Calendar, Progress, Skeleton, Tooltip
 
 ### Feedback
+
 - Alert, Alert Dialog, Toast (Sonner)
 
 ### Navigation
+
 - Tabs, Breadcrumb, Navigation Menu, Menubar, Context Menu, Dropdown Menu
 
 ### Overlays
+
 - Dialog, Sheet, Popover, Hover Card, Command, Drawer
 
 ### Other
+
 - Accordion, Collapsible, Carousel, Toggle, Toggle Group, Scroll Area, Resizable
 
 ## 🎨 Typography
@@ -176,11 +183,11 @@ bun run type:check
 
 ## 📄 License
 
-MIT © MUNI ICS
+MIT © CERIT-SC
 
 ## 👥 Maintainers
 
-- Jakub Čillík <jakub@cillik.org>
+- Jakub Čillík <cillik@muni.cz>
 - Romana Ďuráčiová <duraciova@mail.muni.cz>
 - Michal Mikuš <553650@mail.muni.cz>
 
@@ -190,4 +197,4 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for de
 
 ## 🐛 Issues
 
-Found a bug? Please report it at our [GitHub Issues](https://github.com/xcillik/ics-design-system/issues).
+Found a bug? Please report it at our [GitHub Issues](https://github.com/CERIT-SC/design-system/issues).
