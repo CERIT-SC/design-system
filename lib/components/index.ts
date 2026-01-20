@@ -38,6 +38,7 @@ export * from "./ui/sidebar";
 export * from "./ui/skeleton";
 export * from "./ui/slider";
 export * from "./ui/sonner";
+export * from "./ui/stepper";
 export * from "./ui/switch";
 export * from "./ui/table";
 export * from "./ui/tabs";
