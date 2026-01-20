@@ -1,6 +1,6 @@
 # e-INFRA Design System
 
-[![npm version](https://img.shields.io/npm/v/@muni-ics/e-infra-design-system.svg)](https://www.npmjs.com/package/@muni-ics/e-infra-design-system)
+[![npm version](https://img.shields.io/npm/v/@e-infra/design-system.svg)](https://www.npmjs.com/package/@e-infra/design-system)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A comprehensive React component library built with shadcn/ui and Tailwind CSS v4, designed for the e-INFRA ecosystem.
