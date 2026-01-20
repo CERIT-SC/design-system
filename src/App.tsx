@@ -91,7 +91,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../lib";
-import { Terminal, Info, ChevronDown, Bold, Italic, Underline, Home, Settings, User, FileText } from "lucide-react";
+import {
+  Terminal,
+  Info,
+  ChevronDown,
+  Bold,
+  Italic,
+  Underline,
+  Home,
+  Settings,
+  User,
+  FileText,
+} from "lucide-react";
 
 function App() {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -102,9 +113,12 @@ function App() {
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Header */}
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">e-INFRA Design System</h1>
+          <h1 className="text-4xl font-bold tracking-tight">
+            e-INFRA Design System
+          </h1>
           <p className="text-muted-foreground">
-            Component showcase for the e-INFRA Design System built with shadcn/ui
+            Component showcase for the e-INFRA Design System built with
+            shadcn/ui
           </p>
         </div>
 
@@ -116,67 +130,106 @@ function App() {
           <Card>
             <CardHeader>
               <CardTitle>Text Hierarchy</CardTitle>
-              <CardDescription>Standardized typography styles for consistent design</CardDescription>
+              <CardDescription>
+                Standardized typography styles for consistent design
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Main Heading</p>
-                <h1 className="text-4xl font-bold tracking-tight">The quick brown fox jumps</h1>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Main Heading
+                </p>
+                <h1 className="text-4xl font-bold tracking-tight">
+                  The quick brown fox jumps
+                </h1>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Section Heading (H2)</p>
-                <h2 className="text-3xl font-semibold tracking-tight">The quick brown fox jumps</h2>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Section Heading (H2)
+                </p>
+                <h2 className="text-3xl font-semibold tracking-tight">
+                  The quick brown fox jumps
+                </h2>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Sub-heading (H3)</p>
-                <h3 className="text-2xl font-semibold tracking-tight">The quick brown fox jumps</h3>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Sub-heading (H3)
+                </p>
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  The quick brown fox jumps
+                </h3>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Sub-section (H4)</p>
-                <h4 className="text-xl font-semibold">The quick brown fox jumps</h4>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Sub-section (H4)
+                </p>
+                <h4 className="text-xl font-semibold">
+                  The quick brown fox jumps
+                </h4>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Body Text</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Body Text
+                </p>
                 <p className="text-base leading-7">
-                  The quick brown fox jumps over the lazy dog. This is standard body text that should be used for most content. It provides good readability and comfortable reading experience.
+                  The quick brown fox jumps over the lazy dog. This is standard
+                  body text that should be used for most content. It provides
+                  good readability and comfortable reading experience.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Bold Paragraph</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Bold Paragraph
+                </p>
                 <p className="text-base font-semibold leading-7">
-                  The quick brown fox jumps over the lazy dog. This is emphasized body text for important information that needs to stand out.
+                  The quick brown fox jumps over the lazy dog. This is
+                  emphasized body text for important information that needs to
+                  stand out.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Small Text</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Small Text
+                </p>
                 <p className="text-sm text-muted-foreground leading-6">
-                  The quick brown fox jumps over the lazy dog. This is smaller text used for captions, helper text, or secondary information.
+                  The quick brown fox jumps over the lazy dog. This is smaller
+                  text used for captions, helper text, or secondary information.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Extra Small / Caption</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Extra Small / Caption
+                </p>
                 <p className="text-xs text-muted-foreground leading-5">
-                  The quick brown fox jumps over the lazy dog. Used for timestamps, labels, and micro-copy.
+                  The quick brown fox jumps over the lazy dog. Used for
+                  timestamps, labels, and micro-copy.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Code / Monospace</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Code / Monospace
+                </p>
                 <code className="text-sm font-mono bg-muted px-2 py-1 rounded">
                   const greeting = "Hello World";
                 </code>
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Link</p>
-                <a href="#" className="text-primary underline hover:no-underline">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Link
+                </p>
+                <a
+                  href="#"
+                  className="text-primary underline hover:no-underline"
+                >
                   This is a standard link
                 </a>
               </div>
@@ -256,7 +309,9 @@ function App() {
                     </Avatar>
                     <div className="space-y-1">
                       <p className="text-sm font-medium">John Doe</p>
-                      <p className="text-xs text-muted-foreground">2 minutes ago</p>
+                      <p className="text-xs text-muted-foreground">
+                        2 minutes ago
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -269,10 +324,16 @@ function App() {
               <CardContent className="space-y-4">
                 <Progress value={progress} />
                 <div className="flex gap-2">
-                  <Button size="sm" onClick={() => setProgress(Math.min(100, progress + 10))}>
+                  <Button
+                    size="sm"
+                    onClick={() => setProgress(Math.min(100, progress + 10))}
+                  >
                     +10
                   </Button>
-                  <Button size="sm" onClick={() => setProgress(Math.max(0, progress - 10))}>
+                  <Button
+                    size="sm"
+                    onClick={() => setProgress(Math.max(0, progress - 10))}
+                  >
                     -10
                   </Button>
                 </div>
@@ -285,11 +346,15 @@ function App() {
 
         {/* Form Elements Section */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold tracking-tight">Form Elements</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Form Elements
+          </h2>
           <Card>
             <CardHeader>
               <CardTitle>Example Form</CardTitle>
-              <CardDescription>All form components in one place</CardDescription>
+              <CardDescription>
+                All form components in one place
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -300,7 +365,11 @@ function App() {
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Input</Label>
-                  <Input id="email" type="email" placeholder="email@example.com" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="email@example.com"
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -320,7 +389,11 @@ function App() {
 
                 <div className="space-y-2">
                   <Label htmlFor="readonly">Readonly Input</Label>
-                  <Input id="readonly" readOnly defaultValue="Read only value" />
+                  <Input
+                    id="readonly"
+                    readOnly
+                    defaultValue="Read only value"
+                  />
                 </div>
               </div>
 
@@ -331,7 +404,11 @@ function App() {
 
               <div className="space-y-2">
                 <Label htmlFor="message-large">Large Textarea</Label>
-                <Textarea id="message-large" placeholder="Type a longer message..." rows={6} />
+                <Textarea
+                  id="message-large"
+                  placeholder="Type a longer message..."
+                  rows={6}
+                />
               </div>
 
               <div className="space-y-2">
@@ -391,7 +468,9 @@ function App() {
 
         {/* Badges & Avatars Section */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold tracking-tight">Badges & Avatars</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Badges & Avatars
+          </h2>
           <div className="space-y-4">
             <div className="flex flex-wrap gap-2">
               <Badge>Default</Badge>
@@ -429,13 +508,15 @@ function App() {
             <AccordionItem value="item-2">
               <AccordionTrigger>Is it styled?</AccordionTrigger>
               <AccordionContent>
-                Yes. It comes with default styles that matches the other components' aesthetic.
+                Yes. It comes with default styles that matches the other
+                components' aesthetic.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger>Is it animated?</AccordionTrigger>
               <AccordionContent>
-                Yes. It's animated by default, but you can disable it if you prefer.
+                Yes. It's animated by default, but you can disable it if you
+                prefer.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -476,9 +557,7 @@ function App() {
               <Card>
                 <CardHeader>
                   <CardTitle>Password</CardTitle>
-                  <CardDescription>
-                    Change your password here.
-                  </CardDescription>
+                  <CardDescription>Change your password here.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="space-y-1">
@@ -496,12 +575,12 @@ function App() {
               <Card>
                 <CardHeader>
                   <CardTitle>Settings</CardTitle>
-                  <CardDescription>
-                    Manage your settings.
-                  </CardDescription>
+                  <CardDescription>Manage your settings.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Settings content goes here.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Settings content goes here.
+                  </p>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -592,7 +671,9 @@ function App() {
                 <CarouselItem key={index}>
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-4xl font-semibold">{index + 1}</span>
+                      <span className="text-4xl font-semibold">
+                        {index + 1}
+                      </span>
                     </CardContent>
                   </Card>
                 </CarouselItem>
@@ -607,7 +688,9 @@ function App() {
 
         {/* Toggle & Toggle Group Section */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold tracking-tight">Toggle & Toggle Group</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Toggle & Toggle Group
+          </h2>
           <div className="space-y-4">
             <div className="flex gap-2">
               <Toggle aria-label="Toggle italic">
@@ -671,7 +754,9 @@ function App() {
           <Card>
             <CardHeader>
               <CardTitle>Data Table</CardTitle>
-              <CardDescription>Example of a table component with various data types</CardDescription>
+              <CardDescription>
+                Example of a table component with various data types
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
@@ -687,31 +772,41 @@ function App() {
                 <TableBody>
                   <TableRow>
                     <TableCell className="font-medium">INV001</TableCell>
-                    <TableCell><Badge>Paid</Badge></TableCell>
+                    <TableCell>
+                      <Badge>Paid</Badge>
+                    </TableCell>
                     <TableCell>Credit Card</TableCell>
                     <TableCell className="text-right">$250.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">INV002</TableCell>
-                    <TableCell><Badge variant="secondary">Pending</Badge></TableCell>
+                    <TableCell>
+                      <Badge variant="secondary">Pending</Badge>
+                    </TableCell>
                     <TableCell>PayPal</TableCell>
                     <TableCell className="text-right">$150.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">INV003</TableCell>
-                    <TableCell><Badge>Paid</Badge></TableCell>
+                    <TableCell>
+                      <Badge>Paid</Badge>
+                    </TableCell>
                     <TableCell>Bank Transfer</TableCell>
                     <TableCell className="text-right">$350.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">INV004</TableCell>
-                    <TableCell><Badge variant="destructive">Failed</Badge></TableCell>
+                    <TableCell>
+                      <Badge variant="destructive">Failed</Badge>
+                    </TableCell>
                     <TableCell>Credit Card</TableCell>
                     <TableCell className="text-right">$450.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">INV005</TableCell>
-                    <TableCell><Badge>Paid</Badge></TableCell>
+                    <TableCell>
+                      <Badge>Paid</Badge>
+                    </TableCell>
                     <TableCell>PayPal</TableCell>
                     <TableCell className="text-right">$550.00</TableCell>
                   </TableRow>
@@ -729,7 +824,9 @@ function App() {
           <Card>
             <CardHeader>
               <CardTitle>Sidebar Navigation</CardTitle>
-              <CardDescription>Collapsible sidebar component for navigation</CardDescription>
+              <CardDescription>
+                Collapsible sidebar component for navigation
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <SidebarProvider>
@@ -789,7 +886,8 @@ function App() {
                     </header>
                     <main className="flex-1 p-6">
                       <p className="text-muted-foreground">
-                        This is the main content area. Click the hamburger menu to toggle the sidebar.
+                        This is the main content area. Click the hamburger menu
+                        to toggle the sidebar.
                       </p>
                     </main>
                   </div>
@@ -813,8 +911,8 @@ function App() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete your
-                    account and remove your data from our servers.
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -830,9 +928,14 @@ function App() {
 
         {/* AspectRatio Section */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold tracking-tight">Aspect Ratio</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Aspect Ratio
+          </h2>
           <div className="w-full max-w-md">
-            <AspectRatio ratio={16 / 9} className="bg-muted rounded-md overflow-hidden">
+            <AspectRatio
+              ratio={16 / 9}
+              className="bg-muted rounded-md overflow-hidden"
+            >
               <img
                 src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
                 alt="Photo by Drew Beamer"
