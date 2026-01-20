@@ -1,7 +1,5 @@
 "use client";
 
-import TestComponent from "./TestComponent";
-
 // Export all UI components
 export * from "./components";
 
@@ -10,7 +8,3 @@ export { cn } from "./lib/utils";
 
 // Export hooks
 export * from "./hooks";
-
-// Legacy export
-export type {};
-export { TestComponent };
