@@ -31,4 +31,11 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  // Disable react-refresh rules for library code
+  {
+    files: ["lib/**/*.{ts,tsx}"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 ]);

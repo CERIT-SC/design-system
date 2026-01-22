@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@e-infra/design-system",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "keywords": [
     "react",
     "design system",
@@ -43,7 +43,7 @@
     "preview": "vite preview --config vite.config.showcase.ts",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "build:lib": "tsc -b && vite build --config vite.config.lib.ts",
+    "build:lib": "bunx tsc -b && bunx vite build --config vite.config.lib.ts && bunx vite build --config vite.config.css.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\" \"lib/**/*.{ts,tsx,js,jsx,json,css,md}\"",

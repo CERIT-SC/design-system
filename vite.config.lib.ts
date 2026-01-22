@@ -23,9 +23,7 @@ export default defineConfig({
   ],
   css: {
     postcss: {
-      plugins: [
-        autoprefixer(),
-      ],
+      plugins: [autoprefixer()],
     },
   },
   resolve: {
@@ -35,11 +33,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: {
-        index: path.resolve(__dirname, "lib/index.ts"),
-        components: path.resolve(__dirname, "lib/index.ts"),
-        hooks: path.resolve(__dirname, "lib/index.ts"),
-      },
+      entry: path.resolve(__dirname, "lib/index.ts"),
       // UMD name
       name: "E-InfraDesignSystem",
       formats: ["es", "cjs"],
@@ -50,9 +44,7 @@ export default defineConfig({
     minify: false,
     copyPublicDir: false,
     rollupOptions: {
-      plugins: [
-        preserveDirectives(),
-      ],
+      plugins: [preserveDirectives()],
       external: [
         "react",
         "react-dom",

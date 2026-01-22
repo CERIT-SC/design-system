@@ -77,7 +77,7 @@ export function Stepper({
         if (initialStep !== currentStep) {
             setCurrentStep(initialStep);
         }
-    }, [initialStep]);
+    }, [initialStep, currentStep]);
 
     return (
         <StepperContext.Provider
