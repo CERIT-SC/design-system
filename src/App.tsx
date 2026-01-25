@@ -114,10 +114,10 @@ function App() {
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tight">
-            e-INFRA Design System
+            e-INFRA CZ Design System
           </h1>
           <p className="text-muted-foreground">
-            Component showcase for the e-INFRA Design System built with
+            Component showcase for the e-INFRA CZ Design System built with
             shadcn/ui
           </p>
         </div>

@@ -10,9 +10,11 @@
     "tailwind",
     "e-infra"
   ],
-  "description": "e-INFRA Design System - A comprehensive React component library built with shadcn/ui and Tailwind CSS",
+  "description": "e-INFRA CZ Design System - A comprehensive React component library built with shadcn/ui and Tailwind CSS",
   "author": {
-    "name": "CERIT-SC"
+    "name": "CERIT-SC, Masaryk University",
+    "email": "root@cerit-sc.cz",
+    "url": "https://www.cerit-sc.cz"
   },
   "maintainers": [
     "Jakub Čillík <cillik@muni.cz>",

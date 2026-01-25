@@ -1,9 +1,9 @@
-# e-INFRA Design System
+# e-INFRA CZ Design System
 
 [![npm version](https://img.shields.io/npm/v/@e-infra/design-system.svg)](https://www.npmjs.com/package/@e-infra/design-system)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive React component library built with shadcn/ui and Tailwind CSS v4, designed for the e-INFRA ecosystem.
+A comprehensive React component library built with shadcn/ui and Tailwind CSS v4, designed for the e-INFRA CZ app ecosystem.
 
 ## ✨ Features
 
@@ -76,7 +76,7 @@ function App() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Welcome to e-INFRA</CardTitle>
+        <CardTitle>Welcome to e-INFRA CZ</CardTitle>
       </CardHeader>
       <CardContent>
         <p>Start building with our design system!</p>
@@ -183,7 +183,7 @@ bun run type:check
 
 ## 📄 License
 
-MIT © CERIT-SC
+MIT © [CERIT-SC, Masaryk University](https://cerit-sc.cz)
 
 ## 👥 Maintainers
 
