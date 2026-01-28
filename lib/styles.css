@@ -61,7 +61,7 @@
   --secondary: rgb(246 246 246); /* #F6F6F6 - Secondary background */
   --secondary-foreground: rgb(44 14 84); /* #2C0E54 - Secondary text color */
   --muted: rgb(246 246 246); /* #F6F6F6 */
-  --muted-foreground: rgb(107 114 128); /* Gray for muted text */
+  --muted-foreground: rgb(62, 66, 73); /* Gray for muted text */
   --accent: rgb(246 246 246); /* #F6F6F6 */
   --accent-foreground: rgb(2 6 23); /* #020617 */
   --destructive: rgb(239 68 68);
