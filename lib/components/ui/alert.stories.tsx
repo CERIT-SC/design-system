@@ -12,7 +12,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "destructive"],
+      options: ["default", "error"],
     },
   },
 } satisfies Meta<typeof Alert>;
@@ -32,9 +32,9 @@ export const Default: Story = {
   ),
 };
 
-export const Destructive: Story = {
+export const error: Story = {
   render: () => (
-    <Alert variant="destructive" className="w-[400px]">
+    <Alert variant="error" className="w-[400px]">
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>

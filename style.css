@@ -1333,8 +1333,8 @@
   .bg-card {
     background-color: var(--card);
   }
-  .bg-destructive {
-    background-color: var(--destructive);
+  .bg-error {
+    background-color: var(--error);
   }
   .bg-foreground {
     background-color: var(--foreground);
@@ -1630,8 +1630,8 @@
   .text-current {
     color: currentColor;
   }
-  .text-destructive {
-    color: var(--destructive);
+  .text-error {
+    color: var(--error);
   }
   .text-foreground {
     color: var(--foreground);
@@ -2312,14 +2312,14 @@
     .hover\:bg-accent:hover {
       background-color: var(--accent);
     }
-    .hover\:bg-destructive\/90:hover {
-      background-color: var(--destructive);
+    .hover\:bg-error\/90:hover {
+      background-color: var(--error);
     }
     @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-destructive\/90:hover {
+      .hover\:bg-error\/90:hover {
         background-color: color-mix(
           in oklab,
-          var(--destructive) 90%,
+          var(--error) 90%,
           transparent
         );
       }
@@ -2469,12 +2469,12 @@
       var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
       var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .focus-visible\:ring-destructive\/20:focus-visible {
-    --tw-ring-color: var(--destructive);
+  .focus-visible\:ring-error\/20:focus-visible {
+    --tw-ring-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .focus-visible\:ring-destructive\/20:focus-visible {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+    .focus-visible\:ring-error\/20:focus-visible {
+      --tw-ring-color: color-mix(in oklab, var(--error) 20%, transparent);
     }
   }
   .focus-visible\:ring-ring:focus-visible,
@@ -2580,15 +2580,15 @@
   .aria-disabled\:opacity-50[aria-disabled="true"] {
     opacity: 0.5;
   }
-  .aria-invalid\:border-destructive[aria-invalid="true"] {
-    border-color: var(--destructive);
+  .aria-invalid\:border-error[aria-invalid="true"] {
+    border-color: var(--error);
   }
-  .aria-invalid\:ring-destructive\/20[aria-invalid="true"] {
-    --tw-ring-color: var(--destructive);
+  .aria-invalid\:ring-error\/20[aria-invalid="true"] {
+    --tw-ring-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .aria-invalid\:ring-destructive\/20[aria-invalid="true"] {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+    .aria-invalid\:ring-error\/20[aria-invalid="true"] {
+      --tw-ring-color: color-mix(in oklab, var(--error) 20%, transparent);
     }
   }
   .aria-selected\:text-muted-foreground[aria-selected="true"] {
@@ -2644,15 +2644,15 @@
   .data-\[active\=true\]\:focus\:bg-accent[data-active="true"]:focus {
     background-color: var(--accent);
   }
-  .data-\[active\=true\]\:aria-invalid\:border-destructive[data-active="true"][aria-invalid="true"] {
-    border-color: var(--destructive);
+  .data-\[active\=true\]\:aria-invalid\:border-error[data-active="true"][aria-invalid="true"] {
+    border-color: var(--error);
   }
-  .data-\[active\=true\]\:aria-invalid\:ring-destructive\/20[data-active="true"][aria-invalid="true"] {
-    --tw-ring-color: var(--destructive);
+  .data-\[active\=true\]\:aria-invalid\:ring-error\/20[data-active="true"][aria-invalid="true"] {
+    --tw-ring-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .data-\[active\=true\]\:aria-invalid\:ring-destructive\/20[data-active="true"][aria-invalid="true"] {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+    .data-\[active\=true\]\:aria-invalid\:ring-error\/20[data-active="true"][aria-invalid="true"] {
+      --tw-ring-color: color-mix(in oklab, var(--error) 20%, transparent);
     }
   }
   .data-\[disabled\]\:pointer-events-none[data-disabled] {
@@ -2667,8 +2667,8 @@
   .data-\[disabled\=true\]\:opacity-50[data-disabled="true"] {
     opacity: 0.5;
   }
-  .data-\[error\=true\]\:text-destructive[data-error="true"] {
-    color: var(--destructive);
+  .data-\[error\=true\]\:text-error[data-error="true"] {
+    color: var(--error);
   }
   .data-\[inset\]\:pl-8[data-inset] {
     padding-left: calc(var(--spacing) * 8);
@@ -2813,15 +2813,15 @@
     height: calc(var(--spacing) * 8);
   }
   :is(
-    .\*\:data-\[slot\=alert-description\]\:text-destructive\/90 > *
+    .\*\:data-\[slot\=alert-description\]\:text-error\/90 > *
   )[data-slot="alert-description"] {
-    color: var(--destructive);
+    color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
     :is(
-      .\*\:data-\[slot\=alert-description\]\:text-destructive\/90 > *
+      .\*\:data-\[slot\=alert-description\]\:text-error\/90 > *
     )[data-slot="alert-description"] {
-      color: color-mix(in oklab, var(--destructive) 90%, transparent);
+      color: color-mix(in oklab, var(--error) 90%, transparent);
     }
   }
   :is(
@@ -2963,23 +2963,23 @@
   .data-\[state\=unchecked\]\:bg-input[data-state="unchecked"] {
     background-color: var(--input);
   }
-  .data-\[variant\=destructive\]\:text-destructive[data-variant="destructive"] {
-    color: var(--destructive);
+  .data-\[variant\=error\]\:text-error[data-variant="error"] {
+    color: var(--error);
   }
-  .data-\[variant\=destructive\]\:focus\:bg-destructive\/10[data-variant="destructive"]:focus {
-    background-color: var(--destructive);
+  .data-\[variant\=error\]\:focus\:bg-error\/10[data-variant="error"]:focus {
+    background-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .data-\[variant\=destructive\]\:focus\:bg-destructive\/10[data-variant="destructive"]:focus {
+    .data-\[variant\=error\]\:focus\:bg-error\/10[data-variant="error"]:focus {
       background-color: color-mix(
         in oklab,
-        var(--destructive) 10%,
+        var(--error) 10%,
         transparent
       );
     }
   }
-  .data-\[variant\=destructive\]\:focus\:text-destructive[data-variant="destructive"]:focus {
-    color: var(--destructive);
+  .data-\[variant\=error\]\:focus\:text-error[data-variant="error"]:focus {
+    color: var(--error);
   }
   .data-\[spacing\=0\]\:data-\[variant\=outline\]\:border-l-0[data-spacing="0"][data-variant="outline"] {
     border-left-style: var(--tw-border-style);
@@ -3173,14 +3173,14 @@
   .dark\:border-input:is(.dark *) {
     border-color: var(--input);
   }
-  .dark\:bg-destructive\/60:is(.dark *) {
-    background-color: var(--destructive);
+  .dark\:bg-error\/60:is(.dark *) {
+    background-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .dark\:bg-destructive\/60:is(.dark *) {
+    .dark\:bg-error\/60:is(.dark *) {
       background-color: color-mix(
         in oklab,
-        var(--destructive) 60%,
+        var(--error) 60%,
         transparent
       );
     }
@@ -3217,32 +3217,32 @@
       color: var(--accent-foreground);
     }
   }
-  .dark\:focus-visible\:ring-destructive\/40:is(.dark *):focus-visible {
-    --tw-ring-color: var(--destructive);
+  .dark\:focus-visible\:ring-error\/40:is(.dark *):focus-visible {
+    --tw-ring-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .dark\:focus-visible\:ring-destructive\/40:is(.dark *):focus-visible {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+    .dark\:focus-visible\:ring-error\/40:is(.dark *):focus-visible {
+      --tw-ring-color: color-mix(in oklab, var(--error) 40%, transparent);
     }
   }
-  .dark\:aria-invalid\:ring-destructive\/40:is(.dark *)[aria-invalid="true"] {
-    --tw-ring-color: var(--destructive);
+  .dark\:aria-invalid\:ring-error\/40:is(.dark *)[aria-invalid="true"] {
+    --tw-ring-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .dark\:aria-invalid\:ring-destructive\/40:is(.dark *)[aria-invalid="true"] {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+    .dark\:aria-invalid\:ring-error\/40:is(.dark *)[aria-invalid="true"] {
+      --tw-ring-color: color-mix(in oklab, var(--error) 40%, transparent);
     }
   }
-  .dark\:data-\[active\=true\]\:aria-invalid\:ring-destructive\/40:is(
+  .dark\:data-\[active\=true\]\:aria-invalid\:ring-error\/40:is(
       .dark *
     )[data-active="true"][aria-invalid="true"] {
-    --tw-ring-color: var(--destructive);
+    --tw-ring-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .dark\:data-\[active\=true\]\:aria-invalid\:ring-destructive\/40:is(
+    .dark\:data-\[active\=true\]\:aria-invalid\:ring-error\/40:is(
         .dark *
       )[data-active="true"][aria-invalid="true"] {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+      --tw-ring-color: color-mix(in oklab, var(--error) 40%, transparent);
     }
   }
   .dark\:data-\[state\=active\]\:border-input:is(.dark *)[data-state="active"] {
@@ -3288,18 +3288,18 @@
       background-color: color-mix(in oklab, var(--input) 80%, transparent);
     }
   }
-  .dark\:data-\[variant\=destructive\]\:focus\:bg-destructive\/20:is(
+  .dark\:data-\[variant\=error\]\:focus\:bg-error\/20:is(
       .dark *
-    )[data-variant="destructive"]:focus {
-    background-color: var(--destructive);
+    )[data-variant="error"]:focus {
+    background-color: var(--error);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .dark\:data-\[variant\=destructive\]\:focus\:bg-destructive\/20:is(
+    .dark\:data-\[variant\=error\]\:focus\:bg-error\/20:is(
         .dark *
-      )[data-variant="destructive"]:focus {
+      )[data-variant="error"]:focus {
       background-color: color-mix(
         in oklab,
-        var(--destructive) 20%,
+        var(--error) 20%,
         transparent
       );
     }
@@ -3493,10 +3493,10 @@
     gap: calc(var(--spacing) * 2);
   }
   :is(
-    .data-\[variant\=destructive\]\:\*\:\[svg\]\:\!text-destructive[data-variant="destructive"]
+    .data-\[variant\=error\]\:\*\:\[svg\]\:\!text-error[data-variant="error"]
       > *
   ):is(svg) {
-    color: var(--destructive) !important;
+    color: var(--error) !important;
   }
   .\[\&\:last-child\[data-selected\=true\]_button\]\:rounded-r-md:last-child[data-selected="true"]
     button {
@@ -3609,14 +3609,14 @@
     a.\[a\&\]\:hover\:bg-accent:hover {
       background-color: var(--accent);
     }
-    a.\[a\&\]\:hover\:bg-destructive\/90:hover {
-      background-color: var(--destructive);
+    a.\[a\&\]\:hover\:bg-error\/90:hover {
+      background-color: var(--error);
     }
     @supports (color: color-mix(in lab, red, red)) {
-      a.\[a\&\]\:hover\:bg-destructive\/90:hover {
+      a.\[a\&\]\:hover\:bg-error\/90:hover {
         background-color: color-mix(
           in oklab,
-          var(--destructive) 90%,
+          var(--error) 90%,
           transparent
         );
       }
@@ -3662,7 +3662,7 @@
   --muted-foreground: #6b7280;
   --accent: #f6f6f6;
   --accent-foreground: #020617;
-  --destructive: #ef4444;
+  --error: #ef4444;
   --border: #e2ebf0;
   --input: #e2ebf0;
   --ring: #e5e5f2;
@@ -3696,7 +3696,7 @@
   --muted-foreground: oklch(70.4% 0.04 256.788);
   --accent: oklch(27.9% 0.041 260.031);
   --accent-foreground: oklch(98.4% 0.003 247.858);
-  --destructive: oklch(70.4% 0.191 22.216);
+  --error: oklch(70.4% 0.191 22.216);
   --border: oklch(100% 0 0/0.1);
   --input: oklch(100% 0 0/0.15);
   --ring: oklch(55.1% 0.027 264.364);
