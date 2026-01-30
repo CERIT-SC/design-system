@@ -1309,8 +1309,8 @@
   .bg-\[\#c9a224\] {
     background-color: #c9a224;
   }
-  .bg-accent {
-    background-color: var(--accent);
+  .bg-tertiary {
+    background-color: var(--tertiary);
   }
   .bg-background {
     background-color: var(--background);
@@ -1618,8 +1618,8 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
-  .text-accent-foreground {
-    color: var(--accent-foreground);
+  .text-tertiary-foreground {
+    color: var(--tertiary-foreground);
   }
   .text-background {
     color: var(--background);
@@ -2168,10 +2168,10 @@
     transition-duration: 0.2s;
   }
   @media (hover: hover) {
-    .peer-hover\/menu-button\:text-sidebar-accent-foreground:is(
+    .peer-hover\/menu-button\:text-sidebar-tertiary-foreground:is(
       :where(.peer\/menu-button):hover ~ *
     ) {
-      color: var(--sidebar-accent-foreground);
+      color: var(--sidebar-tertiary-foreground);
     }
   }
   .peer-disabled\:cursor-not-allowed:is(:where(.peer):disabled ~ *) {
@@ -2183,10 +2183,10 @@
   .peer-disabled\:opacity-70:is(:where(.peer):disabled ~ *) {
     opacity: 0.7;
   }
-  .peer-data-\[active\=true\]\/menu-button\:text-sidebar-accent-foreground:is(
+  .peer-data-\[active\=true\]\/menu-button\:text-sidebar-tertiary-foreground:is(
     :where(.peer\/menu-button)[data-active="true"] ~ *
   ) {
-    color: var(--sidebar-accent-foreground);
+    color: var(--sidebar-tertiary-foreground);
   }
   .peer-data-\[size\=default\]\/menu-button\:top-1\.5:is(
       :where(.peer\/menu-button)[data-size="default"] ~ *
@@ -2309,8 +2309,8 @@
     border-bottom-width: 0;
   }
   @media (hover: hover) {
-    .hover\:bg-accent:hover {
-      background-color: var(--accent);
+    .hover\:bg-tertiary:hover {
+      background-color: var(--tertiary);
     }
     .hover\:bg-error\/90:hover {
       background-color: var(--error);
@@ -2353,11 +2353,11 @@
         );
       }
     }
-    .hover\:bg-sidebar-accent:hover {
-      background-color: var(--sidebar-accent);
+    .hover\:bg-sidebar-tertiary:hover {
+      background-color: var(--sidebar-tertiary);
     }
-    .hover\:text-accent-foreground:hover {
-      color: var(--accent-foreground);
+    .hover\:text-tertiary-foreground:hover {
+      color: var(--tertiary-foreground);
     }
     .hover\:text-foreground:hover {
       color: var(--foreground);
@@ -2365,8 +2365,8 @@
     .hover\:text-muted-foreground:hover {
       color: var(--muted-foreground);
     }
-    .hover\:text-sidebar-accent-foreground:hover {
-      color: var(--sidebar-accent-foreground);
+    .hover\:text-sidebar-tertiary-foreground:hover {
+      color: var(--sidebar-tertiary-foreground);
     }
     .hover\:no-underline:hover {
       text-decoration-line: none;
@@ -2377,8 +2377,8 @@
     .hover\:opacity-100:hover {
       opacity: 1;
     }
-    .hover\:shadow-\[0_0_0_1px_hsl\(var\(--sidebar-accent\)\)\]:hover {
-      --tw-shadow: 0 0 0 1px var(--tw-shadow-color, hsl(var(--sidebar-accent)));
+    .hover\:shadow-\[0_0_0_1px_hsl\(var\(--sidebar-tertiary\)\)\]:hover {
+      --tw-shadow: 0 0 0 1px var(--tw-shadow-color, hsl(var(--sidebar-tertiary)));
       box-shadow:
         var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
         var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -2404,11 +2404,11 @@
   .focus\:z-10:focus {
     z-index: 10;
   }
-  .focus\:bg-accent:focus {
-    background-color: var(--accent);
+  .focus\:bg-tertiary:focus {
+    background-color: var(--tertiary);
   }
-  .focus\:text-accent-foreground:focus {
-    color: var(--accent-foreground);
+  .focus\:text-tertiary-foreground:focus {
+    color: var(--tertiary-foreground);
   }
   .focus\:ring-2:focus {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0
@@ -2508,11 +2508,11 @@
   .focus-visible\:outline-ring:focus-visible {
     outline-color: var(--ring);
   }
-  .active\:bg-sidebar-accent:active {
-    background-color: var(--sidebar-accent);
+  .active\:bg-sidebar-tertiary:active {
+    background-color: var(--sidebar-tertiary);
   }
-  .active\:text-sidebar-accent-foreground:active {
-    color: var(--sidebar-accent-foreground);
+  .active\:text-sidebar-tertiary-foreground:active {
+    color: var(--sidebar-tertiary-foreground);
   }
   .disabled\:pointer-events-none:disabled {
     pointer-events: none;
@@ -2600,26 +2600,26 @@
   .data-\[active\=true\]\:border-ring[data-active="true"] {
     border-color: var(--ring);
   }
-  .data-\[active\=true\]\:bg-accent\/50[data-active="true"] {
-    background-color: var(--accent);
+  .data-\[active\=true\]\:bg-tertiary\/50[data-active="true"] {
+    background-color: var(--tertiary);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .data-\[active\=true\]\:bg-accent\/50[data-active="true"] {
-      background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+    .data-\[active\=true\]\:bg-tertiary\/50[data-active="true"] {
+      background-color: color-mix(in oklab, var(--tertiary) 50%, transparent);
     }
   }
-  .data-\[active\=true\]\:bg-sidebar-accent[data-active="true"] {
-    background-color: var(--sidebar-accent);
+  .data-\[active\=true\]\:bg-sidebar-tertiary[data-active="true"] {
+    background-color: var(--sidebar-tertiary);
   }
   .data-\[active\=true\]\:font-medium[data-active="true"] {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
-  .data-\[active\=true\]\:text-accent-foreground[data-active="true"] {
-    color: var(--accent-foreground);
+  .data-\[active\=true\]\:text-tertiary-foreground[data-active="true"] {
+    color: var(--tertiary-foreground);
   }
-  .data-\[active\=true\]\:text-sidebar-accent-foreground[data-active="true"] {
-    color: var(--sidebar-accent-foreground);
+  .data-\[active\=true\]\:text-sidebar-tertiary-foreground[data-active="true"] {
+    color: var(--sidebar-tertiary-foreground);
   }
   .data-\[active\=true\]\:ring-\[3px\][data-active="true"] {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0
@@ -2637,12 +2637,12 @@
     }
   }
   @media (hover: hover) {
-    .data-\[active\=true\]\:hover\:bg-accent[data-active="true"]:hover {
-      background-color: var(--accent);
+    .data-\[active\=true\]\:hover\:bg-tertiary[data-active="true"]:hover {
+      background-color: var(--tertiary);
     }
   }
-  .data-\[active\=true\]\:focus\:bg-accent[data-active="true"]:focus {
-    background-color: var(--accent);
+  .data-\[active\=true\]\:focus\:bg-tertiary[data-active="true"]:focus {
+    background-color: var(--tertiary);
   }
   .data-\[active\=true\]\:aria-invalid\:border-error[data-active="true"][aria-invalid="true"] {
     border-color: var(--error);
@@ -2756,11 +2756,11 @@
   .data-\[range-middle\=true\]\:rounded-none[data-range-middle="true"] {
     border-radius: 0;
   }
-  .data-\[range-middle\=true\]\:bg-accent[data-range-middle="true"] {
-    background-color: var(--accent);
+  .data-\[range-middle\=true\]\:bg-tertiary[data-range-middle="true"] {
+    background-color: var(--tertiary);
   }
-  .data-\[range-middle\=true\]\:text-accent-foreground[data-range-middle="true"] {
-    color: var(--accent-foreground);
+  .data-\[range-middle\=true\]\:text-tertiary-foreground[data-range-middle="true"] {
+    color: var(--tertiary-foreground);
   }
   .data-\[range-start\=true\]\:rounded-md[data-range-start="true"] {
     border-radius: calc(var(--radius) - 2px);
@@ -2784,11 +2784,11 @@
   .data-\[selected\=true\]\:rounded-none[data-selected="true"] {
     border-radius: 0;
   }
-  .data-\[selected\=true\]\:bg-accent[data-selected="true"] {
-    background-color: var(--accent);
+  .data-\[selected\=true\]\:bg-tertiary[data-selected="true"] {
+    background-color: var(--tertiary);
   }
-  .data-\[selected\=true\]\:text-accent-foreground[data-selected="true"] {
-    color: var(--accent-foreground);
+  .data-\[selected\=true\]\:text-tertiary-foreground[data-selected="true"] {
+    color: var(--tertiary-foreground);
   }
   .data-\[side\=bottom\]\:translate-y-1[data-side="bottom"] {
     --tw-translate-y: calc(var(--spacing) * 1);
@@ -2908,26 +2908,26 @@
     --tw-duration: 0.3s;
     transition-duration: 0.3s;
   }
-  .data-\[state\=on\]\:bg-accent[data-state="on"] {
-    background-color: var(--accent);
+  .data-\[state\=on\]\:bg-tertiary[data-state="on"] {
+    background-color: var(--tertiary);
   }
-  .data-\[state\=on\]\:text-accent-foreground[data-state="on"] {
-    color: var(--accent-foreground);
+  .data-\[state\=on\]\:text-tertiary-foreground[data-state="on"] {
+    color: var(--tertiary-foreground);
   }
-  .data-\[state\=open\]\:bg-accent[data-state="open"],
-  .data-\[state\=open\]\:bg-accent\/50[data-state="open"] {
-    background-color: var(--accent);
+  .data-\[state\=open\]\:bg-tertiary[data-state="open"],
+  .data-\[state\=open\]\:bg-tertiary\/50[data-state="open"] {
+    background-color: var(--tertiary);
   }
   @supports (color: color-mix(in lab, red, red)) {
-    .data-\[state\=open\]\:bg-accent\/50[data-state="open"] {
-      background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+    .data-\[state\=open\]\:bg-tertiary\/50[data-state="open"] {
+      background-color: color-mix(in oklab, var(--tertiary) 50%, transparent);
     }
   }
   .data-\[state\=open\]\:bg-secondary[data-state="open"] {
     background-color: var(--secondary);
   }
-  .data-\[state\=open\]\:text-accent-foreground[data-state="open"] {
-    color: var(--accent-foreground);
+  .data-\[state\=open\]\:text-tertiary-foreground[data-state="open"] {
+    color: var(--tertiary-foreground);
   }
   .data-\[state\=open\]\:text-muted-foreground[data-state="open"] {
     color: var(--muted-foreground);
@@ -2940,18 +2940,18 @@
     transition-duration: 0.5s;
   }
   @media (hover: hover) {
-    .data-\[state\=open\]\:hover\:bg-accent[data-state="open"]:hover {
-      background-color: var(--accent);
+    .data-\[state\=open\]\:hover\:bg-tertiary[data-state="open"]:hover {
+      background-color: var(--tertiary);
     }
-    .data-\[state\=open\]\:hover\:bg-sidebar-accent[data-state="open"]:hover {
-      background-color: var(--sidebar-accent);
+    .data-\[state\=open\]\:hover\:bg-sidebar-tertiary[data-state="open"]:hover {
+      background-color: var(--sidebar-tertiary);
     }
-    .data-\[state\=open\]\:hover\:text-sidebar-accent-foreground[data-state="open"]:hover {
-      color: var(--sidebar-accent-foreground);
+    .data-\[state\=open\]\:hover\:text-sidebar-tertiary-foreground[data-state="open"]:hover {
+      color: var(--sidebar-tertiary-foreground);
     }
   }
-  .data-\[state\=open\]\:focus\:bg-accent[data-state="open"]:focus {
-    background-color: var(--accent);
+  .data-\[state\=open\]\:focus\:bg-tertiary[data-state="open"]:focus {
+    background-color: var(--tertiary);
   }
   .data-\[state\=selected\]\:bg-muted[data-state="selected"] {
     background-color: var(--muted);
@@ -3197,12 +3197,12 @@
     color: var(--muted-foreground);
   }
   @media (hover: hover) {
-    .dark\:hover\:bg-accent\/50:is(.dark *):hover {
-      background-color: var(--accent);
+    .dark\:hover\:bg-tertiary\/50:is(.dark *):hover {
+      background-color: var(--tertiary);
     }
     @supports (color: color-mix(in lab, red, red)) {
-      .dark\:hover\:bg-accent\/50:is(.dark *):hover {
-        background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+      .dark\:hover\:bg-tertiary\/50:is(.dark *):hover {
+        background-color: color-mix(in oklab, var(--tertiary) 50%, transparent);
       }
     }
     .dark\:hover\:bg-input\/50:is(.dark *):hover {
@@ -3213,8 +3213,8 @@
         background-color: color-mix(in oklab, var(--input) 50%, transparent);
       }
     }
-    .dark\:hover\:text-accent-foreground:is(.dark *):hover {
-      color: var(--accent-foreground);
+    .dark\:hover\:text-tertiary-foreground:is(.dark *):hover {
+      color: var(--tertiary-foreground);
     }
   }
   .dark\:focus-visible\:ring-error\/40:is(.dark *):focus-visible {
@@ -3569,8 +3569,8 @@
   .\[\&\>svg\]\:text-muted-foreground > svg {
     color: var(--muted-foreground);
   }
-  .\[\&\>svg\]\:text-sidebar-accent-foreground > svg {
-    color: var(--sidebar-accent-foreground);
+  .\[\&\>svg\]\:text-sidebar-tertiary-foreground > svg {
+    color: var(--sidebar-tertiary-foreground);
   }
   .\[\&\>tr\]\:last\:border-b-0 > tr:last-child {
     border-bottom-style: var(--tw-border-style);
@@ -3606,8 +3606,8 @@
     background-color: #0000;
   }
   @media (hover: hover) {
-    a.\[a\&\]\:hover\:bg-accent:hover {
-      background-color: var(--accent);
+    a.\[a\&\]\:hover\:bg-tertiary:hover {
+      background-color: var(--tertiary);
     }
     a.\[a\&\]\:hover\:bg-error\/90:hover {
       background-color: var(--error);
@@ -3641,13 +3641,13 @@
         );
       }
     }
-    a.\[a\&\]\:hover\:text-accent-foreground:hover {
-      color: var(--accent-foreground);
+    a.\[a\&\]\:hover\:text-tertiary-foreground:hover {
+      color: var(--tertiary-foreground);
     }
   }
 }
 :root {
-  --radius: 0.625rem;
+  --radius: 20rem;
   --background: #fff;
   --foreground: #020617;
   --card: #fff;
@@ -3660,8 +3660,8 @@
   --secondary-foreground: #2c0e54;
   --muted: #f6f6f6;
   --muted-foreground: #6b7280;
-  --accent: #f6f6f6;
-  --accent-foreground: #020617;
+  --tertiary: #f6f6f6;
+  --tertiary-foreground: #020617;
   --error: #ef4444;
   --border: #e2ebf0;
   --input: #e2ebf0;
@@ -3676,8 +3676,8 @@
   --sidebar-foreground: oklch(12.9% 0.042 264.695);
   --sidebar-primary: oklch(20.8% 0.042 265.755);
   --sidebar-primary-foreground: oklch(98.4% 0.003 247.858);
-  --sidebar-accent: oklch(96.8% 0.007 247.896);
-  --sidebar-accent-foreground: oklch(20.8% 0.042 265.755);
+  --sidebar-tertiary: oklch(96.8% 0.007 247.896);
+  --sidebar-tertiary-foreground: oklch(20.8% 0.042 265.755);
   --sidebar-border: oklch(92.9% 0.013 255.508);
   --sidebar-ring: oklch(70.4% 0.04 256.788);
 }
@@ -3694,8 +3694,8 @@
   --secondary-foreground: oklch(98.4% 0.003 247.858);
   --muted: oklch(27.9% 0.041 260.031);
   --muted-foreground: oklch(70.4% 0.04 256.788);
-  --accent: oklch(27.9% 0.041 260.031);
-  --accent-foreground: oklch(98.4% 0.003 247.858);
+  --tertiary: oklch(27.9% 0.041 260.031);
+  --tertiary-foreground: oklch(98.4% 0.003 247.858);
   --error: oklch(70.4% 0.191 22.216);
   --border: oklch(100% 0 0/0.1);
   --input: oklch(100% 0 0/0.15);
@@ -3709,8 +3709,8 @@
   --sidebar-foreground: oklch(98.4% 0.003 247.858);
   --sidebar-primary: oklch(48.8% 0.243 264.376);
   --sidebar-primary-foreground: oklch(98.4% 0.003 247.858);
-  --sidebar-accent: oklch(27.9% 0.041 260.031);
-  --sidebar-accent-foreground: oklch(98.4% 0.003 247.858);
+  --sidebar-tertiary: oklch(27.9% 0.041 260.031);
+  --sidebar-tertiary-foreground: oklch(98.4% 0.003 247.858);
   --sidebar-border: oklch(100% 0 0/0.1);
   --sidebar-ring: oklch(55.1% 0.027 264.364);
 }
