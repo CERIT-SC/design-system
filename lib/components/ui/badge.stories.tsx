@@ -32,7 +32,7 @@ export const Secondary: Story = {
   },
 };
 
-export const error: Story = {
+export const Error: Story = {
   args: {
     children: "Error",
     variant: "error",
