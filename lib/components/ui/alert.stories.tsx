@@ -32,7 +32,7 @@ export const Default: Story = {
   ),
 };
 
-export const error: Story = {
+export const Error: Story = {
   render: () => (
     <Alert variant="error" className="w-[400px]">
       <AlertCircle className="h-4 w-4" />
