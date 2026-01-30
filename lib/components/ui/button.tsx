@@ -24,10 +24,10 @@ const buttonVariants = cva(
           "bg-error text-error-foreground hover:bg-error/90 hover:scale-105 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/60",
         outline:
           "border bg-background shadow-xs hover:bg-tertiary hover:scale-105 hover:text-tertiary-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-
         ghost:
           "hover:bg-tertiary hover:text-tertiary-foreground hover:scale-105 dark:hover:bg-tertiary/50",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: 
+          "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
