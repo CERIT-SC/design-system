@@ -30,7 +30,7 @@ export const Default: Story = {
   },
 };
 
-export const error: Story = {
+export const Error: Story = {
   args: {
     children: "Delete",
     variant: "error",
