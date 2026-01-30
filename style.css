@@ -3647,7 +3647,7 @@
   }
 }
 :root {
-  --radius: 20rem;
+  --radius: 0.75rem;
   --background: #fff;
   --foreground: #020617;
   --card: #fff;
