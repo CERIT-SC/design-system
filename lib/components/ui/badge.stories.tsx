@@ -34,7 +34,7 @@ export const Secondary: Story = {
 
 export const error: Story = {
   args: {
-    children: "error",
+    children: "Error",
     variant: "error",
   },
 };
