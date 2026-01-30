@@ -149,7 +149,7 @@ const ComponentCopySelect = ({
           <DropdownMenuItem
             key={comp.name}
             onClick={() => handleCopy(comp.import, comp.name)}
-            className="flex-col items-start p-4 cursor-pointer hover:bg-accent"
+            className="flex-col items-start p-4 cursor-pointer hover:bg-tertiary"
           >
             <div className="font-semibold text-sm mb-1">{comp.name}</div>
             {comp.description && (
@@ -224,8 +224,8 @@ function App() {
                 <Content.Heading>e-INFRA CZ Design System</Content.Heading>
                 <Content.Body>
                   <p className="text-base leading-7 text-muted-foreground">
-                    Component showcase for the e-INFRA CZ Design System built with
-                    shadcn/ui
+                    Component showcase for the e-INFRA CZ Design System built
+                    with shadcn/ui
                   </p>
                 </Content.Body>
               </Content>
@@ -241,8 +241,8 @@ function App() {
                   <P>Install the e-INFRA Design System package:</P>
                   <Code>npm install @e-infra/design-system</Code>
                   <Small className="block mt-2">
-                    Then import components as shown in the "Copy Component" dropdowns
-                    below each section.
+                    Then import components as shown in the "Copy Component"
+                    dropdowns below each section.
                   </Small>
                 </CardContent>
               </Card>
@@ -252,21 +252,77 @@ function App() {
               {/* Typography Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Typography</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Typography
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "H1", description: "Main page heading (4xl, bold)", import: "import { H1 } from '@e-infra/design-system';" },
-                      { name: "H2", description: "Section heading (3xl, semibold)", import: "import { H2 } from '@e-infra/design-system';" },
-                      { name: "H3", description: "Sub-heading (2xl, semibold)", import: "import { H3 } from '@e-infra/design-system';" },
-                      { name: "H4", description: "Sub-section heading (xl, semibold)", import: "import { H4 } from '@e-infra/design-system';" },
-                      { name: "P", description: "Standard body text paragraph", import: "import { P } from '@e-infra/design-system';" },
-                      { name: "Lead", description: "Larger intro text for emphasis", import: "import { Lead } from '@e-infra/design-system';" },
-                      { name: "Strong", description: "Bold paragraph for emphasis", import: "import { Strong } from '@e-infra/design-system';" },
-                      { name: "Small", description: "Small text for captions", import: "import { Small } from '@e-infra/design-system';" },
-                      { name: "Muted", description: "Extra small muted text", import: "import { Muted } from '@e-infra/design-system';" },
-                      { name: "Code", description: "Inline code with monospace font", import: "import { Code } from '@e-infra/design-system';" },
-                      { name: "Link", description: "Standard link with underline", import: "import { Link } from '@e-infra/design-system';" },
-                      { name: "Link", import: "import { Link } from '@e-infra/design-system';" },
+                      {
+                        name: "H1",
+                        description: "Main page heading (4xl, bold)",
+                        import: "import { H1 } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "H2",
+                        description: "Section heading (3xl, semibold)",
+                        import: "import { H2 } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "H3",
+                        description: "Sub-heading (2xl, semibold)",
+                        import: "import { H3 } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "H4",
+                        description: "Sub-section heading (xl, semibold)",
+                        import: "import { H4 } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "P",
+                        description: "Standard body text paragraph",
+                        import: "import { P } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Lead",
+                        description: "Larger intro text for emphasis",
+                        import:
+                          "import { Lead } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Strong",
+                        description: "Bold paragraph for emphasis",
+                        import:
+                          "import { Strong } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Small",
+                        description: "Small text for captions",
+                        import:
+                          "import { Small } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Muted",
+                        description: "Extra small muted text",
+                        import:
+                          "import { Muted } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Code",
+                        description: "Inline code with monospace font",
+                        import:
+                          "import { Code } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Link",
+                        description: "Standard link with underline",
+                        import:
+                          "import { Link } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Link",
+                        import:
+                          "import { Link } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -311,9 +367,10 @@ function App() {
                         Body Text
                       </Muted>
                       <P>
-                        The quick brown fox jumps over the lazy dog. This is standard
-                        body text that should be used for most content. It provides
-                        good readability and comfortable reading experience.
+                        The quick brown fox jumps over the lazy dog. This is
+                        standard body text that should be used for most content.
+                        It provides good readability and comfortable reading
+                        experience.
                       </P>
                     </div>
 
@@ -323,8 +380,8 @@ function App() {
                       </Muted>
                       <Strong>
                         The quick brown fox jumps over the lazy dog. This is
-                        emphasized body text for important information that needs to
-                        stand out.
+                        emphasized body text for important information that
+                        needs to stand out.
                       </Strong>
                     </div>
 
@@ -333,8 +390,9 @@ function App() {
                         Small Text
                       </Muted>
                       <Small>
-                        The quick brown fox jumps over the lazy dog. This is smaller
-                        text used for captions, helper text, or secondary information.
+                        The quick brown fox jumps over the lazy dog. This is
+                        smaller text used for captions, helper text, or
+                        secondary information.
                       </Small>
                     </div>
 
@@ -356,9 +414,7 @@ function App() {
                     </div>
 
                     <div className="space-y-2">
-                      <Muted className="uppercase tracking-wider">
-                        Link
-                      </Muted>
+                      <Muted className="uppercase tracking-wider">Link</Muted>
                       <Link href="#">This is a standard link</Link>
                     </div>
                   </CardContent>
@@ -370,10 +426,16 @@ function App() {
               {/* Alerts Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Alerts</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Alerts
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Alert", import: "import { Alert, AlertTitle, AlertDescription } from '@e-infra/design-system';" },
+                      {
+                        name: "Alert",
+                        import:
+                          "import { Alert, AlertTitle, AlertDescription } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -385,7 +447,7 @@ function App() {
                       You can add components to your app using the cli.
                     </AlertDescription>
                   </Alert>
-                  <Alert variant="destructive">
+                  <Alert variant="error">
                     <Info className="h-4 w-4" />
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>
@@ -400,17 +462,27 @@ function App() {
               {/* Buttons Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Buttons</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Buttons
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Button", import: "import { Button } from '@e-infra/design-system';" },
+                      {
+                        name: "Button",
+                        import:
+                          "import { Button } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <Button>Default</Button>
                   <Button variant="secondary">Secondary</Button>
-                  <Button variant="destructive">Destructive</Button>
+                  <Button variant="tertiary">Tertiary</Button>
+                  <Button variant="info">Info</Button>
+                  <Button variant="success">Success</Button>
+                  <Button variant="warning">Warning</Button>
+                  <Button variant="error">Error</Button>
                   <Button variant="outline">Outline</Button>
                   <Button variant="ghost">Ghost</Button>
                   <Button variant="link">Link</Button>
@@ -425,10 +497,16 @@ function App() {
               {/* Cards Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Cards</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Cards
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Card", import: "import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@e-infra/design-system';" },
+                      {
+                        name: "Card",
+                        import:
+                          "import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -448,7 +526,9 @@ function App() {
                   <Card>
                     <CardHeader>
                       <CardTitle>Notifications</CardTitle>
-                      <CardDescription>You have 3 unread messages.</CardDescription>
+                      <CardDescription>
+                        You have 3 unread messages.
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
@@ -475,13 +555,17 @@ function App() {
                       <div className="flex gap-2">
                         <Button
                           size="sm"
-                          onClick={() => setProgress(Math.min(100, progress + 10))}
+                          onClick={() =>
+                            setProgress(Math.min(100, progress + 10))
+                          }
                         >
                           +10
                         </Button>
                         <Button
                           size="sm"
-                          onClick={() => setProgress(Math.max(0, progress - 10))}
+                          onClick={() =>
+                            setProgress(Math.max(0, progress - 10))
+                          }
                         >
                           -10
                         </Button>
@@ -501,14 +585,46 @@ function App() {
                   </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Input", import: "import { Input } from '@e-infra/design-system';" },
-                      { name: "Label", import: "import { Label } from '@e-infra/design-system';" },
-                      { name: "Textarea", import: "import { Textarea } from '@e-infra/design-system';" },
-                      { name: "Select", import: "import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@e-infra/design-system';" },
-                      { name: "Checkbox", import: "import { Checkbox } from '@e-infra/design-system';" },
-                      { name: "RadioGroup", import: "import { RadioGroup, RadioGroupItem } from '@e-infra/design-system';" },
-                      { name: "Switch", import: "import { Switch } from '@e-infra/design-system';" },
-                      { name: "Slider", import: "import { Slider } from '@e-infra/design-system';" },
+                      {
+                        name: "Input",
+                        import:
+                          "import { Input } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Label",
+                        import:
+                          "import { Label } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Textarea",
+                        import:
+                          "import { Textarea } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Select",
+                        import:
+                          "import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Checkbox",
+                        import:
+                          "import { Checkbox } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "RadioGroup",
+                        import:
+                          "import { RadioGroup, RadioGroupItem } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Switch",
+                        import:
+                          "import { Switch } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Slider",
+                        import:
+                          "import { Slider } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -537,7 +653,11 @@ function App() {
 
                       <div className="space-y-2">
                         <Label htmlFor="password">Password Input</Label>
-                        <Input id="password" type="password" placeholder="••••••••" />
+                        <Input
+                          id="password"
+                          type="password"
+                          placeholder="••••••••"
+                        />
                       </div>
 
                       <div className="space-y-2">
@@ -562,7 +682,10 @@ function App() {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Textarea</Label>
-                      <Textarea id="message" placeholder="Type your message here." />
+                      <Textarea
+                        id="message"
+                        placeholder="Type your message here."
+                      />
                     </div>
 
                     <div className="space-y-2">
@@ -637,8 +760,16 @@ function App() {
                   </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Badge", import: "import { Badge } from '@e-infra/design-system';" },
-                      { name: "Avatar", import: "import { Avatar, AvatarImage, AvatarFallback } from '@e-infra/design-system';" },
+                      {
+                        name: "Badge",
+                        import:
+                          "import { Badge } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "Avatar",
+                        import:
+                          "import { Avatar, AvatarImage, AvatarFallback } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -646,7 +777,7 @@ function App() {
                   <div className="flex flex-wrap gap-2">
                     <Badge>Default</Badge>
                     <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="destructive">Destructive</Badge>
+                    <Badge variant="error">Error</Badge>
                     <Badge variant="outline">Outline</Badge>
                   </div>
                   <div className="flex gap-2">
@@ -669,10 +800,16 @@ function App() {
               {/* Accordion Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Accordion</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Accordion
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Accordion", import: "import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@e-infra/design-system';" },
+                      {
+                        name: "Accordion",
+                        import:
+                          "import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -693,8 +830,8 @@ function App() {
                   <AccordionItem value="item-3">
                     <AccordionTrigger>Is it animated?</AccordionTrigger>
                     <AccordionContent>
-                      Yes. It's animated by default, but you can disable it if you
-                      prefer.
+                      Yes. It's animated by default, but you can disable it if
+                      you prefer.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -705,10 +842,16 @@ function App() {
               {/* Tabs Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Tabs</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Tabs
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Tabs", import: "import { Tabs, TabsList, TabsTrigger, TabsContent } from '@e-infra/design-system';" },
+                      {
+                        name: "Tabs",
+                        import:
+                          "import { Tabs, TabsList, TabsTrigger, TabsContent } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -742,7 +885,9 @@ function App() {
                     <Card>
                       <CardHeader>
                         <CardTitle>Password</CardTitle>
-                        <CardDescription>Change your password here.</CardDescription>
+                        <CardDescription>
+                          Change your password here.
+                        </CardDescription>
                       </CardHeader>
                       <CardContent className="space-y-2">
                         <div className="space-y-1">
@@ -777,10 +922,16 @@ function App() {
               {/* Collapsible Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Collapsible</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Collapsible
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Collapsible", import: "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@e-infra/design-system';" },
+                      {
+                        name: "Collapsible",
+                        import:
+                          "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -818,10 +969,16 @@ function App() {
               {/* Breadcrumb Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Breadcrumb</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Breadcrumb
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Breadcrumb", import: "import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@e-infra/design-system';" },
+                      {
+                        name: "Breadcrumb",
+                        import:
+                          "import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -832,7 +989,9 @@ function App() {
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+                      <BreadcrumbLink href="/components">
+                        Components
+                      </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
@@ -847,10 +1006,16 @@ function App() {
               {/* Calendar Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Calendar</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Calendar
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Calendar", import: "import { Calendar } from '@e-infra/design-system';" },
+                      {
+                        name: "Calendar",
+                        import:
+                          "import { Calendar } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -871,10 +1036,16 @@ function App() {
               {/* Carousel Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Carousel</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Carousel
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Carousel", import: "import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@e-infra/design-system';" },
+                      {
+                        name: "Carousel",
+                        import:
+                          "import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -907,8 +1078,16 @@ function App() {
                   </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Toggle", import: "import { Toggle } from '@e-infra/design-system';" },
-                      { name: "ToggleGroup", import: "import { ToggleGroup, ToggleGroupItem } from '@e-infra/design-system';" },
+                      {
+                        name: "Toggle",
+                        import:
+                          "import { Toggle } from '@e-infra/design-system';",
+                      },
+                      {
+                        name: "ToggleGroup",
+                        import:
+                          "import { ToggleGroup, ToggleGroupItem } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -931,7 +1110,10 @@ function App() {
                     <ToggleGroupItem value="italic" aria-label="Toggle italic">
                       <Italic className="h-4 w-4" />
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="underline" aria-label="Toggle underline">
+                    <ToggleGroupItem
+                      value="underline"
+                      aria-label="Toggle underline"
+                    >
                       <Underline className="h-4 w-4" />
                     </ToggleGroupItem>
                   </ToggleGroup>
@@ -943,10 +1125,16 @@ function App() {
               {/* Tooltip Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Tooltip</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Tooltip
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Tooltip", import: "import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@e-infra/design-system';" },
+                      {
+                        name: "Tooltip",
+                        import:
+                          "import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -967,10 +1155,16 @@ function App() {
               {/* Skeleton Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Skeleton</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Skeleton
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Skeleton", import: "import { Skeleton } from '@e-infra/design-system';" },
+                      {
+                        name: "Skeleton",
+                        import:
+                          "import { Skeleton } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -986,10 +1180,16 @@ function App() {
               {/* Table Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Tables</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Tables
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "Table", import: "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from '@e-infra/design-system';" },
+                      {
+                        name: "Table",
+                        import:
+                          "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -1039,7 +1239,7 @@ function App() {
                         <TableRow>
                           <TableCell className="font-medium">INV004</TableCell>
                           <TableCell>
-                            <Badge variant="destructive">Failed</Badge>
+                            <Badge variant="error">Failed</Badge>
                           </TableCell>
                           <TableCell>Credit Card</TableCell>
                           <TableCell className="text-right">$450.00</TableCell>
@@ -1170,10 +1370,16 @@ function App() {
               {/* Dialogs Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Dialogs</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Dialogs
+                  </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "AlertDialog", import: "import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from '@e-infra/design-system';" },
+                      {
+                        name: "AlertDialog",
+                        import:
+                          "import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>
@@ -1184,10 +1390,13 @@ function App() {
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogTitle>
+                          Are you absolutely sure?
+                        </AlertDialogTitle>
                         <AlertDialogDescription>
-                          This action cannot be undone. This will permanently delete
-                          your account and remove your data from our servers.
+                          This action cannot be undone. This will permanently
+                          delete your account and remove your data from our
+                          servers.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
@@ -1209,7 +1418,11 @@ function App() {
                   </h2>
                   <ComponentCopySelect
                     components={[
-                      { name: "AspectRatio", import: "import { AspectRatio } from '@e-infra/design-system';" },
+                      {
+                        name: "AspectRatio",
+                        import:
+                          "import { AspectRatio } from '@e-infra/design-system';",
+                      },
                     ]}
                   />
                 </div>

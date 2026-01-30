@@ -11,14 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: [
-        "default",
-        "destructive",
-        "outline",
-        "secondary",
-        "ghost",
-        "link",
-      ],
+      options: ["default", "error", "outline", "secondary", "ghost", "link", "tertiary", "info", "success", "warning"],
     },
     size: {
       control: "select",
@@ -37,10 +30,10 @@ export const Default: Story = {
   },
 };
 
-export const Destructive: Story = {
+export const Error: Story = {
   args: {
     children: "Delete",
-    variant: "destructive",
+    variant: "error",
   },
 };
 
