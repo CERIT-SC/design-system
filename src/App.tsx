@@ -149,7 +149,7 @@ const ComponentCopySelect = ({
           <DropdownMenuItem
             key={comp.name}
             onClick={() => handleCopy(comp.import, comp.name)}
-            className="flex-col items-start p-4 cursor-pointer hover:bg-accent"
+            className="flex-col items-start p-4 cursor-pointer hover:bg-tertiary"
           >
             <div className="font-semibold text-sm mb-1">{comp.name}</div>
             {comp.description && (
@@ -478,7 +478,11 @@ function App() {
                 <div className="flex flex-wrap gap-4">
                   <Button>Default</Button>
                   <Button variant="secondary">Secondary</Button>
-                  <Button variant="error">error</Button>
+                  <Button variant="tertiary">Tertiary</Button>
+                  <Button variant="info">Info</Button>
+                  <Button variant="success">Success</Button>
+                  <Button variant="warning">Warning</Button>
+                  <Button variant="error">Error</Button>
                   <Button variant="outline">Outline</Button>
                   <Button variant="ghost">Ghost</Button>
                   <Button variant="link">Link</Button>

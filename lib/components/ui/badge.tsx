@@ -16,7 +16,7 @@ const badgeVariants = cva(
         error:
           "border-transparent bg-error text-white [a&]:hover:bg-error/90 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/60",
         outline:
-          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          "text-foreground [a&]:hover:bg-tertiary [a&]:hover:text-tertiary-foreground",
       },
     },
     defaultVariants: {

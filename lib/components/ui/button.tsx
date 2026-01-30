@@ -11,14 +11,22 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105",
-        error:
-          "bg-error text-white hover:bg-error/90 hover:scale-105 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:scale-105 hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105",
+        tertiary:
+          "bg-tertiary text-tertiary-foreground hover:bg-tertiary/80 hover:scale-105",
+        info: "bg-info text-info-foreground hover:bg-info/90 hover:scale-105 focus-visible:ring-info/20 dark:focus-visible:ring-info/40",
+        success:
+          "bg-success text-success-foreground hover:bg-success/90 hover:scale-105 focus-visible:ring-success/20 dark:focus-visible:ring-success/40",
+        warning:
+          "bg-warning text-warning-foreground hover:bg-warning/90 hover:scale-105 focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40",
+        error:
+          "bg-error text-error-foreground hover:bg-error/90 hover:scale-105 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/60",
+        outline:
+          "border bg-background shadow-xs hover:bg-tertiary hover:scale-105 hover:text-tertiary-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+
         ghost:
-          "hover:bg-accent hover:text-accent-foreground hover:scale-105 dark:hover:bg-accent/50",
+          "hover:bg-tertiary hover:text-tertiary-foreground hover:scale-105 dark:hover:bg-tertiary/50",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
