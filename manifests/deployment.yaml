@@ -13,7 +13,7 @@ spec:
         app: designsystem-selector-prod
     spec:
       imagePullSecrets:
-        - name: dockerhub-accesstoken
+        - name: cerit-io-harbor-accesstoken
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: designsystem-container-prod
-          image: xcillik/design_system:latest
+          image: cerit.io/xcillik/design_system:latest
           imagePullPolicy: Always
           securityContext:
             runAsUser: 1000
