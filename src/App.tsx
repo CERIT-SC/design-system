@@ -107,6 +107,12 @@ import {
   Content,
   Header,
   Footer,
+  PanelHeader,
+  Panel,
+  PanelTitle,
+  PanelDescription,
+  PanelContent,
+  PanelFooter,
 } from "../lib";
 import { toast } from "sonner";
 import { Toaster } from "../lib/components/ui/sonner";
@@ -217,7 +223,7 @@ function App() {
             </SidebarFooter>
           </Sidebar>
 
-          <div className="flex-1 min-h-screen bg-background">
+          <div className="flex-1 min-h-screen bg-background" style={{ backgroundImage: "url('/background.svg')", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
             <Header showSidebarTrigger={true} />
             <div className="container mx-auto px-4 py-8 space-y-8">
               <Content>
@@ -231,21 +237,21 @@ function App() {
               </Content>
 
               {/* Installation Instructions */}
-              <Card className="border-primary/20 bg-primary/5">
-                <CardHeader>
-                  <CardTitle className="text-lg">
+              <Panel className="">
+                <PanelHeader>
+                  <PanelTitle className="text-lg">
                     Installation Instructions
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
+                  </PanelTitle>
+                </PanelHeader>
+                <PanelContent className="space-y-2">
                   <P>Install the e-INFRA Design System package:</P>
                   <Code>npm install @e-infra/design-system</Code>
                   <Small className="block mt-2">
                     Then import components as shown in the "Copy Component"
                     dropdowns below each section.
                   </Small>
-                </CardContent>
-              </Card>
+                </PanelContent>
+              </Panel>
 
               <Separator />
 
@@ -326,14 +332,14 @@ function App() {
                     ]}
                   />
                 </div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Text Hierarchy</CardTitle>
-                    <CardDescription>
+                <Panel>
+                  <PanelHeader>
+                    <PanelTitle>Text Hierarchy</PanelTitle>
+                    <PanelDescription>
                       Standardized typography styles for consistent design
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
+                    </PanelDescription>
+                  </PanelHeader>
+                  <PanelContent className="space-y-6">
                     <div className="space-y-2">
                       <Muted className="uppercase tracking-wider">
                         Main Heading
@@ -417,8 +423,8 @@ function App() {
                       <Muted className="uppercase tracking-wider">Link</Muted>
                       <Link href="#">This is a standard link</Link>
                     </div>
-                  </CardContent>
-                </Card>
+                  </PanelContent>
+                </Panel>
               </section>
 
               <Separator />
@@ -628,14 +634,14 @@ function App() {
                     ]}
                   />
                 </div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Example Form</CardTitle>
-                    <CardDescription>
+                <Panel>
+                  <PanelHeader>
+                    <PanelTitle>Example Form</PanelTitle>
+                    <PanelDescription>
                       All form components in one place
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
+                    </PanelDescription>
+                  </PanelHeader>
+                  <PanelContent className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="text">Text Input</Label>
@@ -743,11 +749,11 @@ function App() {
                       <Label>Volume</Label>
                       <Slider defaultValue={[50]} max={100} step={1} />
                     </div>
-                  </CardContent>
-                  <CardFooter>
+                  </PanelContent>
+                  <PanelFooter>
                     <Button>Submit</Button>
-                  </CardFooter>
-                </Card>
+                  </PanelFooter>
+                </Panel>
               </section>
 
               <Separator />
@@ -862,14 +868,14 @@ function App() {
                     <TabsTrigger value="settings">Settings</TabsTrigger>
                   </TabsList>
                   <TabsContent value="account" className="space-y-4">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Account</CardTitle>
-                        <CardDescription>
+                    <Panel>
+                      <PanelHeader>
+                        <PanelTitle>Account</PanelTitle>
+                        <PanelDescription>
                           Make changes to your account here.
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2">
+                        </PanelDescription>
+                      </PanelHeader>
+                      <PanelContent className="space-y-2">
                         <div className="space-y-1">
                           <Label htmlFor="name">Name</Label>
                           <Input id="name" defaultValue="Pedro Duarte" />
@@ -878,18 +884,18 @@ function App() {
                           <Label htmlFor="username">Username</Label>
                           <Input id="username" defaultValue="@peduarte" />
                         </div>
-                      </CardContent>
-                    </Card>
+                      </PanelContent>
+                    </Panel>
                   </TabsContent>
                   <TabsContent value="password">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Password</CardTitle>
-                        <CardDescription>
+                    <Panel>
+                      <PanelHeader>
+                        <PanelTitle>Password</PanelTitle>
+                        <PanelDescription>
                           Change your password here.
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2">
+                        </PanelDescription>
+                      </PanelHeader>
+                      <PanelContent className="space-y-2">
                         <div className="space-y-1">
                           <Label htmlFor="current">Current password</Label>
                           <Input id="current" type="password" />
@@ -898,21 +904,21 @@ function App() {
                           <Label htmlFor="new">New password</Label>
                           <Input id="new" type="password" />
                         </div>
-                      </CardContent>
-                    </Card>
+                      </PanelContent>
+                    </Panel>
                   </TabsContent>
                   <TabsContent value="settings">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Settings</CardTitle>
-                        <CardDescription>Manage your settings.</CardDescription>
-                      </CardHeader>
-                      <CardContent>
+                    <Panel>
+                      <PanelHeader>
+                        <PanelTitle>Settings</PanelTitle>
+                        <PanelDescription>Manage your settings.</PanelDescription>
+                      </PanelHeader>
+                      <PanelContent>
                         <p className="text-sm text-muted-foreground">
                           Settings content goes here.
                         </p>
-                      </CardContent>
-                    </Card>
+                      </PanelContent>
+                    </Panel>
                   </TabsContent>
                 </Tabs>
               </section>
@@ -936,19 +942,19 @@ function App() {
                   />
                 </div>
                 <Collapsible>
-                  <Card>
-                    <CardHeader className="pb-3">
+                  <Panel>
+                    <PanelHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <CardTitle>@peduarte starred 3 repositories</CardTitle>
+                        <PanelTitle>@peduarte starred 3 repositories</PanelTitle>
                         <CollapsibleTrigger asChild>
                           <Button variant="ghost" size="sm">
                             <ChevronDown className="h-4 w-4" />
                           </Button>
                         </CollapsibleTrigger>
                       </div>
-                    </CardHeader>
+                    </PanelHeader>
                     <CollapsibleContent>
-                      <CardContent className="space-y-2">
+                      <PanelContent className="space-y-2">
                         <div className="rounded-md border px-4 py-2 font-mono text-sm">
                           @radix-ui/primitives
                         </div>
@@ -958,9 +964,9 @@ function App() {
                         <div className="rounded-md border px-4 py-2 font-mono text-sm">
                           @stitches/react
                         </div>
-                      </CardContent>
+                      </PanelContent>
                     </CollapsibleContent>
-                  </Card>
+                  </Panel>
                 </Collapsible>
               </section>
 
@@ -1019,16 +1025,16 @@ function App() {
                     ]}
                   />
                 </div>
-                <Card className="w-fit">
-                  <CardContent className="pt-6">
+                <Panel className="w-fit">
+                  <PanelContent className="pt-6">
                     <Calendar
                       mode="single"
                       selected={date}
                       onSelect={setDate}
                       className="rounded-md border"
                     />
-                  </CardContent>
-                </Card>
+                  </PanelContent>
+                </Panel>
               </section>
 
               <Separator />
@@ -1053,13 +1059,13 @@ function App() {
                   <CarouselContent>
                     {Array.from({ length: 5 }).map((_, index) => (
                       <CarouselItem key={index}>
-                        <Card>
-                          <CardContent className="flex aspect-square items-center justify-center p-6">
+                        <Panel>
+                          <PanelContent className="flex aspect-square items-center justify-center p-6">
                             <span className="text-4xl font-semibold">
                               {index + 1}
                             </span>
-                          </CardContent>
-                        </Card>
+                          </PanelContent>
+                        </Panel>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
@@ -1193,14 +1199,14 @@ function App() {
                     ]}
                   />
                 </div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Data Table</CardTitle>
-                    <CardDescription>
+                <Panel>
+                  <PanelHeader>
+                    <PanelTitle>Data Table</PanelTitle>
+                    <PanelDescription>
                       Example of a table component with various data types
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
+                    </PanelDescription>
+                  </PanelHeader>
+                  <PanelContent>
                     <Table>
                       <TableCaption>A list of recent transactions</TableCaption>
                       <TableHeader>
@@ -1217,7 +1223,7 @@ function App() {
                           <TableCell>
                             <Badge>Paid</Badge>
                           </TableCell>
-                          <TableCell>Credit Card</TableCell>
+                          <TableCell>Credit Panel</TableCell>
                           <TableCell className="text-right">$250.00</TableCell>
                         </TableRow>
                         <TableRow>
@@ -1241,7 +1247,7 @@ function App() {
                           <TableCell>
                             <Badge variant="error">Failed</Badge>
                           </TableCell>
-                          <TableCell>Credit Card</TableCell>
+                          <TableCell>Credit Panel</TableCell>
                           <TableCell className="text-right">$450.00</TableCell>
                         </TableRow>
                         <TableRow>
@@ -1254,8 +1260,8 @@ function App() {
                         </TableRow>
                       </TableBody>
                     </Table>
-                  </CardContent>
-                </Card>
+                  </PanelContent>
+                </Panel>
               </section>
 
               <Separator />
@@ -1271,14 +1277,14 @@ function App() {
                     ]}
                   />
                 </div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Sidebar Navigation</CardTitle>
-                    <CardDescription>
+                <Panel>
+                  <PanelHeader>
+                    <PanelTitle>Sidebar Navigation</PanelTitle>
+                    <PanelDescription>
                       Collapsible sidebar component for navigation
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
+                    </PanelDescription>
+                  </PanelHeader>
+                  <PanelContent className="space-y-4">
                     <SidebarProvider>
                       <div className="flex min-h-[400px] w-full rounded-lg border">
                         <Sidebar>
@@ -1361,8 +1367,8 @@ function App() {
                         ]}
                       />
                     </div>
-                  </CardContent>
-                </Card>
+                  </PanelContent>
+                </Panel>
               </section> */}
 
               <Separator />

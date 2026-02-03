@@ -4,11 +4,11 @@ import {
     Content,
     Footer,
     Button,
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+    Panel,
+    PanelContent,
+    PanelDescription,
+    PanelHeader,
+    PanelTitle,
     Separator,
     Sidebar,
     SidebarContent,
@@ -90,20 +90,20 @@ function LayoutShowcase() {
                                     trigger and action buttons. It uses the primary color scheme and includes
                                     proper spacing and borders.
                                 </p>
-                                <Card className="mt-4">
-                                    <CardHeader>
-                                        <CardTitle>Header Features</CardTitle>
-                                        <CardDescription>Built-in functionality</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
+                                <Panel className="mt-4">
+                                    <PanelHeader>
+                                        <PanelTitle>Header Features</PanelTitle>
+                                        <PanelDescription>Built-in functionality</PanelDescription>
+                                    </PanelHeader>
+                                    <PanelContent>
                                         <ul className="list-disc list-inside space-y-2">
                                             <li>Sidebar trigger button (when used with Sidebar component)</li>
                                             <li>Action buttons (Home, Logout)</li>
                                             <li>Responsive design</li>
                                             <li>Consistent branding colors</li>
                                         </ul>
-                                    </CardContent>
-                                </Card>
+                                    </PanelContent>
+                                </Panel>
                             </Content.Body>
 
                             <Content.Subheading>Content Component</Content.Subheading>
@@ -113,19 +113,19 @@ function LayoutShowcase() {
                                     structure for your page content. It includes sub-components for headings,
                                     subheadings, and body content.
                                 </p>
-                                <Card className="mt-4">
-                                    <CardHeader>
-                                        <CardTitle>Content API</CardTitle>
-                                        <CardDescription>Available sub-components</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
+                                <Panel className="mt-4">
+                                    <PanelHeader>
+                                        <PanelTitle>Content API</PanelTitle>
+                                        <PanelDescription>Available sub-components</PanelDescription>
+                                    </PanelHeader>
+                                    <PanelContent>
                                         <ul className="list-disc list-inside space-y-2">
                                             <li><code className="text-sm font-mono bg-muted px-2 py-1 rounded">Content.Heading</code> - Main page heading (H1)</li>
                                             <li><code className="text-sm font-mono bg-muted px-2 py-1 rounded">Content.Subheading</code> - Section heading (H2)</li>
                                             <li><code className="text-sm font-mono bg-muted px-2 py-1 rounded">Content.Body</code> - Body content wrapper with proper spacing</li>
                                         </ul>
-                                    </CardContent>
-                                </Card>
+                                    </PanelContent>
+                                </Panel>
                             </Content.Body>
 
                             <Content.Subheading>Footer Component</Content.Subheading>
@@ -134,11 +134,11 @@ function LayoutShowcase() {
                                     The Footer component provides contact information, links, and branding for
                                     e-INFRA CZ. It includes support details, partner logos, and copyright information.
                                 </p>
-                                <Card className="mt-4">
-                                    <CardHeader>
-                                        <CardTitle>Footer Sections</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
+                                <Panel className="mt-4">
+                                    <PanelHeader>
+                                        <PanelTitle>Footer Sections</PanelTitle>
+                                    </PanelHeader>
+                                    <PanelContent>
                                         <ul className="list-disc list-inside space-y-2">
                                             <li>e-INFRA CZ information</li>
                                             <li>General information links</li>
@@ -146,18 +146,18 @@ function LayoutShowcase() {
                                             <li>Partner logos</li>
                                             <li>Copyright and version info</li>
                                         </ul>
-                                    </CardContent>
-                                </Card>
+                                    </PanelContent>
+                                </Panel>
                             </Content.Body>
 
                             <Content.Subheading>Usage Example</Content.Subheading>
                             <Content.Body>
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Basic Page Layout</CardTitle>
-                                        <CardDescription>How to use these components together</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
+                                <Panel>
+                                    <PanelHeader>
+                                        <PanelTitle>Basic Page Layout</PanelTitle>
+                                        <PanelDescription>How to use these components together</PanelDescription>
+                                    </PanelHeader>
+                                    <PanelContent>
                                         <pre className="bg-muted p-4 rounded-md overflow-x-auto">
                                             <code className="text-sm font-mono">{`import { Header, Content, Footer } from '@e-infra/design-system';
 
@@ -183,8 +183,8 @@ function MyPage() {
   );
 }`}</code>
                                         </pre>
-                                    </CardContent>
-                                </Card>
+                                    </PanelContent>
+                                </Panel>
                             </Content.Body>
 
                             <Separator className="my-8" />
