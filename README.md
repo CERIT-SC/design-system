@@ -157,7 +157,7 @@ The design system uses CSS variables for theming. You can customize colors by ov
 
 For full documentation and live examples, visit:
 
-🔗 **[Live Showcase](https://your-showcase-url.vercel.app)** *(Update after deployment)*
+🔗 **[Live Showcase](https://design-system.e-infra.cz/)**
 
 ## 🛠️ Development
 
