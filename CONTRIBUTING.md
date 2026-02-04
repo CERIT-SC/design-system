@@ -121,9 +121,3 @@ Use descriptive branch names with appropriate prefixes:
 - `fix/3d-viewer-loading-issue`
 - `misc/update-dependencies`
 - `doc/api-documentation`
-
-## Mol* References
-
-### Documentation
-
-TODO
