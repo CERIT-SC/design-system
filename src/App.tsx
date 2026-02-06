@@ -223,7 +223,7 @@ function App() {
             </SidebarFooter>
           </Sidebar>
 
-          <div className="flex-1 min-h-screen bg-background" style={{ backgroundImage: "url('/background.svg')", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
+          <div className="flex-1 min-h-screen bg-background">
             <Header showSidebarTrigger={true} />
             <div className="container mx-auto px-4 py-8 space-y-8">
               <Content>
