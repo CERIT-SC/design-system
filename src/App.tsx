@@ -237,7 +237,7 @@ function App() {
               </Content>
 
               {/* Installation Instructions */}
-              <Panel className="">
+              <Panel>
                 <PanelHeader>
                   <PanelTitle className="text-lg">
                     Installation Instructions
@@ -1026,7 +1026,7 @@ function App() {
                   />
                 </div>
                 <Panel className="w-fit">
-                  <PanelContent className="pt-6">
+                  <PanelContent>
                     <Calendar
                       mode="single"
                       selected={date}
@@ -1223,7 +1223,7 @@ function App() {
                           <TableCell>
                             <Badge>Paid</Badge>
                           </TableCell>
-                          <TableCell>Credit Panel</TableCell>
+                          <TableCell>Credit Card</TableCell>
                           <TableCell className="text-right">$250.00</TableCell>
                         </TableRow>
                         <TableRow>
@@ -1247,7 +1247,7 @@ function App() {
                           <TableCell>
                             <Badge variant="error">Failed</Badge>
                           </TableCell>
-                          <TableCell>Credit Panel</TableCell>
+                          <TableCell>Credit Card</TableCell>
                           <TableCell className="text-right">$450.00</TableCell>
                         </TableRow>
                         <TableRow>
