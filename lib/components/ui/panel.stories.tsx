@@ -59,7 +59,7 @@ export const Simple: Story = {
         <PanelTitle>Simple Panel</PanelTitle>
       </PanelHeader>
       <PanelContent>
-        <p>This is a simple card with minimal content.</p>
+        <p>This is a simple panel with minimal content.</p>
       </PanelContent>
     </Panel>
   ),
