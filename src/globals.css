@@ -125,7 +125,7 @@
   --chart-4: #1CC16F;
   --chart-5: #F7CE5B;
 
-  --sidebar: ##F5F5F5;
+  --sidebar: #F2F1F7; /* tertiary-100  */
   --sidebar-foreground: #090711;
   --sidebar-primary: #e8a7c7;
   --sidebar-primary-foreground: #ffffff;
