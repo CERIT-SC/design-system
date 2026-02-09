@@ -8,9 +8,9 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
+        default: "bg-panel text-panel-foreground",
         error:
-          "text-error bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-error/90",
+          "text-error bg-panel [&>svg]:text-current *:data-[slot=alert-description]:text-error/90",
       },
     },
     defaultVariants: {

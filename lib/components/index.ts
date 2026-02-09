@@ -46,6 +46,7 @@ export * from "./ui/textarea";
 export * from "./ui/toggle";
 export * from "./ui/toggle-group";
 export * from "./ui/tooltip";
+export * from "./ui/panel";
 
 // Typography Components
 export * from "./typography";
