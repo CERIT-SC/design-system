@@ -21,6 +21,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    variant: "default",
+  },
+
   render: () => (
     <Alert className="w-[400px]">
       <Info className="h-4 w-4" />
@@ -33,6 +37,10 @@ export const Default: Story = {
 };
 
 export const Success: Story = {
+  args: {
+    variant: "success",
+  },
+
   render: () => (
     <Alert variant="success" className="w-[400px]">
       <CircleCheck className="h-4 w-4" />
@@ -45,6 +53,10 @@ export const Success: Story = {
 };
 
 export const Warning: Story = {
+  args: {
+    variant: "warning",
+  },
+
   render: () => (
     <Alert variant="warning" className="w-[400px]">
       <CircleAlert className="h-4 w-4" />
@@ -58,6 +70,10 @@ export const Warning: Story = {
 };
 
 export const Error: Story = {
+  args: {
+    variant: "error",
+  },
+
   render: () => (
     <Alert variant="error" className="w-[400px]">
       <CircleX className="h-4 w-4" />
