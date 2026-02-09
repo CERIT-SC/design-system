@@ -124,9 +124,11 @@ import {
   Italic,
   Underline,
   Home,
-  Settings,
+  CircleCheck,
   User,
   FileText,
+  CircleAlert,
+  CircleX,
 } from "lucide-react";
 
 // Component copy helper
@@ -447,14 +449,29 @@ function App() {
                 </div>
                 <div className="space-y-4">
                   <Alert>
-                    <Terminal className="h-4 w-4" />
+                    <Info className="h-4 w-4" />
                     <AlertTitle>Heads up!</AlertTitle>
                     <AlertDescription>
                       You can add components to your app using the cli.
                     </AlertDescription>
                   </Alert>
+                  <Alert variant="success">
+                    <CircleCheck className="h-4 w-4" />
+                    <AlertTitle>Success</AlertTitle>
+                    <AlertDescription>
+                      Your settings have been saved successfully.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert variant="warning">
+                    <CircleAlert className="h-4 w-4" />
+                    <AlertTitle>Warning</AlertTitle>
+                    <AlertDescription>
+                      Your account will expire in 3 days. Please renew to
+                      continue enjoying our services.
+                    </AlertDescription>
+                  </Alert>
                   <Alert variant="error">
-                    <Info className="h-4 w-4" />
+                    <CircleX className="h-4 w-4" />
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>
                       Your session has expired. Please log in again.

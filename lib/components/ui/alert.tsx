@@ -8,9 +8,13 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-panel text-panel-foreground",
+        default: "bg-tertiary/50 border-tertiary text-panel-foreground",
+        success:
+          "bg-success/50 border-success text-success-foreground [&>svg]:text-success-foreground",
+        warning:
+          "bg-warning/50 border-warning text-warning-foreground [&>svg]:text-warning-foreground",
         error:
-          "text-error bg-panel [&>svg]:text-current *:data-[slot=alert-description]:text-error/90",
+          "text-error-foreground bg-error/50 border-error [&>svg]:text-current *:data-[slot=alert-description]:text-error-foreground",
       },
     },
     defaultVariants: {
