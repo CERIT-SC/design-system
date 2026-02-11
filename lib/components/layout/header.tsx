@@ -50,7 +50,7 @@ export function Header({
           {variant === "sidebar" && <SidebarTrigger />}
 
           <a href="/" className="flex items-center">
-            <img src={logo} alt={logoAlt} className="h-20 w-auto" />
+            <img src={logo} alt={logoAlt} className="h-16 w-auto" />
           </a>
 
           {variant === "navigation" && navigationItems.length > 0 && (
