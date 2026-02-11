@@ -17,7 +17,7 @@ export interface TableCellProps extends React.ComponentProps<"td"> {
 
 /**
  * TableCell - Table cell component
- * 
+ *
  * A styled td element that provides the design system's table cell styling.
  * Supports expandable row functionality through the isExpandable and isExpandedContent props.
  */

@@ -877,7 +877,9 @@ export function ComponentsPage() {
                     <Panel>
                       <PanelHeader>
                         <PanelTitle>Settings</PanelTitle>
-                        <PanelDescription>Manage your settings.</PanelDescription>
+                        <PanelDescription>
+                          Manage your settings.
+                        </PanelDescription>
                       </PanelHeader>
                       <PanelContent>
                         <p className="text-sm text-muted-foreground">
@@ -911,7 +913,9 @@ export function ComponentsPage() {
                   <Panel>
                     <PanelHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <PanelTitle>@peduarte starred 3 repositories</PanelTitle>
+                        <PanelTitle>
+                          @peduarte starred 3 repositories
+                        </PanelTitle>
                         <CollapsibleTrigger asChild>
                           <Button variant="ghost" size="sm">
                             <ChevronDown className="h-4 w-4" />

@@ -1,34 +1,17 @@
 import { useState, useMemo } from "react";
-import {
-  Button,
-  Badge,
-  Muted,
-  P,
-  Small,
-  Code,
-} from "../../../lib";
+import { Badge } from "../../../lib";
 import {
   TableHeader,
   TableBody,
-  TableFooter,
   TableCell,
   TableRowHeader,
   TableRowBody,
-  TableRowFooter,
   TableHeaderCell,
   PaginationButtons,
   PageSizeSelect,
   PaginationInfo,
-  ColumnVisibility,
 } from "../../../lib/components/table";
-import {
-  Search,
-  CheckCircle,
-  Clock,
-  XCircle,
-  Edit,
-  Trash2,
-} from "lucide-react";
+import { Search, CheckCircle, Clock, XCircle } from "lucide-react";
 
 // Sample data for Granular Examples
 interface User {
@@ -174,7 +157,7 @@ const getStatusBadge = (status: User["status"]) => {
     inactive: "secondary",
     pending: "error",
   } as const;
-  
+
   return (
     <Badge variant={variants[status] as any}>
       {status === "active" && <CheckCircle className="w-3 h-3 mr-1" />}
@@ -219,7 +202,9 @@ export function GranularTableBasicExample() {
 export function GranularTableSortingExample() {
   const [data] = useState<User[]>(sampleUsers);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
+    null
+  );
 
   // Sort data
   const sortedData = useMemo(() => {
@@ -309,7 +294,9 @@ export function GranularTableSortingExample() {
 export function GranularTableFilteringExample() {
   const [data] = useState<User[]>(sampleUsers);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
+    null
+  );
   const [filters, setFilters] = useState<Record<string, string>>({});
 
   // Filter data
@@ -458,7 +445,9 @@ export function GranularTableFilteringExample() {
 export function GranularTablePaginationExample() {
   const [data] = useState<User[]>(sampleUsers);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
+    null
+  );
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
@@ -495,7 +484,8 @@ export function GranularTablePaginationExample() {
   }, [sortedData, currentPage, pageSize]);
 
   const totalPages = Math.ceil(sortedData.length / pageSize);
-  const firstItemIndex = sortedData.length === 0 ? 0 : (currentPage - 1) * pageSize + 1;
+  const firstItemIndex =
+    sortedData.length === 0 ? 0 : (currentPage - 1) * pageSize + 1;
   const lastItemIndex = Math.min(currentPage * pageSize, sortedData.length);
 
   const handleSort = (columnKey: string) => {

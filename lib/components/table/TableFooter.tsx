@@ -11,7 +11,7 @@ export interface TableFooterProps extends React.ComponentProps<"tfoot"> {
 
 /**
  * TableFooter - Table footer container component
- * 
+ *
  * A styled tfoot element that provides the design system's table footer styling.
  * Use this to wrap footer rows, typically for pagination controls or summary data.
  */
@@ -19,10 +19,7 @@ export function TableFooter({ className, ...props }: TableFooterProps) {
   return (
     <tfoot
       data-slot="table-footer"
-      className={cn(
-        " border-t font-medium [&>tr]:last:border-b-0",
-        className
-      )}
+      className={cn(" border-t font-medium [&>tr]:last:border-b-0", className)}
       {...props}
     />
   );

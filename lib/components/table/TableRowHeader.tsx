@@ -31,10 +31,7 @@ export function TableRowHeader({
   return (
     <tr
       data-slot="table-row-header"
-      className={cn(
-        "border-b",
-        className
-      )}
+      className={cn("border-b", className)}
       {...props}
     >
       {children}

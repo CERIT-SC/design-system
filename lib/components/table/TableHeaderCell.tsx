@@ -66,11 +66,11 @@ export interface TableHeaderCellProps extends React.ComponentProps<"th"> {
 
 /**
  * TableHeaderCell - Header cell component with sorting and filtering functionality support
- * 
+ *
  * A styled th element that provides the design system's table header cell styling.
  * Supports sorting and filtering UI elements (icons, inputs) but does not implement the logic.
  * The parent component is responsible for managing sort state and filter state.
- * 
+ *
  * @example
  * ```tsx
  * <TableHeaderCell
@@ -113,7 +113,9 @@ export function TableHeaderCell({
   onSelectAll,
   ...props
 }: TableHeaderCellProps) {
-  const [localFilterValue, setLocalFilterValue] = React.useState(filterValue || "");
+  const [localFilterValue, setLocalFilterValue] = React.useState(
+    filterValue || ""
+  );
   const [isDebouncing, setIsDebouncing] = React.useState(false);
   const debounceTimerRef = useRef<number | null>(null);
 
@@ -172,12 +174,18 @@ export function TableHeaderCell({
     }
 
     if (sortDirection === "asc") {
-      return <ArrowUp className="h-4 w-4 group-hover:text-primary transition-colors" />;
+      return (
+        <ArrowUp className="h-4 w-4 group-hover:text-primary transition-colors" />
+      );
     }
     if (sortDirection === "desc") {
-      return <ArrowDown className="h-4 w-4 group-hover:text-primary transition-colors" />;
+      return (
+        <ArrowDown className="h-4 w-4 group-hover:text-primary transition-colors" />
+      );
     }
-    return <ArrowUpDown className="h-4 w-4 opacity-50 group-hover:text-primary transition-colors" />;
+    return (
+      <ArrowUpDown className="h-4 w-4 opacity-50 group-hover:text-primary transition-colors" />
+    );
   };
 
   const alignClass = {
@@ -228,7 +236,10 @@ export function TableHeaderCell({
         </span>
       </div>
       {showFilterInput && filterable && (
-        <div className="mt-4 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="mt-4 flex items-center gap-2"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="relative flex-1">
             <Search className="absolute left-2 top-1/2 h-3 w-3 -translate-y-1/2 text-muted-foreground" />
             <Input

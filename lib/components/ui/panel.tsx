@@ -37,7 +37,10 @@ function PanelTitle({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function PanelDescription({ className, ...props }: React.ComponentProps<"div">) {
+function PanelDescription({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="panel-description"

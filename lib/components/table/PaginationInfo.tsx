@@ -33,10 +33,10 @@ const DEFAULT_LABEL_TEMPLATE = "{first}-{last} of {total} total";
 
 /**
  * PaginationInfo - Information about shown records
- * 
+ *
  * Displays pagination information such as "1-10 of 1000 total".
  * Can be used above and below the table for better UX.
- * 
+ *
  * @example
  * ```tsx
  * <PaginationInfo
@@ -45,7 +45,7 @@ const DEFAULT_LABEL_TEMPLATE = "{first}-{last} of {total} total";
  *   totalItems={1000}
  * />
  * ```
- * 
+ *
  * @example Custom label
  * ```tsx
  * <PaginationInfo
@@ -102,16 +102,23 @@ export function PaginationInfo({
     <div
       data-slot="pagination-info"
       data-position={position}
-      className={cn("text-sm text-muted-foreground whitespace-nowrap", className)}
+      className={cn(
+        "text-sm text-muted-foreground whitespace-nowrap",
+        className
+      )}
     >
       {children || (
         <>
           {label}
           {filteredCount !== undefined && filteredCount !== totalItems && (
-            <span className="text-muted-foreground ml-2">({filteredCount} filtered)</span>
+            <span className="text-muted-foreground ml-2">
+              ({filteredCount} filtered)
+            </span>
           )}
           {selectedCount !== undefined && selectedCount > 0 && (
-            <span className="text-primary ml-2">({selectedCount} selected)</span>
+            <span className="text-primary ml-2">
+              ({selectedCount} selected)
+            </span>
           )}
         </>
       )}

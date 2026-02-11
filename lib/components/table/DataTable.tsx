@@ -33,9 +33,11 @@ import {
   ColumnVisibility,
 } from "./index";
 import { Search } from "lucide-react";
-import { Checkbox } from "../ui/checkbox";
 
-export type DataTableColumnDef<TData, TValue = unknown> = ColumnDef<TData, TValue> & {
+export type DataTableColumnDef<TData, TValue = unknown> = ColumnDef<
+  TData,
+  TValue
+> & {
   /** Whether this column is sortable */
   sortable?: boolean;
   /** Whether this column is filterable */
@@ -44,7 +46,7 @@ export type DataTableColumnDef<TData, TValue = unknown> = ColumnDef<TData, TValu
   filterPlaceholder?: string;
   /** Whether to show filter input inline */
   showFilterInput?: boolean;
-}
+};
 
 export interface DataTableExpandableConfig<TData> {
   /** Whether rows are expandable */
@@ -162,18 +164,21 @@ export function DataTable<TData>({
   });
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
-  
+
   // Column visibility state
   const allColumnNames = React.useMemo(() => {
     return columns
       .map((col) => col.header as string)
-      .filter((header): header is string => typeof header === "string" && header !== "");
+      .filter(
+        (header): header is string =>
+          typeof header === "string" && header !== ""
+      );
   }, [columns]);
-  
+
   const [visibleColumns, setVisibleColumns] = React.useState<string[]>(
     initialVisibleColumns ?? allColumnNames
   );
-  
+
   const handleColumnToggle = (column: string, visible: boolean) => {
     if (visible) {
       setVisibleColumns((prev) => [...prev, column]);
@@ -283,17 +288,17 @@ export function DataTable<TData>({
 
   return (
     <div className={cn("w-full", className)}>
-        {/* Column visibility toggle above table when pagination info is not shown */}
-        {showColumnVisibility && (
-          <div className="flex items-center justify-end mb-4">
-            <ColumnVisibility
-              columns={allColumnNames}
-              visibleColumns={visibleColumns}
-              onColumnToggle={handleColumnToggle}
-              onSelectAll={handleSelectAllColumns}
-            />
-          </div>
-        )}
+      {/* Column visibility toggle above table when pagination info is not shown */}
+      {showColumnVisibility && (
+        <div className="flex items-center justify-end mb-4">
+          <ColumnVisibility
+            columns={allColumnNames}
+            visibleColumns={visibleColumns}
+            onColumnToggle={handleColumnToggle}
+            onSelectAll={handleSelectAllColumns}
+          />
+        </div>
+      )}
 
       {/* Table */}
       <div className="rounded-md border">
@@ -315,7 +320,9 @@ export function DataTable<TData>({
                       {showPageSizeSelect && (
                         <PageSizeSelect
                           pageSize={pagination.pageSize}
-                          options={pageSizeOptions.map((size) => ({ value: size }))}
+                          options={pageSizeOptions.map((size) => ({
+                            value: size,
+                          }))}
                           onPageSizeChange={handlePageSizeChange}
                         />
                       )}
@@ -324,7 +331,9 @@ export function DataTable<TData>({
                         lastItemIndex={lastItemIndex}
                         totalItems={totalItems}
                         filteredCount={filteredItems}
-                        selectedCount={enableRowSelection ? selectedCount : undefined}
+                        selectedCount={
+                          enableRowSelection ? selectedCount : undefined
+                        }
                       />
                     </div>
                     <PaginationButtons
@@ -335,7 +344,9 @@ export function DataTable<TData>({
                       onNext={() => table.nextPage()}
                       onLast={() => table.setPageIndex(totalPages - 1)}
                       showFirstLast
-                      disabled={!table.getCanPreviousPage() && !table.getCanNextPage()}
+                      disabled={
+                        !table.getCanPreviousPage() && !table.getCanNextPage()
+                      }
                     />
                   </div>
                 </TableCell>
@@ -350,14 +361,18 @@ export function DataTable<TData>({
                   showSelectAll
                   allSelected={table.getIsAllPageRowsSelected()}
                   someSelected={table.getIsSomePageRowsSelected()}
-                  onSelectAll={(selected) => table.toggleAllPageRowsSelected(!!selected)}
+                  onSelectAll={(selected) =>
+                    table.toggleAllPageRowsSelected(!!selected)
+                  }
                 />
               )}
               {expandable?.enabled && <TableHeaderCell width="50" />}
               {table.getHeaderGroups().map((headerGroup) =>
                 headerGroup.headers.map((header) => {
                   const columnDef = columns.find(
-                    (col) => col.id === header.id || (col as any).accessorKey === header.id
+                    (col) =>
+                      col.id === header.id ||
+                      (col as any).accessorKey === header.id
                   );
                   const isSortable = columnDef?.sortable ?? false;
                   const isFilterable = columnDef?.filterable ?? false;
@@ -385,8 +400,10 @@ export function DataTable<TData>({
                       isSorted={!!header.column.getIsSorted()}
                       isFiltered={!!header.column.getFilterValue()}
                       align={
-                        ((columnDef?.meta as any)?.align as "left" | "center" | "right") ??
-                        "left"
+                        ((columnDef?.meta as any)?.align as
+                          | "left"
+                          | "center"
+                          | "right") ?? "left"
                       }
                       width={columnDef?.size}
                       style={{ width: columnDef?.size }}
@@ -473,17 +490,23 @@ export function DataTable<TData>({
                       {showPageSizeSelect && (
                         <PageSizeSelect
                           pageSize={pagination.pageSize}
-                          options={pageSizeOptions.map((size) => ({ value: size }))}
+                          options={pageSizeOptions.map((size) => ({
+                            value: size,
+                          }))}
                           onPageSizeChange={handlePageSizeChange}
                         />
                       )}
                       {showPaginationInfoBottom && (
                         <PaginationInfo
-                          firstItemIndex={filteredItems > 0 ? firstItemIndex : 0}
+                          firstItemIndex={
+                            filteredItems > 0 ? firstItemIndex : 0
+                          }
                           lastItemIndex={lastItemIndex}
                           totalItems={totalItems}
                           filteredCount={filteredItems}
-                          selectedCount={enableRowSelection ? selectedCount : undefined}
+                          selectedCount={
+                            enableRowSelection ? selectedCount : undefined
+                          }
                         />
                       )}
                     </div>
@@ -495,7 +518,9 @@ export function DataTable<TData>({
                       onNext={() => table.nextPage()}
                       onLast={() => table.setPageIndex(totalPages - 1)}
                       showFirstLast
-                      disabled={!table.getCanPreviousPage() && !table.getCanNextPage()}
+                      disabled={
+                        !table.getCanPreviousPage() && !table.getCanNextPage()
+                      }
                     />
                   </div>
                 </TableCell>

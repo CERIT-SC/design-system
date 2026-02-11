@@ -11,7 +11,7 @@ export interface TableHeaderProps extends React.ComponentProps<"thead"> {
 
 /**
  * TableHeader - Table header container component
- * 
+ *
  * A styled thead element that provides the design system's table header styling.
  * Use this to wrap header rows in your table.
  */

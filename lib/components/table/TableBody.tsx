@@ -11,7 +11,7 @@ export interface TableBodyProps extends React.ComponentProps<"tbody"> {
 
 /**
  * TableBody - Table body container component
- * 
+ *
  * A styled tbody element that provides the design system's table body styling.
  * Use this to wrap data rows in your table.
  */

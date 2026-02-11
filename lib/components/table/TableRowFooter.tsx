@@ -29,10 +29,7 @@ export function TableRowFooter({
   return (
     <tr
       data-slot="table-row-footer"
-      className={cn(
-        "border-b",
-        className
-      )}
+      className={cn("border-b", className)}
       {...props}
     >
       {children}

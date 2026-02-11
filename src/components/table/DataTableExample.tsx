@@ -1,5 +1,8 @@
 import { Badge, Muted, P, Button } from "../../../lib";
-import { DataTable, type DataTableColumnDef } from "../../../lib/components/table";
+import {
+  DataTable,
+  type DataTableColumnDef,
+} from "../../../lib/components/table";
 import {
   DollarSign,
   Package,
@@ -110,7 +113,8 @@ const sampleProducts: Product[] = [
     status: "out-of-stock",
     supplier: "BrightIdeas",
     lastUpdated: "2024-01-08",
-    description: "LED desk lamp with adjustable brightness and color temperature.",
+    description:
+      "LED desk lamp with adjustable brightness and color temperature.",
   },
   {
     id: 9,
@@ -231,11 +235,7 @@ export function DataTableExample() {
       header: "Actions",
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="icon-sm"
-            aria-label="Edit product"
-          >
+          <Button variant="outline" size="icon-sm" aria-label="Edit product">
             <Edit className="h-4 w-4" />
           </Button>
           <Button

@@ -80,7 +80,8 @@ export function TableRowBody({
   const cellCount = React.Children.count(children);
 
   // Determine the actual column index for the expand icon (-1 means last column)
-  const actualExpandIconColumn = expandIconColumn === -1 ? cellCount - 1 : expandIconColumn;
+  const actualExpandIconColumn =
+    expandIconColumn === -1 ? cellCount - 1 : expandIconColumn;
 
   return (
     <>
@@ -118,8 +119,11 @@ export function TableRowBody({
             }
 
             // Add expand button to the specified column
-            if (isExpandable && showExpandIcon && index === actualExpandIconColumn) {
-              
+            if (
+              isExpandable &&
+              showExpandIcon &&
+              index === actualExpandIconColumn
+            ) {
               return React.cloneElement(child as React.ReactElement<any>, {
                 children: (
                   <>
@@ -151,10 +155,7 @@ export function TableRowBody({
         })}
       </tr>
       {isExpandable && isExpanded && expandedContent && (
-        <tr
-          data-slot="table-row-expanded"
-          className="border-b"
-        >
+        <tr data-slot="table-row-expanded" className="border-b">
           <td colSpan={cellCount} className="p-0">
             <div className="p-4">{expandedContent}</div>
           </td>

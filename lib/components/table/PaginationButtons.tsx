@@ -48,10 +48,10 @@ export interface PaginationButtonsProps {
 
 /**
  * PaginationButtons - Pagination navigation buttons
- * 
+ *
  * Provides navigation buttons for table pagination including first, previous, next, and last page controls.
  * The parent component is responsible for managing the current page state and handling navigation callbacks.
- * 
+ *
  * @example
  * ```tsx
  * <PaginationButtons

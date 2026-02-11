@@ -155,7 +155,8 @@ export function TablePage() {
                       },
                       {
                         name: "TableRowBody",
-                        description: "Table body row with expandable and selection support",
+                        description:
+                          "Table body row with expandable and selection support",
                         import:
                           "import { TableRowBody } from '@e-infra/design-system';",
                       },
@@ -219,7 +220,8 @@ export function TablePage() {
                 <div>
                   <H2>Granular Components Progressive Examples</H2>
                   <P className="text-muted-foreground">
-                    Learn to build tables incrementally using granular components
+                    Learn to build tables incrementally using granular
+                    components
                   </P>
                 </div>
 
@@ -229,7 +231,8 @@ export function TablePage() {
                     <div>
                       <H3>Example 1: Basic Non-Interactive Table</H3>
                       <P className="text-muted-foreground">
-                        The simplest form - just displaying data with granular components
+                        The simplest form - just displaying data with granular
+                        components
                       </P>
                     </div>
                     <ComponentCopySelect
@@ -271,7 +274,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>User Directory - Basic View</PanelTitle>
                       <PanelDescription>
-                        A static table built with granular components, no interactivity
+                        A static table built with granular components, no
+                        interactivity
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -279,7 +283,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        This example shows the most basic table using granular components. Only the essential components are used: <Code>TableHeader</Code>, <Code>TableBody</Code>, <Code>TableRowHeader</Code>, <Code>TableRowBody</Code>, and <Code>TableCell</Code>.
+                        This example shows the most basic table using granular
+                        components. Only the essential components are used:{" "}
+                        <Code>TableHeader</Code>, <Code>TableBody</Code>,{" "}
+                        <Code>TableRowHeader</Code>, <Code>TableRowBody</Code>,
+                        and <Code>TableCell</Code>.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -309,7 +317,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>User Directory - Sortable</PanelTitle>
                       <PanelDescription>
-                        Click column headers to sort data with manual state management
+                        Click column headers to sort data with manual state
+                        management
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -317,7 +326,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable sorting by using <Code>TableHeaderCell</Code> with the <Code>sortable</Code> prop. You must manage the sort state (<Code>sortColumn</Code>, <Code>sortDirection</Code>) and sorting logic yourself using <Code>useMemo</Code>.
+                        Enable sorting by using <Code>TableHeaderCell</Code>{" "}
+                        with the <Code>sortable</Code> prop. You must manage the
+                        sort state (<Code>sortColumn</Code>,{" "}
+                        <Code>sortDirection</Code>) and sorting logic yourself
+                        using <Code>useMemo</Code>.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -345,9 +358,12 @@ export function TablePage() {
                   </div>
                   <Panel>
                     <PanelHeader>
-                      <PanelTitle>User Directory - Sortable & Filterable</PanelTitle>
+                      <PanelTitle>
+                        User Directory - Sortable & Filterable
+                      </PanelTitle>
                       <PanelDescription>
-                        Use filter inputs below headers to search data with manual state management
+                        Use filter inputs below headers to search data with
+                        manual state management
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -355,7 +371,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable filtering by using <Code>TableHeaderCell</Code> with <Code>filterable</Code> and <Code>showFilterInput</Code> props. You must manage the filter state and filtering logic yourself using <Code>useMemo</Code>.
+                        Enable filtering by using <Code>TableHeaderCell</Code>{" "}
+                        with <Code>filterable</Code> and{" "}
+                        <Code>showFilterInput</Code> props. You must manage the
+                        filter state and filtering logic yourself using{" "}
+                        <Code>useMemo</Code>.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -365,7 +385,9 @@ export function TablePage() {
                 <section className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <H3>Example 4: Table with Sorting, Filtering, and Pagination</H3>
+                      <H3>
+                        Example 4: Table with Sorting, Filtering, and Pagination
+                      </H3>
                       <P className="text-muted-foreground">
                         Add pagination controls with manual state management
                       </P>
@@ -397,7 +419,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>User Directory - Full Pagination</PanelTitle>
                       <PanelDescription>
-                        Navigate through pages with manual state management for all features
+                        Navigate through pages with manual state management for
+                        all features
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -405,7 +428,12 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Add pagination using <Code>PaginationButtons</Code>, <Code>PageSizeSelect</Code>, and <Code>PaginationInfo</Code>. You must manage the pagination state (<Code>currentPage</Code>, <Code>pageSize</Code>) and pagination logic yourself using <Code>useMemo</Code>.
+                        Add pagination using <Code>PaginationButtons</Code>,{" "}
+                        <Code>PageSizeSelect</Code>, and{" "}
+                        <Code>PaginationInfo</Code>. You must manage the
+                        pagination state (<Code>currentPage</Code>,{" "}
+                        <Code>pageSize</Code>) and pagination logic yourself
+                        using <Code>useMemo</Code>.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -468,7 +496,8 @@ export function TablePage() {
                 <div>
                   <H2>DataTable Progressive Examples</H2>
                   <P className="text-muted-foreground">
-                    Learn DataTable features incrementally, from basic to advanced
+                    Learn DataTable features incrementally, from basic to
+                    advanced
                   </P>
                 </div>
 
@@ -478,14 +507,16 @@ export function TablePage() {
                     <div>
                       <H3>Example 1: Basic Non-Interactive Table</H3>
                       <P className="text-muted-foreground">
-                        The simplest form of DataTable - just displaying data without any interactivity
+                        The simplest form of DataTable - just displaying data
+                        without any interactivity
                       </P>
                     </div>
                     <ComponentCopySelect
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -496,7 +527,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>Employee Directory - Basic View</PanelTitle>
                       <PanelDescription>
-                        A static table displaying employee information with no interactive features
+                        A static table displaying employee information with no
+                        interactive features
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -504,7 +536,10 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        This example shows the most basic DataTable configuration. Pagination, sorting, filtering, and all other features are disabled. Use this when you simply need to display data in a tabular format.
+                        This example shows the most basic DataTable
+                        configuration. Pagination, sorting, filtering, and all
+                        other features are disabled. Use this when you simply
+                        need to display data in a tabular format.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -516,14 +551,16 @@ export function TablePage() {
                     <div>
                       <H3>Example 2: Table with Sorting</H3>
                       <P className="text-muted-foreground">
-                        Add column sorting to organize data by clicking on headers
+                        Add column sorting to organize data by clicking on
+                        headers
                       </P>
                     </div>
                     <ComponentCopySelect
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -534,7 +571,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>Employee Directory - Sortable</PanelTitle>
                       <PanelDescription>
-                        Click any column header to sort the data in ascending or descending order
+                        Click any column header to sort the data in ascending or
+                        descending order
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -542,7 +580,10 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable sorting by setting <Code>sortable: true</Code> on column definitions. Users can click column headers to toggle between ascending, descending, and unsorted states.
+                        Enable sorting by setting <Code>sortable: true</Code> on
+                        column definitions. Users can click column headers to
+                        toggle between ascending, descending, and unsorted
+                        states.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -554,14 +595,16 @@ export function TablePage() {
                     <div>
                       <H3>Example 3: Table with Filtering</H3>
                       <P className="text-muted-foreground">
-                        Add inline filter inputs to search and filter data by column
+                        Add inline filter inputs to search and filter data by
+                        column
                       </P>
                     </div>
                     <ComponentCopySelect
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -572,7 +615,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>Employee Directory - Filterable</PanelTitle>
                       <PanelDescription>
-                        Use the filter inputs below column headers to search for specific data
+                        Use the filter inputs below column headers to search for
+                        specific data
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -580,7 +624,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable filtering by setting <Code>filterable: true</Code> and <Code>showFilterInput: true</Code> on column definitions. You can also customize the placeholder text with <Code>filterPlaceholder</Code>.
+                        Enable filtering by setting{" "}
+                        <Code>filterable: true</Code> and{" "}
+                        <Code>showFilterInput: true</Code> on column
+                        definitions. You can also customize the placeholder text
+                        with <Code>filterPlaceholder</Code>.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -592,14 +640,16 @@ export function TablePage() {
                     <div>
                       <H3>Example 4: Table with Pagination</H3>
                       <P className="text-muted-foreground">
-                        Add pagination to handle large datasets with configurable page sizes
+                        Add pagination to handle large datasets with
+                        configurable page sizes
                       </P>
                     </div>
                     <ComponentCopySelect
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -610,7 +660,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>Employee Directory - Paginated</PanelTitle>
                       <PanelDescription>
-                        Navigate through pages of data using the pagination controls
+                        Navigate through pages of data using the pagination
+                        controls
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -618,7 +669,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable pagination with <Code>showPagination={true}</Code> and optionally <Code>showPageSizeSelect={true}</Code>. Configure page size options with <Code>pageSizeOptions</Code> and set the initial page size with <Code>pageSize</Code>.
+                        Enable pagination with{" "}
+                        <Code>showPagination={true}</Code> and optionally{" "}
+                        <Code>showPageSizeSelect={true}</Code>. Configure page
+                        size options with <Code>pageSizeOptions</Code> and set
+                        the initial page size with <Code>pageSize</Code>.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -637,7 +692,8 @@ export function TablePage() {
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -648,7 +704,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>Employee Directory - Expandable</PanelTitle>
                       <PanelDescription>
-                        Click the expand icon on any row to view additional employee details
+                        Click the expand icon on any row to view additional
+                        employee details
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -656,7 +713,10 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable expandable rows with the <Code>expandable</Code> prop. Provide a <Code>renderExpandedContent</Code> function that returns the content to display when a row is expanded.
+                        Enable expandable rows with the <Code>expandable</Code>{" "}
+                        prop. Provide a <Code>renderExpandedContent</Code>{" "}
+                        function that returns the content to display when a row
+                        is expanded.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -675,7 +735,8 @@ export function TablePage() {
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -686,7 +747,8 @@ export function TablePage() {
                     <PanelHeader>
                       <PanelTitle>Employee Directory - Selectable</PanelTitle>
                       <PanelDescription>
-                        Use checkboxes to select individual rows or select all rows at once
+                        Use checkboxes to select individual rows or select all
+                        rows at once
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -694,7 +756,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable row selection with <Code>enableRowSelection={true}</Code>. The table adds a checkbox column and manages selection state. Use <Code>striped={true}</Code> for better visual distinction of selected rows.
+                        Enable row selection with{" "}
+                        <Code>enableRowSelection={true}</Code>. The table adds a
+                        checkbox column and manages selection state. Use{" "}
+                        <Code>striped={true}</Code> for better visual
+                        distinction of selected rows.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -713,7 +779,8 @@ export function TablePage() {
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -722,9 +789,12 @@ export function TablePage() {
                   </div>
                   <Panel>
                     <PanelHeader>
-                      <PanelTitle>Employee Directory - Column Visibility</PanelTitle>
+                      <PanelTitle>
+                        Employee Directory - Column Visibility
+                      </PanelTitle>
                       <PanelDescription>
-                        Use the column visibility dropdown to show or hide table columns
+                        Use the column visibility dropdown to show or hide table
+                        columns
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -732,7 +802,11 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        Enable column visibility with <Code>showColumnVisibility={true}</Code>. Set initial visible columns with <Code>initialVisibleColumns</Code>. Users can toggle column visibility using the dropdown menu.
+                        Enable column visibility with{" "}
+                        <Code>showColumnVisibility={true}</Code>. Set initial
+                        visible columns with <Code>initialVisibleColumns</Code>.
+                        Users can toggle column visibility using the dropdown
+                        menu.
                       </Small>
                     </PanelFooter>
                   </Panel>
@@ -744,14 +818,16 @@ export function TablePage() {
                     <div>
                       <H3>Example 8: Full-Featured Table</H3>
                       <P className="text-muted-foreground">
-                        All features combined - sorting, filtering, pagination, expandable rows, selection, and column visibility
+                        All features combined - sorting, filtering, pagination,
+                        expandable rows, selection, and column visibility
                       </P>
                     </div>
                     <ComponentCopySelect
                       components={[
                         {
                           name: "DataTable",
-                          description: "Full-featured table with TanStack Table",
+                          description:
+                            "Full-featured table with TanStack Table",
                           import:
                             "import { DataTable } from '@e-infra/design-system';",
                         },
@@ -760,9 +836,12 @@ export function TablePage() {
                   </div>
                   <Panel>
                     <PanelHeader>
-                      <PanelTitle>Employee Directory - Full Featured</PanelTitle>
+                      <PanelTitle>
+                        Employee Directory - Full Featured
+                      </PanelTitle>
                       <PanelDescription>
-                        A comprehensive table showcasing all DataTable capabilities
+                        A comprehensive table showcasing all DataTable
+                        capabilities
                       </PanelDescription>
                     </PanelHeader>
                     <PanelContent>
@@ -770,7 +849,10 @@ export function TablePage() {
                     </PanelContent>
                     <PanelFooter>
                       <Small className="text-muted-foreground">
-                        This example combines all DataTable features: sorting, filtering, pagination, expandable rows, row selection, and column visibility. Perfect for complex data management scenarios.
+                        This example combines all DataTable features: sorting,
+                        filtering, pagination, expandable rows, row selection,
+                        and column visibility. Perfect for complex data
+                        management scenarios.
                       </Small>
                     </PanelFooter>
                   </Panel>

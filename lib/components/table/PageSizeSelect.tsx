@@ -48,10 +48,10 @@ const DEFAULT_PAGE_SIZE_OPTIONS: PageSizeOption[] = [
 
 /**
  * PageSizeSelect - Page size selector dropdown
- * 
+ *
  * A styled select component for choosing the number of items to display per page.
  * The parent component is responsible for managing the page size state and handling changes.
- * 
+ *
  * @example
  * ```tsx
  * <PageSizeSelect

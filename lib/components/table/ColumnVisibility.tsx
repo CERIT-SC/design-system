@@ -81,23 +81,15 @@ export function ColumnVisibility({
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        {trigger || defaultTrigger}
-      </PopoverTrigger>
-      <PopoverContent
-        className={cn("w-56 p-3", className)}
-        align="end"
-      >
+      <PopoverTrigger asChild>{trigger || defaultTrigger}</PopoverTrigger>
+      <PopoverContent className={cn("w-56 p-3", className)} align="end">
         <div className="space-y-3">
           <div className="text-sm font-medium">Column Visibility</div>
           <div className="space-y-2">
             {columns.map((column) => {
               const isVisible = visibleColumns.includes(column);
               return (
-                <div
-                  key={column}
-                  className="flex items-center space-x-2"
-                >
+                <div key={column} className="flex items-center space-x-2">
                   <Checkbox
                     id={`column-${column}`}
                     checked={isVisible}

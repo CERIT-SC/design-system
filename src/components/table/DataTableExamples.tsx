@@ -1,8 +1,10 @@
 import { Badge, Muted, P, Button } from "../../../lib";
-import { DataTable, type DataTableColumnDef } from "../../../lib/components/table";
+import {
+  DataTable,
+  type DataTableColumnDef,
+} from "../../../lib/components/table";
 import {
   DollarSign,
-  Package,
   CheckCircle,
   Clock,
   XCircle,
@@ -13,8 +15,6 @@ import {
   MapPin,
   Calendar,
   User,
-  Building,
-  CreditCard,
   TrendingUp,
   TrendingDown,
 } from "lucide-react";
@@ -50,7 +50,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 123-4567",
     manager: "Michael Chen",
     performance: "excellent",
-    notes: "Key contributor to the core platform rewrite. Mentoring junior developers.",
+    notes:
+      "Key contributor to the core platform rewrite. Mentoring junior developers.",
   },
   {
     id: 2,
@@ -65,7 +66,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 234-5678",
     manager: "Jennifer Williams",
     performance: "excellent",
-    notes: "Leading the platform team. Successfully delivered 3 major releases.",
+    notes:
+      "Leading the platform team. Successfully delivered 3 major releases.",
   },
   {
     id: 3,
@@ -110,7 +112,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 567-8901",
     manager: "Robert Martinez",
     performance: "good",
-    notes: "Consistently meets quarterly sales targets. Strong customer relationships.",
+    notes:
+      "Consistently meets quarterly sales targets. Strong customer relationships.",
   },
   {
     id: 6,
@@ -140,7 +143,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 789-0123",
     manager: "Karen Brown",
     performance: "good",
-    notes: "Handles recruitment and employee relations. Improved hiring process efficiency.",
+    notes:
+      "Handles recruitment and employee relations. Improved hiring process efficiency.",
   },
   {
     id: 8,
@@ -155,7 +159,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 890-1234",
     manager: "Jennifer Williams",
     performance: "excellent",
-    notes: "Implemented new performance review system and employee wellness programs.",
+    notes:
+      "Implemented new performance review system and employee wellness programs.",
   },
   {
     id: 9,
@@ -170,7 +175,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 901-2345",
     manager: "Amanda White",
     performance: "needs-improvement",
-    notes: "New hire still in training period. Needs guidance on financial modeling.",
+    notes:
+      "New hire still in training period. Needs guidance on financial modeling.",
   },
   {
     id: 10,
@@ -200,7 +206,8 @@ const sampleEmployees: Employee[] = [
     phone: "+1 (555) 123-4568",
     manager: "Tom Harris",
     performance: "good",
-    notes: "Redesigned the main product interface. User satisfaction increased by 25%.",
+    notes:
+      "Redesigned the main product interface. User satisfaction increased by 25%.",
   },
   {
     id: 12,
@@ -560,7 +567,7 @@ export function DataTableColumnVisibilityExample() {
     <DataTable
       data={sampleEmployees}
       columns={visibilityColumns}
-    //   pageSize={5}
+      //   pageSize={5}
       showPagination={true}
       showPageSizeSelect={true}
       showColumnVisibility={true}
@@ -662,9 +669,13 @@ export function DataTableFullFeaturedExample() {
         };
         return (
           <Badge variant={variants[performance] as any}>
-            {performance === "excellent" && <TrendingUp className="w-3 h-3 mr-1" />}
+            {performance === "excellent" && (
+              <TrendingUp className="w-3 h-3 mr-1" />
+            )}
             {performance === "good" && <TrendingUp className="w-3 h-3 mr-1" />}
-            {performance === "needs-improvement" && <TrendingDown className="w-3 h-3 mr-1" />}
+            {performance === "needs-improvement" && (
+              <TrendingDown className="w-3 h-3 mr-1" />
+            )}
             {labels[performance]}
           </Badge>
         );
@@ -675,11 +686,7 @@ export function DataTableFullFeaturedExample() {
       header: "Actions",
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="icon-sm"
-            aria-label="Edit employee"
-          >
+          <Button variant="outline" size="icon-sm" aria-label="Edit employee">
             <Edit className="h-4 w-4" />
           </Button>
           <Button

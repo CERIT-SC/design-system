@@ -1,12 +1,5 @@
 import { useState, useMemo } from "react";
-import {
-  Button,
-  Badge,
-  Muted,
-  P,
-  Small,
-  Code,
-} from "../../../lib";
+import { Button, Badge, Muted, P } from "../../../lib";
 import {
   TableHeader,
   TableBody,
@@ -203,11 +196,11 @@ export function GranularTableExample() {
   const [pageSize, setPageSize] = useState(5);
   const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
-  
+
   // Column visibility state
   const allColumns = ["Name", "Email", "Role", "Status", "Actions"];
   const [visibleColumns, setVisibleColumns] = useState<string[]>(allColumns);
-  
+
   const handleColumnToggle = (column: string, visible: boolean) => {
     if (visible) {
       setVisibleColumns((prev) => [...prev, column]);
@@ -252,7 +245,8 @@ export function GranularTableExample() {
   }, [sortedData, currentPage, pageSize]);
 
   const totalPages = Math.ceil(sortedData.length / pageSize);
-  const firstItemIndex = sortedData.length === 0 ? 0 : (currentPage - 1) * pageSize + 1;
+  const firstItemIndex =
+    sortedData.length === 0 ? 0 : (currentPage - 1) * pageSize + 1;
   const lastItemIndex = Math.min(currentPage * pageSize, sortedData.length);
 
   const handleSort = (columnKey: string) => {
@@ -317,8 +311,11 @@ export function GranularTableExample() {
     });
   };
 
-  const allSelected = paginatedData.length > 0 && paginatedData.every((user) => selectedRows.has(user.id));
-  const someSelected = paginatedData.some((user) => selectedRows.has(user.id)) && !allSelected;
+  const allSelected =
+    paginatedData.length > 0 &&
+    paginatedData.every((user) => selectedRows.has(user.id));
+  const someSelected =
+    paginatedData.some((user) => selectedRows.has(user.id)) && !allSelected;
 
   const getStatusBadge = (status: User["status"]) => {
     const variants = {
@@ -326,7 +323,7 @@ export function GranularTableExample() {
       inactive: "secondary",
       pending: "error",
     } as const;
-    
+
     return (
       <Badge variant={variants[status] as any}>
         {status === "active" && <CheckCircle className="w-3 h-3 mr-1" />}
@@ -352,7 +349,10 @@ export function GranularTableExample() {
           {/* Top Pagination Header */}
           <TableHeader>
             <TableRowFooter>
-              <TableCell colSpan={2 + visibleColumns.length} className="p-4 border-b">
+              <TableCell
+                colSpan={2 + visibleColumns.length}
+                className="p-4 border-b"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <PageSizeSelect
@@ -380,7 +380,9 @@ export function GranularTableExample() {
                     totalPages={totalPages}
                     onFirst={() => setCurrentPage(1)}
                     onPrevious={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    onNext={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                    onNext={() =>
+                      setCurrentPage((p) => Math.min(totalPages, p + 1))
+                    }
                     onLast={() => setCurrentPage(totalPages)}
                     showFirstLast
                   />
@@ -470,7 +472,10 @@ export function GranularTableExample() {
           <TableBody>
             {paginatedData.length === 0 ? (
               <TableRowBody>
-                <TableCell colSpan={2 + visibleColumns.length} className="text-center py-8">
+                <TableCell
+                  colSpan={2 + visibleColumns.length}
+                  className="text-center py-8"
+                >
                   <div className="flex flex-col items-center gap-2 text-muted-foreground">
                     <Search className="h-8 w-8" />
                     <p>No users found</p>
@@ -576,7 +581,9 @@ export function GranularTableExample() {
                     totalPages={totalPages}
                     onFirst={() => setCurrentPage(1)}
                     onPrevious={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    onNext={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                    onNext={() =>
+                      setCurrentPage((p) => Math.min(totalPages, p + 1))
+                    }
                     onLast={() => setCurrentPage(totalPages)}
                     showFirstLast
                   />
