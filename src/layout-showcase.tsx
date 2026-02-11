@@ -4,11 +4,6 @@ import {
   Content,
   Footer,
   Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
   Separator,
   Sidebar,
   SidebarContent,
@@ -102,8 +97,8 @@ function LayoutShowcase() {
                 </p>
                 <Panel className="mt-4">
                   <PanelHeader>
-                    <CardTitle>Header Variants</CardTitle>
-                    <CardDescription>Two layout options</CardDescription>
+                    <PanelTitle>Header Variants</PanelTitle>
+                    <PanelDescription>Two layout options</PanelDescription>
                   </PanelHeader>
                   <PanelContent>
                     <ul className="list-disc list-inside space-y-2">
