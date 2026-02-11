@@ -71,7 +71,7 @@ function LayoutShowcase() {
 
         <div className="flex-1 flex flex-col">
           <Header
-            variant="navigation"
+            variant="sidebar"
             navigationItems={[{ label: "Home", href: "/home" }, { label: "Projects", href: "/projects" }, { label: "Settings", href: "/settings" }]}
           />
 
