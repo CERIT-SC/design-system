@@ -1,4 +1,5 @@
-import "./globals.css";
+import "../globals.css";
+import { NavLink } from "react-router-dom";
 import {
   Header,
   Content,
@@ -21,10 +22,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-} from "../lib";
+} from "../../lib";
 import { Home, FileText } from "lucide-react";
 
-function LayoutShowcase() {
+export function Layouts() {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
@@ -44,18 +45,18 @@ function LayoutShowcase() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/">
+                      <NavLink to="/">
                         <Home className="h-4 w-4" />
                         <span>Home</span>
-                      </a>
+                      </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/layout.html">
+                      <NavLink to="/layouts">
                         <FileText className="h-4 w-4" />
                         <span>Layouts</span>
-                      </a>
+                      </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -214,7 +215,7 @@ function MyPage() {
 
               <div className="flex gap-4">
                 <Button asChild>
-                  <a href="/">← Back to Components</a>
+                  <NavLink to="/">← Back to Components</NavLink>
                 </Button>
               </div>
             </Content>
@@ -226,5 +227,3 @@ function MyPage() {
     </SidebarProvider>
   );
 }
-
-export default LayoutShowcase;

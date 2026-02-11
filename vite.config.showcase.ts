@@ -15,10 +15,7 @@ export default defineConfig({
     outDir: "dist",
     sourcemap: false,
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
-        layout: path.resolve(__dirname, "layout.html"),
-      },
+      input: path.resolve(__dirname, "index.html"),
     },
   },
 });
