@@ -35,7 +35,7 @@ export function Header({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm backdrop-blur supports-backdrop-filter:bg-background/60",
+        "sticky top-0 z-50 w-full bg-background/95 shadow-lg shadow-secondary/20 backdrop-blur supports-backdrop-filter:bg-background/60",
         className
       )}
     >
