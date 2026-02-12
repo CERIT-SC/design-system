@@ -41,7 +41,7 @@ export function Header({
     >
       <div
         className={cn(
-          "flex h-16 items-center justify-between px-6",
+          "flex h-16 items-center justify-between px-4 mx-auto",
           variant === "navigation" && "container"
         )}
       >
