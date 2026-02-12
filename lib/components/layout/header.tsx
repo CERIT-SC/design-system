@@ -27,7 +27,7 @@ interface HeaderProps {
 export function Header({
   children,
   className,
-  variant = "sidebar",
+  variant = "navigation",
   navigationItems = [],
   logo = eInfraLogoDefault,
   logoAlt = "e-INFRA Logo",
