@@ -49,7 +49,7 @@ export const NavigationVariant: Story = {
     ],
   },
   render: (args) => (
-    <div className="min-h-[400px]">
+    <div className="min-h-100">
       <Header {...args} />
       <div className="container mx-auto p-8">
         <h2 className="text-2xl font-bold">Navigation Variant</h2>
@@ -68,7 +68,7 @@ export const SidebarVariant: Story = {
   },
   render: (args) => (
     <SidebarProvider>
-      <div className="flex min-h-[600px] w-full">
+      <div className="flex min-h-150 w-full">
         <Sidebar>
           <SidebarHeader>
             <div className="flex items-center gap-2 px-4 py-2">
@@ -140,7 +140,7 @@ export const CustomLogo: Story = {
     ],
   },
   render: (args) => (
-    <div className="min-h-[400px]">
+    <div className="min-h-100">
       <Header {...args} />
       <div className="container mx-auto p-8">
         <h2 className="text-2xl font-bold">Custom Logo</h2>
@@ -161,7 +161,7 @@ export const WithCustomContent: Story = {
     ],
   },
   render: (args) => (
-    <div className="min-h-[400px]">
+    <div className="min-h-100">
       <Header {...args}>
         <div className="text-sm text-muted-foreground">
           User: admin@example.com
@@ -184,7 +184,7 @@ export const MinimalNavigation: Story = {
     navigationItems: [],
   },
   render: (args) => (
-    <div className="min-h-[400px]">
+    <div className="min-h-100">
       <Header {...args} />
       <div className="container mx-auto p-8">
         <h2 className="text-2xl font-bold">Minimal Navigation</h2>
