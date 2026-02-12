@@ -53,9 +53,17 @@ export function Header({
             <img src={logo} alt={logoAlt} className="h-16 w-auto" />
           </a>
 
+          <Separator orientation="vertical" />
+
+          <Button variant="ghost" size="icon" asChild>
+            <a href="/">
+              <HomeIcon className="h-5 w-5" />
+              <span className="sr-only">Home</span>
+            </a>
+          </Button>
+
           {variant === "navigation" && navigationItems.length > 0 && (
             <>
-              <Separator orientation="vertical" className="h-6" />
               <NavigationMenu>
                 <NavigationMenuList>
                   {navigationItems.map((item) => (
@@ -77,12 +85,6 @@ export function Header({
         {/* Right section */}
         <div className="flex items-center gap-2">
           {children}
-          <Button variant="ghost" size="icon" asChild>
-            <a href="/">
-              <HomeIcon className="h-5 w-5" />
-              <span className="sr-only">Home</span>
-            </a>
-          </Button>
           <Button variant="ghost" size="icon">
             <LogOut className="h-5 w-5" />
             <span className="sr-only">Logout</span>

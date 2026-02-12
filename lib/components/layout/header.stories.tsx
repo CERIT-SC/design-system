@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./header";
+import { Content } from "./content";
 import {
   SidebarProvider,
   Sidebar,
@@ -12,6 +13,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "../ui/sidebar";
+import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Home, FileText, Settings } from "lucide-react";
 
 const meta = {
@@ -49,15 +51,18 @@ export const NavigationVariant: Story = {
     ],
   },
   render: (args) => (
-    <div className="min-h-100">
+    <div className="min-h-screen flex flex-col">
       <Header {...args} />
-      <div className="container mx-auto p-8">
-        <h2 className="text-2xl font-bold">Navigation Variant</h2>
-        <p className="mt-4 text-muted-foreground">
-          This variant displays navigation items directly in the header. Best
-          for simpler layouts without a sidebar.
-        </p>
-      </div>
+      <main className="flex-1 container mx-auto px">
+        <Content>
+          <Content.Heading>Navigation Variant</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            Use this variant for most applications that require a standard
+            header with navigation links.
+          </Content.Body>
+        </Content>
+      </main>
     </div>
   ),
 };
@@ -112,16 +117,19 @@ export const SidebarVariant: Story = {
             </SidebarGroup>
           </SidebarContent>
         </Sidebar>
-        <div className="flex-1 flex flex-col">
+        <div className="min-h-screen flex flex-col">
           <Header {...args} />
-          <div className="p-8">
-            <h2 className="text-2xl font-bold">Sidebar Variant</h2>
-            <p className="mt-4 text-muted-foreground">
-              This variant includes a sidebar trigger button. The sidebar can be
-              collapsed/expanded using the trigger. Best for complex
-              applications with extensive navigation.
-            </p>
-          </div>
+          <main className="flex-1 container mx-auto px-4">
+            <Content>
+              <Content.Heading>Sidebar Variant</Content.Heading>
+              <Content.Subheading>Usage</Content.Subheading>
+              <Content.Body>
+                Use this variant when you want a header that works in
+                conjunction with a sidebar. The header will include a trigger to
+                toggle the sidebar visibility on smaller screens.
+              </Content.Body>
+            </Content>
+          </main>
         </div>
       </div>
     </SidebarProvider>
@@ -131,7 +139,7 @@ export const SidebarVariant: Story = {
 export const CustomLogo: Story = {
   args: {
     variant: "navigation",
-    logo: "https://via.placeholder.com/150x40/6366f1/ffffff?text=Custom+Logo",
+    logo: "https://placehold.co/200x100/png?text=Custom+Logo&font=lato",
     logoAlt: "Custom Logo",
     navigationItems: [
       { label: "Home", href: "/" },
@@ -140,14 +148,19 @@ export const CustomLogo: Story = {
     ],
   },
   render: (args) => (
-    <div className="min-h-100">
+    <div className="min-h-screen flex flex-col">
       <Header {...args} />
-      <div className="container mx-auto p-8">
-        <h2 className="text-2xl font-bold">Custom Logo</h2>
-        <p className="mt-4 text-muted-foreground">
-          You can customize the logo by passing the logo and logoAlt props.
-        </p>
-      </div>
+      <main className="flex-1 container mx-auto px-4">
+        <Content>
+          <Content.Heading>Custom Logo Variant</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            You can easily replace the default logo with your own by passing a
+            custom image URL to the `logo` prop. Don't forget to provide an
+            appropriate `alt` text for accessibility.
+          </Content.Body>
+        </Content>
+      </main>
     </div>
   ),
 };
@@ -163,17 +176,23 @@ export const WithCustomContent: Story = {
   render: (args) => (
     <div className="min-h-100">
       <Header {...args}>
-        <div className="text-sm text-muted-foreground">
-          User: admin@example.com
-        </div>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       </Header>
-      <div className="container mx-auto p-8">
-        <h2 className="text-2xl font-bold">With Custom Content</h2>
-        <p className="mt-4 text-muted-foreground">
-          You can add custom content (like user info) by passing children to the
-          Header component. It will appear before the action buttons.
-        </p>
-      </div>
+      <main className="flex-1 container mx-auto px-4">
+        <Content>
+          <Content.Heading>Custom Content Variant</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            The `Header` component accepts custom content as children, which
+            willbe rendered in the right section of the header. This is useful
+            for adding user avatars, action buttons, or any other custom
+            elements you want to include in the header.
+          </Content.Body>
+        </Content>
+      </main>
     </div>
   ),
 };
