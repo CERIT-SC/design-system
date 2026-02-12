@@ -108,16 +108,8 @@ Use the following prefixes for commit messages:
 
 ## Branch Naming
 
-Use descriptive branch names with appropriate prefixes:
+Use descriptive branch names with a prefix of the related issue number:
 
-- `feature/description` - New features
-- `fix/description` - Bug fixes
-- `misc/description` - Other changes
-- `doc/description` - Documentation updates
-
-### Examples for Branches
-
-- `feature/protein-search-filters`
-- `fix/3d-viewer-loading-issue`
-- `misc/update-dependencies`
-- `doc/api-documentation`
+- `44-add-header-component` - New Header Component related to Issue #44
+- `12-documentation-update` - Documentation update related to Issue #12
+- `33-color-palette-update` - Color Palette update related to Issue #33
