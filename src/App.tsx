@@ -226,7 +226,7 @@ function App() {
           </Sidebar>
 
           <div className="flex-1 min-h-screen bg-background">
-            <Header showSidebarTrigger={true} />
+            <Header variant="sidebar" />
             <div className="container mx-auto px-4 py-8 space-y-8">
               <Content>
                 <Content.Heading>e-INFRA CZ Design System</Content.Heading>

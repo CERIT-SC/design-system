@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Horizontal: Story = {
   render: () => (
-    <div className="w-[400px]">
+    <div className="w-100">
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
         <p className="text-sm text-muted-foreground">

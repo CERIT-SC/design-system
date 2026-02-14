@@ -1,48 +1,93 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { SidebarTrigger } from "../ui/sidebar";
+import { Separator } from "../ui/separator";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "../ui/navigation-menu";
 import { HomeIcon, LogOut } from "lucide-react";
-import eInfraLogo from "./e-INFRA_logo_white.svg";
+import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
 interface HeaderProps {
   children?: React.ReactNode;
   className?: string;
-  showSidebarTrigger?: boolean;
+  variant?: "sidebar" | "navigation";
+  navigationItems?: Array<{
+    label: string;
+    href: string;
+  }>;
+  logo?: string;
+  logoAlt?: string;
 }
 
 export function Header({
   children,
   className,
-  showSidebarTrigger = false,
+  variant = "navigation",
+  navigationItems = [],
+  logo = eInfraLogoDefault,
+  logoAlt = "e-INFRA Logo",
 }: HeaderProps) {
   return (
     <header
-      className={cn("bg-primary border-b border-border h-16 px-6 ", className)}
+      className={cn(
+        "sticky top-0 z-50 w-full bg-background/95 shadow-lg shadow-secondary/20 backdrop-blur supports-backdrop-filter:bg-background/60",
+        className
+      )}
     >
-      <div className="flex h-full items-center justify-between">
+      <div
+        className={cn(
+          "flex h-16 items-center justify-between px-4 mx-auto",
+          variant === "navigation" && "container"
+        )}
+      >
+        {/* Left section */}
         <div className="flex items-center gap-4">
-          {showSidebarTrigger && <SidebarTrigger className="text-white" />}
-          <a href="/" className="flex justify-end items-center">
-            <img src={eInfraLogo} alt="e-INFRA Logo" className="h-22 w-auto" />
+          {variant === "sidebar" && <SidebarTrigger />}
+
+          <a href="/" className="flex items-center">
+            <img src={logo} alt={logoAlt} className="h-16 w-auto" />
           </a>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="default"
-            size="icon"
-            className="bg-secondary-foreground text-primary-foreground"
-            asChild
-          >
+
+          <Separator orientation="vertical" />
+
+          <Button variant="ghost" size="icon" asChild>
             <a href="/">
-              <HomeIcon className="h-5 w-5 text-primary" />
+              <HomeIcon className="h-5 w-5" />
+              <span className="sr-only">Home</span>
             </a>
           </Button>
-          <Button
-            variant="default"
-            size="icon"
-            className="bg-secondary-foreground text-primary-foreground"
-          >
-            <LogOut className="h-5 w-5 text-primary" />
+
+          {variant === "navigation" && navigationItems.length > 0 && (
+            <>
+              <NavigationMenu>
+                <NavigationMenuList>
+                  {navigationItems.map((item) => (
+                    <NavigationMenuItem key={item.href}>
+                      <NavigationMenuLink
+                        href={item.href}
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {item.label}
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </>
+          )}
+        </div>
+
+        {/* Right section */}
+        <div className="flex items-center gap-2">
+          {children}
+          <Button variant="ghost" size="icon">
+            <LogOut className="h-5 w-5" />
+            <span className="sr-only">Logout</span>
           </Button>
         </div>
       </div>
