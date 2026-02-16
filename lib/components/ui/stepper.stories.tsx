@@ -2,19 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Stepper,
   StepperContent,
-  StepperFooter,
   StepperHeader,
 } from "./stepper";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./card";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Textarea } from "./textarea";
+import { H3 } from "../typography";
+import { Small } from "../typography";
 
 const meta = {
   title: "Components/Stepper",
@@ -39,14 +33,14 @@ const steps = [
 // Example Step Components
 function Step1PublicationInfo() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Publication Information</CardTitle>
-        <CardDescription>
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <H3>Publication Information</H3>
+        <Small className="text-muted-foreground">
           Enter the basic information about your publication
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
+        </Small>
+      </div>
+      <div className="space-y-4 mt-6">
         <div className="space-y-2">
           <Label htmlFor="title">Publication Title</Label>
           <Input id="title" placeholder="Enter publication title" />
@@ -63,40 +57,40 @@ function Step1PublicationInfo() {
           <Label htmlFor="year">Publication Year</Label>
           <Input id="year" type="number" placeholder="2026" />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
 function Step2DuplicityCheck() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Duplicity Check</CardTitle>
-        <CardDescription>
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <H3>Duplicity Check</H3>
+        <Small className="text-muted-foreground">
           Check if this publication already exists in the system
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="text-center py-8">
-          <p className="text-sm text-muted-foreground">
-            Checking for duplicate publications...
-          </p>
-          <p className="text-sm text-green-600 mt-4">No duplicates found!</p>
-        </div>
-      </CardContent>
-    </Card>
+        </Small>
+      </div>
+      <div className="text-center py-8 mt-6">
+        <Small className="text-muted-foreground block">
+          Checking for duplicate publications...
+        </Small>
+        <Small className="text-green-600 mt-4 block">No duplicates found!</Small>
+      </div>
+    </div>
   );
 }
 
 function Step3Authors() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Authors</CardTitle>
-        <CardDescription>Add authors to this publication</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <H3>Authors</H3>
+        <Small className="text-muted-foreground">
+          Add authors to this publication
+        </Small>
+      </div>
+      <div className="space-y-4 mt-6">
         <div className="space-y-2">
           <Label htmlFor="author-name">Author Name</Label>
           <Input id="author-name" placeholder="John Doe" />
@@ -113,21 +107,21 @@ function Step3Authors() {
           <Label htmlFor="author-affiliation">Affiliation</Label>
           <Input id="author-affiliation" placeholder="University Name" />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
 function Step4Acknowledgements() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Acknowledgements</CardTitle>
-        <CardDescription>
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <H3>Acknowledgements</H3>
+        <Small className="text-muted-foreground">
           Add acknowledgements and funding information
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
+        </Small>
+      </div>
+      <div className="space-y-4 mt-6">
         <div className="space-y-2">
           <Label htmlFor="acknowledgements">Acknowledgements</Label>
           <Textarea
@@ -144,15 +138,15 @@ function Step4Acknowledgements() {
             rows={3}
           />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
 export const Default: Story = {
   render: () => (
     <div className="w-[800px]">
-      <Stepper>
+      <Stepper totalSteps={4}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -160,7 +154,6 @@ export const Default: Story = {
           <Step3Authors />
           <Step4Acknowledgements />
         </StepperContent>
-        <StepperFooter onFinish={() => alert("Finished!")} />
       </Stepper>
     </div>
   ),
@@ -169,7 +162,7 @@ export const Default: Story = {
 export const WithInitialStep: Story = {
   render: () => (
     <div className="w-[800px]">
-      <Stepper initialStep={2}>
+      <Stepper initialStep={2} totalSteps={4}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -177,28 +170,6 @@ export const WithInitialStep: Story = {
           <Step3Authors />
           <Step4Acknowledgements />
         </StepperContent>
-        <StepperFooter onFinish={() => alert("Finished!")} />
-      </Stepper>
-    </div>
-  ),
-};
-
-export const WithCustomFooter: Story = {
-  render: () => (
-    <div className="w-[800px]">
-      <Stepper>
-        <StepperHeader steps={steps} />
-        <StepperContent>
-          <Step1PublicationInfo />
-          <Step2DuplicityCheck />
-          <Step3Authors />
-          <Step4Acknowledgements />
-        </StepperContent>
-        <StepperFooter showDefaultButtons={false}>
-          <div className="text-sm text-muted-foreground">
-            Custom footer content goes here
-          </div>
-        </StepperFooter>
       </Stepper>
     </div>
   ),
@@ -207,7 +178,7 @@ export const WithCustomFooter: Story = {
 export const OnStepChange: Story = {
   render: () => (
     <div className="w-[800px]">
-      <Stepper onStepChange={(step) => console.log(`Step changed to: ${step}`)}>
+      <Stepper totalSteps={4} onStepChange={(step) => console.log(`Step changed to: ${step}`)}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -215,7 +186,6 @@ export const OnStepChange: Story = {
           <Step3Authors />
           <Step4Acknowledgements />
         </StepperContent>
-        <StepperFooter onFinish={() => alert("Finished!")} />
       </Stepper>
     </div>
   ),

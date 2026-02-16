@@ -74,6 +74,9 @@ import {
   SidebarTrigger,
   Skeleton,
   Slider,
+  Stepper,
+  StepperContent,
+  StepperHeader,
   Switch,
   Table,
   TableBody,
@@ -1277,6 +1280,188 @@ function App() {
                         </TableRow>
                       </TableBody>
                     </Table>
+                  </PanelContent>
+                </Panel>
+              </section>
+
+              <Separator />
+
+              {/* Stepper Section */}
+              <section className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Stepper
+                  </h2>
+                  <ComponentCopySelect
+                    components={[
+                      {
+                        name: "Stepper",
+                        import:
+                          "import { Stepper, StepperHeader, StepperContent, StepperFooter } from '@e-infra/design-system';",
+                      },
+                    ]}
+                  />
+                </div>
+                <Panel>
+                  <PanelHeader>
+                    <PanelTitle>Multi-Step Form</PanelTitle>
+                    <PanelDescription>
+                      A stepper component for guiding users through multi-step processes
+                    </PanelDescription>
+                  </PanelHeader>
+                  <PanelContent>
+                    <Stepper totalSteps={4}>
+                      <StepperHeader
+                        steps={[
+                          { label: "Personal Info", description: "Enter your details" },
+                          { label: "Account Setup", description: "Create account" },
+                          { label: "Preferences", description: "Set preferences" },
+                          { label: "Review", description: "Review and confirm" },
+                        ]}
+                      />
+                      <StepperContent>
+                        {/* Step 1: Personal Info */}
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <H3>Personal Information</H3>
+                            <Muted>Please enter your personal details</Muted>
+                          </div>
+                          <div className="space-y-4 mt-6">
+                            <div className="space-y-2">
+                              <Label htmlFor="firstName">First Name</Label>
+                              <Input id="firstName" placeholder="John" />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="lastName">Last Name</Label>
+                              <Input id="lastName" placeholder="Doe" />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                type="email"
+                                placeholder="john.doe@example.com"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Step 2: Account Setup */}
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <H3>Account Setup</H3>
+                            <Muted>Choose your username and password</Muted>
+                          </div>
+                          <div className="space-y-4 mt-6">
+                            <div className="space-y-2">
+                              <Label htmlFor="username">Username</Label>
+                              <Input id="username" placeholder="johndoe" />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="password">Password</Label>
+                              <Input
+                                id="password"
+                                type="password"
+                                placeholder="••••••••"
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="confirmPassword">
+                                Confirm Password
+                              </Label>
+                              <Input
+                                id="confirmPassword"
+                                type="password"
+                                placeholder="••••••••"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Step 3: Preferences */}
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <H3>Preferences</H3>
+                            <Muted>Customize your experience</Muted>
+                          </div>
+                          <div className="space-y-4 mt-6">
+                            <div className="flex items-center justify-between">
+                              <div className="space-y-0.5">
+                                <Label>Email Notifications</Label>
+                                <Small className="text-muted-foreground block">
+                                  Receive email updates about your account
+                                </Small>
+                              </div>
+                              <Switch />
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <div className="space-y-0.5">
+                                <Label>Marketing Emails</Label>
+                                <Small className="text-muted-foreground block">
+                                  Receive promotional emails and updates
+                                </Small>
+                              </div>
+                              <Switch />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="language">Language</Label>
+                              <Select defaultValue="en">
+                                <SelectTrigger id="language">
+                                  <SelectValue placeholder="Select language" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="en">English</SelectItem>
+                                  <SelectItem value="cs">Czech</SelectItem>
+                                  <SelectItem value="de">German</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Step 4: Review */}
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <H3>Review & Confirm</H3>
+                            <Muted>
+                              Please review your information before submitting
+                            </Muted>
+                          </div>
+                          <div className="space-y-4 mt-6">
+                            <div className="space-y-2">
+                              <Strong>Personal Information</Strong>
+                              <div className="space-y-1">
+                                <P>Name: John Doe</P>
+                                <P>Email: john.doe@example.com</P>
+                              </div>
+                            </div>
+                            <Separator />
+                            <div className="space-y-2">
+                              <Strong>Account Details</Strong>
+                              <div className="space-y-1">
+                                <P>Username: johndoe</P>
+                                <P>Password: ••••••••</P>
+                              </div>
+                            </div>
+                            <Separator />
+                            <div className="space-y-2">
+                              <Strong>Preferences</Strong>
+                              <div className="space-y-1">
+                                <P>Email Notifications: Enabled</P>
+                                <P>Marketing Emails: Disabled</P>
+                                <P>Language: English</P>
+                              </div>
+                            </div>
+                            <Alert className="mt-4">
+                              <AlertDescription>
+                                By clicking "Finish", you agree to our Terms of
+                                Service and Privacy Policy.
+                              </AlertDescription>
+                            </Alert>
+                          </div>
+                        </div>
+                      </StepperContent>
+                    </Stepper>
                   </PanelContent>
                 </Panel>
               </section>
