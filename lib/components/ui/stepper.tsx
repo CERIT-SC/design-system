@@ -5,6 +5,7 @@ import { cn } from "../../lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./button";
 import { Progress } from "./progress";
+import { Small } from "../typography";
 
 interface Step {
   label: string;
@@ -74,10 +75,8 @@ export function Stepper({
   );
 
   React.useEffect(() => {
-    if (initialStep !== currentStep) {
-      setCurrentStep(initialStep);
-    }
-  }, [initialStep, currentStep]);
+    setCurrentStep(initialStep);
+  }, [initialStep]);
 
   return (
     <StepperContext.Provider
@@ -109,11 +108,10 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
         {/* Top row: Previous button, Progress bar, Next button */}
         <div className="flex items-center gap-10 w-full justify-center">
           <Button
-            variant="secondary"
             size="sm"
             onClick={previousStep}
             disabled={currentStep === 0}
-            className="gap-1.5"
+            className="gap-1.5 flex items-center justify-center"
           >
             <ChevronLeft className="h-3.5 w-3.5" />
             Previous
@@ -123,11 +121,10 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
           <Progress value={progressPercentage} className="w-105" />
 
           <Button
-            variant="secondary"
             size="sm"
             onClick={nextStep}
             disabled={currentStep === totalSteps - 1}
-            className="gap-1.5"
+            className="gap-1.5 flex items-center justify-center"
           >
             Next
             <ChevronRight className="h-3.5 w-3.5" />
@@ -136,25 +133,30 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
 
         {/* Bottom row: Step indicators */}
         <div className="relative flex items-center justify-center gap-5">
-          {/* Connector lines */}
-          {steps.map((_, index) => {
-            if (index === 0) return null;
-            const isComplete = index <= currentStep;
-
-            return (
+          {/* Continuous connector line spanning all steps */}
+          {steps.length > 1 && (
+            <>
+              {/* Background line (full width) */}
               <div
-                key={`connector-${index}`}
-                className={cn(
-                  "absolute h-px w-[133px]",
-                  "top-2",
-                  isComplete ? "bg-slate-700" : "bg-border"
-                )}
+                className="absolute h-px bg-border top-2 z-0"
                 style={{
-                  left: `calc(${(index - 1) * 25}% + ${56 + (index - 1) * 20}px)`,
+                  left: "56px", // Half of step width (w-28 = 112px / 2 = 56px)
+                  right: "56px", // Half of step width from the right
                 }}
               />
-            );
-          })}
+              {/* Foreground line (completed portion) */}
+              <div
+                className="absolute h-px bg-slate-700 top-2 z-0 transition-all duration-300"
+                style={{
+                  left: "56px",
+                  width:
+                    currentStep === 0
+                      ? "0px"
+                      : `calc(${(currentStep / (steps.length - 1)) * 100}% - 56px)`,
+                }}
+              />
+            </>
+          )}
 
           {/* Step indicators */}
           {steps.map((step, index) => {
@@ -166,20 +168,22 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
                 key={step.label}
                 className="flex flex-col items-center gap-1 w-28 relative z-10"
               >
-                <button
-                  onClick={() => {}}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => { }}
                   className={cn(
-                    "flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-semibold transition-colors",
-                    isComplete && "bg-[#36a769]",
-                    isCurrent && "bg-[#c9a224]",
-                    !isComplete && !isCurrent && "bg-[#999]"
+                    "w-4 h-4 rounded-full text-white text-[11px] font-semibold transition-colors p-0 hover:bg-opacity-80",
+                    isComplete && "bg-[#36a769] hover:bg-[#36a769]",
+                    isCurrent && "bg-[#c9a224] hover:bg-[#c9a224]",
+                    !isComplete && !isCurrent && "bg-[#999] hover:bg-[#999]"
                   )}
                 >
                   {index + 1}
-                </button>
-                <span className="text-xs text-foreground text-center leading-tight">
+                </Button>
+                <Small className="text-center leading-tight">
                   {step.label}
-                </span>
+                </Small>
               </div>
             );
           })}
