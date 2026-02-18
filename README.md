@@ -19,16 +19,16 @@ A comprehensive React component library built with shadcn/ui and Tailwind CSS v4
 
 ```bash
 # Using npm
-npm install @muni-ics/e-infra-design-system
+npm install @e-infra/design-system
 
 # Using yarn
-yarn add @muni-ics/e-infra-design-system
+yarn add @e-infra/design-system
 
 # Using pnpm
-pnpm add @muni-ics/e-infra-design-system
+pnpm add @e-infra/design-system
 
 # Using bun
-bun add @muni-ics/e-infra-design-system
+bun add @e-infra/design-system
 ```
 
 ### Peer Dependencies
@@ -43,31 +43,22 @@ npm install react react-dom tailwindcss
 
 ### 1. Import Styles
 
-**Important:** Import the CSS file in your main application file:
+**Important:** Import the CSS file in your main application file **AFTER importing tailwindcss**:
 
 ```typescript
-import '@muni-ics/e-infra-design-system/style.css';
+import '@e-infra/design-system/setup.css';
 ```
 
-### 2. Configure Tailwind CSS
+Example:
 
-Add the design system to your `tailwind.config.js`:
+```css
+@import "tailwindcss";
 
-```javascript
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@muni-ics/e-infra-design-system/dist/**/*.{js,ts,jsx,tsx}',
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+@import "@e-infra/design-system/setup.css";
+
 ```
 
-### 3. Use Components
+### 2. Use Components
 
 ```tsx
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@muni-ics/e-infra-design-system';
@@ -179,6 +170,32 @@ bun run lint
 
 # Run type checking
 bun run type:check
+```
+
+For other commands consult `package.json`.
+
+## Docker
+
+**Be in root of the project directory!**
+
+### Using Compose File (build and run)
+
+```sh
+docker compose -f ./env/prod/docker-compose.yml up --build
+```
+
+### Build Only Image
+
+#### Bun as Package Manager and Runtime
+
+```sh
+docker build -t design-system-showcase:latest -f ./env/prod/Dockerfile.bun .
+```
+
+#### Bun as Package Manager, Node as Runtime
+
+```sh
+docker build -t design-system-showcase:latest -f ./env/prod/Dockerfile .
 ```
 
 ## 📄 License
