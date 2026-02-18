@@ -23,7 +23,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: designsystem-container-prod
-          image: cerit.io/xcillik/design_system:latest
+          image: cerit.io/design-system/design-system-showcase:latest
           imagePullPolicy: Always
           securityContext:
             runAsUser: 1000
@@ -34,19 +34,6 @@ spec:
           ports:
             - name: probe-port
               containerPort: 80
-          # env:
-          #   - name: API_URL
-          #     value: ${API_URL}
-          #   - name: API_USERNAME
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: opensearch-admin-secret
-          #         key: username
-          #   - name: API_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: opensearch-admin-secret
-          #         key: password
           resources:
             limits:
               memory: "4Gi"
