@@ -34,3 +34,4 @@ design-system-*.tgz
 !*.config.ts
 dist/
 types/
+.next/

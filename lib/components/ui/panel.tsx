@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 function Panel({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -37,7 +37,10 @@ function PanelTitle({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function PanelDescription({ className, ...props }: React.ComponentProps<"div">) {
+function PanelDescription({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="panel-description"

@@ -156,7 +156,7 @@ export const CustomLogo: Story = {
           <Content.Subheading>Usage</Content.Subheading>
           <Content.Body>
             You can easily replace the default logo with your own by passing a
-            custom image URL to the `logo` prop. Don't forget to provide an
+            custom image URL to the `logo` prop. Don&apos;t forget to provide an
             appropriate `alt` text for accessibility.
           </Content.Body>
         </Content>

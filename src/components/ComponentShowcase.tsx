@@ -1,5 +1,5 @@
-import "./globals.css";
 import { useState } from "react";
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -71,7 +71,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger,
   Skeleton,
   Slider,
   Switch,
@@ -103,21 +102,19 @@ import {
   Small,
   Muted,
   Code,
-  Link,
+  Link as DesignLink,
   Content,
   Header,
-  Footer,
   PanelHeader,
   Panel,
   PanelTitle,
   PanelDescription,
   PanelContent,
   PanelFooter,
-} from "../lib";
+} from "../../lib";
 import { toast } from "sonner";
-import { Toaster } from "../lib/components/ui/sonner";
+import { Toaster } from "../../lib/components/ui/sonner";
 import {
-  Terminal,
   Info,
   ChevronDown,
   Bold,
@@ -125,7 +122,6 @@ import {
   Underline,
   Home,
   CircleCheck,
-  User,
   FileText,
   CircleAlert,
   CircleX,
@@ -175,7 +171,7 @@ const ComponentCopySelect = ({
   );
 };
 
-function App() {
+function ComponentShowcase() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [progress, setProgress] = useState(33);
 
@@ -200,18 +196,18 @@ function App() {
                   <SidebarMenu>
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild>
-                        <a href="/">
+                        <Link href="/">
                           <Home className="h-4 w-4" />
                           <span>Home</span>
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild>
-                        <a href="/layout.html">
+                        <Link href="/layout">
                           <FileText className="h-4 w-4" />
                           <span>Layouts</span>
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   </SidebarMenu>
@@ -249,8 +245,8 @@ function App() {
                   <P>Install the e-INFRA Design System package:</P>
                   <Code>npm install @e-infra/design-system</Code>
                   <Small className="block mt-2">
-                    Then import components as shown in the "Copy Component"
-                    dropdowns below each section.
+                    Then import components as shown in the &quot;Copy
+                    Component&quot; dropdowns below each section.
                   </Small>
                 </PanelContent>
               </Panel>
@@ -418,12 +414,12 @@ function App() {
                       <Muted className="uppercase tracking-wider">
                         Code / Monospace
                       </Muted>
-                      <Code>const greeting = "Hello World";</Code>
+                      <Code>const greeting = &quot;Hello World&quot;;</Code>
                     </div>
 
                     <div className="space-y-2">
                       <Muted className="uppercase tracking-wider">Link</Muted>
-                      <Link href="#">This is a standard link</Link>
+                      <DesignLink href="#">This is a standard link</DesignLink>
                     </div>
                   </PanelContent>
                 </Panel>
@@ -847,14 +843,14 @@ function App() {
                     <AccordionTrigger>Is it styled?</AccordionTrigger>
                     <AccordionContent>
                       Yes. It comes with default styles that matches the other
-                      components' aesthetic.
+                      components&apos; aesthetic.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
                     <AccordionTrigger>Is it animated?</AccordionTrigger>
                     <AccordionContent>
-                      Yes. It's animated by default, but you can disable it if
-                      you prefer.
+                      Yes. It&apos;s animated by default, but you can disable it
+                      if you prefer.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -928,7 +924,9 @@ function App() {
                     <Panel>
                       <PanelHeader>
                         <PanelTitle>Settings</PanelTitle>
-                        <PanelDescription>Manage your settings.</PanelDescription>
+                        <PanelDescription>
+                          Manage your settings.
+                        </PanelDescription>
                       </PanelHeader>
                       <PanelContent>
                         <p className="text-sm text-muted-foreground">
@@ -962,7 +960,9 @@ function App() {
                   <Panel>
                     <PanelHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <PanelTitle>@peduarte starred 3 repositories</PanelTitle>
+                        <PanelTitle>
+                          @peduarte starred 3 repositories
+                        </PanelTitle>
                         <CollapsibleTrigger asChild>
                           <Button variant="ghost" size="sm">
                             <ChevronDown className="h-4 w-4" />
@@ -1283,113 +1283,6 @@ function App() {
 
               <Separator />
 
-              {/* Sidebar Section
-              <section className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold tracking-tight">Sidebar</h2>
-                  <ComponentCopySelect
-                    components={[
-                      { name: "Sidebar", import: "import { Sidebar, SidebarProvider, SidebarHeader, SidebarContent, SidebarFooter, SidebarTrigger } from '@e-infra/design-system';" },
-                      { name: "SidebarMenu", import: "import { SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarGroup, SidebarGroupLabel, SidebarGroupContent } from '@e-infra/design-system';" },
-                    ]}
-                  />
-                </div>
-                <Panel>
-                  <PanelHeader>
-                    <PanelTitle>Sidebar Navigation</PanelTitle>
-                    <PanelDescription>
-                      Collapsible sidebar component for navigation
-                    </PanelDescription>
-                  </PanelHeader>
-                  <PanelContent className="space-y-4">
-                    <SidebarProvider>
-                      <div className="flex min-h-[400px] w-full rounded-lg border">
-                        <Sidebar>
-                          <SidebarHeader>
-                            <div className="flex items-center gap-2 px-4 py-2">
-                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                                <Terminal className="h-4 w-4" />
-                              </div>
-                              <span className="font-semibold">e-INFRA</span>
-                            </div>
-                          </SidebarHeader>
-                          <SidebarContent>
-                            <SidebarGroup>
-                              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-                              <SidebarGroupContent>
-                                <SidebarMenu>
-                                  <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                      <Home className="h-4 w-4" />
-                                      <span>Home</span>
-                                    </SidebarMenuButton>
-                                  </SidebarMenuItem>
-                                  <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                      <FileText className="h-4 w-4" />
-                                      <span>Documents</span>
-                                    </SidebarMenuButton>
-                                  </SidebarMenuItem>
-                                  <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                      <User className="h-4 w-4" />
-                                      <span>Profile</span>
-                                    </SidebarMenuButton>
-                                  </SidebarMenuItem>
-                                  <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                      <Settings className="h-4 w-4" />
-                                      <span>Settings</span>
-                                    </SidebarMenuButton>
-                                  </SidebarMenuItem>
-                                </SidebarMenu>
-                              </SidebarGroupContent>
-                            </SidebarGroup>
-                          </SidebarContent>
-                          <SidebarFooter>
-                            <div className="px-4 py-2 text-xs text-muted-foreground">
-                              © 2026 e-INFRA
-                            </div>
-                          </SidebarFooter>
-                        </Sidebar>
-                        <div className="flex flex-1 flex-col">
-                          <header className="flex h-14 items-center gap-4 border-b px-6">
-                            <SidebarTrigger />
-                            <h3 className="font-semibold">Main Content Area</h3>
-                          </header>
-                          <main className="flex-1 p-6">
-                            <p className="text-muted-foreground">
-                              This is the main content area. Click the hamburger menu
-                              to toggle the sidebar.
-                            </p>
-                          </main>
-                        </div>
-                      </div>
-                    </SidebarProvider>
-                    <div className="flex justify-end pt-4 border-t">
-                      <ComponentCopySelect
-                        components={[
-                          { name: "Sidebar", description: "Base sidebar container component", import: "import { Sidebar } from '@e-infra/design-system';" },
-                          { name: "SidebarProvider", description: "Context provider for sidebar state", import: "import { SidebarProvider } from '@e-infra/design-system';" },
-                          { name: "SidebarHeader", description: "Header section of sidebar", import: "import { SidebarHeader } from '@e-infra/design-system';" },
-                          { name: "SidebarContent", description: "Main content area of sidebar", import: "import { SidebarContent } from '@e-infra/design-system';" },
-                          { name: "SidebarFooter", description: "Footer section of sidebar", import: "import { SidebarFooter } from '@e-infra/design-system';" },
-                          { name: "SidebarTrigger", description: "Button to toggle sidebar visibility", import: "import { SidebarTrigger } from '@e-infra/design-system';" },
-                          { name: "SidebarMenu", description: "Menu container for navigation items", import: "import { SidebarMenu } from '@e-infra/design-system';" },
-                          { name: "SidebarMenuItem", description: "Individual menu item wrapper", import: "import { SidebarMenuItem } from '@e-infra/design-system';" },
-                          { name: "SidebarMenuButton", description: "Button component for menu items", import: "import { SidebarMenuButton } from '@e-infra/design-system';" },
-                          { name: "SidebarGroup", description: "Group container for related menu items", import: "import { SidebarGroup } from '@e-infra/design-system';" },
-                          { name: "SidebarGroupLabel", description: "Label for menu item groups", import: "import { SidebarGroupLabel } from '@e-infra/design-system';" },
-                          { name: "SidebarGroupContent", description: "Content wrapper for group items", import: "import { SidebarGroupContent } from '@e-infra/design-system';" },
-                        ]}
-                      />
-                    </div>
-                  </PanelContent>
-                </Panel>
-              </section> */}
-
-              <Separator />
-
               {/* Dialogs Section */}
               <section className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -1472,4 +1365,4 @@ function App() {
   );
 }
 
-export default App;
+export default ComponentShowcase;

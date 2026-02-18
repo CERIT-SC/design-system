@@ -1,4 +1,4 @@
-import "./globals.css";
+import Link from "next/link";
 import {
   Header,
   Content,
@@ -21,7 +21,7 @@ import {
   PanelContent,
   PanelTitle,
   PanelDescription,
-} from "../lib";
+} from "../../lib";
 import { Home, FileText } from "lucide-react";
 
 function LayoutShowcase() {
@@ -44,18 +44,18 @@ function LayoutShowcase() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/">
+                      <Link href="/">
                         <Home className="h-4 w-4" />
                         <span>Home</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <a href="/layout.html">
+                      <Link href="/layout">
                         <FileText className="h-4 w-4" />
                         <span>Layouts</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -72,7 +72,11 @@ function LayoutShowcase() {
         <div className="flex-1 flex flex-col">
           <Header
             variant="sidebar"
-            navigationItems={[{ label: "Home", href: "/home" }, { label: "Projects", href: "/projects" }, { label: "Settings", href: "/settings" }]}
+            navigationItems={[
+              { label: "Home", href: "/home" },
+              { label: "Projects", href: "/projects" },
+              { label: "Settings", href: "/settings" },
+            ]}
           />
 
           <main className="flex-1 container mx-auto px-4">
@@ -129,7 +133,9 @@ function LayoutShowcase() {
                 <Panel className="mt-4">
                   <PanelHeader>
                     <PanelTitle>Content API</PanelTitle>
-                    <PanelDescription>Available sub-components</PanelDescription>
+                    <PanelDescription>
+                      Available sub-components
+                    </PanelDescription>
                   </PanelHeader>
                   <PanelContent>
                     <ul className="list-disc list-inside space-y-2">
@@ -263,7 +269,7 @@ function MyNavigationPage() {
 
               <div className="flex gap-4">
                 <Button asChild>
-                  <a href="/">← Back to Components</a>
+                  <Link href="/">← Back to Components</Link>
                 </Button>
               </div>
             </Content>

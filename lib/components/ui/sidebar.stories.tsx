@@ -4,14 +4,12 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarInput,
   SidebarInset,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -20,13 +18,16 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarProvider,
-  SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-  useSidebar,
 } from "./sidebar";
-import { Home, FileText, Settings, User, Search, ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "./button";
+import {
+  Home,
+  FileText,
+  Settings,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 
 const meta = {
@@ -123,12 +124,17 @@ export const Default: Story = {
           <SidebarFooter>
             <div className="flex items-center gap-2 px-2">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
                 <span className="text-xs font-medium">John Doe</span>
-                <span className="text-xs text-muted-foreground">john@example.com</span>
+                <span className="text-xs text-muted-foreground">
+                  john@example.com
+                </span>
               </div>
             </div>
           </SidebarFooter>
@@ -142,8 +148,8 @@ export const Default: Story = {
             <div className="h-96 rounded-lg border border-dashed p-8 text-center">
               <h2 className="text-xl font-bold">Main Content Area</h2>
               <p className="mt-2 text-muted-foreground">
-                This is where your main content would go. The sidebar is collapsible and
-                responsive.
+                This is where your main content would go. The sidebar is
+                collapsible and responsive.
               </p>
             </div>
           </main>
@@ -197,7 +203,10 @@ export const Collapsed: Story = {
           <SidebarFooter>
             <div className="flex items-center justify-center px-2">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </div>
@@ -212,7 +221,8 @@ export const Collapsed: Story = {
             <div className="h-96 rounded-lg border border-dashed p-8 text-center">
               <h2 className="text-xl font-bold">Main Content Area</h2>
               <p className="mt-2 text-muted-foreground">
-                The sidebar is currently collapsed. Hover over menu items to see tooltips.
+                The sidebar is currently collapsed. Hover over menu items to see
+                tooltips.
               </p>
             </div>
           </main>

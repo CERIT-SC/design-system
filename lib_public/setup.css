@@ -1,4 +1,8 @@
-@import "tailwindcss";
+/**
+ * Design System Styles
+ * Only includes theme variables and base styles - NO Tailwind utilities
+ * Consumers should have their own Tailwind setup
+ */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -76,7 +80,7 @@
   --background: #ffffff;
   --foreground: #090711;
 
-  --card: #F2F1F7;
+  --card: #f2f1f7;
   --card-foreground: #090711;
 
   --panel: #ffffff89;
@@ -92,44 +96,44 @@
   --secondary-foreground: #281A22; */
 
   /* e-INFRA cyan alternative  */
-  --tertiary: #D3EEF3;
+  --tertiary: #d3eef3;
   --tertiary-foreground: #0e444e;
 
-  --secondary: #D9D6E6;
+  --secondary: #d9d6e6;
   --secondary-foreground: #000000;
 
   --muted: #e4e4e4;
   --muted-foreground: #101828;
 
-  --info: #7ECDF8;
+  --info: #7ecdf8;
   --info-foreground: #192932;
 
-  --success: #1CC16F;
+  --success: #1cc16f;
   --success-foreground: #062716;
 
-  --warning: #F7CE5B;
+  --warning: #f7ce5b;
   --warning-foreground: #312912;
 
-  --error: #F65A4F;
+  --error: #f65a4f;
   --error-foreground: #311210;
 
-  --border: #D5D3DD;
-  --input: #ACA8BC;
+  --border: #d5d3dd;
+  --input: #aca8bc;
   --ring: #2f2557;
 
   --heading: #2f2557;
 
-  --chart-1: #2F2557;
-  --chart-2: #CA83AC;
-  --chart-3: #7ECDF8;
-  --chart-4: #1CC16F;
-  --chart-5: #F7CE5B;
+  --chart-1: #2f2557;
+  --chart-2: #ca83ac;
+  --chart-3: #7ecdf8;
+  --chart-4: #1cc16f;
+  --chart-5: #f7ce5b;
 
   --sidebar: #d3eef357; /* tertiary-100  */
   --sidebar-foreground: #090711;
   --sidebar-primary: #e8a7c7;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-tertiary:var(--tertiary);
+  --sidebar-tertiary: var(--tertiary);
   --sidebar-tertiary-foreground: var(--tertiary-foreground);
   --sidebar-border: #b66f95;
   --sidebar-ring: #c0bad6;
@@ -164,16 +168,16 @@
   --muted: #4a4371; /* Muted slightly lighter */
   --muted-foreground: #d5d3dd; /* Muted text */
 
-  --info: #7ECDF8;
+  --info: #7ecdf8;
   --info-foreground: #192932;
 
-  --success: #1CC16F;
+  --success: #1cc16f;
   --success-foreground: #062716;
 
-  --warning: #F7CE5B;
+  --warning: #f7ce5b;
   --warning-foreground: #312912;
 
-  --error: #F65A4F;
+  --error: #f65a4f;
   --error-foreground: #311210;
 
   --border: #5a5184;

@@ -19,10 +19,7 @@ import {
   SelectValue,
 } from "./select";
 import { Checkbox } from "./checkbox";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "./radio-group";
+import { RadioGroup, RadioGroupItem } from "./radio-group";
 import { Switch } from "./switch";
 import { Slider } from "./slider";
 

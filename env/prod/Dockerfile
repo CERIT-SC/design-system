@@ -1,38 +1,52 @@
-FROM node:22-alpine AS builder
+FROM node:22-alpine AS base
 
 WORKDIR /app
 
+# Install Bun for package management
 RUN apk add --no-cache curl unzip bash
 RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:$PATH"
 
+FROM base AS dependencies
+
 COPY package.json bun.lock* ./
+RUN bun install --no-save --frozen-lockfile
 
-RUN bun install --frozen-lockfile
+FROM base AS builder
 
+WORKDIR /app
+
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
-ENV NODE_ENV=production
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# Uncomment the following line in case you want to disable telemetry during the build.
+# ENV NEXT_TELEMETRY_DISABLED=1
+
 RUN bun run build:showcase
 
+RUN ls -la .next/ && ls -la .next/standalone/ || (echo "Standalone build not found!" && exit 1)
 
-FROM nginxinc/nginx-unprivileged:latest AS runner
+FROM base AS production
 
-# Copy nginx configuration
-COPY ./env/prod/nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Copy built files from builder stage
-COPY --from=builder /app/dist /var/www/html
+ENV NODE_ENV=production \
+    PORT=80 \
+    HOSTNAME="0.0.0.0"
 
-# Set proper permissions for nginx directories
-# RUN mkdir -p /tmp/client_temp /tmp/proxy_temp /tmp/fastcgi_temp /tmp/uwsgi_temp /tmp/scgi_temp && \
-#     chown -R 1000:1000 /tmp/client_temp /tmp/proxy_temp /tmp/fastcgi_temp /tmp/uwsgi_temp /tmp/scgi_temp && \
-#     chown -R 1000:1000 /usr/share/nginx/html
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001
 
-# Switch to non-root user (nginx user with uid 1000)
-USER 1000
+COPY --from=builder /app/public ./public
+
+# Leverage output traces to reduce the final image size by only copying necessary files
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
 
 EXPOSE 80
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server.js"]

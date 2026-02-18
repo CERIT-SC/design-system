@@ -16,10 +16,9 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       include: ["lib"],
-      tsconfigPath: "tsconfig.app.json",
+      tsconfigPath: "tsconfig.lib.json",
       outDir: "dist/types",
     }),
-    // preserveUseClient(),
   ],
   css: {
     postcss: {
@@ -31,6 +30,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./lib"),
     },
   },
+  // Avoid conflicts with the main public directory
+  publicDir: "lib_public",
   build: {
     lib: {
       entry: path.resolve(__dirname, "lib/index.ts"),
@@ -39,12 +40,19 @@ export default defineConfig({
       formats: ["es", "cjs"],
       fileName: (format) => `index.${format}.js`,
     },
+    cssCodeSplit: true, // Allow CSS code splitting
     sourcemap: true,
     // Allow consumer build tools to handle minification
     minify: false,
-    copyPublicDir: false,
+    // Preserve the public directory structure in the output so we can ship setup.css
+    copyPublicDir: true,
     rollupOptions: {
       plugins: [preserveDirectives()],
+      input: {
+        // Keep the ordering here!
+        src: path.resolve(__dirname, "lib/index.ts"),
+        // style: path.resolve(__dirname, "lib/setup.css"),
+      },
       external: [
         "react",
         "react-dom",
@@ -75,6 +83,7 @@ export default defineConfig({
           "react-dom": "ReactDOM",
           "react/jsx-runtime": "jsxRuntime",
         },
+        // assetFileNames: "setup.css",
         // preserveModules: true,
         // preserveModulesRoot: "lib",
         inlineDynamicImports: false,

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import { SidebarTrigger } from "../ui/sidebar";
 import { Separator } from "../ui/separator";
