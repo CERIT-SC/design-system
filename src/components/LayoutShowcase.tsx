@@ -72,7 +72,11 @@ function LayoutShowcase() {
         <div className="flex-1 flex flex-col">
           <Header
             variant="sidebar"
-            navigationItems={[{ label: "Home", href: "/home" }, { label: "Projects", href: "/projects" }, { label: "Settings", href: "/settings" }]}
+            navigationItems={[
+              { label: "Home", href: "/home" },
+              { label: "Projects", href: "/projects" },
+              { label: "Settings", href: "/settings" },
+            ]}
           />
 
           <main className="flex-1 container mx-auto px-4">
@@ -129,7 +133,9 @@ function LayoutShowcase() {
                 <Panel className="mt-4">
                   <PanelHeader>
                     <PanelTitle>Content API</PanelTitle>
-                    <PanelDescription>Available sub-components</PanelDescription>
+                    <PanelDescription>
+                      Available sub-components
+                    </PanelDescription>
                   </PanelHeader>
                   <PanelContent>
                     <ul className="list-disc list-inside space-y-2">

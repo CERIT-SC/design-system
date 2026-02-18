@@ -51,11 +51,7 @@
       "@/lib/*": ["./lib/lib/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "src",
-    "lib"
-  ],
+  "include": ["next-env.d.ts", "src", "lib"],
   "exclude": [
     "node_modules",
     "dist",

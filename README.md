@@ -46,7 +46,7 @@ npm install react react-dom tailwindcss
 **Important:** Import the CSS file in your main application file **AFTER importing tailwindcss**:
 
 ```typescript
-import '@e-infra/design-system/setup.css';
+import "@e-infra/design-system/setup.css";
 ```
 
 Example:
@@ -55,13 +55,18 @@ Example:
 @import "tailwindcss";
 
 @import "@e-infra/design-system/setup.css";
-
 ```
 
 ### 2. Use Components
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle, CardContent } from '@muni-ics/e-infra-design-system';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@muni-ics/e-infra-design-system";
 
 function App() {
   return (

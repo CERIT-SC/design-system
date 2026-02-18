@@ -71,7 +71,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger,
   Skeleton,
   Slider,
   Switch,
@@ -106,7 +105,6 @@ import {
   Link as DesignLink,
   Content,
   Header,
-  Footer,
   PanelHeader,
   Panel,
   PanelTitle,
@@ -117,7 +115,6 @@ import {
 import { toast } from "sonner";
 import { Toaster } from "../../lib/components/ui/sonner";
 import {
-  Terminal,
   Info,
   ChevronDown,
   Bold,
@@ -125,7 +122,6 @@ import {
   Underline,
   Home,
   CircleCheck,
-  User,
   FileText,
   CircleAlert,
   CircleX,
@@ -200,10 +196,10 @@ function ComponentShowcase() {
                   <SidebarMenu>
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild>
-                        <a href="/">
+                        <Link href="/">
                           <Home className="h-4 w-4" />
                           <span>Home</span>
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                     <SidebarMenuItem>
@@ -249,8 +245,8 @@ function ComponentShowcase() {
                   <P>Install the e-INFRA Design System package:</P>
                   <Code>npm install @e-infra/design-system</Code>
                   <Small className="block mt-2">
-                    Then import components as shown in the "Copy Component"
-                    dropdowns below each section.
+                    Then import components as shown in the &quot;Copy
+                    Component&quot; dropdowns below each section.
                   </Small>
                 </PanelContent>
               </Panel>
@@ -418,7 +414,7 @@ function ComponentShowcase() {
                       <Muted className="uppercase tracking-wider">
                         Code / Monospace
                       </Muted>
-                      <Code>const greeting = "Hello World";</Code>
+                      <Code>const greeting = &quot;Hello World&quot;;</Code>
                     </div>
 
                     <div className="space-y-2">
@@ -847,14 +843,14 @@ function ComponentShowcase() {
                     <AccordionTrigger>Is it styled?</AccordionTrigger>
                     <AccordionContent>
                       Yes. It comes with default styles that matches the other
-                      components' aesthetic.
+                      components&apos; aesthetic.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
                     <AccordionTrigger>Is it animated?</AccordionTrigger>
                     <AccordionContent>
-                      Yes. It's animated by default, but you can disable it if
-                      you prefer.
+                      Yes. It&apos;s animated by default, but you can disable it
+                      if you prefer.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -928,7 +924,9 @@ function ComponentShowcase() {
                     <Panel>
                       <PanelHeader>
                         <PanelTitle>Settings</PanelTitle>
-                        <PanelDescription>Manage your settings.</PanelDescription>
+                        <PanelDescription>
+                          Manage your settings.
+                        </PanelDescription>
                       </PanelHeader>
                       <PanelContent>
                         <p className="text-sm text-muted-foreground">
@@ -962,7 +960,9 @@ function ComponentShowcase() {
                   <Panel>
                     <PanelHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <PanelTitle>@peduarte starred 3 repositories</PanelTitle>
+                        <PanelTitle>
+                          @peduarte starred 3 repositories
+                        </PanelTitle>
                         <CollapsibleTrigger asChild>
                           <Button variant="ghost" size="sm">
                             <ChevronDown className="h-4 w-4" />

@@ -92,7 +92,7 @@ export const AllTypography: StoryObj = {
 
       <div className="space-y-2">
         <Muted>CODE / MONOSPACE</Muted>
-        <Code>const greeting = "Hello World";</Code>
+        <Code>const greeting = &quot;Hello World&quot;;</Code>
       </div>
 
       <div className="space-y-2">
@@ -103,8 +103,8 @@ export const AllTypography: StoryObj = {
       <div className="space-y-2">
         <Muted>BLOCKQUOTE</Muted>
         <Blockquote>
-          "The quick brown fox jumps over the lazy dog. This is a blockquote
-          used for quotations and important callouts."
+          &quot;The quick brown fox jumps over the lazy dog. This is a
+          blockquote used for quotations and important callouts.&quot;
         </Blockquote>
       </div>
 
@@ -144,8 +144,8 @@ export const Paragraphs: StoryObj = {
   render: () => (
     <div className="space-y-4 max-w-2xl">
       <Lead>
-        This is a lead paragraph used for introductions. It's slightly larger
-        and stands out from regular body text.
+        This is a lead paragraph used for introductions. It&apos;s slightly
+        larger and stands out from regular body text.
       </Lead>
       <P>
         This is a standard paragraph. Lorem ipsum dolor sit amet, consectetur
@@ -153,8 +153,8 @@ export const Paragraphs: StoryObj = {
         magna aliqua.
       </P>
       <Strong>
-        This is a strong/bold paragraph for emphasis. It's used when you need
-        text to stand out more prominently.
+        This is a strong/bold paragraph for emphasis. It&apos;s used when you
+        need text to stand out more prominently.
       </Strong>
       <Small>
         This is small text used for secondary information, captions, or helper
