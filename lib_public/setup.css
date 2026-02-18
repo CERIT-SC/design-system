@@ -1,4 +1,8 @@
-@import "tailwindcss";
+/**
+ * Design System Styles
+ * Only includes theme variables and base styles - NO Tailwind utilities
+ * Consumers should have their own Tailwind setup
+ */
 
 @custom-variant dark (&:is(.dark *));
 
