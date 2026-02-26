@@ -55,4 +55,5 @@ export * from "./typography";
 export * from "./layout";
 
 // Mid-level Components
+export * from "./mid-level/FeedbackForm";
 export * from "./mid-level/CookiesBanner";

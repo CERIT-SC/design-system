@@ -212,3 +212,36 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Slide animations for sheets/modals */
+  .slide-in-from-bottom {
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+  
+  .slide-out-to-bottom {
+    animation: slideOutToBottom 0.3s ease-in;
+  }
+  
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOutToBottom {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+  
+  .animate-slideUp {
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+}

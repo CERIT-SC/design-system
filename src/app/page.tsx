@@ -1,5 +1,6 @@
 "use client";
 
+import { FeedbackForm } from "../../lib/components/mid-level/FeedbackForm";
 import { CookiesBanner } from "../../lib/components/mid-level/CookiesBanner";
 import ComponentShowcase from "../components/ComponentShowcase";
 
@@ -8,6 +9,14 @@ export default function HomePage() {
     <>
       <ComponentShowcase />
 
+      <FeedbackForm
+        onSubmit={async (data) => {
+          console.log("Feedback submitted:", data);
+          // Simulate API call
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          return { success: true, message: "Thank you for your feedback!" };
+        }}
+      />
       <CookiesBanner />
     </>
   );
