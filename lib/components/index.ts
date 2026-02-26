@@ -53,3 +53,6 @@ export * from "./typography";
 
 // Layout Components
 export * from "./layout";
+
+// Mid-level Components
+export * from "./mid-level/CookiesBanner";
