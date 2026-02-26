@@ -1,6 +1,7 @@
 "use client";
 
 import { FeedbackForm } from "../../lib/components/mid-level/FeedbackForm";
+import { CookiesBanner } from "../../lib/components/mid-level/CookiesBanner";
 import ComponentShowcase from "../components/ComponentShowcase";
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
           return { success: true, message: "Thank you for your feedback!" };
         }}
       />
+      <CookiesBanner />
     </>
   );
 }
