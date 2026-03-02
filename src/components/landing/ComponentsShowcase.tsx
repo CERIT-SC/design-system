@@ -48,12 +48,12 @@ export function ComponentsShowcase() {
   return (
     <section id="components" className="py-24 bg-slate-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div>
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
+          <div className="text-center md:text-left">
             <h2 className="text-base font-semibold text-primary uppercase tracking-wide mb-2">
               Component Library
             </h2>
-            <h3 className="text-4xl font-bold text-slate-900">
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-900">
               Modular Building Blocks
             </h3>
           </div>

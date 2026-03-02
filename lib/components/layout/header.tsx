@@ -60,7 +60,7 @@ export function Header({
             <img
               src={resolveLogoSrc(logo)}
               alt={logoAlt}
-              className="h-16 w-auto"
+              className="h-20 w-auto"
             />
           </a>
 

@@ -26,7 +26,7 @@ import {
 
 export function HeroSection() {
   return (
-    <section className="relative pb-20 pt-20 overflow-hidden bg-[radial-gradient(circle_at_1px_1px,rgba(47,37,87,0.15)_1px,transparent_0)] bg-size-[40px_40px]">
+    <section className="relative pb-20 pt-20 overflow-hidden">
       <AnimatedBackground />
 
       {/* Decorative blobs */}
@@ -39,7 +39,7 @@ export function HeroSection() {
           <div className="space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-slate-900">
               Design for <br />
-              <span className="bg-linear-to-br from-primary to-tertiary bg-clip-text text-transparent/50">
+              <span className="bg-linear-to-br from-primary to-tertiary bg-clip-text text-transparent">
                 Czech Science
               </span>
             </h1>

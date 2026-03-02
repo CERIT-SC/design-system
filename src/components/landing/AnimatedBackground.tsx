@@ -11,14 +11,16 @@ interface Point {
   isDot: boolean;
 }
 
-const GRID_SIZE = 30;
+const GRID_SIZE = 40;
 const MAX_AGE = 240;
 const PATH_COLOR = "47, 37, 87"; // RGB for brand color
-const MOVE_PROBABILITY = 0.6;
+const DOT_COLOR = `rgba(${PATH_COLOR}, 0.3)`;
+const DOT_RADIUS = 1.5;
+const MOVE_PROBABILITY = 0.15;
 const TURN_PROBABILITY = 0.12;
 const MIN_STEPS_BEFORE_TURN = 4;
 const MAX_PATHS = 3;
-const SPAWN_RATE = 0.04;
+const SPAWN_RATE = 0.01;
 
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -43,13 +45,14 @@ export function AnimatedBackground() {
 
       constructor() {
         this.x = -GRID_SIZE * 2;
-        this.y = Math.floor((Math.random() * height) / GRID_SIZE) * GRID_SIZE;
+        this.y =
+          Math.floor((Math.random() * height) / GRID_SIZE) * GRID_SIZE;
         this.points.push({ x: this.x, y: this.y, age: 0, isDot: false });
       }
 
       update() {
         // Age all points every frame (independent of movement)
-        this.points.forEach((p) => (p.age += 1.2));
+        this.points.forEach((p) => (p.age += 0.4));
 
         // Remove old points
         while (this.points[0]?.age > MAX_AGE) this.points.shift();
@@ -99,11 +102,11 @@ export function AnimatedBackground() {
         const turns: Direction[] = isHorizontal
           ? ["up", "down"]
           : [
-              "right",
-              "right",
-              "right",
-              ...(this.x > GRID_SIZE * 3 ? ["left" as const] : []),
-            ];
+            "right",
+            "right",
+            "right",
+            ...(this.x > GRID_SIZE * 3 ? ["left" as const] : []),
+          ];
 
         return turns[Math.floor(Math.random() * turns.length)];
       }
@@ -116,8 +119,8 @@ export function AnimatedBackground() {
           up: [0, -GRID_SIZE],
         };
         const [dx, dy] = moves[this.direction];
-        this.x += dx;
-        this.y += dy;
+        this.x = Math.round(this.x + dx);
+        this.y = Math.round(this.y + dy);
       }
 
       draw() {
@@ -125,12 +128,12 @@ export function AnimatedBackground() {
 
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = `rgba(${PATH_COLOR}, 0.2)`;
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = "transparent";
 
         for (let i = 0; i < this.points.length - 1; i++) {
           const { x, y, age, isDot } = this.points[i];
-          const opacity = Math.max(0, (1 - age / MAX_AGE) * 0.9);
+          const opacity = Math.max(0, (1 - age / MAX_AGE) * 0.45);
 
           // Draw line segment
           ctx.beginPath();
@@ -145,7 +148,7 @@ export function AnimatedBackground() {
             ctx.beginPath();
             ctx.arc(x, y, 3, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(${PATH_COLOR}, ${opacity})`;
-            ctx.shadowBlur = 6;
+            ctx.shadowBlur = 0;
             ctx.fill();
           }
         }
@@ -168,9 +171,23 @@ export function AnimatedBackground() {
       ctx.scale(dpr, dpr);
     }
 
+    function drawDotGrid() {
+      if (!ctx) return;
+      ctx.fillStyle = DOT_COLOR;
+      for (let x = 0; x <= width; x += GRID_SIZE) {
+        for (let y = 0; y <= height; y += GRID_SIZE) {
+          ctx.beginPath();
+          ctx.arc(x, y, DOT_RADIUS, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
     function animate() {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
+
+      drawDotGrid();
 
       if (Math.random() < SPAWN_RATE && paths.length < MAX_PATHS) {
         paths.push(new Path());
@@ -197,7 +214,7 @@ export function AnimatedBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-70"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-50"
     />
   );
 }

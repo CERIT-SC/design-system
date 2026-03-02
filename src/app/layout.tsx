@@ -22,7 +22,6 @@ export default function RootLayout({
         <Header
           variant="navigation"
           navigationItems={[
-            { label: "Home", href: "/" },
             { label: "Components Overview", href: "/components-overview" },
             { label: "Design Guidelines", href: "/design-guidelines" },
             { label: "Docs", href: "/test" },
