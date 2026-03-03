@@ -12,6 +12,13 @@ import {
 import { HomeIcon, LogOut } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
+/** Accepts a plain URL string or a Next.js / bundler static-import object. */
+type LogoSrc = string | { src: string; width?: number; height?: number };
+
+function resolveLogoSrc(logo: LogoSrc): string {
+  return typeof logo === "string" ? logo : logo.src;
+}
+
 interface HeaderProps {
   children?: React.ReactNode;
   className?: string;
@@ -20,7 +27,7 @@ interface HeaderProps {
     label: string;
     href: string;
   }>;
-  logo?: string;
+  logo?: LogoSrc;
   logoAlt?: string;
 }
 
@@ -50,7 +57,11 @@ export function Header({
           {variant === "sidebar" && <SidebarTrigger />}
 
           <a href="/" className="flex items-center">
-            <img src={logo} alt={logoAlt} className="h-16 w-auto" />
+            <img
+              src={resolveLogoSrc(logo)}
+              alt={logoAlt}
+              className="h-20 w-auto"
+            />
           </a>
 
           <Separator orientation="vertical" />

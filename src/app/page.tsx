@@ -1,23 +1,19 @@
-"use client";
-
-import { FeedbackForm } from "../../lib/components/mid-level/FeedbackForm";
-import { CookiesBanner } from "../../lib/components/mid-level/CookiesBanner";
-import ComponentShowcase from "../components/ComponentShowcase";
+import { HeroSection } from "../components/landing/HeroSection";
+import { AboutSection } from "../components/landing/AboutSection";
+import { ComponentsShowcase } from "../components/landing/ComponentsShowcase";
+import { UseCasesSection } from "../components/landing/UseCasesSection";
+import { CTASection } from "../components/landing/CTASection";
 
 export default function HomePage() {
   return (
-    <>
-      <ComponentShowcase />
-
-      <FeedbackForm
-        onSubmit={async (data) => {
-          console.log("Feedback submitted:", data);
-          // Simulate API call
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          return { success: true, message: "Thank you for your feedback!" };
-        }}
-      />
-      <CookiesBanner />
-    </>
+    <div className="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <ComponentsShowcase />
+        <UseCasesSection />
+        <CTASection />
+      </main>
+    </div>
   );
 }

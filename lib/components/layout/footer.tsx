@@ -1,8 +1,15 @@
 import React from "react";
 import { Clock, Mail, MoveRight, Phone } from "lucide-react";
-import eInfraLogo from "./e-INFRA_logo_RGB_lilek.png";
+import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
 const Version = Date.now();
+
+/** Accepts a plain URL string or a Next.js / bundler static-import object. */
+type LogoSrc = string | { src: string; width?: number; height?: number };
+
+function resolveLogoSrc(logo: LogoSrc): string {
+  return typeof logo === "string" ? logo : logo.src;
+}
 
 interface RedirectListItemProps {
   href: string;
@@ -20,12 +27,20 @@ const RedirectListItem: React.FC<RedirectListItemProps> = ({ href, text }) => {
   );
 };
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  logo?: LogoSrc;
+  logoAlt?: string;
+}
+
+export const Footer: React.FC<FooterProps> = ({
+  logo = eInfraLogoDefault,
+  logoAlt = "e-INFRA CZ Logo",
+}) => {
   return (
-    <footer className="flex flex-col mt-0 md:mt-12 items-center px-5 bg-gray-100 border-t border-gray-300 pb-5">
-      <div className="container md:flex sm:flex-row justify-between items-start max-w-[1100px]">
+    <footer className="flex flex-col mt-0 items-center px-5 bg-gray-100 border-t border-gray-300 pb-5">
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start max-w-[1100px] w-full mx-auto">
         <div className="flex-1 px-6 mt-8 flex justify-center">
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-semibold mb-3">e-INFRA CZ</h4>
             <ul>
               <li>
@@ -47,9 +62,9 @@ export const Footer: React.FC = () => {
         <div className="hidden md:block w-px bg-gray-300 self-stretch my-8"></div>
 
         <div className="flex-1 px-6 mt-8 flex justify-center">
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-semibold mb-2">General information</h4>
-            <ul>
+            <ul className="inline-flex flex-col items-center md:items-start">
               <RedirectListItem
                 href="https://blog.e-infra.cz/"
                 text="e-INFRA CZ Blog"
@@ -65,9 +80,9 @@ export const Footer: React.FC = () => {
         <div className="hidden md:block w-px bg-gray-300 self-stretch my-8"></div>
 
         <div className="flex-1 px-6 mt-8 flex justify-center">
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-semibold mb-2">e-INFRA CZ Support</h4>
-            <ul>
+            <ul className="inline-flex flex-col items-center md:items-start">
               <li className="flex items-center gap-2">
                 <Clock className="w-4 pt-[2px] h-4 text-fd-primary" />
                 <p className="text-fd-muted-foreground">Available non-stop</p>
@@ -90,10 +105,10 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="container md:flex sm:flex-row sm:mt-4 justify-center items-center gap-4 mt-4 max-w-[1100px] rounded-md bg-slate-100">
-        <img src={eInfraLogo} alt="e-INFRA CZ Logo" className="h-22 w-auto" />
+      <div className="flex justify-center items-center mt-4 max-w-[1100px] w-full mx-auto">
+        <img src={resolveLogoSrc(logo)} alt={logoAlt} className="h-22 w-auto" />
       </div>
-      <div className="container md:flex sm:flex-row justify-center md:justify-between items-center max-w-[1100px]">
+      <div className="flex flex-col md:flex-row justify-center md:justify-between items-center max-w-[1100px] w-full mx-auto">
         <div className="flex items-center justify-center md:justify-start gap-1">
           <p className="text-sm text-fd-muted-foreground">
             Copyright © 2025 e-INFRA CZ

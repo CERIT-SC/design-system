@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Inter } from "next/font/google";
+import { Header } from "../../lib/components/layout/header";
+import { Footer } from "../../lib/components/layout/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "e-infra CZ Design System - Components",
-  description: "Design system components for e-infra CZ",
+  title: "e-INFRA CZ Design System - Components",
+  description: "Design system components for e-INFRA CZ",
 };
 
 export default function RootLayout({
@@ -16,7 +18,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header
+          variant="navigation"
+          navigationItems={[
+            { label: "Components Overview", href: "/components-overview" },
+            { label: "Design Guidelines", href: "/design-guidelines" },
+            { label: "Docs", href: "/docs" },
+          ]}
+        />
+        {children}
+        <Footer></Footer>
+      </body>
     </html>
   );
 }
