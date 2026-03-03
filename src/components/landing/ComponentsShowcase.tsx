@@ -58,7 +58,7 @@ export function ComponentsShowcase() {
             </h3>
           </div>
           <div className="flex gap-2">
-            <Link href={"/component-docs"}>
+            <Link href={"/components-overview"}>
               <Button variant="default" size="sm">
                 <ArrowRight className="w-4 h-4" />
                 All Components
@@ -186,7 +186,7 @@ export function ComponentsShowcase() {
                 </BreadcrumbList>
               </Breadcrumb>
 
-              <Tabs defaultValue="  overview" className="w-full mt-4">
+              <Tabs defaultValue="overview" className="w-full mt-4">
                 <TabsList className="bg-slate-200 rounded-md p-1">
                   <TabsTrigger
                     value="overview"

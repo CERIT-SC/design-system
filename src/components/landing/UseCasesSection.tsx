@@ -56,11 +56,11 @@ export function UseCasesSection() {
             Implementations
           </h2>
           <h3 className="text-4xl font-bold text-slate-900 mb-4">
-            Trusted by Czech Academia
+            Use Cases within e-INFRA CZ
           </h3>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            From metadata catalogs to supercomputing interfaces, see how
-            institutions leverage e-INFRA Design System.
+            From research portals to educational platforms, see how we&apos;re
+            standardizing interfaces across various e-INFRA CZ projects.
           </p>
         </div>
 

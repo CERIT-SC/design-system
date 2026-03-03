@@ -24,7 +24,7 @@ export default function RootLayout({
           navigationItems={[
             { label: "Components Overview", href: "/components-overview" },
             { label: "Design Guidelines", href: "/design-guidelines" },
-            { label: "Docs", href: "/test" },
+            { label: "Docs", href: "/docs" },
           ]}
         />
         {children}

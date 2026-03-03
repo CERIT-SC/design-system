@@ -116,7 +116,7 @@ export function HeroSection() {
             </div>
 
             <div className="absolute bottom-10 left-80 w-72 animate-[float_10s_ease-in-out_infinite]">
-              <Alert className="w-100">
+              <Alert className="w-96">
                 <Info className="h-4 w-4" />
                 <AlertTitle>Info</AlertTitle>
                 <AlertDescription>

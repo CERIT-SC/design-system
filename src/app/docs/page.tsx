@@ -9,7 +9,7 @@ import { BreadcrumbDoc } from "../../components/docs_/components/primitives/Brea
 import { CheckboxDoc } from "../../components/docs_/components/primitives/CheckboxDoc";
 import { FeedbackFormDoc } from "../../components/docs_/components/composed/FeedbackFormDoc";
 
-export default function TestPage() {
+export default function DocsPage() {
   const navigationLinks = [
     { id: "button", label: "Button", category: "Primitives" },
     { id: "breadcrumb", label: "Breadcrumb", category: "Primitives" },

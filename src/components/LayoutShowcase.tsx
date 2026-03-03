@@ -1,10 +1,5 @@
-import Link from "next/link";
 import {
-  Header,
   Content,
-  Footer,
-  Button,
-  Separator,
   Panel,
   PanelHeader,
   PanelContent,
