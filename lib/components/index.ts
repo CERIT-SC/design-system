@@ -9,8 +9,6 @@ export * from "./ui/breadcrumb";
 export * from "./ui/button";
 export * from "./ui/calendar";
 export * from "./ui/card";
-export * from "./ui/carousel";
-export * from "./ui/chart";
 export * from "./ui/checkbox";
 export * from "./ui/collapsible";
 export * from "./ui/command";
@@ -44,7 +42,6 @@ export * from "./ui/table";
 export * from "./ui/tabs";
 export * from "./ui/textarea";
 export * from "./ui/toggle";
-export * from "./ui/toggle-group";
 export * from "./ui/tooltip";
 export * from "./ui/panel";
 

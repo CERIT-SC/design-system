@@ -3,7 +3,6 @@ import { join } from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-import { DocLayout } from "../../../components/docs/DocLayout";
 import { mdxComponents } from "../../../components/docs/MDXComponents";
 
 // Base directory for docs (resolved relative to project root)

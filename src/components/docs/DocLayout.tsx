@@ -5,254 +5,31 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "../../../lib/lib/utils";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
+import type { NavSection } from "../../lib/docs-nav";
 
-// Document navigation structure
-const docStructure = [
-  {
-    title: "Foundations",
-    slug: "foundations",
-    items: [
-      { title: "Colors", slug: "colors", path: "/docs/foundations/colors" },
-      {
-        title: "Typography",
-        slug: "typography",
-        path: "/docs/foundations/typography",
-      },
-      { title: "Spacing", slug: "spacing", path: "/docs/foundations/spacing" },
-      { title: "Grids", slug: "grids", path: "/docs/foundations/grids" },
-    ],
-  },
-  {
-    title: "Primitives",
-    slug: "primitives",
-    items: [
-      {
-        title: "Accordion",
-        slug: "accordion",
-        path: "/docs/components/primitives/accordion",
-      },
-      {
-        title: "Alert",
-        slug: "alert",
-        path: "/docs/components/primitives/alert",
-      },
-      {
-        title: "Alert Dialog",
-        slug: "alert-dialog",
-        path: "/docs/components/primitives/alert-dialog",
-      },
-      {
-        title: "Aspect Ratio",
-        slug: "aspect-ratio",
-        path: "/docs/components/primitives/aspect-ratio",
-      },
-      {
-        title: "Avatar",
-        slug: "avatar",
-        path: "/docs/components/primitives/avatar",
-      },
-      {
-        title: "Badge",
-        slug: "badge",
-        path: "/docs/components/primitives/badge",
-      },
-      {
-        title: "Breadcrumb",
-        slug: "breadcrumb",
-        path: "/docs/components/primitives/breadcrumb",
-      },
-      {
-        title: "Button",
-        slug: "button",
-        path: "/docs/components/primitives/button",
-      },
-      {
-        title: "Calendar",
-        slug: "calendar",
-        path: "/docs/components/primitives/calendar",
-      },
-      { title: "Card", slug: "card", path: "/docs/components/primitives/card" },
-      {
-        title: "Carousel",
-        slug: "carousel",
-        path: "/docs/components/primitives/carousel",
-      },
-      {
-        title: "Checkbox",
-        slug: "checkbox",
-        path: "/docs/components/primitives/checkbox",
-      },
-      {
-        title: "Collapsible",
-        slug: "collapsible",
-        path: "/docs/components/primitives/collapsible",
-      },
-      {
-        title: "Command",
-        slug: "command",
-        path: "/docs/components/primitives/command",
-      },
-      {
-        title: "Dialog",
-        slug: "dialog",
-        path: "/docs/components/primitives/dialog",
-      },
-      {
-        title: "Dropdown",
-        slug: "dropdown",
-        path: "/docs/components/primitives/dropdown",
-      },
-      { title: "Form", slug: "form", path: "/docs/components/primitives/form" },
-      {
-        title: "Input OTP",
-        slug: "input-otp",
-        path: "/docs/components/primitives/input-otp",
-      },
-      {
-        title: "Input",
-        slug: "input",
-        path: "/docs/components/primitives/input",
-      },
-      {
-        title: "Label",
-        slug: "label",
-        path: "/docs/components/primitives/label",
-      },
-      {
-        title: "Menubar",
-        slug: "menubar",
-        path: "/docs/components/primitives/menubar",
-      },
-      {
-        title: "Pagination",
-        slug: "pagination",
-        path: "/docs/components/primitives/pagination",
-      },
-      {
-        title: "Progress",
-        slug: "progress",
-        path: "/docs/components/primitives/progress",
-      },
-      {
-        title: "Radio Group",
-        slug: "radio-group",
-        path: "/docs/components/primitives/radio-group",
-      },
-      {
-        title: "Select",
-        slug: "select",
-        path: "/docs/components/primitives/select",
-      },
-      {
-        title: "Separator",
-        slug: "separator",
-        path: "/docs/components/primitives/separator",
-      },
-      {
-        title: "Skeleton",
-        slug: "skeleton",
-        path: "/docs/components/primitives/skeleton",
-      },
-      {
-        title: "Slider",
-        slug: "slider",
-        path: "/docs/components/primitives/slider",
-      },
-      {
-        title: "Switch",
-        slug: "switch",
-        path: "/docs/components/primitives/switch",
-      },
-      {
-        title: "Table",
-        slug: "table",
-        path: "/docs/components/primitives/table",
-      },
-      { title: "Tabs", slug: "tabs", path: "/docs/components/primitives/tabs" },
-      {
-        title: "Textarea",
-        slug: "textarea",
-        path: "/docs/components/primitives/textarea",
-      },
-      {
-        title: "Toggle",
-        slug: "toggle",
-        path: "/docs/components/primitives/toggle",
-      },
-      {
-        title: "Tooltip",
-        slug: "tooltip",
-        path: "/docs/components/primitives/tooltip",
-      },
-    ],
-  },
-  {
-    title: "Compounds",
-    slug: "compounds",
-    items: [
-      {
-        title: "Cookies Banner",
-        slug: "cookies-banner",
-        path: "/docs/components/compounds/cookies-banner",
-      },
-      {
-        title: "Feedback Form",
-        slug: "feedback-form",
-        path: "/docs/components/compounds/feedback-form",
-      },
-      {
-        title: "Table",
-        slug: "table-compound",
-        path: "/docs/components/compounds/table",
-      },
-    ],
-  },
-  {
-    title: "Layout",
-    slug: "layout",
-    items: [
-      {
-        title: "Header",
-        slug: "header",
-        path: "/docs/components/layout/header",
-      },
-      {
-        title: "Footer",
-        slug: "footer",
-        path: "/docs/components/layout/footer",
-      },
-      {
-        title: "Content",
-        slug: "content",
-        path: "/docs/components/layout/content",
-      },
-      {
-        title: "Sidebar",
-        slug: "sidebar",
-        path: "/docs/components/layout/sidebar",
-      },
-    ],
-  },
-];
+// Nav structure is built from the filesystem — see src/lib/docs-nav.ts.
+// It is passed in as a prop from the (server) layout so DocLayout stays a
+// pure client component with no direct fs access.
 
 interface DocLayoutProps {
   children: React.ReactNode;
+  navStructure: NavSection[];
 }
 
-export function DocLayout({ children }: DocLayoutProps) {
+export function DocLayout({ children, navStructure }: DocLayoutProps) {
   const pathname = usePathname() || "";
   const [openSections, setOpenSections] = useState<string[]>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Initialize open sections based on current path
   useEffect(() => {
-    const currentCategory = docStructure.find((section) =>
+    const currentCategory = navStructure.find((section) =>
       section.items.some((item) => item.path === pathname)
     );
     if (currentCategory) {
       setOpenSections([currentCategory.slug]);
     }
-  }, [pathname]);
+  }, [pathname, navStructure]);
 
   const toggleSection = (slug: string) => {
     setOpenSections((prev) =>
@@ -265,7 +42,7 @@ export function DocLayout({ children }: DocLayoutProps) {
   };
 
   const getCategoryFromPath = (path: string): string | null => {
-    const section = docStructure.find((s) =>
+    const section = navStructure.find((s) =>
       s.items.some((i) => i.path === path)
     );
     return section?.slug || null;
@@ -317,7 +94,7 @@ export function DocLayout({ children }: DocLayoutProps) {
 
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto py-4 px-3">
-          {docStructure.map((section, index) => (
+          {navStructure.map((section, index) => (
             <div key={section.slug} className={cn(index > 0 && "mt-1")}>
               {/* Section toggle button */}
               <button
