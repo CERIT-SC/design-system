@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import { SidebarTrigger } from "../ui/sidebar";
@@ -7,7 +8,6 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
 import { HomeIcon, LogOut } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
@@ -79,10 +79,7 @@ export function Header({
                 <NavigationMenuList>
                   {navigationItems.map((item) => (
                     <NavigationMenuItem key={item.href}>
-                      <NavigationMenuLink
-                        href={item.href}
-                        className={navigationMenuTriggerStyle()}
-                      >
+                      <NavigationMenuLink href={item.href}>
                         {item.label}
                       </NavigationMenuLink>
                     </NavigationMenuItem>
