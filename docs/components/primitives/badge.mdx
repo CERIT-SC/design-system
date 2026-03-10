@@ -1,0 +1,43 @@
+---
+title: Badge
+description: Display small status indicators and labels
+category: primitives
+status: stable
+---
+
+# Badge
+
+Badges are used to highlight small pieces of information like statuses, counts, or tags. They can be styled with different variants for context.
+
+<ComponentPreview>
+  <BadgePreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Badge } from '@e-infra/design-system'
+
+<Badge>Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="outline">Outline</Badge>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `default` \| `secondary` \| `error` \| `outline` | `default` | Visual style variant |
+| className | string | - | Additional CSS classes |
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native span props |
+
+## Variants
+
+| Variant | Background | Border | Text |
+|---------|------------|--------|------|
+| default | `primary` | `transparent` | `primary-foreground` |
+| secondary | `secondary` | `transparent` | `secondary-foreground` |
+| error | `error` | `transparent` | `white` |
+| outline | `transparent` | `text-foreground` | `text-foreground` |

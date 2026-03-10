@@ -1,0 +1,42 @@
+---
+title: Progress
+description: Display progress of a task or process
+category: primitives
+status: stable
+---
+
+# Progress
+
+Progress indicators show how far a task has progressed, providing visual feedback to users about ongoing processes.
+
+<ComponentPreview>
+  <ProgressPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Progress } from '@e-infra/design-system'
+
+<Progress value={33} />
+<Progress value={75} max={100} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | number | - | Current progress value (0-100) |
+| max | number | `100` | Maximum value for progress calculation |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Progress props |
+
+## Examples
+
+| Value | Visual |
+|-------|--------|
+| 0% | Empty progress bar |
+| 25% | Quarter filled |
+| 50% | Half filled |
+| 75% | Three-quarters filled |
+| 100% | Fully filled |

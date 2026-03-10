@@ -1,0 +1,62 @@
+---
+title: Tabs
+description: Display content in related tabs
+category: primitives
+status: stable
+---
+
+# Tabs
+
+Tabs organize content into multiple sections that can be toggled to reveal different content while keeping the same container.
+
+<ComponentPreview>
+  <TabsPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@e-infra/design-system'
+
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    Make changes to your account here.
+  </TabsContent>
+  <TabsContent value="password">
+    Change your password here.
+  </TabsContent>
+</Tabs>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Tabs` | Container component |
+| `TabsList` | Container for tab triggers |
+| `TabsTrigger` | Clickable tab button |
+| `TabsContent` | Content for each tab |
+
+## Props
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultValue | string | - | Default active tab (uncontrolled) |
+| value | string | - | Active tab (controlled) |
+| onValueChange | (value: string) => void | - | Callback when tab changes |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Tabs props |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | - | Tab value (required) |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Trigger props |

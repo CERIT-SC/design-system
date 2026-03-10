@@ -1,0 +1,69 @@
+---
+title: Content
+description: Container for page content with heading and body sections
+category: layout
+status: stable
+---
+
+# Content
+
+Content is a compound component that provides a structured container for page content with built-in spacing and heading support.
+
+<ComponentPreview>
+  <ContentPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Content } from '@e-infra/design-system'
+
+<Content>
+  <Content.Heading>Welcome to Our Platform</Content.Heading>
+  <Content.Body>
+    <p>Your content here</p>
+  </Content.Body>
+</Content>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Content` | Main container (div) |
+| `Content.Heading` | Main heading (h1) |
+| `Content.Subheading` | Subheading (h2) |
+| `Content.Body` | Content body container (div) |
+
+## Props
+
+### Content (Container)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Content children |
+| ...props | React.HTMLAttributes | - | Native div props |
+
+### Content.Heading
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Heading text |
+| ...props | React.HTMLAttributes | - | Native h1 props |
+
+### Content.Body
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Body content |
+| ...props | React.HTMLAttributes | - | Native div props |
+
+## Spacing
+
+| Element | CSS |
+|---------|-----|
+| Container | `space-y-8 py-8 px-4` |
+| Body | `space-y-4` |

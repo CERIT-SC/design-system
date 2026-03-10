@@ -1,0 +1,49 @@
+---
+title: Checkbox
+description: Multi-select input for toggling options
+category: primitives
+status: stable
+---
+
+# Checkbox
+
+Checkboxes allow users to select one or more options from a list. They provide visual feedback when selected and support indeterminate states.
+
+<ComponentPreview>
+  <CheckboxPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Checkbox } from '@e-infra/design-system'
+
+<Checkbox id="terms" />
+<Label htmlFor="terms">Accept terms</Label>
+
+<Checkbox disabled />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| checked | boolean | - | Checked state (controlled) |
+| defaultChecked | boolean | - | Initial checked state (uncontrolled) |
+| required | boolean | `false` | Require selection |
+| disabled | boolean | `false` | Disable the checkbox |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Checkbox props |
+
+## State
+
+| State | Visual |
+|-------|--------|
+| Unchecked | Empty box with border |
+| Checked | Checkmark inside primary box |
+| Disabled | Grayed out appearance |
+| Indeterminate | Dash inside box |
+
+## Accessibility
+
+Checkboxes support keyboard navigation and are fully accessible with screen readers.

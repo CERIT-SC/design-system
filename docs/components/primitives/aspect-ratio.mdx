@@ -1,0 +1,45 @@
+---
+title: Aspect Ratio
+description: Maintain aspect ratio for media elements
+category: primitives
+status: stable
+---
+
+# Aspect Ratio
+
+Aspect ratio preserves the width-to-height ratio of media elements like images and videos.
+
+<ComponentPreview>
+  <AspectRatioPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { AspectRatio } from '@e-infra/design-system'
+
+<AspectRatio ratio={16 / 9}>
+  <img src="image.jpg" alt="Description" />
+</AspectRatio>
+
+<AspectRatio ratio={1} className="rounded-full">
+  <img src="avatar.jpg" alt="Avatar" />
+</AspectRatio>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| ratio | number | - | Aspect ratio (width / height) |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI AspectRatio props |
+
+## Common Ratios
+
+| Ratio | Use Case |
+|-------|----------|
+| `16/9` | Videos, wide images |
+| `4/3` | Standard images |
+| `1/1` | Square images, avatars |
+| `21/9` | Ultra-wide videos |

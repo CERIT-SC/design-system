@@ -1,0 +1,65 @@
+---
+title: Button
+description: Interactive buttons for actions and navigation
+category: primitives
+status: stable
+---
+
+# Button
+
+Buttons are primary interactive elements used to trigger actions or navigate. They support multiple variants and sizes for different use cases.
+
+<ComponentPreview>
+  <ButtonPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Button } from '@e-infra/design-system'
+
+<Button>Default</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+<Button disabled>Disabled</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | See variants below | `default` | Visual style variant |
+| size | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-lg` | `default` | Button size |
+| className | string | - | Additional CSS classes |
+| asChild | boolean | `false` | Render as child component |
+| disabled | boolean | `false` | Disable the button |
+| ...props | React.ButtonHTMLAttributes | - | Native button props |
+
+## Variants
+
+| Variant | Background | Text | Hover |
+|---------|------------|------|-------|
+| default | `primary` | `primary-foreground` | `primary/90` |
+| secondary | `secondary` | `secondary-foreground` | `secondary/80` |
+| tertiary | `tertiary` | `tertiary-foreground` | `tertiary/80` |
+| info | `info` | `info-foreground` | `info/90` |
+| success | `success` | `success-foreground` | `success/90` |
+| warning | `warning` | `warning-foreground` | `warning/90` |
+| error | `error` | `error-foreground` | `error/90` |
+| outline | `background` | `foreground` | `tertiary` |
+| ghost | `transparent` | `foreground` | `tertiary` |
+| link | `transparent` | `primary` | `underline` |
+| animated-underline | `transparent` | `tertiary-foreground` | `tertiary-foreground` |
+
+## Sizes
+
+| Size | Height | Padding |
+|------|--------|---------|
+| default | 36px | 16px horizontal |
+| sm | 32px | 12px horizontal |
+| lg | 40px | 24px horizontal |
+| icon | 36px | Centered |
+| icon-sm | 32px | Centered |
+| icon-lg | 40px | Centered |

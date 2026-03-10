@@ -1,0 +1,40 @@
+---
+title: Skeleton
+description: Loading state placeholder
+category: primitives
+status: stable
+---
+
+# Skeleton
+
+Skeleton screens display content placeholders while data is loading, improving perceived performance.
+
+<ComponentPreview>
+  <SkeletonPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Skeleton } from '@e-infra/design-system'
+
+<Skeleton className="h-12 w-full" />
+<Skeleton className="h-4 w-3/4" />
+<Skeleton className="h-24 w-24 rounded-full" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |
+
+## Usage Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| `h-12 w-full` | Full-width text line |
+| `h-4 w-3/4` | Partial text line |
+| `h-24 w-24 rounded-full` | Circular avatar/image |
+| `h-48 w-full rounded-lg` | Image card |

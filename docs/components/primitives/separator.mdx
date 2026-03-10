@@ -1,0 +1,39 @@
+---
+title: Separator
+description: Horizontal or vertical divider line
+category: primitives
+status: stable
+---
+
+# Separator
+
+Separators display a horizontal or vertical divider line to visually separate content sections.
+
+<ComponentPreview>
+  <SeparatorPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Separator } from '@e-infra/design-system'
+
+<Separator />
+<Separator orientation="vertical" className="h-8" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| orientation | `horizontal` \| `vertical` | `horizontal` | Direction of the separator |
+| decorative | boolean | `true` | Whether the separator is decorative |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Separator props |
+
+## Orientation
+
+| Orientation | CSS |
+|-------------|-----|
+| horizontal | `h-px w-full` |
+| vertical | `h-full w-px` |

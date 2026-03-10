@@ -1,0 +1,73 @@
+---
+title: Sidebar
+description: Navigation sidebar for docs and content
+category: layout
+status: stable
+---
+
+# Sidebar
+
+The sidebar provides navigational links for documentation and content. It includes collapsible sections and active state indicators.
+
+<ComponentPreview>
+  <SidebarPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Sidebar } from '@e-infra/design-system'
+
+<Sidebar>
+  {/* Sidebar content */}
+</Sidebar>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Sidebar` | Main sidebar container |
+| `SidebarTrigger` | Toggle sidebar visibility |
+| `SidebarContent` | Content area |
+| `SidebarMenu` | Menu container |
+| `SidebarMenuItem` | Menu item |
+| `SidebarMenuButton` | Menu button |
+| `SidebarMenuSub` | Submenu |
+| `SidebarMenuSubItem` | Submenu item |
+| `SidebarMenuSubButton` | Submenu button |
+
+## Props
+
+### Sidebar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| side | `left` \| `right` | `left` | Sidebar side |
+| variant | `sidebar` \| `floating` \| `classic` | `sidebar` | Sidebar variant |
+| collapsible | `none` \| `icon` \| `offcanvas` | `icon` | Collapsible behavior |
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Sidebar content |
+
+### SidebarTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Button props |
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| `sidebar` | Fixed sidebar |
+| `floating` | Floating sidebar |
+| `classic` | Classic sidebar style |
+
+## Collapsible Options
+
+| Option | Behavior |
+|--------|----------|
+| `none` | Always visible |
+| `icon` | Collapse to icon |
+| `offcanvas` | Slide out completely |

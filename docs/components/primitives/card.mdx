@@ -1,0 +1,61 @@
+---
+title: Card
+description: Container for related content and actions
+category: primitives
+status: stable
+---
+
+# Card
+
+Cards display related content and actions in a structured container with header, body, and footer sections.
+
+<ComponentPreview>
+  <CardPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@e-infra/design-system'
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content goes here.</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Card` | Main container |
+| `CardHeader` | Header section |
+| `CardFooter` | Footer section |
+| `CardTitle` | Title element |
+| `CardDescription` | Description element |
+| `CardContent` | Content area |
+| `CardAction` | Action area |
+
+## Props
+
+### Card
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |
+
+### CardHeader/CardFooter/CardContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |

@@ -1,0 +1,42 @@
+---
+title: Slider
+description: Input control for selecting a value from a range
+category: primitives
+status: stable
+---
+
+# Slider
+
+Sliders allow users to select a value from a continuous or discrete range by dragging a thumb along a track.
+
+<ComponentPreview>
+  <SliderPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Slider } from '@e-infra/design-system'
+
+<Slider defaultValue={[50]} max={100} step={1} />
+<Slider defaultValue={[25, 75]} min={0} max={100} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | number[] | - | Current value(s) (controlled) |
+| defaultValue | number[] | - | Initial value(s) (uncontrolled) |
+| min | number | `0` | Minimum value |
+| max | number | `100` | Maximum value |
+| step | number | - | Step size for discrete values |
+| disabled | boolean | `false` | Disable the slider |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Slider props |
+
+## API
+
+| Component | Description |
+|-----------|-------------|
+| `Slider` | Main component with track and thumb |

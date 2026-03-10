@@ -1,0 +1,48 @@
+---
+title: Toggle
+description: Toggle button for binary state selection
+category: primitives
+status: stable
+---
+
+# Toggle
+
+Toggles are buttons that switch between two states (on/off). They can be used as standalone buttons or as part of a group.
+
+<ComponentPreview>
+  <TogglePreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Toggle } from '@e-infra/design-system'
+
+<Toggle aria-label="Toggle italic">I</Toggle>
+<Toggle variant="outline" aria-label="Toggle italic">I</Toggle>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Toggle` | Toggle button component |
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| pressed | boolean | - | Pressed state (controlled) |
+| defaultPressed | boolean | - | Initial pressed state (uncontrolled) |
+| variant | `default` \| `outline` | `default` | Visual style variant |
+| size | `default` \| `sm` \| `lg` | `default` | Button size |
+| disabled | boolean | `false` | Disable the toggle |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Toggle props |
+
+## Variants
+
+| Variant | Background | Text | Hover |
+|---------|------------|------|-------|
+| default | `transparent` | `foreground` | `muted` |
+| outline | `transparent` | `foreground` | `tertiary` |

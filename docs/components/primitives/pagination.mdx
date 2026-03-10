@@ -1,0 +1,71 @@
+---
+title: Pagination
+description: Navigate between pages
+category: primitives
+status: stable
+---
+
+# Pagination
+
+Pagination provides navigation controls for multi-page content with page numbers, previous/next buttons, and ellipsis.
+
+<ComponentPreview>
+  <PaginationPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@e-infra/design-system'
+
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>2</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationEllipsis />
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Pagination` | Container (nav element) |
+| `PaginationContent` | Content wrapper (ul) |
+| `PaginationItem` | Individual item (li) |
+| `PaginationLink` | Page number link |
+| `PaginationPrevious` | Previous page button |
+| `PaginationNext` | Next page button |
+| `PaginationEllipsis` | Ellipsis indicator |
+
+## Props
+
+### PaginationLink
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| isActive | boolean | `false` | Current page indicator |
+| size | `default` \| `sm` \| `lg` \| `icon` | `icon` | Button size |
+| className | string | - | Additional CSS classes |
+| ...props | React.AnchorHTMLAttributes | - | Native anchor props |
+
+### PaginationPrevious/PaginationNext
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | PaginationLink props | - | Extended PaginationLink props |

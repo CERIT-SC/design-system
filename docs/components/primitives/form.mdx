@@ -1,0 +1,71 @@
+---
+title: Form
+description: Form wrapper with validation
+category: primitives
+status: stable
+---
+
+# Form
+
+Form provides a form wrapper with built-in validation states and error messages using React Hook Form.
+
+<ComponentPreview>
+  <FormPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField } from '@e-infra/design-system'
+
+<Form>
+  <FormField
+    name="email"
+    render={({ field }) => (
+      <FormItem>
+        <FormLabel>Email</FormLabel>
+        <FormControl>
+          <Input type="email" {...field} />
+        </FormControl>
+        <FormDescription>Your email address</FormDescription>
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+</Form>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Form` | FormProvider wrapper |
+| `FormItem` | Form field wrapper |
+| `FormLabel` | Accessible label |
+| `FormControl` | Form control wrapper |
+| `FormDescription` | Helper text |
+| `FormMessage` | Validation error message |
+| `FormField` | Field controller |
+
+## Props
+
+### FormItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |
+
+### FormLabel
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | LabelPrimitive props |
+
+### FormMessage
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native p props |

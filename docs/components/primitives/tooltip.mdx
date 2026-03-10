@@ -1,0 +1,60 @@
+---
+title: Tooltip
+description: Display additional information on hover
+category: primitives
+status: stable
+---
+
+# Tooltip
+
+Tooltips display additional information when users hover over or focus on an element.
+
+<ComponentPreview>
+  <TooltipPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@e-infra/design-system'
+
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger>Hover me</TooltipTrigger>
+    <TooltipContent>Additional information</TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `TooltipProvider` | Required provider wrapper |
+| `Tooltip` | Container component |
+| `TooltipTrigger` | Element that shows tooltip on hover |
+| `TooltipContent` | Tooltip content to display |
+
+## Props
+
+### TooltipProvider
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| delayDuration | number | `0` | Delay before showing tooltip (ms) |
+
+### TooltipTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native element props |
+
+### TooltipContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| side | `top` \| `bottom` \| `left` \| `right` | `bottom` | Side to position tooltip |
+| sideOffset | number | `0` | Offset from the trigger |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |

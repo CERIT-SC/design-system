@@ -1,0 +1,62 @@
+---
+title: Input OTP
+description: One-time password input
+category: primitives
+status: stable
+---
+
+# Input OTP
+
+Input OTP provides a specialized component for entering one-time passwords with separate slots for each character.
+
+<ComponentPreview>
+  <InputOTPPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@e-infra/design-system'
+
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `InputOTP` | Main container |
+| `InputOTPGroup` | Group of slots |
+| `InputOTPSlot` | Individual character slot |
+| `InputOTPSeparator` | Separator between groups |
+
+## Props
+
+### InputOTP
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| maxLength | number | - | Maximum OTP length (required) |
+| containerClassName | string | - | Container CSS classes |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | OTPInput props |
+
+### InputOTPSlot
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| index | number | - | Slot index (required) |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |

@@ -1,0 +1,49 @@
+---
+title: Header
+description: Top navigation with e-INFRA logo and navigation items
+category: layout
+status: stable
+---
+
+# Header
+
+The header provides navigation and branding at the top of the page. It supports multiple variants for different use cases.
+
+<ComponentPreview>
+  <HeaderPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Header } from '@e-infra/design-system'
+
+<Header
+  variant="navigation"
+  navigationItems={[
+    { label: "Foundations", href: "/foundations" },
+    { label: "Components", href: "/components" },
+  ]}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `sidebar` \| `navigation` | `navigation` | Header variant |
+| navigationItems | Array<{label: string, href: string}> | `[]` | Navigation menu items |
+| logo | string \| {src: string, width?: number, height?: number} | e-INFRA default | Logo source |
+| logoAlt | string | `e-INFRA Logo` | Logo alt text |
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Additional header content |
+
+## Variants
+
+### Navigation
+
+The default navigation variant displays a full-width header with the e-INFRA logo, home button, and navigation menu.
+
+### Sidebar
+
+The sidebar variant includes a `SidebarTrigger` button for mobile/collapsed sidebar navigation.

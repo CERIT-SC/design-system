@@ -1,0 +1,35 @@
+---
+title: Label
+description: Accessible label for form inputs
+category: primitives
+status: stable
+---
+
+# Label
+
+Labels provide accessible text descriptions for form inputs. They improve accessibility and user experience.
+
+<ComponentPreview>
+  <LabelPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Label } from '@e-infra/design-system'
+
+<Label htmlFor="email">Email address</Label>
+<Input id="email" type="email" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| htmlFor | string | - | ID of the controlled input (required) |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Label props |
+
+## Accessibility
+
+When paired with the `htmlFor` prop, labels automatically associate with their inputs and announce the label text when the input receives focus.

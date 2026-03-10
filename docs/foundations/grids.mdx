@@ -1,0 +1,99 @@
+---
+title: Grid
+description: Layout grid system for consistent page structure
+category: foundations
+status: stable
+---
+
+# Grid
+
+The design system uses a 12-column responsive grid system for consistent page layouts. Built on Tailwind's grid utilities with custom breakpoints.
+
+<ComponentPreview>
+  <GridPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+/* Basic grid */
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+
+/* Spanning columns */
+<div className="grid grid-cols-12 gap-4">
+  <div className="col-span-12">Full width</div>
+  <div className="col-span-6">Half width</div>
+  <div className="col-span-6">Half width</div>
+</div>
+```
+
+## Grid System
+
+### Column Counts
+
+| Class | Columns | Description |
+|-------|---------|-------------|
+| `grid-cols-1` | 1 | Single column |
+| `grid-cols-2` | 2 | Two equal columns |
+| `grid-cols-3` | 3 | Three equal columns |
+| `grid-cols-4` | 4 | Four equal columns |
+| `grid-cols-5` | 5 | Five equal columns |
+| `grid-cols-6` | 6 | Six equal columns |
+| `grid-cols-12` | 12 | Twelve equal columns |
+
+### Responsive Breakpoints
+
+| Breakpoint | Min Width | Class Prefix |
+|------------|-----------|--------------|
+| Default | 0px | `grid-cols-` |
+| sm | 640px | `sm:grid-cols-` |
+| md | 768px | `md:grid-cols-` |
+| lg | 1024px | `lg:grid-cols-` |
+| xl | 1280px | `xl:grid-cols-` |
+| 2xl | 1536px | `2xl:grid-cols-` |
+
+## Container System
+
+| Size | Max Width | Class |
+|------|-----------|-------|
+| Default | 100% | `container` |
+| px-4 | ~16px | `container mx-auto px-4` |
+
+## Gap Spacing
+
+| Class | Gap Size |
+|-------|----------|
+| `gap-1` | 4px |
+| `gap-2` | 8px |
+| `gap-3` | 12px |
+| `gap-4` | 16px |
+| `gap-5` | 20px |
+| `gap-6` | 24px |
+| `gap-8` | 32px |
+| `gap-10` | 40px |
+| `gap-12` | 48px |
+| `gap-16` | 64px |
+
+## Alignment
+
+| Class | Description |
+|-------|-------------|
+| `items-start` | Align items to start |
+| `items-center` | Align items to center |
+| `items-end` | Align items to end |
+| `items-stretch` | Stretch items |
+| `justify-start` | Justify to start |
+| `justify-center` | Justify to center |
+| `justify-between` | Distribute space evenly |
+| `justify-around` | Space around items |
+| `justify-evenly` | Space evenly |
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| N/A | - | - | N/A |

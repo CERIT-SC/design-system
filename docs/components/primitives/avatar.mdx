@@ -1,0 +1,60 @@
+---
+title: Avatar
+description: Display user profile images
+category: primitives
+status: stable
+---
+
+# Avatar
+
+Avatars display user profile images or initials as placeholders when images are not available.
+
+<ComponentPreview>
+  <AvatarPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Avatar, AvatarImage, AvatarFallback } from '@e-infra/design-system'
+
+<Avatar>
+  <AvatarImage src="https://github.com/user.png" />
+  <AvatarFallback>JD</AvatarFallback>
+</Avatar>
+
+<Avatar className="h-12 w-12">
+  <AvatarFallback>AB</AvatarFallback>
+</Avatar>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Avatar` | Container component |
+| `AvatarImage` | Image element |
+| `AvatarFallback` | Fallback content (initials/placeholder) |
+
+## Props
+
+### Avatar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Avatar props |
+
+### AvatarImage
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Image props |
+
+### AvatarFallback
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Fallback props |

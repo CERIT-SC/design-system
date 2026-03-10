@@ -1,0 +1,65 @@
+---
+title: Breadcrumb
+description: Navigation aid showing current location in hierarchy
+category: primitives
+status: stable
+---
+
+# Breadcrumb
+
+Breadcrumbs show users their current location within a website's hierarchy and provide navigation back to parent pages.
+
+<ComponentPreview>
+  <BreadcrumbPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from '@e-infra/design-system'
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Breadcrumb` | Container (nav element) |
+| `BreadcrumbList` | List container (ol) |
+| `BreadcrumbItem` | List item (li) |
+| `BreadcrumbLink` | Navigate to parent page (a) |
+| `BreadcrumbPage` | Current page (span) |
+| `BreadcrumbSeparator` | Separator (chevron) |
+| `BreadcrumbEllipsis` | Show more indicator |
+
+## Props
+
+### Breadcrumb
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native nav props |
+
+### BreadcrumbLink
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| className | string | - | Additional CSS classes |
+| ...props | React.AnchorHTMLAttributes | - | Native anchor props |

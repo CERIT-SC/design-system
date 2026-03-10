@@ -1,0 +1,66 @@
+---
+title: Alert Dialog
+description: Confirm or cancel important actions
+category: primitives
+status: stable
+---
+
+# Alert Dialog
+
+Alert dialogs require user confirmation before executing destructive or important actions.
+
+<ComponentPreview>
+  <AlertDialogPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from '@e-infra/design-system'
+
+<AlertDialog>
+  <AlertDialogTrigger>Open Dialog</AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `AlertDialog` | Container component |
+| `AlertDialogTrigger` | Element that opens the dialog |
+| `AlertDialogContent` | Dialog content wrapper |
+| `AlertDialogHeader` | Header section container |
+| `AlertDialogFooter` | Footer section container |
+| `AlertDialogTitle` | Dialog title |
+| `AlertDialogDescription` | Dialog description |
+| `AlertDialogAction` | Confirm button |
+| `AlertDialogCancel` | Cancel button |
+| `AlertDialogPortal` | Portal container |
+| `AlertDialogOverlay` | Overlay backdrop |
+
+## Props
+
+### AlertDialogTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native element props |
+
+### AlertDialogContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |

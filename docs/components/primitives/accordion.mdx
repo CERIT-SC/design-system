@@ -1,0 +1,67 @@
+---
+title: Accordion
+description: Toggleable content panels
+category: primitives
+status: stable
+---
+
+# Accordion
+
+Accordion displays collapsible content panels that can be expanded or collapsed to show/hide content.
+
+<ComponentPreview>
+  <AccordionPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@e-infra/design-system'
+
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Accordion` | Container component |
+| `AccordionItem` | Individual panel |
+| `AccordionTrigger` | Expand/collapse button |
+| `AccordionContent` | Panel content |
+
+## Props
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| type | `single` \| `multiple` | `single` | Selection type |
+| value | string \| string[] | - | Active items (controlled) |
+| defaultValue | string \| string[] | - | Initial active items (uncontrolled) |
+| onValueChange | (value: string \| string[]) => void | - | Callback when value changes |
+| collapsible | boolean | - | Allow collapsing all items |
+| disabled | boolean | `false` | Disable the accordion |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Accordion props |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | - | Unique identifier (required) |
+| disabled | boolean | `false` | Disable this item |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Item props |
+
+### AccordionTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Trigger props |

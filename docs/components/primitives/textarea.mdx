@@ -1,0 +1,42 @@
+---
+title: Textarea
+description: Multi-line text input
+category: primitives
+status: stable
+---
+
+# Textarea
+
+Textareas allow users to enter and edit multi-line text content.
+
+<ComponentPreview>
+  <TextareaPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Textarea } from '@e-infra/design-system'
+
+<Textarea placeholder="Type your message here." rows={4} />
+<Textarea disabled placeholder="Disabled textarea" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | - | Value (controlled) |
+| defaultValue | string | - | Initial value (uncontrolled) |
+| placeholder | string | - | Placeholder text |
+| rows | number | - | Number of visible text lines |
+| disabled | boolean | `false` | Disable the textarea |
+| className | string | - | Additional CSS classes |
+| ...props | React.TextareaHTMLAttributes | - | Native textarea props |
+
+## Sizing
+
+| Prop | Description |
+|------|-------------|
+| `rows` | Sets the number of visible text lines |
+| `className` | Can override height with `h-auto` or custom height |

@@ -1,0 +1,60 @@
+---
+title: Collapsible
+description: Show and hide content with animation
+category: primitives
+status: stable
+---
+
+# Collapsible
+
+Collapsible components allow users to show and hide content sections with smooth animations.
+
+<ComponentPreview>
+  <CollapsiblePreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@e-infra/design-system'
+
+<Collapsible>
+  <CollapsibleTrigger>Toggle content</CollapsibleTrigger>
+  <CollapsibleContent>
+    <p>This content can be shown or hidden.</p>
+  </CollapsibleContent>
+</Collapsible>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Collapsible` | Container component |
+| `CollapsibleTrigger` | Element that toggles visibility |
+| `CollapsibleContent` | Content to show/hide |
+
+## Props
+
+### Collapsible
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| open | boolean | - | Open state (controlled) |
+| defaultOpen | boolean | - | Initial open state (uncontrolled) |
+| onOpenChange | (open: boolean) => void | - | Callback when open state changes |
+| ...props | React.ComponentProps | - | Radix UI Collapsible props |
+
+### CollapsibleTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native element props |
+
+### CollapsibleContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |

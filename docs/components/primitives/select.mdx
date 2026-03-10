@@ -1,0 +1,67 @@
+---
+title: Select
+description: Dropdown for selecting from many options
+category: primitives
+status: stable
+---
+
+# Select
+
+Select provides a dropdown menu for choosing from a list of options, ideal for scenarios with many choices.
+
+<ComponentPreview>
+  <SelectPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@e-infra/design-system'
+
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+    <SelectItem value="orange">Orange</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Select` | Root container |
+| `SelectTrigger` | Button that opens the menu |
+| `SelectValue` | Displays selected value |
+| `SelectContent` | Menu container |
+| `SelectItem` | Individual option |
+| `SelectSeparator` | Divider between groups |
+| `SelectLabel` | Non-selectable label |
+| `SelectGroup` | Group of related items |
+| `SelectPortal` | Portal wrapper |
+| `SelectScrollUpButton` | Scroll button (auto) |
+| `SelectScrollDownButton` | Scroll button (auto) |
+
+## Props
+
+### SelectTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `default` \| `sm` | `default` | Button size |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Trigger props |
+
+### SelectContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| position | `popper` \| `item-aligned` | `item-aligned` | Positioning strategy |
+| align | `start` \| `center` \| `end` | `center` | Horizontal alignment |
+| side | `top` \| `bottom` | - | Vertical alignment |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |
