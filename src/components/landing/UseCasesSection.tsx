@@ -1,4 +1,4 @@
-import { Badge } from "../../../lib/components/ui/badge";
+import { Badge } from "../../../lib/components/primitives/badge";
 import { ArrowRight } from "lucide-react";
 import {
   Card,
@@ -7,8 +7,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../lib/components/ui/card";
-import { Button } from "../../../lib/components/ui/button";
+} from "../../../lib/components/primitives/card";
+import { Button } from "../../../lib/components/primitives/button";
 
 const useCases = [
   {

@@ -8,10 +8,10 @@ import {
   Loader2,
   X,
 } from "lucide-react";
-import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
-import { Alert, AlertDescription } from "../ui/alert";
-import { Small } from "../typography/typography";
+import { Button } from "../primitives/button";
+import { Textarea } from "../primitives/textarea";
+import { Alert, AlertDescription } from "../primitives/alert";
+import { Small } from "../foundations/typography";
 import { cn } from "../../lib/utils";
 
 // ============================================================================

@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "../ui/button";
-import { Small } from "../typography/typography";
+import { Button } from "../primitives/button";
+import { Small } from "../foundations/typography";
 import { cn } from "../../lib/utils";
 
 export interface CookiesBannerProps extends React.ComponentProps<"div"> {

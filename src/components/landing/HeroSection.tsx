@@ -1,7 +1,7 @@
 "use client";
 
 import { BookOpen, ArrowRight, Info } from "lucide-react";
-import { Button } from "../../../lib/components/ui/button";
+import { Button } from "../../../lib/components/primitives/button";
 import { AnimatedBackground } from "./AnimatedBackground";
 import {
   Card,
@@ -9,20 +9,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../lib/components/ui/card";
-import { Skeleton } from "../../../lib/components/ui/skeleton";
+} from "../../../lib/components/primitives/card";
+import { Skeleton } from "../../../lib/components/primitives/skeleton";
 import {
   Panel,
   PanelContent,
   PanelDescription,
   PanelHeader,
   PanelTitle,
-} from "../../../lib/components/ui/panel";
+} from "../../../lib/components/primitives/panel";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "../../../lib/components/ui/alert";
+} from "../../../lib/components/primitives/alert";
 
 export function HeroSection() {
   return (

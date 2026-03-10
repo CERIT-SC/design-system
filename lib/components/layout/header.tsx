@@ -1,14 +1,14 @@
 "use client";
 import { cn } from "../../lib/utils";
-import { Button } from "../ui/button";
-import { SidebarTrigger } from "../ui/sidebar";
-import { Separator } from "../ui/separator";
+import { Button } from "../primitives/button";
+import { SidebarTrigger } from "../primitives/sidebar";
+import { Separator } from "../primitives/separator";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "../ui/navigation-menu";
+} from "../primitives/navigation-menu";
 import { HomeIcon, LogOut } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 

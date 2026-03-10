@@ -20,32 +20,18 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../../lib/components/ui/accordion";
+} from "../../lib/components/primitives/accordion";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "../../lib/components/ui/alert";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "../../lib/components/ui/alert-dialog";
-import { AspectRatio } from "../../lib/components/ui/aspect-ratio";
+} from "../../lib/components/primitives/alert";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "../../lib/components/ui/avatar";
-import { Badge } from "../../lib/components/ui/badge";
+} from "../../lib/components/primitives/avatar";
+import { Badge } from "../../lib/components/primitives/badge";
 import {
   Breadcrumb,
   BreadcrumbEllipsis,
@@ -54,9 +40,12 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "../../lib/components/ui/breadcrumb";
-import { Button } from "../../lib/components/ui/button";
-import { Calendar, CalendarDayButton } from "../../lib/components/ui/calendar";
+} from "../../lib/components/primitives/breadcrumb";
+import { Button } from "../../lib/components/primitives/button";
+import {
+  Calendar,
+  CalendarDayButton,
+} from "../../lib/components/primitives/calendar";
 import {
   Card,
   CardAction,
@@ -65,41 +54,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../lib/components/ui/card";
-import { Checkbox } from "../../lib/components/ui/checkbox";
+} from "../../lib/components/primitives/card";
+import { Checkbox } from "../../lib/components/primitives/checkbox";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../../lib/components/ui/collapsible";
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "../../lib/components/ui/command";
-import {
-  ContextMenu,
-  ContextMenuCheckboxItem,
-  ContextMenuContent,
-  ContextMenuGroup,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuPortal,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
-  ContextMenuTrigger,
-} from "../../lib/components/ui/context-menu";
+} from "../../lib/components/primitives/collapsible";
 import {
   Dialog,
   DialogClose,
@@ -111,19 +72,7 @@ import {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
-} from "../../lib/components/ui/dialog";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerPortal,
-  DrawerTitle,
-  DrawerTrigger,
-} from "../../lib/components/ui/drawer";
+} from "../../lib/components/primitives/dialog";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -140,7 +89,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../../lib/components/ui/dropdown-menu";
+} from "../../lib/components/primitives/dropdown-menu";
 import {
   Form,
   FormControl,
@@ -149,20 +98,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../lib/components/ui/form";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../../lib/components/ui/hover-card";
-import { Input } from "../../lib/components/ui/input";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "../../lib/components/ui/input-otp";
-import { Label } from "../../lib/components/ui/label";
+} from "../../lib/components/primitives/form";
+import { Input } from "../../lib/components/primitives/input";
+import { Label } from "../../lib/components/primitives/label";
 import {
   Menubar,
   MenubarCheckboxItem,
@@ -180,7 +118,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "../../lib/components/ui/menubar";
+} from "../../lib/components/primitives/menubar";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -190,16 +128,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "../../lib/components/ui/navigation-menu";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "../../lib/components/ui/pagination";
+} from "../../lib/components/primitives/navigation-menu";
 import {
   Panel,
   PanelContent,
@@ -207,24 +136,16 @@ import {
   PanelFooter,
   PanelHeader,
   PanelTitle,
-} from "../../lib/components/ui/panel";
-import {
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../lib/components/ui/popover";
-import { Progress } from "../../lib/components/ui/progress";
+} from "../../lib/components/primitives/panel";
+import { Progress } from "../../lib/components/primitives/progress";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "../../lib/components/ui/radio-group";
+} from "../../lib/components/primitives/radio-group";
 import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "../../lib/components/ui/resizable";
-import { ScrollArea, ScrollBar } from "../../lib/components/ui/scroll-area";
+  ScrollArea,
+  ScrollBar,
+} from "../../lib/components/primitives/scroll-area";
 import {
   Select,
   SelectContent,
@@ -236,8 +157,8 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from "../../lib/components/ui/select";
-import { Separator } from "../../lib/components/ui/separator";
+} from "../../lib/components/primitives/select";
+import { Separator } from "../../lib/components/primitives/separator";
 import {
   Sheet,
   SheetClose,
@@ -247,7 +168,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../../lib/components/ui/sheet";
+} from "../../lib/components/primitives/sheet";
 import {
   Sidebar,
   SidebarContent,
@@ -272,17 +193,17 @@ import {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-} from "../../lib/components/ui/sidebar";
-import { Skeleton } from "../../lib/components/ui/skeleton";
-import { Slider } from "../../lib/components/ui/slider";
-import { Toaster } from "../../lib/components/ui/sonner";
+} from "../../lib/components/primitives/sidebar";
+import { Skeleton } from "../../lib/components/primitives/skeleton";
+import { Slider } from "../../lib/components/primitives/slider";
+import { Toaster } from "../../lib/components/primitives/sonner";
 import {
   Stepper,
   StepperContent,
   StepperFooter,
   StepperHeader,
-} from "../../lib/components/ui/stepper";
-import { Switch } from "../../lib/components/ui/switch";
+} from "../../lib/components/primitives/stepper";
+import { Switch } from "../../lib/components/primitives/switch";
 import {
   Table,
   TableBody,
@@ -292,21 +213,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../lib/components/ui/table";
+} from "../../lib/components/primitives/table";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "../../lib/components/ui/tabs";
-import { Textarea } from "../../lib/components/ui/textarea";
-import { Toggle } from "../../lib/components/ui/toggle";
+} from "../../lib/components/primitives/tabs";
+import { Textarea } from "../../lib/components/primitives/textarea";
+import { Toggle } from "../../lib/components/primitives/toggle";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../../lib/components/ui/tooltip";
+} from "../../lib/components/primitives/tooltip";
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 import { Content } from "../../lib/components/layout/content";
@@ -314,8 +235,8 @@ import { Footer } from "../../lib/components/layout/footer";
 import { Header } from "../../lib/components/layout/header";
 
 // ── Mid-level (Compounds) ─────────────────────────────────────────────────────
-import { CookiesBanner } from "../../lib/components/mid-level/CookiesBanner";
-import { FeedbackForm } from "../../lib/components/mid-level/FeedbackForm";
+import { CookiesBanner } from "../../lib/components/compounds/CookiesBanner";
+import { FeedbackForm } from "../../lib/components/compounds/FeedbackForm";
 
 // ── Typography ────────────────────────────────────────────────────────────────
 import {
@@ -333,7 +254,7 @@ import {
   P,
   Small,
   Strong,
-} from "../../lib/components/typography";
+} from "../../lib/components/foundations";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Plain object — safe to iterate with Object.keys / Object.entries in any
@@ -350,20 +271,6 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   Alert,
   AlertDescription,
   AlertTitle,
-  // AlertDialog
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-  // AspectRatio
-  AspectRatio,
   // Avatar
   Avatar,
   AvatarFallback,
@@ -397,32 +304,6 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-  // Command
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-  // ContextMenu
-  ContextMenu,
-  ContextMenuCheckboxItem,
-  ContextMenuContent,
-  ContextMenuGroup,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuPortal,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
-  ContextMenuTrigger,
   // Dialog
   Dialog,
   DialogClose,
@@ -434,17 +315,6 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
-  // Drawer
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerPortal,
-  DrawerTitle,
-  DrawerTrigger,
   // DropdownMenu
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -469,17 +339,8 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   FormItem,
   FormLabel,
   FormMessage,
-  // HoverCard
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
   // Input
   Input,
-  // InputOTP
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
   // Label
   Label,
   // Menubar
@@ -508,14 +369,6 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-  // Pagination
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
   // Panel
   Panel,
   PanelContent,
@@ -523,20 +376,11 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   PanelFooter,
   PanelHeader,
   PanelTitle,
-  // Popover
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverTrigger,
   // Progress
   Progress,
   // RadioGroup
   RadioGroup,
   RadioGroupItem,
-  // Resizable
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
   // ScrollArea
   ScrollArea,
   ScrollBar,

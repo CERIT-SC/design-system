@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
-import { H1, H2, P } from "../typography";
+import { H1, H2, P } from "../foundations";
 
 // Main Container
 const ContentContainer = React.forwardRef<
