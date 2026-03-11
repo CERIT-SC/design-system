@@ -1,16 +1,14 @@
----
-title: Alert
-description: Display important messages with contextual variations
-category: primitives
-status: stable
----
-
 # Alert
 
 Alerts communicate important messages and actions to users with visual indicators for different message types (info, success, warning, error).
 
 <ComponentPreview>
-  <AlertPreview />
+<div className="flex flex-col gap-4 w-full"> 
+  <Alert> <AlertTitle>Heads up!</AlertTitle> <AlertDescription> You can add components to your app using the cli. </AlertDescription>  </Alert>
+  <Alert variant="success"> <AlertTitle>Success</AlertTitle> <AlertDescription> Your settings have been saved successfully. </AlertDescription> </Alert>
+  <Alert variant="warning"> <AlertTitle>Warning</AlertTitle> <AlertDescription> Your trial period is about to expire. </AlertDescription> </Alert>
+  <Alert variant="error"> <AlertTitle>Error</AlertTitle> <AlertDescription> Something went wrong. Please try again. </AlertDescription> </Alert>
+</div>
 </ComponentPreview>
 
 ## Usage
@@ -18,14 +16,14 @@ Alerts communicate important messages and actions to users with visual indicator
 ```tsx
 import { Alert, AlertTitle, AlertDescription } from '@e-infra/design-system'
 
-<Alert>
-  <Info className="h-4 w-4" />
+<Alert variant="default">
+  <Info className="h-4 w-4" /> // Here add an icon from your own icon library
   <AlertTitle>Heads up!</AlertTitle>
   <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
 </Alert>
 
 <Alert variant="success">
-  <CircleCheck className="h-4 w-4" />
+  <CircleCheck className="h-4 w-4" /> // Here add an icon from your own icon library
   <AlertTitle>Success</AlertTitle>
   <AlertDescription>Your settings have been saved.</AlertDescription>
 </Alert>
