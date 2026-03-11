@@ -122,15 +122,21 @@ export const mdxComponents: MDXComponents = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg border border-border bg-[#0f0f13] p-4",
-        className
-      )}
-      {...props}
-    />
-  ),
+  pre: ({ children }: React.HTMLAttributes<HTMLPreElement>) => {
+    // MDX compiles ```lang\n...\n``` into <pre><code className="language-lang">…</code></pre>.
+    // Extract the language and text so we can hand off to our styled CodeBlock.
+    const codeEl = React.Children.only(children) as React.ReactElement<{
+      className?: string;
+      children?: React.ReactNode;
+    }>;
+    const language =
+      codeEl?.props?.className?.replace("language-", "") ?? "tsx";
+    const code =
+      typeof codeEl?.props?.children === "string"
+        ? codeEl.props.children.trimEnd()
+        : "";
+    return <CodeBlock code={code} language={language} className="my-6" />;
+  },
 
   // ── Block ──────────────────────────────────────────────────────────────────
   blockquote: ({

@@ -1,30 +1,36 @@
----
-title: Button
-description: Interactive buttons for actions and navigation
-category: primitives
-status: stable
----
-
 # Button
 
 Buttons are primary interactive elements used to trigger actions or navigate. They support multiple variants and sizes for different use cases.
 
 <ComponentPreview>
-  <ButtonPreview />
+<div className="flex flex-col gap-10 items-center">
+  <div className="flex flex-wrap gap-4">
+    <Button>Default</Button>
+    <Button variant="secondary">Secondary</Button>
+    <Button variant="tertiary">Tertiary</Button>
+    <Button variant="outline">Outline</Button>
+    <Button variant="ghost">Ghost</Button>
+    <Button variant="link">Link</Button>
+    <Button disabled>Disabled</Button>
+  </div>
+  <div className="flex flex-wrap gap-4">
+    <Button size="sm">Small</Button>
+    <Button size="default">Default</Button>
+    <Button size="lg">Large</Button>
+  </div>
+</div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Button } from '@e-infra/design-system'
+import { Button } from "@einfra/components/primitives/button" 
 
-<Button>Default</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="outline">Outline</Button>
-<Button size="sm">Small</Button>
-<Button size="lg">Large</Button>
-<Button disabled>Disabled</Button>
-```
+<Button variant="default" size="default">
+  Click me
+</Button>
+``` 
+
 
 ## Props
 

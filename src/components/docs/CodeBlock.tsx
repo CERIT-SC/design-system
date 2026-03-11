@@ -1,125 +1,159 @@
-'use client';
+"use client";
 
-import React, { useState, useRef } from 'react';
-import { cn } from '../../../lib/lib/utils';
-import { Check, Copy } from 'lucide-react';
+import { useState } from "react";
+import { Check, Copy } from "lucide-react";
+import { createLowlight, common } from "lowlight";
+import { cn } from "../../../lib/lib/utils";
+import { Button } from "../../../lib/components/primitives/button";
 
-interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
+// ─── Lowlight instance ────────────────────────────────────────────────────────
+const lowlight = createLowlight(common);
+
+// ─── Token → color map (dark theme, purple-tinted to match e-INFRA palette) ──
+const TOKEN_COLORS: Record<string, string> = {
+  "hljs-keyword": "#c084fc",
+  "hljs-built_in": "#f97316",
+  "hljs-type": "#34d399",
+  "hljs-literal": "#f87171",
+  "hljs-number": "#f87171",
+  "hljs-string": "#a5f3a5",
+  "hljs-regexp": "#a5f3a5",
+  "hljs-title": "#60a5fa",
+  "hljs-title.class_": "#60a5fa",
+  "hljs-title.function_": "#60a5fa",
+  "hljs-attr": "#7dd3fc",
+  "hljs-attribute": "#7dd3fc",
+  "hljs-property": "#7dd3fc",
+  "hljs-comment": "#6b7280",
+  "hljs-doctag": "#6b7280",
+  "hljs-meta": "#94a3b8",
+  "hljs-tag": "#e2e8f0",
+  "hljs-name": "#f97316",
+  "hljs-operator": "#94a3b8",
+  "hljs-punctuation": "#94a3b8",
+  "hljs-params": "#e2e8f0",
+  "hljs-variable": "#e2e8f0",
+  "hljs-symbol": "#a78bfa",
+  "hljs-link": "#7dd3fc",
+  "hljs-addition": "#34d399",
+  "hljs-deletion": "#f87171",
+  "hljs-template-tag": "#c084fc",
+  "hljs-template-variable": "#c084fc",
+  "hljs-section": "#c084fc",
+  "hljs-selector-tag": "#f97316",
+  "hljs-selector-id": "#60a5fa",
+  "hljs-selector-class": "#60a5fa",
+};
+
+// ─── Hast-node types (inline to avoid importing @types/hast) ─────────────────
+interface HastText {
+  type: "text";
+  value: string;
+}
+interface HastElement {
+  type: "element";
+  tagName: string;
+  properties: { className?: string[] };
+  children: HastNode[];
+}
+type HastNode = HastText | HastElement | { type: string };
+
+function renderNode(node: HastNode, key: number): React.ReactNode {
+  if (node.type === "text") return (node as HastText).value;
+  if (node.type !== "element") return null;
+
+  const el = node as HastElement;
+  const classNames = el.properties?.className ?? [];
+  const color = classNames.map((c) => TOKEN_COLORS[c]).find(Boolean);
+
+  return (
+    <span key={key} style={color ? { color } : undefined}>
+      {el.children.map(renderNode)}
+    </span>
+  );
+}
+
+// ─── Component ────────────────────────────────────────────────────────────────
+interface CodeBlockProps {
   code: string;
   language?: string;
   showLineNumbers?: boolean;
+  className?: string;
 }
 
 export function CodeBlock({
   code,
-  language = 'tsx',
+  language = "tsx",
   showLineNumbers = true,
   className,
-  ...props
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
-  const preRef = useRef<HTMLPreElement>(null);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    void navigator.clipboard.writeText(code).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
-  // Simple syntax highlighting for common patterns
-  const highlightCode = (code: string) => {
-    // Escape HTML entities
-    let escaped = code
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+  // Highlight — fall back to plain text if language is unregistered
+  let highlighted: HastNode[];
+  try {
+    highlighted = lowlight.highlight(language, code).children as HastNode[];
+  } catch {
+    highlighted = [{ type: "text", value: code } as HastText];
+  }
 
-    // String literals
-    escaped = escaped.replace(
-      /(["'`])(.*?)\1/g,
-      '<span class="text-[#a78bfa]">$1$2$1</span>'
-    );
-
-    // Keywords
-    const keywords = [
-      'import', 'from', 'export', 'const', 'let', 'var', 'function', 'return',
-      'if', 'else', 'for', 'while', 'switch', 'case', 'break', 'continue',
-      'default', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'super',
-      'extends', 'class', 'interface', 'type', 'interface', 'namespace',
-      'readonly', 'abstract', 'async', 'await', 'yield', 'typeof', 'instanceof',
-      'in', 'of', 'as', 'is', 'keyof', 'never', 'any', 'void', 'null', 'undefined',
-      'true', 'false', 'enum', 'implements', 'module', 'namespace', 'type',
-      'interface', 'assert', 'asserts', 'infer', 'is', 'keyof', 'never', 'readonly',
-      'symbol', 'unique', 'undefined', 'void', 'bigint', 'object', 'string', 'number',
-      'boolean', 'true', 'false', 'null', 'undefined'
-    ];
-    const keywordRegex = new RegExp(`\\b(${keywords.join('|')})\\b`, 'g');
-    escaped = escaped.replace(keywordRegex, '<span class="text-[#c084fc]">$1</span>');
-
-    // Component names (capitalized words)
-    escaped = escaped.replace(/\b([A-Z]\w*)\b/g, '<span class="text-[#f97316]">$1</span>');
-
-    // Function calls
-    escaped = escaped.replace(/(\w+)(?=\()/g, '<span class="text-[#60a5fa]">$1</span>');
-
-    // Props
-    escaped = escaped.replace(/\b([a-z][a-z0-9_]*)=/gi, '<span class="text-[#60a5fa]">$1</span>=');
-
-    // Numbers
-    escaped = escaped.replace(/\b(\d+)\b/g, '<span class="text-[#f87171]">$1</span>');
-
-    // Comments
-    escaped = escaped.replace(/(\/\/.*$)/gm, '<span class="text-[#a1a1aa]">$1</span>');
-    escaped = escaped.replace(/(\/\*[\s\S]*?\*\/)/gm, '<span class="text-[#a1a1aa]">$1</span>');
-
-    return escaped;
-  };
-
-  const lines = code.split('\n');
+  const lines = code.split("\n");
 
   return (
-    <div className="group relative rounded-lg border border-border bg-[#0f0f13] text-sm overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2 border-b border-border/50 bg-[#1a1a2e]">
-        <span className="text-xs font-mono text-[#a1a1aa] uppercase">{language}</span>
-        <button
+    <div
+      className={cn(
+        "rounded-xl border border-border overflow-hidden text-sm",
+        className
+      )}
+    >
+      {/* Toolbar */}
+      <div className="flex items-center justify-between px-4 py-2 bg-[#161622] border-b border-white/6">
+        <span className="text-[11px] font-mono font-medium text-white/30 uppercase tracking-widest select-none">
+          {language}
+        </span>
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={handleCopy}
-          className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium text-[#a1a1aa] transition-colors hover:bg-[#2a2a4a] hover:text-[#d4d4d4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+          className="h-7 gap-1.5 px-2.5 text-xs text-white/40 hover:text-white hover:bg-white/10"
         >
-          {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
-          {copied ? 'Copied!' : 'Copy'}
-        </button>
+          {copied ? (
+            <Check className="size-3 text-success" />
+          ) : (
+            <Copy className="size-3" />
+          )}
+          {copied ? "Copied!" : "Copy"}
+        </Button>
       </div>
-      <pre
-        ref={preRef}
-        className={cn(
-          'max-h-[500px] overflow-auto p-4 font-mono leading-relaxed',
-          className
-        )}
-        {...props}
-      >
+
+      {/* Code area */}
+      <pre className="overflow-x-auto bg-[#0d0d17] p-4 font-mono text-[#e2e8f0] leading-relaxed max-h-130 overflow-y-auto">
         <code>
           {showLineNumbers ? (
-            <div className="flex">
-              <div className="select-none text-right text-[#6c757d] mr-4 w-8 pr-2 border-r border-border/30">
+            <div className="flex gap-4">
+              {/* Line numbers */}
+              <div
+                aria-hidden="true"
+                className="select-none text-right text-white/20 shrink-0 w-6"
+              >
                 {lines.map((_, i) => (
-                  <div key={i} className="leading-relaxed">
-                    {i + 1}
-                  </div>
+                  <div key={i}>{i + 1}</div>
                 ))}
               </div>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: highlightCode(code),
-                }}
-                className="flex-1"
-              />
+              {/* Highlighted code */}
+              <div className="flex-1 min-w-0">
+                {highlighted.map(renderNode)}
+              </div>
             </div>
           ) : (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: highlightCode(code),
-              }}
-            />
+            highlighted.map(renderNode)
           )}
         </code>
       </pre>
