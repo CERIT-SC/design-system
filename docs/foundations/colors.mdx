@@ -1,73 +1,17 @@
----
-title: Colors
-description: Brand color system for consistent theming across components
-category: foundations
-status: stable
----
-
 # Colors
 
 The design system uses a cohesive color palette with support for light and dark modes. Colors are defined as CSS variables in `setup.css` for easy customization.
 
-<ComponentPreview>
-  <ColorsPreview />
-</ComponentPreview>
+<ColorsPreview />
+
 
 ## Usage
 
 ```tsx
 import '@/lib_public/setup.css'
 
-/* Colors are available as CSS variables */
-/* Use in your Tailwind config or directly in className */
+// Use CSS variables as tailwind classes
+<div className="bg-primary text-primary-foreground">
+  Primary color background with foreground text
+</div>
 ```
-
-## Color Palette
-
-### Light Mode
-
-| Color | Variable | Value | Usage |
-|-------|----------|-------|-------|
-| Primary | `--primary` | `#2f2557` | Main brand color |
-| Secondary | `--secondary` | `#d9d6e6` | Secondary elements |
-| Tertiary | `--tertiary` | `#d3eef3` | Accents and highlights |
-| Background | `--background` | `#ffffff` | Page background |
-| Foreground | `--foreground` | `#090711` | Text and content |
-| Card | `--card` | `#f2f1f7` | Card backgrounds |
-| Muted | `--muted` | `#e4e4e4` | Subtle backgrounds |
-| Border | `--border` | `#d5d3dd` | Borders and dividers |
-
-### Dark Mode
-
-| Color | Variable | Value | Usage |
-|-------|----------|-------|-------|
-| Primary | `--primary` | `#c0bad6` | Main brand color (inverted) |
-| Secondary | `--secondary` | `#ca83ac` | Secondary elements |
-| Tertiary | `--tertiary` | `#c0bad6` | Accents and highlights |
-| Background | `--background` | `#2f2557` | Page background (dark) |
-| Foreground | `--foreground` | `#ffffff` | Text and content (light) |
-
-## Chart Colors
-
-| Color | Variable | Value |
-|-------|----------|-------|
-| Chart 1 | `--chart-1` | `#2f2557` |
-| Chart 2 | `--chart-2` | `#ca83ac` |
-| Chart 3 | `--chart-3` | `#7ecdf8` |
-| Chart 4 | `--chart-4` | `#1cc16f` |
-| Chart 5 | `--chart-5` | `#f7ce5b` |
-
-## Status Colors
-
-| Status | Variable | Value |
-|--------|----------|-------|
-| Info | `--info` | `#7ecdf8` |
-| Success | `--success` | `#1cc16f` |
-| Warning | `--warning` | `#f7ce5b` |
-| Error | `--error` | `#f65a4f` |
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| N/A | - | - | N/A |

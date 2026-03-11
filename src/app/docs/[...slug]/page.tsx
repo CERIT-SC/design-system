@@ -2,6 +2,7 @@ import { readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 
 import { mdxComponents } from "../../../components/docs/MDXComponents";
 
@@ -122,7 +123,7 @@ export default async function DocsPage({
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [],
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [],
       },
     },

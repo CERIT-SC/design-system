@@ -30,37 +30,12 @@ import { ComponentPreview } from "./ComponentPreview";
 // To add a new component: update src/lib/component-registry.ts only.
 import { componentRegistry } from "../../lib/component-registry";
 
+// ─── Foundation preview components ───────────────────────────────────────────
+// next-mdx-remote does NOT process ES import statements written inside .mdx
+// files. Every component used in MDX must be registered here instead.
+import ColorsPreview from "./foundations/ColorsPreview";
+
 const libraryComponents = componentRegistry as MDXComponents;
-
-// ─── Auto-generate *Preview stubs ────────────────────────────────────────────
-// For every discovered component "Foo" a placeholder "FooPreview" is generated.
-// Replace a stub with a real interactive preview by wrapping JSX inside a
-// <ComponentPreview> block directly in the MDX file.
-function PreviewPlaceholder({ name }: { name: string }) {
-  return (
-    <div className="my-4 flex items-center justify-center rounded-lg border border-dashed border-border bg-muted/30 px-6 py-10 text-sm text-muted-foreground">
-      {name} — preview coming soon
-    </div>
-  );
-}
-
-const previewStubs = Object.fromEntries(
-  Object.keys(libraryComponents).map((name) => [
-    `${name}Preview`,
-    function Preview() {
-      return <PreviewPlaceholder name={`${name}Preview`} />;
-    },
-  ])
-) as MDXComponents;
-
-// Extra named stubs for foundation/layout pages that have no matching
-// component export (ColorsPreview, GridPreview, SpacingPreview, …).
-const extraStubs: MDXComponents = {
-  ColorsPreview: () => <PreviewPlaceholder name="ColorsPreview" />,
-  GridPreview: () => <PreviewPlaceholder name="GridPreview" />,
-  SpacingPreview: () => <PreviewPlaceholder name="SpacingPreview" />,
-  TypographyPreview: () => <PreviewPlaceholder name="TypographyPreview" />,
-};
 
 // Default exported components for MDX usage
 export { CodeBlock, ComponentPreview };
@@ -271,10 +246,11 @@ export const mdxComponents: MDXComponents = {
   ComponentPreview,
   CodeBlock,
 
-  // ── Auto-discovered library components & their *Preview stubs ─────────────
+  // ── Foundation preview components ─────────────────────────────────────────
+  ColorsPreview,
+
+  // ── Auto-discovered library components ────────────────────────────────────
   ...libraryComponents,
-  ...previewStubs,
-  ...extraStubs,
 };
 
 export default mdxComponents;
