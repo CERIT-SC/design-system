@@ -1,16 +1,14 @@
----
-title: Avatar
-description: Display user profile images
-category: primitives
-status: stable
----
-
 # Avatar
 
 Avatars display user profile images or initials as placeholders when images are not available.
 
 <ComponentPreview>
-  <AvatarPreview />
+<div className="flex flex-wrap gap-6 items-center">
+  <Avatar><AvatarImage src="https://github.com/shadcn.png" alt="Avatar" /><AvatarFallback>CN</AvatarFallback></Avatar>
+  <Avatar className="size-12"><AvatarImage src="https://github.com/shadcn.png" alt="Avatar" /><AvatarFallback>JD</AvatarFallback></Avatar>
+  <Avatar className="size-16"><AvatarFallback>MR</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
+</div>
 </ComponentPreview>
 
 ## Usage

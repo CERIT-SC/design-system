@@ -1,16 +1,14 @@
----
-title: Badge
-description: Display small status indicators and labels
-category: primitives
-status: stable
----
-
 # Badge
 
 Badges are used to highlight small pieces of information like statuses, counts, or tags. They can be styled with different variants for context.
 
 <ComponentPreview>
-  <BadgePreview />
+<div className="flex flex-wrap gap-3">
+  <Badge>Default</Badge>
+  <Badge variant="secondary">Secondary</Badge>
+  <Badge variant="error">Error</Badge>
+  <Badge variant="outline">Outline</Badge>
+</div>
 </ComponentPreview>
 
 ## Usage

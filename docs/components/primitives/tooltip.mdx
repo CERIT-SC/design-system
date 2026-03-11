@@ -1,16 +1,20 @@
----
-title: Tooltip
-description: Display additional information on hover
-category: primitives
-status: stable
----
-
 # Tooltip
 
 Tooltips display additional information when users hover over or focus on an element.
 
 <ComponentPreview>
-  <TooltipPreview />
+<TooltipProvider>
+  <div className="flex flex-wrap gap-6 items-center">
+    <Tooltip>
+      <TooltipTrigger asChild><Button variant="outline">Hover me</Button></TooltipTrigger>
+      <TooltipContent>This is a tooltip</TooltipContent>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger asChild><Button>Save changes</Button></TooltipTrigger>
+      <TooltipContent>Ctrl+S</TooltipContent>
+    </Tooltip>
+  </div>
+</TooltipProvider>
 </ComponentPreview>
 
 ## Usage

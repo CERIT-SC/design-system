@@ -1,16 +1,12 @@
----
-title: Textarea
-description: Multi-line text input
-category: primitives
-status: stable
----
-
 # Textarea
 
-Textareas allow users to enter and edit multi-line text content.
+Textareas allow users to enter multi-line text, useful for messages, descriptions, and other longer form inputs.
 
 <ComponentPreview>
-  <TextareaPreview />
+<div className="flex flex-col gap-4 w-full max-w-sm">
+  <Textarea placeholder="Type your message here." rows={4} />
+  <Textarea disabled placeholder="Disabled textarea" rows={3} />
+</div>
 </ComponentPreview>
 
 ## Usage

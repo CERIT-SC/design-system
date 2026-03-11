@@ -1,16 +1,20 @@
----
-title: Dropdown Menu
-description: Contextual menu for actions and options
-category: primitives
-status: stable
----
-
 # Dropdown Menu
 
 Dropdown menus provide a list of actions or options that appear when a trigger element is clicked.
 
 <ComponentPreview>
-  <DropdownPreview />
+<DropdownMenu>
+  <DropdownMenuTrigger asChild><Button variant="outline">Open menu</Button></DropdownMenuTrigger>
+  <DropdownMenuContent className="w-48">
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Log out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
 </ComponentPreview>
 
 ## Usage

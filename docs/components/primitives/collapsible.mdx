@@ -1,16 +1,23 @@
----
-title: Collapsible
-description: Show and hide content with animation
-category: primitives
-status: stable
----
-
 # Collapsible
 
 Collapsible components allow users to show and hide content sections with smooth animations.
 
 <ComponentPreview>
-  <CollapsiblePreview />
+<div className="w-full max-w-sm">
+  <Collapsible>
+    <div className="flex items-center justify-between mb-2">
+      <p className="text-sm font-semibold">Starred repositories</p>
+      <CollapsibleTrigger asChild><Button variant="ghost" size="sm">Toggle</Button></CollapsibleTrigger>
+    </div>
+    <div className="rounded-md border border-border px-4 py-3 text-sm">@radix-ui/primitives</div>
+    <CollapsibleContent>
+      <div className="mt-2 space-y-2">
+        <div className="rounded-md border border-border px-4 py-3 text-sm">@radix-ui/colors</div>
+        <div className="rounded-md border border-border px-4 py-3 text-sm">@stitches/react</div>
+      </div>
+    </CollapsibleContent>
+  </Collapsible>
+</div>
 </ComponentPreview>
 
 ## Usage

@@ -1,16 +1,19 @@
----
-title: Select
-description: Dropdown for selecting from many options
-category: primitives
-status: stable
----
-
 # Select
 
 Select provides a dropdown menu for choosing from a list of options, ideal for scenarios with many choices.
 
 <ComponentPreview>
-  <SelectPreview />
+<div className="w-full max-w-xs">
+  <Select>
+    <SelectTrigger><SelectValue placeholder="Select a fruit" /></SelectTrigger>
+    <SelectContent>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="cherry">Cherry</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+    </SelectContent>
+  </Select>
+</div>
 </ComponentPreview>
 
 ## Usage

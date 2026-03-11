@@ -1,16 +1,14 @@
----
-title: Progress
-description: Display progress of a task or process
-category: primitives
-status: stable
----
-
 # Progress
 
 Progress indicators show how far a task has progressed, providing visual feedback to users about ongoing processes.
 
 <ComponentPreview>
-  <ProgressPreview />
+<div className="flex flex-col gap-4 w-full">
+  <Progress value={25} />
+  <Progress value={50} />
+  <Progress value={75} />
+  <Progress value={100} />
+</div>
 </ComponentPreview>
 
 ## Usage

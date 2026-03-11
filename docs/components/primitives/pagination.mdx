@@ -1,16 +1,18 @@
----
-title: Pagination
-description: Navigate between pages
-category: primitives
-status: stable
----
-
 # Pagination
 
 Pagination provides navigation controls for multi-page content with page numbers, previous/next buttons, and ellipsis.
 
 <ComponentPreview>
-  <PaginationPreview />
+<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+    <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationEllipsis /></PaginationItem>
+    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+  </PaginationContent>
+</Pagination>
 </ComponentPreview>
 
 ## Usage

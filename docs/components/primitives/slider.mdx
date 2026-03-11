@@ -1,16 +1,13 @@
----
-title: Slider
-description: Input control for selecting a value from a range
-category: primitives
-status: stable
----
-
 # Slider
 
 Sliders allow users to select a value from a continuous or discrete range by dragging a thumb along a track.
 
 <ComponentPreview>
-  <SliderPreview />
+<div className="flex flex-col gap-6 w-full max-w-sm">
+  <Slider defaultValue={[50]} max={100} step={1} />
+  <Slider defaultValue={[25, 75]} max={100} step={1} />
+  <Slider defaultValue={[33]} max={100} step={1} disabled />
+</div>
 </ComponentPreview>
 
 ## Usage

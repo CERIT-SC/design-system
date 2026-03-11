@@ -130,6 +130,15 @@ import {
   NavigationMenuViewport,
 } from "../../lib/components/primitives/navigation-menu";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationLink,
+  PaginationItem,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "../../lib/components/primitives/pagination";
+import {
   Panel,
   PanelContent,
   PanelDescription,
@@ -369,6 +378,14 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
+  // Pagination
+  Pagination,
+  PaginationContent,
+  PaginationLink,
+  PaginationItem,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
   // Panel
   Panel,
   PanelContent,

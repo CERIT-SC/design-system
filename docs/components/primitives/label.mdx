@@ -1,16 +1,18 @@
----
-title: Label
-description: Accessible label for form inputs
-category: primitives
-status: stable
----
-
 # Label
 
 Labels provide accessible text descriptions for form inputs. They improve accessibility and user experience.
 
 <ComponentPreview>
-  <LabelPreview />
+<div className="flex flex-col gap-4">
+  <div className="flex flex-col gap-1.5">
+    <Label htmlFor="label-name">Full name</Label>
+    <Input id="label-name" placeholder="Enter your name" />
+  </div>
+  <div className="flex flex-col gap-1.5">
+    <Label htmlFor="label-email">Email address</Label>
+    <Input id="label-email" type="email" placeholder="Enter your email" />
+  </div>
+</div>
 </ComponentPreview>
 
 ## Usage

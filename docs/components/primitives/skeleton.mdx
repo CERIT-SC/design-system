@@ -1,16 +1,23 @@
----
-title: Skeleton
-description: Loading state placeholder
-category: primitives
-status: stable
----
-
 # Skeleton
 
 Skeleton screens display content placeholders while data is loading, improving perceived performance.
 
 <ComponentPreview>
-  <SkeletonPreview />
+<div className="flex flex-col gap-6 w-full max-w-sm">
+  <div className="flex items-center gap-4">
+    <Skeleton className="size-12 rounded-full" />
+    <div className="flex flex-col gap-2 flex-1">
+      <Skeleton className="h-4 w-3/4" />
+      <Skeleton className="h-3 w-1/2" />
+    </div>
+  </div>
+  <Skeleton className="h-32 w-full rounded-lg" />
+  <div className="flex flex-col gap-2">
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-5/6" />
+    <Skeleton className="h-4 w-4/6" />
+  </div>
+</div>
 </ComponentPreview>
 
 ## Usage

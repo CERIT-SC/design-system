@@ -1,16 +1,24 @@
----
-title: Accordion
-description: Toggleable content panels
-category: primitives
-status: stable
----
-
 # Accordion
 
 Accordion displays collapsible content panels that can be expanded or collapsed to show/hide content.
 
 <ComponentPreview>
-  <AccordionPreview />
+<div className="w-full">
+  <Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Is it accessible?</AccordionTrigger>
+      <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Is it styled?</AccordionTrigger>
+      <AccordionContent>Yes. It comes with default styles that matches the rest of the components.</AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Is it animated?</AccordionTrigger>
+      <AccordionContent>Yes. It includes smooth animations for expanding and collapsing content.</AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</div>
 </ComponentPreview>
 
 ## Usage

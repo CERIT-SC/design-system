@@ -1,16 +1,14 @@
----
-title: Input
-description: Text input for user data entry
-category: primitives
-status: stable
----
-
 # Input
 
 Inputs allow users to enter text data. They support various input types and validation states.
 
 <ComponentPreview>
-  <InputPreview />
+<div className="flex flex-col gap-4 w-full max-w-sm">
+  <Input type="text" placeholder="Enter your name" />
+  <Input type="email" placeholder="Enter your email" />
+  <Input type="password" placeholder="Enter password" />
+  <Input disabled placeholder="Disabled input" />
+</div>
 </ComponentPreview>
 
 ## Usage
