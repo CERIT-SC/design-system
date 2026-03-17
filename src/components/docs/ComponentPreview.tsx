@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Code2, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 import { cn } from "../../../lib/lib/utils";
-import { Button } from "../../../lib/components/primitives/button";
-import CodeBlock from "./CodeBlock";
 
 interface ComponentPreviewProps {
   children: React.ReactNode;

@@ -98,7 +98,7 @@ import {
   PanelDescription,
   PanelContent,
   PanelFooter,
-} from "../../lib";
+} from "../../lib/components/index";
 import { toast } from "sonner";
 import {
   Info,

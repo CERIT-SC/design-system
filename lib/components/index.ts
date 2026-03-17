@@ -1,12 +1,15 @@
 // UI Components
 export * from "./primitives/accordion";
 export * from "./primitives/alert";
+export * from "./primitives/alert-dialog";
+export * from "./primitives/aspect-ratio";
 export * from "./primitives/avatar";
 export * from "./primitives/badge";
 export * from "./primitives/breadcrumb";
 export * from "./primitives/button";
 export * from "./primitives/calendar";
 export * from "./primitives/card";
+export * from "./primitives/carousel";
 export * from "./primitives/checkbox";
 export * from "./primitives/collapsible";
 export * from "./primitives/dialog";
@@ -32,6 +35,7 @@ export * from "./primitives/table";
 export * from "./primitives/tabs";
 export * from "./primitives/textarea";
 export * from "./primitives/toggle";
+export * from "./primitives/toggle-group";
 export * from "./primitives/tooltip";
 export * from "./primitives/panel";
 
