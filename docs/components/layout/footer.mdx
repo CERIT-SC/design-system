@@ -1,16 +1,9 @@
----
-title: Footer
-description: Bottom section with company info and links
-category: layout
-status: stable
----
-
 # Footer
 
-The footer displays company information, support details, and navigation links at the bottom of the page.
+Footer is a presentational layout component that renders the e-INFRA CZ footer content, support information, external links, a configurable logo, and a generated version date.
 
 <ComponentPreview>
-  <FooterPreview />
+  <Footer />
 </ComponentPreview>
 
 ## Usage
@@ -21,32 +14,73 @@ import { Footer } from '@e-infra/design-system'
 <Footer />
 ```
 
+### Custom Logo
+
+```tsx
+import customLogo from './my-logo.png'
+
+<Footer
+  logo={customLogo}
+  logoAlt="My organization logo"
+/>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| logo | string \| {src: string, width?: number, height?: number} | e-INFRA default | Logo source |
-| logoAlt | string | `e-INFRA CZ Logo` | Logo alt text |
+| logo | `string \| { src: string; width?: number; height?: number }` | bundled e-INFRA logo asset | Logo source for the centered image near the bottom |
+| logoAlt | `string` | `e-INFRA CZ Logo` | Alt text for the logo image |
 
-## Content
+## Structure
+
+| Section | Details |
+|---------|---------|
+| Outer footer | `footer` with `bg-gray-100`, top border, horizontal padding, and bottom padding |
+| Main content row | Three-column responsive layout inside `max-w-[1100px]` |
+| Dividers | Vertical separators shown from `md:` upward |
+| Logo row | Centered image rendered below the main content |
+| Bottom meta row | Copyright, privacy policy link, and generated version date |
+
+## Built-in Content
 
 ### e-INFRA CZ Section
 
-- CERIT-SC, CESNET, and IT4Innovations
-- National e-INFRA CZ research infrastructure
+Displays a fixed description of the e-INFRA CZ research infrastructure, including CERIT-SC, CESNET, and IT4Innovations.
 
 ### General Information
 
-- [e-INFRA CZ Blog](https://blog.e-infra.cz/)
-- [e-INFRA CZ Website](https://e-infra.cz/)
+Renders two fixed links:
+
+1. `https://blog.e-infra.cz/`
+2. `https://e-infra.cz/`
 
 ### Support
 
-- Available non-stop
-- support@e-infra.cz
-- +420 234 680 222
+Renders the following fixed support items with icons:
 
-### Copyright
+1. `Available non-stop`
+2. `support@e-infra.cz`
+3. `+420 234 680 222`
 
-- Copyright 2025 e-INFRA CZ
-- [Privacy Policy](https://www.e-infra.cz/en/personal-data-processing)
+### Footer Meta
+
+The bottom row contains:
+
+1. `Copyright © 2025 e-INFRA CZ`
+2. Privacy policy link to `https://www.e-infra.cz/en/personal-data-processing`
+3. `Version: ...` label derived from `Date.now()` and formatted with `toLocaleDateString("cs-CS")`
+
+## Behavior
+
+| Behavior | Details |
+|----------|---------|
+| Responsiveness | Stacks content vertically on small screens and switches to a horizontal three-column layout on `md:` |
+| Alignment | Content is centered on mobile and left-aligned within each section on larger screens |
+| Logo handling | Accepts either a plain string URL or an object with a `src` field |
+| Version rendering | Version text is generated at module evaluation time, not passed as a prop |
+| External links | Blog, website, email, and privacy policy are built into the component |
+
+## Notes
+
+This component is intentionally opinionated. Most visible content is fixed in the implementation, and the public API only exposes logo customization. If you need custom footer sections or different links, the current implementation would need to be extended rather than configured through props.

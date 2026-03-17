@@ -1,73 +1,198 @@
----
-title: Sidebar
-description: Navigation sidebar for docs and content
-category: layout
-status: stable
----
-
 # Sidebar
 
-The sidebar provides navigational links for documentation and content. It includes collapsible sections and active state indicators.
+Sidebar is a composable navigation system built from primitives. It supports responsive mobile sheet behavior, desktop collapse modes, grouped navigation, submenus, badges, skeleton loaders, and an optional inset content area.
 
 <ComponentPreview>
-  <SidebarPreview />
+  <div className="rounded-lg border border-dashed p-4">
+    <SidebarProvider>
+      <div className="flex min-h-96 w-full">
+        <Sidebar className="static!" collapsible="none">
+          <SidebarHeader>
+            <div className="px-4 py-2 font-semibold">e-INFRA</div>
+            <SidebarSeparator />
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <a href="/">
+                        <span>Home</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <a href="/docs">
+                        <span>Documentation</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
+        <SidebarInset className="border-l">
+          <header className="flex h-12 items-center gap-2 border-b px-3">
+            <SidebarTrigger />
+            <span className="text-sm font-medium">Main content</span>
+          </header>
+          <main className="p-3 text-sm text-muted-foreground">
+            Sidebar preview with provider, trigger, and inset content.
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
+  </div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Sidebar } from '@e-infra/design-system'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarSeparator,
+  SidebarTrigger,
+} from '@e-infra/design-system'
 
-<Sidebar>
-  {/* Sidebar content */}
-</Sidebar>
+<SidebarProvider>
+  <div className="flex min-h-screen w-full">
+    <Sidebar>
+      <SidebarHeader>
+        <div className="px-4 py-2 font-semibold">App</div>
+        <SidebarSeparator />
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <a href="/dashboard">
+                    <span>Dashboard</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+    <SidebarInset>
+      <header className="flex h-16 items-center border-b px-4">
+        <SidebarTrigger />
+      </header>
+      <main className="p-4">Main content</main>
+    </SidebarInset>
+  </div>
+</SidebarProvider>
 ```
 
 ## Components
 
 | Component | Description |
 |-----------|-------------|
+| `SidebarProvider` | Context provider for sidebar state, mobile state, and toggle behavior |
 | `Sidebar` | Main sidebar container |
 | `SidebarTrigger` | Toggle sidebar visibility |
+| `SidebarRail` | Clickable rail used for resize/toggle interactions |
+| `SidebarInset` | Main content area that adapts to sidebar state |
+| `SidebarHeader` | Header area inside sidebar |
+| `SidebarFooter` | Footer area inside sidebar |
+| `SidebarSeparator` | Sidebar-specific separator |
+| `SidebarInput` | Compact input style for sidebar search/filter |
 | `SidebarContent` | Content area |
+| `SidebarGroup` | Group container inside content |
+| `SidebarGroupLabel` | Label for group sections |
+| `SidebarGroupAction` | Action button for a group |
+| `SidebarGroupContent` | Wrapper for group body |
 | `SidebarMenu` | Menu container |
 | `SidebarMenuItem` | Menu item |
 | `SidebarMenuButton` | Menu button |
+| `SidebarMenuAction` | Item-level action button |
+| `SidebarMenuBadge` | Badge for counts/status |
+| `SidebarMenuSkeleton` | Skeleton placeholder for loading states |
 | `SidebarMenuSub` | Submenu |
 | `SidebarMenuSubItem` | Submenu item |
 | `SidebarMenuSubButton` | Submenu button |
 
 ## Props
 
+### SidebarProvider
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultOpen | `boolean` | `true` | Initial open state (uncontrolled mode) |
+| open | `boolean` | - | Controlled desktop open state |
+| onOpenChange | `(open: boolean) => void` | - | Controlled state callback |
+| className | `string` | - | Additional classes on wrapper |
+| style | `React.CSSProperties` | - | Style overrides (supports sidebar width vars) |
+| ...props | `React.ComponentProps<"div">` | - | Native `div` props |
+
 ### Sidebar
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | side | `left` \| `right` | `left` | Sidebar side |
-| variant | `sidebar` \| `floating` \| `classic` | `sidebar` | Sidebar variant |
-| collapsible | `none` \| `icon` \| `offcanvas` | `icon` | Collapsible behavior |
-| className | string | - | Additional CSS classes |
-| children | React.ReactNode | - | Sidebar content |
+| variant | `sidebar` \| `floating` \| `inset` | `sidebar` | Sidebar visual variant |
+| collapsible | `offcanvas` \| `icon` \| `none` | `offcanvas` | Collapse behavior |
+| className | `string` | - | Additional CSS classes |
+| children | `React.ReactNode` | - | Sidebar content |
+| ...props | `React.ComponentProps<"div">` | - | Native `div` props |
 
 ### SidebarTrigger
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Button props |
+| className | `string` | - | Additional CSS classes |
+| onClick | `(event) => void` | - | Optional click handler (runs before internal toggle) |
+| ...props | `React.ComponentProps<typeof Button>` | - | Button props |
 
 ## Variants
 
 | Variant | Description |
 |---------|-------------|
-| `sidebar` | Fixed sidebar |
-| `floating` | Floating sidebar |
-| `classic` | Classic sidebar style |
+| `sidebar` | Standard docked sidebar |
+| `floating` | Sidebar with rounded panel and shadow treatment |
+| `inset` | Inset layout style coordinated with `SidebarInset` |
 
 ## Collapsible Options
 
 | Option | Behavior |
 |--------|----------|
 | `none` | Always visible |
-| `icon` | Collapse to icon |
+| `icon` | Collapse to icon-width rail |
 | `offcanvas` | Slide out completely |
+
+## Behavior
+
+| Behavior | Details |
+|----------|---------|
+| Mobile mode | Renders as a `Sheet` using `openMobile` state from context |
+| Desktop mode | Uses `data-state`, `data-collapsible`, `data-variant`, and `data-side` for styling |
+| Keyboard shortcut | `Cmd/Ctrl + b` toggles sidebar |
+| Persisted state | Open/closed state is stored in cookie `sidebar_state` for 7 days |
+| Tooltip support | `SidebarMenuButton` can show tooltips when collapsed |
+
+## Storybook Coverage
+
+The primitive is showcased in:
+
+1. `Default`
+2. `Collapsed`
+3. `WithSubmenu`
+4. `WithSkeleton`

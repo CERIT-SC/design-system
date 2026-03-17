@@ -1,16 +1,18 @@
----
-title: Header
-description: Top navigation with e-INFRA logo and navigation items
-category: layout
-status: stable
----
-
 # Header
 
-The header provides navigation and branding at the top of the page. It supports multiple variants for different use cases.
+Header is a sticky top navigation bar with branding, optional navigation menu items, optional custom right-side content, and built-in home/logout icon actions. It supports navigation and sidebar variants.
 
 <ComponentPreview>
-  <HeaderPreview />
+  <div className="rounded-lg border border-dashed">
+    <Header
+      variant="navigation"
+      navigationItems={[
+        { label: "Dashboard", href: "/dashboard" },
+        { label: "Projects", href: "/projects" },
+        { label: "Team", href: "/team" },
+      ]}
+    />
+  </div>
 </ComponentPreview>
 
 ## Usage
@@ -27,23 +29,82 @@ import { Header } from '@e-infra/design-system'
 />
 ```
 
+### Sidebar Variant
+
+```tsx
+import { Header, SidebarProvider } from '@e-infra/design-system'
+
+<SidebarProvider>
+  <Header variant="sidebar" />
+</SidebarProvider>
+```
+
+### With Custom Right-Side Content
+
+```tsx
+import { Header, Avatar, AvatarFallback } from '@e-infra/design-system'
+
+<Header
+  variant="navigation"
+  navigationItems={[
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Projects", href: "/projects" },
+  ]}
+>
+  <Avatar>
+    <AvatarFallback>AD</AvatarFallback>
+  </Avatar>
+</Header>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | variant | `sidebar` \| `navigation` | `navigation` | Header variant |
-| navigationItems | Array<{label: string, href: string}> | `[]` | Navigation menu items |
-| logo | string \| {src: string, width?: number, height?: number} | e-INFRA default | Logo source |
+| navigationItems | `Array<{ label: string; href: string }>` | `[]` | Navigation menu items |
+| logo | `string \| { src: string; width?: number; height?: number }` | e-INFRA default | Logo source |
 | logoAlt | string | `e-INFRA Logo` | Logo alt text |
 | className | string | - | Additional CSS classes |
 | children | React.ReactNode | - | Additional header content |
+
+## Structure
+
+| Part | Details |
+|------|---------|
+| Outer wrapper | Sticky top header with backdrop blur and shadow |
+| Main bar | Height `h-16`, horizontal padding, and optional `container` width in navigation variant |
+| Left section | Optional `SidebarTrigger`, logo, vertical separator, home icon button, and optional navigation menu |
+| Right section | Custom children followed by a built-in logout ghost icon button |
 
 ## Variants
 
 ### Navigation
 
-The default navigation variant displays a full-width header with the e-INFRA logo, home button, and navigation menu.
+The default variant uses a centered container layout and displays a navigation menu when `navigationItems` is not empty.
+
+Used in Storybook:
+
+1. `NavigationVariant`
+2. `CustomLogo`
+3. `WithCustomContent`
+4. `MinimalNavigation`
 
 ### Sidebar
 
-The sidebar variant includes a `SidebarTrigger` button for mobile/collapsed sidebar navigation.
+The sidebar variant renders `SidebarTrigger` on the left side and omits the container width class used by the navigation variant.
+
+Used in Storybook:
+
+1. `SidebarVariant`
+
+## Behavior
+
+| Behavior | Details |
+|----------|---------|
+| Sticky positioning | Header remains fixed at the top during scrolling |
+| Navigation rendering | Menu appears only when variant is `navigation` and `navigationItems.length > 0` |
+| Sidebar trigger | Appears only when variant is `sidebar` |
+| Logo source handling | Accepts either a plain URL string or object with `src` |
+| Right-side slot | `children` render before the built-in logout button |
+| Built-in actions | Home icon links to `/`, logout icon button is always rendered |
