@@ -46,5 +46,5 @@ export * from "./foundations";
 export * from "./layout";
 
 // Mid-level Components
-export * from "./compounds/FeedbackForm";
-export * from "./compounds/CookiesBanner";
+export * from "./compounds/feedbackform";
+export * from "./compounds/cookies_banner";

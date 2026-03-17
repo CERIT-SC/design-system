@@ -244,8 +244,8 @@ import { Footer } from "../../lib/components/layout/footer";
 import { Header } from "../../lib/components/layout/header";
 
 // ── Mid-level (Compounds) ─────────────────────────────────────────────────────
-import { CookiesBanner } from "../../lib/components/compounds/CookiesBanner";
-import { FeedbackForm } from "../../lib/components/compounds/FeedbackForm";
+import { CookiesBanner } from "../../lib/components/compounds/cookies_banner";
+import { FeedbackForm } from "../../lib/components/compounds/feedbackform";
 
 // ── Typography ────────────────────────────────────────────────────────────────
 import {
