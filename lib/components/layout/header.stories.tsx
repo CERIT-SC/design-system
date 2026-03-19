@@ -12,8 +12,8 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from "../ui/sidebar";
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+} from "../layout/sidebar";
+import { Avatar, AvatarImage, AvatarFallback } from "../primitives/avatar";
 import { Home, FileText, Settings } from "lucide-react";
 
 const meta = {

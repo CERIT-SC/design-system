@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Content, ContentExample } from "./content";
-import { P, Small, Code } from "../typography";
+import { P, Small, Code } from "../foundations/typography";
 
 const meta = {
   title: "Layout/Content",

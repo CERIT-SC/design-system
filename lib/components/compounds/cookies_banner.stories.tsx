@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CookiesBanner } from "./CookiesBanner";
+import { CookiesBanner } from "./cookies_banner";
 
 const meta = {
   title: "Mid-level/CookiesBanner",
