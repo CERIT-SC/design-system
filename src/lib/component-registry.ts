@@ -245,7 +245,7 @@ import { Header } from "../../lib/components/layout/header";
 
 // ── Mid-level (Compounds) ─────────────────────────────────────────────────────
 import { CookiesBanner } from "../../lib/components/compounds/cookies_banner";
-import { FeedbackForm } from "../../lib/components/compounds/feedbackform";
+import { FeedbackForm } from "../../lib/components/compounds/FeedbackForm";
 
 // ── Typography ────────────────────────────────────────────────────────────────
 import {

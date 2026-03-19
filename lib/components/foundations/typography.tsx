@@ -2,30 +2,32 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 
 // H1 - Main Heading
-export function H1({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) {
+export const H1 = React.forwardRef<
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(function H1({ className, ...props }, ref) {
   return (
     <h1
+      ref={ref}
       className={cn("text-4xl font-bold tracking-tight", className)}
       {...props}
     />
   );
-}
+});
 
 // H2 - Section Heading
-export function H2({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) {
+export const H2 = React.forwardRef<
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(function H2({ className, ...props }, ref) {
   return (
     <h2
+      ref={ref}
       className={cn("text-3xl font-semibold tracking-tight", className)}
       {...props}
     />
   );
-}
+});
 
 // H3 - Sub-heading
 export function H3({
