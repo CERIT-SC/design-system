@@ -45,16 +45,17 @@ npm install react react-dom tailwindcss
 
 **Important:** Import the CSS file in your main application file **AFTER importing tailwindcss**:
 
-```typescript
-import "@e-infra/design-system/setup.css";
+```css
+@import "@e-infra/design-system/setup.css";
+@source "../node_modules/@e-infra/design-system/dist";
 ```
 
 Example:
 
 ```css
 @import "tailwindcss";
-
 @import "@e-infra/design-system/setup.css";
+@source "../node_modules/@e-infra/design-system/dist";
 ```
 
 ### 2. Use Components
@@ -162,7 +163,7 @@ For full documentation and live examples, visit:
 bun install
 
 # Start dev server
-bun run dev
+bun run dev:showcase
 
 # Build library
 bun run build:lib
