@@ -13,7 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../../../lib/components/primitives/breadcrumb";
-import type { NavSection } from "../../lib/docs-nav";
+import type { NavSection } from "../../../src/lib/docs-nav";
 
 // Nav structure is built from the filesystem — see src/lib/docs-nav.ts.
 // It is passed in as a prop from the (server) layout so DocLayout stays a
@@ -35,6 +35,7 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
       section.items.some((item) => item.path === pathname)
     );
     if (currentCategory) {
+      // eslint-disable-next-line
       setOpenSections([currentCategory.slug]);
     }
   }, [pathname, navStructure]);

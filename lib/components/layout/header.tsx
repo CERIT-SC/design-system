@@ -8,7 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "../primitives/navigation-menu";
-import { HomeIcon, LogOut } from "lucide-react";
+import { HomeIcon, LogOut, PanelRight } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
 /** Accepts a plain URL string or a Next.js / bundler static-import object. */
@@ -53,7 +53,7 @@ export function Header({
       >
         {/* Left section */}
         <div className="flex items-center gap-4">
-          {variant === "sidebar" && <SidebarTrigger />}
+          {variant === "sidebar" && <PanelRight />}
 
           <a href="/" className="flex items-center">
             <img

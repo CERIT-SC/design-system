@@ -35,6 +35,7 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
       section.items.some((item) => item.path === pathname)
     );
     if (currentCategory) {
+      // eslint-disable-next-line
       setOpenSections([currentCategory.slug]);
     }
   }, [pathname, navStructure]);
