@@ -1,14 +1,12 @@
 "use client";
 import { cn } from "../../lib/utils";
-import { Button } from "../primitives/button";
-import { Separator } from "../primitives/separator";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from "../primitives/navigation-menu";
-import { HomeIcon, LogOut, PanelRight } from "lucide-react";
+import { PanelRight } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
 /** Accepts a plain URL string or a Next.js / bundler static-import object. */
@@ -63,15 +61,6 @@ export function Header({
             />
           </a>
 
-          <Separator orientation="vertical" />
-
-          <Button variant="ghost" size="icon" asChild>
-            <a href="/">
-              <HomeIcon className="h-5 w-5" />
-              <span className="sr-only">Home</span>
-            </a>
-          </Button>
-
           {variant === "navigation" && navigationItems.length > 0 && (
             <>
               <NavigationMenu>
@@ -90,13 +79,7 @@ export function Header({
         </div>
 
         {/* Right section */}
-        <div className="flex items-center gap-2">
-          {children}
-          <Button variant="ghost" size="icon">
-            <LogOut className="h-5 w-5" />
-            <span className="sr-only">Logout</span>
-          </Button>
-        </div>
+        <div className="flex items-center gap-2">{children}</div>
       </div>
     </header>
   );
