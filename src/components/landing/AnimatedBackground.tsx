@@ -45,8 +45,7 @@ export function AnimatedBackground() {
 
       constructor() {
         this.x = -GRID_SIZE * 2;
-        this.y =
-          Math.floor((Math.random() * height) / GRID_SIZE) * GRID_SIZE;
+        this.y = Math.floor((Math.random() * height) / GRID_SIZE) * GRID_SIZE;
         this.points.push({ x: this.x, y: this.y, age: 0, isDot: false });
       }
 
@@ -102,11 +101,11 @@ export function AnimatedBackground() {
         const turns: Direction[] = isHorizontal
           ? ["up", "down"]
           : [
-            "right",
-            "right",
-            "right",
-            ...(this.x > GRID_SIZE * 3 ? ["left" as const] : []),
-          ];
+              "right",
+              "right",
+              "right",
+              ...(this.x > GRID_SIZE * 3 ? ["left" as const] : []),
+            ];
 
         return turns[Math.floor(Math.random() * turns.length)];
       }
