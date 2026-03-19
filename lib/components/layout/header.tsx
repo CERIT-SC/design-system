@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "../../lib/utils";
 import { Button } from "../primitives/button";
-import { SidebarTrigger } from "./sidebar";
 import { Separator } from "../primitives/separator";
 import {
   NavigationMenu,
