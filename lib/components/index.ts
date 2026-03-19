@@ -25,7 +25,7 @@ export * from "./primitives/scroll-area";
 export * from "./primitives/select";
 export * from "./primitives/separator";
 export * from "./primitives/sheet";
-export * from "./primitives/sidebar";
+export * from "./layout/sidebar";
 export * from "./primitives/skeleton";
 export * from "./primitives/slider";
 export * from "./primitives/sonner";

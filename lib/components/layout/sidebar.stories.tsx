@@ -28,7 +28,7 @@ import {
   ChevronDown,
   ChevronRight,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../primitives/avatar";
 
 const meta = {
   title: "Components/Sidebar",

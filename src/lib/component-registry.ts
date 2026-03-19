@@ -202,7 +202,7 @@ import {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-} from "../../lib/components/primitives/sidebar";
+} from "../../lib/components/layout/sidebar";
 import { Skeleton } from "../../lib/components/primitives/skeleton";
 import { Slider } from "../../lib/components/primitives/slider";
 import { Toaster } from "../../lib/components/primitives/sonner";
