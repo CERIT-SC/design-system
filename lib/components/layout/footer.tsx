@@ -2,8 +2,6 @@ import React from "react";
 import { Clock, Mail, MoveRight, Phone } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
-const Version = Date.now();
-
 /** Accepts a plain URL string or a Next.js / bundler static-import object. */
 type LogoSrc = string | { src: string; width?: number; height?: number };
 
@@ -120,11 +118,6 @@ export const Footer: React.FC<FooterProps> = ({
           >
             Privacy Policy
           </a>
-        </div>
-        <div className="flex items-center justify-center md:justify-end gap-1 pt-4 md:pt-0">
-          <p className="text-sm text-fd-muted-foreground">
-            Version: {new Date(Version).toLocaleDateString("cs-CS")}
-          </p>
         </div>
       </div>
     </footer>

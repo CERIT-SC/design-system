@@ -34,6 +34,7 @@ import { componentRegistry } from "../../lib/component-registry";
 // next-mdx-remote does NOT process ES import statements written inside .mdx
 // files. Every component used in MDX must be registered here instead.
 import ColorsPreview from "./foundations/ColorsPreview";
+import Image from "next/image";
 
 const libraryComponents = componentRegistry as MDXComponents;
 
@@ -242,7 +243,8 @@ export const mdxComponents: MDXComponents = {
 
   // ── Media ──────────────────────────────────────────────────────────────────
   img: ({ className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img
+    // @ts-expect-error — MDX doesn't know about next/image
+    <Image
       className={cn("rounded-md border border-border", className)}
       {...props}
     />

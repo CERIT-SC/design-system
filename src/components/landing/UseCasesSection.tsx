@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "../../../lib/components/primitives/card";
 import { Button } from "../../../lib/components/primitives/button";
+import Image from "next/image";
 
 const useCases = [
   {
@@ -68,7 +69,7 @@ export function UseCasesSection() {
           {useCases.map(({ image, imageAlt, badge, title, description }) => (
             <Card key={title} className="pt-0">
               <div className="h-48 overflow-hidden relative">
-                <img
+                <Image
                   src={image}
                   alt={imageAlt}
                   className="absolute w-full h-full rounded-t-lg object-cover object-center"

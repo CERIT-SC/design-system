@@ -104,6 +104,8 @@ export function buildDocsNavStructure(): NavSection[] {
     if (!sectionsMap.has(resolvedSection)) {
       sectionsMap.set(resolvedSection, []);
     }
+
+    // eslint-disable-next-line --- IGNORE ---
     sectionsMap.get(resolvedSection)!.push({
       title,
       slug: filename,

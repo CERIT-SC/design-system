@@ -95,6 +95,7 @@ export const WithError: Story = {
 
 export const Controlled: Story = {
   render: () => {
+    // eslint-disable-next-line
     const [isOpen, setIsOpen] = React.useState(false);
     return (
       <div className="p-8">

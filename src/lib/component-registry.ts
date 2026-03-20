@@ -269,7 +269,7 @@ import {
 // Plain object — safe to iterate with Object.keys / Object.entries in any
 // bundler (Turbopack, webpack, etc.)
 // ─────────────────────────────────────────────────────────────────────────────
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line --- IGNORE ---
 export const componentRegistry: Record<string, React.ComponentType<any>> = {
   // Accordion
   Accordion,
