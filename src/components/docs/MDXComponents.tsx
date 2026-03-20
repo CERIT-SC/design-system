@@ -18,7 +18,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { MDXComponents } from "mdx/types";
-import React from "react";
 
 import { cn } from "../../../lib/lib/utils";
 import { CodeBlock } from "./CodeBlock";
@@ -35,6 +34,7 @@ import { componentRegistry } from "../../lib/component-registry";
 // files. Every component used in MDX must be registered here instead.
 import ColorsPreview from "./foundations/ColorsPreview";
 import Image from "next/image";
+import { Children } from "react";
 
 const libraryComponents = componentRegistry as MDXComponents;
 
@@ -126,7 +126,7 @@ export const mdxComponents: MDXComponents = {
   pre: ({ children }: React.HTMLAttributes<HTMLPreElement>) => {
     // MDX compiles ```lang\n...\n``` into <pre><code className="language-lang">…</code></pre>.
     // Extract the language and text so we can hand off to our styled CodeBlock.
-    const codeEl = React.Children.only(children) as React.ReactElement<{
+    const codeEl = Children.only(children) as React.ReactElement<{
       className?: string;
       children?: React.ReactNode;
     }>;
@@ -246,13 +246,13 @@ export const mdxComponents: MDXComponents = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // @ts-expect-error — MDX doesn't know about next/image
+    // @ts-expect-error next/image doesn't support all img props, but we want to allow them in MDX
     <Image
       className={cn("rounded-md border border-border", className)}
       alt={alt ?? ""}
+      {...props}
       width={200}
       height={200}
-      {...props}
     />
   ),
 
