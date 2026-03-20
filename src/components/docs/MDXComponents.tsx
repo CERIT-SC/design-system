@@ -250,6 +250,8 @@ export const mdxComponents: MDXComponents = {
     <Image
       className={cn("rounded-md border border-border", className)}
       alt={alt ?? ""}
+      width={200}
+      height={200}
       {...props}
     />
   ),

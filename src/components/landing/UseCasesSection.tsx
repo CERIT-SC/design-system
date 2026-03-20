@@ -72,6 +72,8 @@ export function UseCasesSection() {
                 <Image
                   src={image}
                   alt={imageAlt}
+                  width={200}
+                  height={200}
                   className="absolute w-full h-full rounded-t-lg object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 to-transparent opacity-60" />

@@ -1276,6 +1276,8 @@ function ComponentShowcase() {
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                    width={200}
+                    height={200}
                     alt="Photo by Drew Beamer"
                     className="h-full w-full object-cover"
                   />
