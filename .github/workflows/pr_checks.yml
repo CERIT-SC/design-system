@@ -1,11 +1,11 @@
-name: PR Checks
+name: Code Quality Checks for PR
 
 on:
   pull_request:
     branches: [main]
 
 jobs:
-  lint-typecheck-format:
+  code-quality:
     runs-on: ubuntu-latest
     env:
       BUN_VERSION: "1.1.13"
