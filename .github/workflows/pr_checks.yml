@@ -28,7 +28,7 @@ jobs:
         run: bun run lint
 
       - name: Run type check
-        run: bun run type:check
+        run: bun run typecheck:lib && bun run typecheck:showcase
 
       - name: Run formatting check
         run: bun run format:check
