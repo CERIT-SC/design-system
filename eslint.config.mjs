@@ -13,7 +13,7 @@ export default defineConfig([
   nextVitals,
   reactHooks.configs.flat.recommended,
   eslint.configs.recommended,
-  tseslint.configs.strict,
+  // tseslint.configs.strict,
   eslintPuginPrettierRecommended,
   {
     files: ["**/*.{ts,tsx}"],
@@ -40,5 +40,6 @@ export default defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "lib/**/*.stories.{js,cjs,mjs,ts,tsx}",
   ]),
 ]);

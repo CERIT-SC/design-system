@@ -22,10 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": [
-    "vite.config.showcase.ts",
-    "next.config.ts",
-    "postcss.config.js",
-    "eslint.config.mjs"
-  ]
+  "include": ["vite.config.lib.ts"]
 }
