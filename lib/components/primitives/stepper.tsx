@@ -143,14 +143,14 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
 
             return (
               <div
-                key={`connector-${index}`}
+                key={`connector-${String(index)}`}
                 className={cn(
                   "absolute h-px w-[133px]",
                   "top-2",
                   isComplete ? "bg-slate-700" : "bg-border"
                 )}
                 style={{
-                  left: `calc(${(index - 1) * 25}% + ${56 + (index - 1) * 20}px)`,
+                  left: `calc(${String((index - 1) * 25)}% + ${String(56 + (index - 1) * 20)}px)`,
                 }}
               />
             );
@@ -167,7 +167,9 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
                 className="flex flex-col items-center gap-1 w-28 relative z-10"
               >
                 <button
-                  onClick={() => {}}
+                  onClick={() => {
+                    /* Step navigation can be implemented here */
+                  }}
                   className={cn(
                     "flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-semibold transition-colors",
                     isComplete && "bg-[#36a769]",

@@ -1,8 +1,8 @@
-import * as React from "react";
+import { forwardRef } from "react";
 import { cn } from "../../lib/utils";
 
 // H1 - Main Heading
-export const H1 = React.forwardRef<
+export const H1 = forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(function H1({ className, ...props }, ref) {
@@ -16,7 +16,7 @@ export const H1 = React.forwardRef<
 });
 
 // H2 - Section Heading
-export const H2 = React.forwardRef<
+export const H2 = forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(function H2({ className, ...props }, ref) {

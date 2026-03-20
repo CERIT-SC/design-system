@@ -40,7 +40,7 @@ function readMdxFile(slug: string[]): {
   frontmatter: Frontmatter;
   source: string;
 } | null {
-  if (!slug || slug.length === 0) return null;
+  if (slug.length === 0) return null;
 
   const filePath = join(DOCS_DIR, `${slug.join("/")}.mdx`);
 

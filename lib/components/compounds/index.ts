@@ -1,2 +1,2 @@
-export { CookiesBanner } from "./cookies_banner";
-export { FeedbackForm } from "./feedbackform";
+export { CookiesBanner } from "./cookies-banner";
+export { FeedbackForm } from "./feedback-form";

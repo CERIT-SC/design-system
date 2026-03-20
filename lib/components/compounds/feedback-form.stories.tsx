@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { FeedbackForm } from "./feedbackform";
+import { FeedbackForm } from "./feedback-form";
 
 const meta = {
   title: "Mid-level/FeedbackForm",

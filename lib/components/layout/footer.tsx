@@ -1,4 +1,3 @@
-import React from "react";
 import { Clock, Mail, MoveRight, Phone } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 

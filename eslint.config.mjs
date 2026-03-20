@@ -13,7 +13,17 @@ export default defineConfig([
   nextVitals,
   reactHooks.configs.flat.recommended,
   eslint.configs.recommended,
-  // tseslint.configs.strict,
+  tseslint.configs.recommendedTypeChecked,
+  tseslint.configs.strictTypeChecked,
+  tseslint.configs.stylisticTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsConfigRootDir: import.meta.dirname,
+      },
+    },
+  },
   eslintPuginPrettierRecommended,
   {
     files: ["**/*.{ts,tsx}"],

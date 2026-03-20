@@ -14,7 +14,7 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  async viteFinal(config) {
+  viteFinal(config) {
     return mergeConfig(config, {
       plugins: [react({ jsxImportSource: "react" }), tailwindcss()],
       resolve: {

@@ -130,10 +130,9 @@ export const mdxComponents: MDXComponents = {
       className?: string;
       children?: React.ReactNode;
     }>;
-    const language =
-      codeEl?.props?.className?.replace("language-", "") ?? "tsx";
+    const language = codeEl.props.className?.replace("language-", "") ?? "tsx";
     const code =
-      typeof codeEl?.props?.children === "string"
+      typeof codeEl.props.children === "string"
         ? codeEl.props.children.trimEnd()
         : "";
     return <CodeBlock code={code} language={language} className="my-6" />;
@@ -242,10 +241,15 @@ export const mdxComponents: MDXComponents = {
   ),
 
   // ── Media ──────────────────────────────────────────────────────────────────
-  img: ({ className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+  img: ({
+    className,
+    alt,
+    ...props
+  }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // @ts-expect-error — MDX doesn't know about next/image
     <Image
       className={cn("rounded-md border border-border", className)}
+      alt={alt ?? ""}
       {...props}
     />
   ),

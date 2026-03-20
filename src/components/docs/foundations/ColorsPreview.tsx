@@ -185,7 +185,9 @@ function CopyableHex({ value }: { value: string }) {
     if (isPlaceholder) return;
     void navigator.clipboard.writeText(value).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      setTimeout(() => {
+        setCopied(false);
+      }, 1500);
     });
   };
 

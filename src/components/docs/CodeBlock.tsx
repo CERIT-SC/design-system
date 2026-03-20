@@ -63,7 +63,7 @@ function renderNode(node: HastNode, key: number): React.ReactNode {
   if (node.type !== "element") return null;
 
   const el = node as HastElement;
-  const classNames = el.properties?.className ?? [];
+  const classNames = el.properties.className ?? [];
   const color = classNames.map((c) => TOKEN_COLORS[c]).find(Boolean);
 
   return (
@@ -92,7 +92,9 @@ export function CodeBlock({
   const handleCopy = () => {
     void navigator.clipboard.writeText(code).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
     });
   };
 

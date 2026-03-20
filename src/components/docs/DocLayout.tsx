@@ -54,7 +54,7 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
     const section = navStructure.find((s) =>
       s.items.some((i) => i.path === path)
     );
-    return section?.slug || null;
+    return section?.slug ?? null;
   };
 
   const getActiveCategory = () => {
@@ -82,7 +82,9 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
           Documentation
         </Link>
         <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          onClick={() => {
+            setIsMobileMenuOpen((prev) => !prev);
+          }}
           aria-label="Toggle navigation"
           className="rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-secondary-foreground transition-colors"
         >
@@ -117,7 +119,9 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
             <div key={section.slug} className={cn(index > 0 && "mt-2")}>
               {/* Section toggle button */}
               <button
-                onClick={() => toggleSection(section.slug)}
+                onClick={() => {
+                  toggleSection(section.slug);
+                }}
                 className={cn(
                   "flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium",
                   openSections.includes(section.slug)
@@ -148,7 +152,9 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
                     <li key={item.slug}>
                       <Link
                         href={item.path}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                        }}
                         className={cn(
                           "flex items-center rounded-md px-3 py-2 text-sm",
                           isActivePath(item.path)
@@ -170,7 +176,9 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 z-30 bg-foreground/20 backdrop-blur-sm lg:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+          }}
         />
       )}
 

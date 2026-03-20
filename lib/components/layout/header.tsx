@@ -20,10 +20,10 @@ interface HeaderProps {
   children?: React.ReactNode;
   className?: string;
   variant?: "sidebar" | "navigation";
-  navigationItems?: Array<{
+  navigationItems?: {
     label: string;
     href: string;
-  }>;
+  }[];
   logo?: LogoSrc;
   logoAlt?: string;
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import {
   MessageCircle,
   CheckCircle2,
@@ -13,12 +12,13 @@ import { Textarea } from "../primitives/textarea";
 import { Alert, AlertDescription } from "../primitives/alert";
 import { Small } from "../foundations/typography";
 import { cn } from "../../lib/utils";
+import { useEffect, useRef, useState } from "react";
 
 // ============================================================================
 // Types
 // ============================================================================
 
-export type FeedbackFormProps = {
+export interface FeedbackFormProps {
   /** Whether the modal is open */
   isOpen?: boolean;
   /** Callback when modal opens */
@@ -52,14 +52,14 @@ export type FeedbackFormProps = {
   autoCloseOnSuccess?: boolean;
   /** Delay in ms before auto-closing after success */
   autoCloseDelay?: number;
-};
+}
 
-type FeedbackButtonProps = {
+interface FeedbackButtonProps {
   onClick: () => void;
   position?: "bottom-right" | "bottom-left";
-};
+}
 
-type FeedbackModalProps = {
+interface FeedbackModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit?: (data: {
@@ -75,7 +75,7 @@ type FeedbackModalProps = {
   successMessage?: React.ReactNode;
   autoCloseOnSuccess?: boolean;
   autoCloseDelay?: number;
-};
+}
 
 // ============================================================================
 // FeedbackButton Component
@@ -126,22 +126,20 @@ function FeedbackModal({
   autoCloseOnSuccess = true,
   autoCloseDelay = 3000,
 }: FeedbackModalProps) {
-  const [satisfaction, setSatisfaction] = React.useState<"yes" | "no" | null>(
-    null
-  );
-  const [recommendations, setRecommendations] = React.useState("");
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [submitStatus, setSubmitStatus] = React.useState<
+  const [satisfaction, setSatisfaction] = useState<"yes" | "no" | null>(null);
+  const [recommendations, setRecommendations] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const [progress, setProgress] = React.useState(0);
-  const progressIntervalRef = React.useRef<ReturnType<
-    typeof setInterval
-  > | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [progress, setProgress] = useState(0);
+  const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(
+    null
+  );
 
   // Reset form when modal opens/closes
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isOpen) {
       setSatisfaction(null);
       setRecommendations("");
@@ -162,8 +160,8 @@ function FeedbackModal({
 
     try {
       const result = await onSubmit?.({
-        satisfaction: satisfaction || undefined,
-        recommendations: recommendations || undefined,
+        satisfaction: satisfaction ?? undefined,
+        recommendations: recommendations ? recommendations : undefined,
       });
 
       if (result?.success) {
@@ -180,7 +178,9 @@ function FeedbackModal({
               const newProgress = prevProgress + progressIncrement;
               if (newProgress >= 100) {
                 clearInterval(progressIntervalRef.current ?? undefined);
-                requestAnimationFrame(() => onClose());
+                requestAnimationFrame(() => {
+                  onClose();
+                });
                 return 100;
               }
               return newProgress;
@@ -189,7 +189,7 @@ function FeedbackModal({
         }
       } else {
         setSubmitStatus("error");
-        setErrorMessage(result?.message || "Failed to submit feedback");
+        setErrorMessage(result?.message ?? "Failed to submit feedback");
       }
     } catch (error) {
       setSubmitStatus("error");
@@ -201,7 +201,7 @@ function FeedbackModal({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
@@ -239,7 +239,7 @@ function FeedbackModal({
           <div className="absolute top-0 left-0 right-0 h-1 bg-muted overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-50 ease-linear"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${String(progress)}%` }}
             />
           </div>
         )}
@@ -262,7 +262,9 @@ function FeedbackModal({
                     type="button"
                     variant={satisfaction === "yes" ? "default" : "secondary"}
                     size="sm"
-                    onClick={() => setSatisfaction("yes")}
+                    onClick={() => {
+                      setSatisfaction("yes");
+                    }}
                   >
                     Yes
                   </Button>
@@ -270,7 +272,9 @@ function FeedbackModal({
                     type="button"
                     variant={satisfaction === "no" ? "default" : "secondary"}
                     size="sm"
-                    onClick={() => setSatisfaction("no")}
+                    onClick={() => {
+                      setSatisfaction("no");
+                    }}
                   >
                     No
                   </Button>
@@ -282,7 +286,9 @@ function FeedbackModal({
                 <Small className="block mb-4">{recommendationsLabel}</Small>
                 <Textarea
                   value={recommendations}
-                  onChange={(e) => setRecommendations(e.target.value)}
+                  onChange={(e) => {
+                    setRecommendations(e.target.value);
+                  }}
                   rows={4}
                   placeholder={recommendationsPlaceholder}
                 />
@@ -305,7 +311,9 @@ function FeedbackModal({
             {submitStatus !== "success" && (
               <Button
                 type="button"
-                onClick={handleSubmit}
+                onClick={() => {
+                  void handleSubmit();
+                }}
                 disabled={isSubmitting}
                 className="w-full sm:w-auto"
               >
@@ -347,11 +355,10 @@ export function FeedbackForm({
   autoCloseOnSuccess,
   autoCloseDelay,
 }: FeedbackFormProps) {
-  const [internalIsOpen, setInternalIsOpen] = React.useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
 
   // Use controlled or uncontrolled state
-  const isOpen =
-    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen = controlledIsOpen ?? internalIsOpen;
 
   const handleOpen = () => {
     if (controlledIsOpen === undefined) {
