@@ -45,16 +45,17 @@ npm install react react-dom tailwindcss
 
 **Important:** Import the CSS file in your main application file **AFTER importing tailwindcss**:
 
-```typescript
-import "@e-infra/design-system/setup.css";
+```css
+@import "@e-infra/design-system/setup.css";
+@source "../node_modules/@e-infra/design-system/dist";
 ```
 
 Example:
 
 ```css
 @import "tailwindcss";
-
 @import "@e-infra/design-system/setup.css";
+@source "../node_modules/@e-infra/design-system/dist";
 ```
 
 ### 2. Use Components
@@ -66,7 +67,7 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-} from "@muni-ics/e-infra-design-system";
+} from "@e-infra/e-infra-design-system";
 
 function App() {
   return (
@@ -83,72 +84,6 @@ function App() {
 }
 ```
 
-## 📚 Available Components
-
-### Layout
-
-- Card, Separator, AspectRatio, Sidebar
-
-### Forms
-
-- Button, Input, Textarea, Label, Checkbox, Radio Group, Select, Switch, Slider
-
-### Data Display
-
-- Table, Badge, Avatar, Calendar, Progress, Skeleton, Tooltip
-
-### Feedback
-
-- Alert, Alert Dialog, Toast (Sonner)
-
-### Navigation
-
-- Tabs, Breadcrumb, Navigation Menu, Menubar, Context Menu, Dropdown Menu
-
-### Overlays
-
-- Dialog, Sheet, Popover, Hover Card, Command, Drawer
-
-### Other
-
-- Accordion, Collapsible, Carousel, Toggle, Toggle Group, Scroll Area, Resizable
-
-## 🎨 Typography
-
-The design system includes standardized typography:
-
-```tsx
-// Headings
-<h1 className="text-4xl font-bold tracking-tight">Main Heading</h1>
-<h2 className="text-3xl font-semibold tracking-tight">Section Heading</h2>
-<h3 className="text-2xl font-semibold tracking-tight">Sub-heading</h3>
-<h4 className="text-xl font-semibold">Sub-section</h4>
-
-// Body text
-<p className="text-base leading-7">Standard body text</p>
-<p className="text-sm text-muted-foreground">Small text</p>
-<p className="text-xs text-muted-foreground">Caption text</p>
-```
-
-## 🎭 Theming
-
-The design system uses CSS variables for theming. You can customize colors by overriding these variables:
-
-```css
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  /* ... more variables */
-}
-
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  /* ... more variables */
-}
-```
-
 ## 📖 Documentation
 
 For full documentation and live examples, visit:
@@ -162,7 +97,7 @@ For full documentation and live examples, visit:
 bun install
 
 # Start dev server
-bun run dev
+bun run dev:showcase
 
 # Build library
 bun run build:lib
@@ -181,7 +116,7 @@ For other commands consult `package.json`.
 
 ## Docker
 
-**Be in root of the project directory!**
+**Be in root of the project directory.**
 
 ### Using Compose File (build and run)
 
