@@ -170,7 +170,7 @@ function ChartTooltipContent({
     if (labelFormatter) {
       return (
         <div className={cn("font-medium", labelClassName)}>
-          {labelFormatter(value as React.ReactNode, payload)}
+          {labelFormatter(value, payload)}
         </div>
       );
     }
