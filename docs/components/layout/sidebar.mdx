@@ -3,50 +3,21 @@
 Sidebar is a composable navigation system built from primitives. It supports responsive mobile sheet behavior, desktop collapse modes, grouped navigation, submenus, badges, skeleton loaders, and an optional inset content area.
 
 <ComponentPreview>
-  <div className="rounded-lg border border-dashed p-4">
-    <SidebarProvider>
-      <div className="flex min-h-96 w-full">
-        <Sidebar className="static!" collapsible="none">
-          <SidebarHeader>
-            <div className="px-4 py-2 font-semibold">e-INFRA</div>
-            <SidebarSeparator />
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/">
-                        <span>Home</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/docs">
-                        <span>Documentation</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-        </Sidebar>
-        <SidebarInset className="border-l">
-          <header className="flex h-12 items-center gap-2 border-b px-3">
-            <SidebarTrigger />
-            <span className="text-sm font-medium">Main content</span>
-          </header>
-          <main className="p-3 text-sm text-muted-foreground">
-            Sidebar preview with provider, trigger, and inset content.
-          </main>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
-  </div>
+<Sidebar>
+  <SidebarHeader>
+    <div className="px-4 py-2 font-semibold">My Application</div>
+  </SidebarHeader>
+  <SidebarContent>
+    <CollapsibleGroup title="Navigation" defaultOpen={true}>
+      <NavItem href="/" isActive>Home</NavItem>
+      <NavItem href="/docs">Documentation</NavItem>
+      <NavItem href="/settings">Settings</NavItem>
+    </CollapsibleGroup>
+  </SidebarContent>
+  <SidebarFooter>
+    <div className="px-4 py-2 text-sm text-muted-foreground">v1.0.0</div>
+  </SidebarFooter>
+</Sidebar>
 </ComponentPreview>
 
 ## Usage
@@ -54,52 +25,28 @@ Sidebar is a composable navigation system built from primitives. It supports res
 ```tsx
 import {
   Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  SidebarSeparator,
-  SidebarTrigger,
+  SidebarContent,
+  SidebarFooter,
+  NavItem,
+  CollapsibleGroup,
 } from '@e-infra/design-system'
 
-<SidebarProvider>
-  <div className="flex min-h-screen w-full">
-    <Sidebar>
-      <SidebarHeader>
-        <div className="px-4 py-2 font-semibold">App</div>
-        <SidebarSeparator />
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="/dashboard">
-                    <span>Dashboard</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
-    <SidebarInset>
-      <header className="flex h-16 items-center border-b px-4">
-        <SidebarTrigger />
-      </header>
-      <main className="p-4">Main content</main>
-    </SidebarInset>
-  </div>
-</SidebarProvider>
+<Sidebar>
+  <SidebarHeader>
+    <div className="px-4 py-2 font-semibold">My Application</div>
+  </SidebarHeader>
+  <SidebarContent>
+    <CollapsibleGroup title="Navigation" defaultOpen={true}>
+      <NavItem href="/" isActive>Home</NavItem>
+      <NavItem href="/docs">Documentation</NavItem>
+      <NavItem href="/settings">Settings</NavItem>
+    </CollapsibleGroup>
+  </SidebarContent>
+  <SidebarFooter>
+    <div className="px-4 py-2 text-sm text-muted-foreground">v1.0.0</div>
+  </SidebarFooter>
+</Sidebar>
 ```
 
 ## Components

@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { cn } from "../../lib/utils";
-import { H1, H2, P } from "../foundations";
+import { H1, H2, P } from "../foundations/typography";
 
 // Main Container
 const ContentContainer = forwardRef<

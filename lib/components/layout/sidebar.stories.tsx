@@ -1,25 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   Sidebar,
+  SidebarHeader,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInput,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuBadge,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSkeleton,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarSeparator,
-  SidebarTrigger,
+  NavItem,
+  CollapsibleGroup,
 } from "./sidebar";
 import {
   Home,
@@ -28,7 +14,6 @@ import {
   ChevronDown,
   ChevronRight,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../primitives/avatar";
 
 const meta = {
   title: "Components/Sidebar",
@@ -44,357 +29,261 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <SidebarProvider>
-      <div className="flex h-screen w-full">
-        <Sidebar>
-          <SidebarHeader>
-            <div className="flex items-center gap-2 px-4 py-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="text-sm font-bold">e</span>
+    <div className="flex h-screen w-full">
+      <Sidebar>
+        <SidebarHeader>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="text-sm font-bold">e</span>
+            </div>
+            <span className="font-semibold">e-INFRA</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Navigation" defaultOpen={true}>
+            <NavItem href="/">
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </NavItem>
+            <NavItem href="/docs">
+              <FileText className="h-4 w-4" />
+              <span>Documentation</span>
+            </NavItem>
+            <NavItem href="/settings">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+          <CollapsibleGroup title="Projects" defaultOpen={true}>
+            <NavItem href="/projects/alpha">
+              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-secondary text-secondary-foreground">
+                <span className="text-xs font-medium">P1</span>
               </div>
-              <span className="font-semibold">e-INFRA</span>
-            </div>
-            <SidebarSeparator />
-            <div className="px-4 py-2">
-              <SidebarInput placeholder="Search..." />
-            </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/">
-                        <Home className="h-4 w-4" />
-                        <span>Home</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/docs">
-                        <FileText className="h-4 w-4" />
-                        <span>Documentation</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/settings">
-                        <Settings className="h-4 w-4" />
-                        <span>Settings</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-            <SidebarGroup>
-              <SidebarGroupLabel>Projects</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton>
-                      <div className="flex items-center gap-2">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-md bg-secondary text-secondary-foreground">
-                          <span className="text-xs font-medium">P1</span>
-                        </div>
-                        <span>Project Alpha</span>
-                      </div>
-                      <SidebarMenuBadge>5</SidebarMenuBadge>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton>
-                      <div className="flex items-center gap-2">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-md bg-secondary text-secondary-foreground">
-                          <span className="text-xs font-medium">P2</span>
-                        </div>
-                        <span>Project Beta</span>
-                      </div>
-                      <SidebarMenuBadge>12</SidebarMenuBadge>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-          <SidebarFooter>
-            <div className="flex items-center gap-2 px-2">
-              <Avatar className="h-8 w-8">
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                <span className="text-xs font-medium">John Doe</span>
-                <span className="text-xs text-muted-foreground">
-                  john@example.com
-                </span>
+              <span>Project Alpha</span>
+            </NavItem>
+            <NavItem href="/projects/beta">
+              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-secondary text-secondary-foreground">
+                <span className="text-xs font-medium">P2</span>
               </div>
+              <span>Project Beta</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+        <SidebarFooter>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium">
+              JD
             </div>
-          </SidebarFooter>
-        </Sidebar>
-        <SidebarInset>
-          <header className="flex h-16 items-center border-b px-4">
-            <SidebarTrigger />
-            <div className="ml-2 font-semibold">Main Content</div>
-          </header>
-          <main className="flex-1 p-4">
-            <div className="h-96 rounded-lg border border-dashed p-8 text-center">
-              <h2 className="text-xl font-bold">Main Content Area</h2>
-              <p className="mt-2 text-muted-foreground">
-                This is where your main content would go. The sidebar is
-                collapsible and responsive.
-              </p>
+            <div className="flex flex-col">
+              <span className="text-xs font-medium">John Doe</span>
+              <span className="text-xs text-muted-foreground">
+                john@example.com
+              </span>
             </div>
-          </main>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      <main className="flex-1 p-8">
+        <div className="h-96 rounded-lg border border-dashed p-8 text-center">
+          <h2 className="text-xl font-bold">Main Content Area</h2>
+          <p className="mt-2 text-muted-foreground">
+            This is where your main content would go. The sidebar is
+            collapsible and responsive.
+          </p>
+        </div>
+      </main>
+    </div>
   ),
 };
 
-export const Collapsed: Story = {
+export const WithActiveState: Story = {
   render: () => (
-    <SidebarProvider defaultOpen={false}>
-      <div className="flex h-screen w-full">
-        <Sidebar>
-          <SidebarHeader>
-            <div className="flex items-center gap-2 px-4 py-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="text-sm font-bold">e</span>
-              </div>
+    <div className="flex h-screen w-full">
+      <Sidebar>
+        <SidebarHeader>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="text-sm font-bold">e</span>
             </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Home">
-                      <a href="/">
-                        <Home className="h-4 w-4" />
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Documentation">
-                      <a href="/docs">
-                        <FileText className="h-4 w-4" />
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Settings">
-                      <a href="/settings">
-                        <Settings className="h-4 w-4" />
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-          <SidebarFooter>
-            <div className="flex items-center justify-center px-2">
-              <Avatar className="h-8 w-8">
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-            </div>
-          </SidebarFooter>
-        </Sidebar>
-        <SidebarInset>
-          <header className="flex h-16 items-center border-b px-4">
-            <SidebarTrigger />
-            <div className="ml-2 font-semibold">Collapsed Sidebar</div>
-          </header>
-          <main className="flex-1 p-4">
-            <div className="h-96 rounded-lg border border-dashed p-8 text-center">
-              <h2 className="text-xl font-bold">Main Content Area</h2>
-              <p className="mt-2 text-muted-foreground">
-                The sidebar is currently collapsed. Hover over menu items to see
-                tooltips.
-              </p>
-            </div>
-          </main>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
+            <span className="font-semibold">e-INFRA</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Navigation" defaultOpen={true}>
+            <NavItem href="/">
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </NavItem>
+            <NavItem href="/docs" isActive>
+              <FileText className="h-4 w-4" />
+              <span>Documentation</span>
+            </NavItem>
+            <NavItem href="/settings">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+      </Sidebar>
+      <main className="flex-1 p-8">
+        <div className="h-96 rounded-lg border border-dashed p-8 text-center">
+          <h2 className="text-xl font-bold">Active State Example</h2>
+          <p className="mt-2 text-muted-foreground">
+            The Documentation link is marked as active with the isActive prop.
+          </p>
+        </div>
+      </main>
+    </div>
   ),
 };
 
-export const WithSubmenu: Story = {
+export const CollapsedGroups: Story = {
   render: () => (
-    <SidebarProvider>
-      <div className="flex h-screen w-full">
-        <Sidebar>
-          <SidebarHeader>
-            <div className="flex items-center gap-2 px-4 py-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="text-sm font-bold">e</span>
-              </div>
-              <span className="font-semibold">e-INFRA</span>
+    <div className="flex h-screen w-full">
+      <Sidebar>
+        <SidebarHeader>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="text-sm font-bold">e</span>
             </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/">
-                        <Home className="h-4 w-4" />
-                        <span>Home</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/docs">
-                        <FileText className="h-4 w-4" />
-                        <span>Documentation</span>
-                        <ChevronDown className="ml-auto h-4 w-4" />
-                      </a>
-                    </SidebarMenuButton>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="/docs/getting-started">
-                            <span>Getting Started</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="/docs/components">
-                            <span>Components</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="/docs/examples">
-                            <span>Examples</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/settings">
-                        <Settings className="h-4 w-4" />
-                        <span>Settings</span>
-                        <ChevronRight className="ml-auto h-4 w-4" />
-                      </a>
-                    </SidebarMenuButton>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="/settings/account">
-                            <span>Account</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="/settings/security">
-                            <span>Security</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <a href="/settings/notifications">
-                            <span>Notifications</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-        </Sidebar>
-        <SidebarInset>
-          <header className="flex h-16 items-center border-b px-4">
-            <SidebarTrigger />
-            <div className="ml-2 font-semibold">Submenu Example</div>
-          </header>
-          <main className="flex-1 p-4">
-            <div className="h-96 rounded-lg border border-dashed p-8 text-center">
-              <h2 className="text-xl font-bold">Main Content Area</h2>
-              <p className="mt-2 text-muted-foreground">
-                This example shows how to use submenus in the sidebar.
-              </p>
-            </div>
-          </main>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
+            <span className="font-semibold">e-INFRA</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Foundations" defaultOpen={false}>
+            <NavItem href="/docs/foundations/colors">Colors</NavItem>
+            <NavItem href="/docs/foundations/spacing">Spacing</NavItem>
+            <NavItem href="/docs/foundations/typography">Typography</NavItem>
+          </CollapsibleGroup>
+          <CollapsibleGroup title="Components" defaultOpen={false}>
+            <NavItem href="/docs/components/button">Button</NavItem>
+            <NavItem href="/docs/components/card">Card</NavItem>
+            <NavItem href="/docs/components/input">Input</NavItem>
+            <NavItem href="/docs/components/select">Select</NavItem>
+          </CollapsibleGroup>
+          <CollapsibleGroup title="Layout" defaultOpen={false}>
+            <NavItem href="/docs/layout/content">Content</NavItem>
+            <NavItem href="/docs/layout/footer">Footer</NavItem>
+            <NavItem href="/docs/layout/header">Header</NavItem>
+            <NavItem href="/docs/layout/sidebar">Sidebar</NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+      </Sidebar>
+      <main className="flex-1 p-8">
+        <div className="h-96 rounded-lg border border-dashed p-8 text-center">
+          <h2 className="text-xl font-bold">Collapsed Groups</h2>
+          <p className="mt-2 text-muted-foreground">
+            All groups start collapsed. Click on a group header to expand it.
+          </p>
+        </div>
+      </main>
+    </div>
   ),
 };
 
-export const WithSkeleton: Story = {
+export const WithoutGroups: Story = {
   render: () => (
-    <SidebarProvider>
-      <div className="flex h-screen w-full">
-        <Sidebar>
-          <SidebarHeader>
-            <div className="flex items-center gap-2 px-4 py-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="text-sm font-bold">e</span>
-              </div>
-              <span className="font-semibold">e-INFRA</span>
+    <div className="flex h-screen w-full">
+      <Sidebar>
+        <SidebarHeader>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="text-sm font-bold">e</span>
             </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/">
-                        <Home className="h-4 w-4" />
-                        <span>Home</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuSkeleton showIcon />
-                  <SidebarMenuSkeleton showIcon />
-                  <SidebarMenuSkeleton showIcon />
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-        </Sidebar>
-        <SidebarInset>
-          <header className="flex h-16 items-center border-b px-4">
-            <SidebarTrigger />
-            <div className="ml-2 font-semibold">Skeleton Example</div>
-          </header>
-          <main className="flex-1 p-4">
-            <div className="h-96 rounded-lg border border-dashed p-8 text-center">
-              <h2 className="text-xl font-bold">Main Content Area</h2>
-              <p className="mt-2 text-muted-foreground">
-                This example shows how to use skeleton loaders in the sidebar.
-              </p>
+            <span className="font-semibold">e-INFRA</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent className="flex flex-col gap-1 px-3">
+          <NavItem href="/">
+            <Home className="h-4 w-4" />
+            <span>Home</span>
+          </NavItem>
+          <NavItem href="/docs">
+            <FileText className="h-4 w-4" />
+            <span>Documentation</span>
+          </NavItem>
+          <NavItem href="/settings">
+            <Settings className="h-4 w-4" />
+            <span>Settings</span>
+          </NavItem>
+        </SidebarContent>
+        <SidebarFooter>
+          <div className="text-xs text-muted-foreground">
+            © 2024 e-INFRA
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      <main className="flex-1 p-8">
+        <div className="h-96 rounded-lg border border-dashed p-8 text-center">
+          <h2 className="text-xl font-bold">Without Groups</h2>
+          <p className="mt-2 text-muted-foreground">
+            NavItems can be used directly without wrapping them in CollapsibleGroup.
+          </p>
+        </div>
+      </main>
+    </div>
+  ),
+};
+
+export const CustomStyling: Story = {
+  render: () => (
+    <div className="flex h-screen w-full">
+      <Sidebar className="bg-slate-900 text-slate-100">
+        <SidebarHeader className="border-slate-700">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500 text-white">
+              <span className="text-sm font-bold">e</span>
             </div>
-          </main>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
+            <span className="font-semibold">e-INFRA</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Navigation" defaultOpen={true}>
+            <NavItem 
+              href="/" 
+              className="hover:bg-slate-800 hover:text-white"
+            >
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </NavItem>
+            <NavItem 
+              href="/docs"
+              className="hover:bg-slate-800 hover:text-white"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Documentation</span>
+            </NavItem>
+            <NavItem 
+              href="/settings"
+              className="hover:bg-slate-800 hover:text-white"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+        <SidebarFooter className="border-slate-700">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-xs font-medium">
+              JD
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs font-medium">John Doe</span>
+              <span className="text-xs text-slate-400">
+                john@example.com
+              </span>
+            </div>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      <main className="flex-1 p-8">
+        <div className="h-96 rounded-lg border border-dashed p-8 text-center">
+          <h2 className="text-xl font-bold">Custom Styling</h2>
+          <p className="mt-2 text-muted-foreground">
+            The sidebar can be customized with different colors using the className prop.
+          </p>
+        </div>
+      </main>
+    </div>
   ),
 };

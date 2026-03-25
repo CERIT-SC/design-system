@@ -8,7 +8,6 @@ import {
 } from "../primitives/navigation-menu";
 import { PanelRight } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
-import { Separator } from "react-resizable-panels";
 
 /** Accepts a plain URL string or a Next.js / bundler static-import object. */
 type LogoSrc = string | { src: string; width?: number; height?: number };
