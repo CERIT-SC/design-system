@@ -8,6 +8,7 @@ import {
 } from "../primitives/navigation-menu";
 import { PanelRight } from "lucide-react";
 import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
+import { Separator } from "react-resizable-panels";
 
 /** Accepts a plain URL string or a Next.js / bundler static-import object. */
 type LogoSrc = string | { src: string; width?: number; height?: number };
@@ -39,18 +40,18 @@ export function Header({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full bg-background/95 shadow-lg shadow-secondary/20 backdrop-blur supports-backdrop-filter:bg-background/60",
+        "sticky top-0 z-50 w-full bg-background/95 shadow-xl shadow-secondary/20 backdrop-blur supports-backdrop-filter:bg-background/60",
         className
       )}
     >
       <div
         className={cn(
-          "flex h-16 items-center justify-between px-4 mx-auto",
+          "flex h-16 items-center justify-between px-2",
           variant === "navigation" && "container"
         )}
       >
         {/* Left section */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           {variant === "sidebar" && <PanelRight />}
 
           <a href="/" className="flex items-center">
