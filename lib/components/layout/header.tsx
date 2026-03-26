@@ -2,14 +2,6 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-} from "../primitives/navigation-menu";
 
 // ==========================================
 // Header Root (The shell)
@@ -89,13 +81,6 @@ const HeaderCenter = React.forwardRef<
     {...props}
   />
 ));
-HeaderCenter.displayName = "HeaderCenter"; 
-    
+HeaderCenter.displayName = "HeaderCenter";
 
-export {
-  Header,
-  HeaderContent,
-  HeaderLeft,
-  HeaderRight,
-  HeaderCenter,
-};
+export { Header, HeaderContent, HeaderLeft, HeaderRight, HeaderCenter };
