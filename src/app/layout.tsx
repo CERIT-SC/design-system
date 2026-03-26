@@ -8,6 +8,12 @@ import {
   HeaderLeft,
   HeaderRight,
 } from "../../lib/components/layout/header";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../../lib/components/primitives/navigation-menu";
 import { Footer } from "../../lib/components/layout/footer";
 import EinfraLogo from "../../public/e-INFRA_logo_RGB_lilek.png";
 
@@ -38,26 +44,23 @@ export default function RootLayout({
                   className="h-20 w-auto"
                 />
               </a>
-              <nav className="flex items-center gap-6">
-                <a
-                  href="/"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Home
-                </a>
-                <a
-                  href="/docs/foundations"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Foundations
-                </a>
-                <a
-                  href="/docs/components"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Components
-                </a>
-              </nav>
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="/">Home</NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="/docs/foundations">
+                      Foundations
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="/docs/components">
+                      Components
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </HeaderLeft>
             <HeaderRight>{/* Additional actions can go here */}</HeaderRight>
           </HeaderContent>
