@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.0
+
+- Update header component
+- Update and simplify sidebar
+- Update card and panel components
+- Update setup.css with new radius variable
+
 ## v0.0.9
 
 ## v0.0.8
