@@ -95,8 +95,9 @@ export const Default: Story = {
           <Content.Body>
             The default header uses the compound component pattern with
             HeaderContent, HeaderLeft, and HeaderRight. Navigation links use the
-            NavigationMenu primitive components (NavigationMenu, NavigationMenuList,
-            NavigationMenuItem, NavigationMenuLink) for consistent styling and behavior.
+            NavigationMenu primitive components (NavigationMenu,
+            NavigationMenuList, NavigationMenuItem, NavigationMenuLink) for
+            consistent styling and behavior.
           </Content.Body>
         </Content>
       </main>
@@ -156,7 +157,9 @@ export const WithDropdown: Story = {
                           <FileText className="h-5 w-5" />
                         </div>
                         <div>
-                          <div className="text-sm font-medium">Documentation</div>
+                          <div className="text-sm font-medium">
+                            Documentation
+                          </div>
                           <div className="text-xs text-muted-foreground">
                             Read the docs
                           </div>
@@ -197,11 +200,12 @@ export const WithDropdown: Story = {
           <Content.Heading>Header with Dropdown Menus</Content.Heading>
           <Content.Subheading>Usage</Content.Subheading>
           <Content.Body>
-            Use NavigationMenuTrigger and NavigationMenuContent to create dropdown menus
-            in the navigation. Add NavigationMenuIndicator inside NavigationMenu (after
-            NavigationMenuList) to show a visual arrow pointing to the active trigger.
-            NavigationMenuViewport is automatically rendered by NavigationMenu to contain
-            the dropdown content with animations.
+            Use NavigationMenuTrigger and NavigationMenuContent to create
+            dropdown menus in the navigation. Add NavigationMenuIndicator inside
+            NavigationMenu (after NavigationMenuList) to show a visual arrow
+            pointing to the active trigger. NavigationMenuViewport is
+            automatically rendered by NavigationMenu to contain the dropdown
+            content with animations.
           </Content.Body>
         </Content>
       </main>
