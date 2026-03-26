@@ -1,4 +1,4 @@
-import { Badge } from "../../../lib/components/ui/badge";
+import { Badge } from "../../../lib/components/primitives/badge";
 import { ArrowRight } from "lucide-react";
 import {
   Card,
@@ -7,8 +7,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../lib/components/ui/card";
-import { Button } from "../../../lib/components/ui/button";
+} from "../../../lib/components/primitives/card";
+import { Button } from "../../../lib/components/primitives/button";
+import Image from "next/image";
 
 const useCases = [
   {
@@ -68,9 +69,11 @@ export function UseCasesSection() {
           {useCases.map(({ image, imageAlt, badge, title, description }) => (
             <Card key={title} className="pt-0">
               <div className="h-48 overflow-hidden relative">
-                <img
+                <Image
                   src={image}
                   alt={imageAlt}
+                  width={200}
+                  height={200}
                   className="absolute w-full h-full rounded-t-lg object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 to-transparent opacity-60" />

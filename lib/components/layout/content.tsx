@@ -1,9 +1,9 @@
-import * as React from "react";
+import { forwardRef } from "react";
 import { cn } from "../../lib/utils";
-import { H1, H2, P } from "../typography";
+import { H1, H2, P } from "../foundations/typography";
 
 // Main Container
-const ContentContainer = React.forwardRef<
+const ContentContainer = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => {
@@ -16,7 +16,7 @@ const ContentContainer = React.forwardRef<
 ContentContainer.displayName = "Content";
 
 // Heading Component
-const ContentHeading = React.forwardRef<
+const ContentHeading = forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, children, ...props }, ref) => {
@@ -29,7 +29,7 @@ const ContentHeading = React.forwardRef<
 ContentHeading.displayName = "Content.Heading";
 
 // Subheading Component
-const ContentSubheading = React.forwardRef<
+const ContentSubheading = forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, children, ...props }, ref) => {
@@ -42,7 +42,7 @@ const ContentSubheading = React.forwardRef<
 ContentSubheading.displayName = "Content.Subheading";
 
 // Content Body Component
-const ContentBody = React.forwardRef<
+const ContentBody = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => {

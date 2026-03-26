@@ -98,7 +98,7 @@ import {
   PanelDescription,
   PanelContent,
   PanelFooter,
-} from "../../lib";
+} from "../../lib/components/index";
 import { toast } from "sonner";
 import {
   Info,
@@ -110,6 +110,7 @@ import {
   CircleAlert,
   CircleX,
 } from "lucide-react";
+import Image from "next/image";
 
 // Component copy helper
 const ComponentCopySelect = ({
@@ -118,9 +119,10 @@ const ComponentCopySelect = ({
   components: { name: string; description?: string; import: string }[];
 }) => {
   const handleCopy = (importStatement: string, componentName: string) => {
-    navigator.clipboard.writeText(importStatement);
-    toast.success("Copied to clipboard!", {
-      description: `Component ${componentName} import copied.`,
+    void navigator.clipboard.writeText(importStatement).then(() => {
+      toast.success("Copied to clipboard!", {
+        description: `Component ${componentName} import copied.`,
+      });
     });
   };
 
@@ -136,7 +138,9 @@ const ComponentCopySelect = ({
         {components.map((comp) => (
           <DropdownMenuItem
             key={comp.name}
-            onClick={() => handleCopy(comp.import, comp.name)}
+            onClick={() => {
+              handleCopy(comp.import, comp.name);
+            }}
             className="flex-col items-start p-4 cursor-pointer hover:bg-tertiary"
           >
             <div className="font-semibold text-sm mb-1">{comp.name}</div>
@@ -506,15 +510,17 @@ function ComponentShowcase() {
                     <div className="flex gap-2">
                       <Button
                         size="sm"
-                        onClick={() =>
-                          setProgress(Math.min(100, progress + 10))
-                        }
+                        onClick={() => {
+                          setProgress((prev) => Math.min(100, prev + 10));
+                        }}
                       >
                         +10
                       </Button>
                       <Button
                         size="sm"
-                        onClick={() => setProgress(Math.max(0, progress - 10))}
+                        onClick={() => {
+                          setProgress((prev) => Math.max(0, prev - 10));
+                        }}
                       >
                         -10
                       </Button>
@@ -1268,8 +1274,10 @@ function ComponentShowcase() {
                   ratio={16 / 9}
                   className="bg-muted rounded-md overflow-hidden"
                 >
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                    width={200}
+                    height={200}
                     alt="Photo by Drew Beamer"
                     className="h-full w-full object-cover"
                   />

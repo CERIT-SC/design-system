@@ -1,0 +1,72 @@
+# Dialog
+
+Dialogs display content in an overlay on top of the main page, blocking interaction with the background until closed.
+
+<ComponentPreview>
+<Dialog>
+  <DialogTrigger asChild><Button>Open Dialog</Button></DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you sure?</DialogTitle>
+      <DialogDescription>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button variant="outline">Cancel</Button>
+      <Button>Continue</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@e-infra/design-system'
+
+<Dialog>
+  <DialogTrigger>Open Dialog</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Dialog Title</DialogTitle>
+      <DialogDescription>Dialog description here.</DialogDescription>
+    </DialogHeader>
+    <div>Dialog content</div>
+    <DialogFooter>
+      <Button>Cancel</Button>
+      <Button>Confirm</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Dialog` | Root container |
+| `DialogTrigger` | Element that opens dialog |
+| `DialogContent` | Dialog content wrapper |
+| `DialogHeader` | Header section container |
+| `DialogFooter` | Footer section container |
+| `DialogTitle` | Dialog title |
+| `DialogDescription` | Dialog description |
+| `DialogClose` | Close button |
+| `DialogPortal` | Portal wrapper |
+| `DialogOverlay` | Overlay backdrop |
+
+## Props
+
+### DialogTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native element props |
+
+### DialogContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| showCloseButton | boolean | `true` | Show close button |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |

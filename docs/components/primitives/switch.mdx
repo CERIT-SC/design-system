@@ -1,0 +1,40 @@
+# Switch
+
+Switches toggle between two states (on/off) with a visual toggle thumb. They are commonly used for settings and preferences.
+
+<ComponentPreview>
+<div className="flex flex-col gap-4">
+  <div className="flex items-center gap-3"><Switch id="wifi" /><Label htmlFor="wifi">Wi-Fi</Label></div>
+  <div className="flex items-center gap-3"><Switch id="bluetooth" defaultChecked /><Label htmlFor="bluetooth">Bluetooth</Label></div>
+  <div className="flex items-center gap-3"><Switch id="airplane" disabled /><Label htmlFor="airplane" className="text-muted-foreground">Airplane mode</Label></div>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Switch } from '@e-infra/design-system'
+
+<Switch id="airplane-mode" />
+<Label htmlFor="airplane-mode">Airplane Mode</Label>
+
+<Switch id="notifications" defaultChecked />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| checked | boolean | - | Checked state (controlled) |
+| defaultChecked | boolean | - | Initial checked state (uncontrolled) |
+| disabled | boolean | `false` | Disable the switch |
+| required | boolean | `false` | Require selection |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Switch props |
+
+## State
+
+| State | Visual |
+|-------|--------|
+| Off | Thumb on left, gray track |
+| On | Thumb on right, primary track |

@@ -1,0 +1,58 @@
+# Avatar
+
+Avatars display user profile images or initials as placeholders when images are not available.
+
+<ComponentPreview>
+<div className="flex flex-wrap gap-6 items-center">
+  <Avatar><AvatarImage src="https://github.com/shadcn.png" alt="Avatar" /><AvatarFallback>CN</AvatarFallback></Avatar>
+  <Avatar className="size-12"><AvatarImage src="https://github.com/shadcn.png" alt="Avatar" /><AvatarFallback>JD</AvatarFallback></Avatar>
+  <Avatar className="size-16"><AvatarFallback>MR</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Avatar, AvatarImage, AvatarFallback } from '@e-infra/design-system'
+
+<Avatar>
+  <AvatarImage src="https://github.com/user.png" />
+  <AvatarFallback>JD</AvatarFallback>
+</Avatar>
+
+<Avatar className="h-12 w-12">
+  <AvatarFallback>AB</AvatarFallback>
+</Avatar>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Avatar` | Container component |
+| `AvatarImage` | Image element |
+| `AvatarFallback` | Fallback content (initials/placeholder) |
+
+## Props
+
+### Avatar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Avatar props |
+
+### AvatarImage
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Image props |
+
+### AvatarFallback
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Fallback props |

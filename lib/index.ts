@@ -2,7 +2,7 @@
 export * from "./components";
 
 // Export utilities
-export { cn } from "./lib/utils";
+export * from "./lib/utils";
 
 // Export hooks
 export * from "./hooks";

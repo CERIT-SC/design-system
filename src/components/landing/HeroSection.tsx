@@ -1,7 +1,7 @@
 "use client";
 
-import { BookOpen, ArrowRight, Info } from "lucide-react";
-import { Button } from "../../../lib/components/ui/button";
+import { BookOpen, Info } from "lucide-react";
+import { Button } from "../../../lib/components/primitives/button";
 import { AnimatedBackground } from "./AnimatedBackground";
 import {
   Card,
@@ -9,20 +9,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../lib/components/ui/card";
-import { Skeleton } from "../../../lib/components/ui/skeleton";
+} from "../../../lib/components/primitives/card";
+import { Skeleton } from "../../../lib/components/primitives/skeleton";
 import {
   Panel,
   PanelContent,
   PanelDescription,
   PanelHeader,
   PanelTitle,
-} from "../../../lib/components/ui/panel";
+} from "../../../lib/components/primitives/panel";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "../../../lib/components/ui/alert";
+} from "../../../lib/components/primitives/alert";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -49,16 +50,12 @@ export function HeroSection() {
               e-infrastructure and academic institutions.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <Link href="/docs" className="flex flex-wrap gap-4">
               <Button variant="default" size="lg">
-                <ArrowRight className="w-5 h-5" />
-                Get Started
-              </Button>
-              <Button variant="outline" size="lg">
                 <BookOpen className="w-5 h-5" />
                 Documentation
               </Button>
-            </div>
+            </Link>
           </div>
 
           {/* Hero Preview - Floating Cards */}

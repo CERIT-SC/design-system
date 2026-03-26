@@ -1,0 +1,98 @@
+# Content
+
+Content is a compound layout component that provides a structured container for page content with built-in spacing and typography-based heading primitives.
+
+<ComponentPreview>
+<div className="rounded-lg border border-dashed p-6">
+  <Content>
+    <Content.Heading>Page Title</Content.Heading>
+    <Content.Subheading>Section Heading</Content.Subheading>
+    <Content.Body>
+      <p>This is the main content area. It has built-in spacing and supports both main headings and section subheadings.</p>
+    </Content.Body>
+  </Content>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Content } from '@e-infra/design-system'
+
+<Content>
+  <Content.Heading>Welcome to Our Platform</Content.Heading>
+  <Content.Subheading>Getting Started</Content.Subheading>
+  <Content.Body>
+    <p>Your content here</p>
+  </Content.Body>
+</Content>
+```
+
+### Exported Example
+
+```tsx
+import { ContentExample } from '@e-infra/design-system'
+
+<ContentExample />
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Content` | Main container (div) |
+| `Content.Heading` | Main heading built on `H1` |
+| `Content.Subheading` | Subheading built on `H2` |
+| `Content.Body` | Content body container (div) |
+
+## Props
+
+### Content (Container)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Content children |
+| ...props | React.HTMLAttributes | - | Native div props |
+
+### Content.Heading
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Heading text |
+| ...props | React.HTMLAttributes | - | Native h1 props |
+
+### Content.Subheading
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Subheading text |
+| ...props | React.HTMLAttributes | - | Native h2 props |
+
+### Content.Body
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| children | React.ReactNode | - | Body content |
+| ...props | React.HTMLAttributes | - | Native div props |
+
+## Implementation Details
+
+| Part | Implementation |
+|------|----------------|
+| `Content` | `div` with `space-y-8 py-8 px-4` |
+| `Content.Heading` | wraps the `H1` typography primitive |
+| `Content.Subheading` | wraps the `H2` typography primitive |
+| `Content.Body` | `div` with `space-y-4` |
+
+All parts accept `className` and pass through native HTML attributes for their underlying elements.
+
+## Spacing
+
+| Element | CSS |
+|---------|-----|
+| Container | `space-y-8 py-8 px-4` |
+| Body | `space-y-4` |

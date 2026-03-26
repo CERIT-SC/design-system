@@ -1,0 +1,69 @@
+# Dropdown Menu
+
+Dropdown menus provide a list of actions or options that appear when a trigger element is clicked.
+
+<ComponentPreview>
+<DropdownMenu>
+  <DropdownMenuTrigger asChild><Button variant="outline">Open menu</Button></DropdownMenuTrigger>
+  <DropdownMenuContent className="w-48">
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Log out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@e-infra/design-system'
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button>Open Menu</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Logout</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `DropdownMenu` | Container component |
+| `DropdownMenuTrigger` | Element that opens the menu |
+| `DropdownMenuContent` | Menu items container |
+| `DropdownMenuItem` | Individual menu item |
+| `DropdownMenuSeparator` | Horizontal divider |
+| `DropdownMenuLabel` | Non-interactive label |
+| `DropdownMenuCheckboxItem` | Checkable menu item |
+| `DropdownMenuRadioGroup` | Radio group container |
+| `DropdownMenuRadioItem` | Radio menu item |
+| `DropdownMenuSub` | Submenu container |
+| `DropdownMenuSubTrigger` | Submenu trigger |
+| `DropdownMenuSubContent` | Submenu content |
+
+## Props
+
+### DropdownMenuTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native element props |
+
+### DropdownMenuContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| side | `top` \| `bottom` \| `left` \| `right` | `bottom` | Side to position menu |
+| align | `start` \| `center` \| `end` | `center` | Alignment with trigger |
+| ...props | React.ComponentProps | - | Radix UI Content props |

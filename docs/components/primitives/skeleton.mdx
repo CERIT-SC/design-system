@@ -1,0 +1,47 @@
+# Skeleton
+
+Skeleton screens display content placeholders while data is loading, improving perceived performance.
+
+<ComponentPreview>
+<div className="flex flex-col gap-6 w-full max-w-sm">
+  <div className="flex items-center gap-4">
+    <Skeleton className="size-12 rounded-full" />
+    <div className="flex flex-col gap-2 flex-1">
+      <Skeleton className="h-4 w-3/4" />
+      <Skeleton className="h-3 w-1/2" />
+    </div>
+  </div>
+  <Skeleton className="h-32 w-full rounded-lg" />
+  <div className="flex flex-col gap-2">
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-5/6" />
+    <Skeleton className="h-4 w-4/6" />
+  </div>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Skeleton } from '@e-infra/design-system'
+
+<Skeleton className="h-12 w-full" />
+<Skeleton className="h-4 w-3/4" />
+<Skeleton className="h-24 w-24 rounded-full" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |
+
+## Usage Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| `h-12 w-full` | Full-width text line |
+| `h-4 w-3/4` | Partial text line |
+| `h-24 w-24 rounded-full` | Circular avatar/image |
+| `h-48 w-full rounded-lg` | Image card |

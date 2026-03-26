@@ -1,0 +1,80 @@
+# Cookies Banner
+
+Cookies Banner is a fixed consent banner displayed at the bottom of the viewport. It presents a short cookie message, an optional learn-more link, and three actions for rejecting cookies, allowing only functional cookies, or accepting all cookies.
+
+<ComponentPreview>
+  <div className="rounded-lg border border-dashed p-6">
+    <CookiesBanner
+      className="static rounded-lg border shadow-none"
+      onReject={() => console.log("Reject clicked")}
+      onFunctional={() => console.log("Only Functional clicked")}
+      onAccept={() => console.log("Accept All clicked")}
+    />
+  </div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { CookiesBanner } from "@e-infra/design-system"
+
+<CookiesBanner
+  onReject={() => rejectCookies()}
+  onFunctional={() => allowFunctionalCookies()}
+  onAccept={() => acceptAllCookies()}
+/>
+```
+
+### Custom Content
+
+```tsx
+<CookiesBanner
+  message={
+    <>
+      <strong>We use cookies</strong> to personalize content and measure usage.{' '}
+    </>
+  }
+  learnMoreLink={<a href="/privacy">Read policy</a>}
+  onAccept={() => acceptAllCookies()}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| message | `React.ReactNode` | standard cookie consent message | Main banner content |
+| learnMoreLink | `React.ReactNode` | anchor linking to `/cookies` | Link rendered after the message |
+| onReject | `() => void` | - | Called when the `Reject` button is clicked |
+| onFunctional | `() => void` | - | Called when the `Only Functional` button is clicked |
+| onAccept | `() => void` | - | Called when the `Accept All` button is clicked |
+| className | `string` | - | Additional classes merged onto the outer banner container |
+| ...props | `React.ComponentProps<"div">` | - | Native `div` props applied to the outer container |
+
+## Structure
+
+| Part | Details |
+|------|---------|
+| Outer container | Fixed bottom bar with `bg-card`, top border, shadow, and high z-index |
+| Inner wrapper | Centered container with `px-4 py-4` spacing |
+| Content layout | Stacks vertically on mobile and switches to horizontal on `sm:` |
+| Message area | Uses the `Small` typography primitive with foreground text override |
+| Actions | Three compact buttons aligned in a row with `gap-2` |
+
+## Actions
+
+| Action | Variant | Purpose |
+|--------|---------|---------|
+| Reject | `ghost` | Declines non-essential cookies |
+| Only Functional | `ghost` | Accepts only required cookies |
+| Accept All | `default` | Accepts all cookies |
+
+## Behavior
+
+| Behavior | Details |
+|----------|---------|
+| Positioning | Fixed to the bottom of the viewport by default |
+| Responsiveness | Vertical layout on small screens, horizontal layout from `sm:` upward |
+| Message customization | Both the text content and the learn-more link can be replaced |
+| Styling override | `className` can be used to adapt positioning or appearance in special contexts such as docs previews |
+| Event handling | Buttons are passive until callbacks are provided |

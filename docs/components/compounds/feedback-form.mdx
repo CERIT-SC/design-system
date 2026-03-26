@@ -1,0 +1,137 @@
+# Feedback Form
+
+Feedback Form is a floating feedback entry point with an embedded modal for collecting satisfaction and optional recommendations. It supports both controlled and uncontrolled open state, async submission, success and error states, and optional auto-close after successful submission.
+
+<ComponentPreview>
+<div className="min-h-48 flex items-center justify-center rounded-lg border border-dashed p-8 text-center">
+	<div className="max-w-md space-y-3">
+		<p className="text-sm font-medium">Interactive preview</p>
+		<p className="text-sm text-muted-foreground">
+			The component renders a fixed floating trigger button. In docs, use the live
+			preview in the right bottom corner to test the opening, submission, success,
+			and error flows.
+		</p>
+		<FeedbackForm
+			onSubmit={async () => {
+				await new Promise((resolve) => setTimeout(resolve, 1000));
+				return { success: true, message: "Thank you for your feedback!" };
+			}}
+		/>
+	</div>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { FeedbackForm } from "@e-infra/design-system"
+
+<FeedbackForm
+	onSubmit={async (data) => {
+		await submitFeedback(data)
+		return {
+			success: true,
+			message: "Thank you for your feedback!",
+		}
+	}}
+/>
+```
+
+### Controlled Usage
+
+```tsx
+const [isOpen, setIsOpen] = useState(false)
+
+<>
+	<button onClick={() => setIsOpen(true)}>Open feedback</button>
+	<FeedbackForm
+		isOpen={isOpen}
+		showFeedbackButton={false}
+		onOpen={() => setIsOpen(true)}
+		onClose={() => setIsOpen(false)}
+		onSubmit={async (data) => {
+			await submitFeedback(data)
+			return { success: true, message: "Saved" }
+		}}
+	/>
+</>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| isOpen | `boolean` | uncontrolled | Controls modal visibility externally |
+| onOpen | `() => void` | - | Called when the form is opened |
+| onClose | `() => void` | - | Called when the form is closed |
+| onSubmit | `(data: { satisfaction?: "yes" \| "no"; recommendations?: string }) => Promise<{ success: boolean; message: string }>` | - | Async submit handler returning success state and message |
+| title | `React.ReactNode` | `"Leave us Feedback"` | Modal title |
+| description | `React.ReactNode` | `"Help us improve by sharing your experience."` | Modal description |
+| satisfactionLabel | `React.ReactNode` | `"Were you satisfied?"` | Label above the yes/no buttons |
+| recommendationsLabel | `React.ReactNode` | `"Do you have any recommendations for improving? If you are open to follow-up, please leave your contact details."` | Label above the textarea |
+| recommendationsPlaceholder | `string` | `"Share your thoughts..."` | Placeholder for the textarea |
+| submitButtonText | `string` | `"Submit Feedback"` | Submit button label |
+| successMessage | `React.ReactNode` | success state UI with icon and thank-you text | Custom success content shown after submit |
+| showFeedbackButton | `boolean` | `true` | Shows or hides the floating feedback trigger |
+| feedbackButtonPosition | `"bottom-right" \| "bottom-left"` | `"bottom-right"` | Floating button placement |
+| autoCloseOnSuccess | `boolean` | `true` | Automatically closes the modal after successful submission |
+| autoCloseDelay | `number` | `3000` | Delay before auto-close in milliseconds |
+
+## Behavior
+
+| Behavior | Details |
+|----------|---------|
+| Trigger button | Fixed circular button with hover expansion and `Leave feedback?` label |
+| Satisfaction input | Two-button yes/no selection stored as `"yes"` or `"no"` |
+| Recommendations input | Multiline textarea with 4 rows |
+| Submit state | Shows loading spinner and disables the submit button while waiting |
+| Success state | Replaces form body with success content |
+| Error state | Displays an error alert with message returned from `onSubmit` |
+| Auto-close progress | Shows a top progress bar while waiting to close after success |
+| Mobile layout | Bottom sheet style on small screens with backdrop |
+| Desktop layout | Floating panel aligned near bottom-right of the viewport |
+
+## Examples
+
+### Custom Content
+
+```tsx
+<FeedbackForm
+	title="Share Your Thoughts"
+	description="We value your opinion and would love to hear from you."
+	satisfactionLabel="Did you find what you were looking for?"
+	recommendationsLabel="How can we make this better for you?"
+	recommendationsPlaceholder="Tell us what you think..."
+	submitButtonText="Send Feedback"
+	onSubmit={async (data) => {
+		await submitFeedback(data)
+		return { success: true, message: "Saved" }
+	}}
+/>
+```
+
+### Left-Aligned Trigger
+
+```tsx
+<FeedbackForm
+	feedbackButtonPosition="bottom-left"
+	onSubmit={async (data) => {
+		await submitFeedback(data)
+		return { success: true, message: "Saved" }
+	}}
+/>
+```
+
+### Without Floating Button
+
+```tsx
+<FeedbackForm
+	isOpen={true}
+	showFeedbackButton={false}
+	onClose={() => setOpen(false)}
+	onSubmit={async (data) => {
+		await submitFeedback(data)
+		return { success: true, message: "Saved" }
+	}}
+/>
+```

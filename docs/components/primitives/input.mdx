@@ -1,0 +1,47 @@
+# Input
+
+Inputs allow users to enter text data. They support various input types and validation states.
+
+<ComponentPreview>
+<div className="flex flex-col gap-4 w-full max-w-sm">
+  <Input type="text" placeholder="Enter your name" />
+  <Input type="email" placeholder="Enter your email" />
+  <Input type="password" placeholder="Enter password" />
+  <Input disabled placeholder="Disabled input" />
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Input } from '@e-infra/design-system'
+
+<Input type="text" placeholder="Enter text" />
+<Input type="email" placeholder="Enter email" />
+<Input type="password" placeholder="Enter password" />
+<Input disabled placeholder="Disabled input" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| type | string | `text` | Input type attribute |
+| value | string | - | Value (controlled) |
+| defaultValue | string | - | Initial value (uncontrolled) |
+| placeholder | string | - | Placeholder text |
+| disabled | boolean | `false` | Disable the input |
+| className | string | - | Additional CSS classes |
+| ...props | React.InputHTMLAttributes | - | Native input props |
+
+## Input Types
+
+| Type | Description |
+|------|-------------|
+| `text` | Standard text input |
+| `email` | Email address input |
+| `password` | Password input |
+| `number` | Number input |
+| `tel` | Telephone number input |
+| `url` | URL input |
+| `search` | Search input |
