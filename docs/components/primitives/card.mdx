@@ -1,0 +1,71 @@
+# Card
+
+Cards display related content and actions in a structured container with header, body, and footer sections.
+
+<ComponentPreview>
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl">
+  <Card>
+    <CardHeader>
+      <CardTitle>Design System</CardTitle>
+      <CardDescription>A set of reusable UI components.</CardDescription>
+    </CardHeader>
+    <CardContent><p className="text-sm text-muted-foreground">Build beautiful interfaces with consistent design tokens.</p></CardContent>
+    <CardFooter><Button size="sm">Learn more</Button></CardFooter>
+  </Card>
+  <Card>
+    <CardHeader>
+      <CardTitle>Components</CardTitle>
+      <CardDescription>Over 30 accessible components.</CardDescription>
+    </CardHeader>
+    <CardContent><p className="text-sm text-muted-foreground">Fully styled, dark mode ready, and keyboard navigable.</p></CardContent>
+    <CardFooter><Button size="sm" variant="outline">Browse</Button></CardFooter>
+  </Card>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@e-infra/design-system'
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content goes here.</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Card` | Main container |
+| `CardHeader` | Header section |
+| `CardFooter` | Footer section |
+| `CardTitle` | Title element |
+| `CardDescription` | Description element |
+| `CardContent` | Content area |
+| `CardAction` | Action area |
+
+## Props
+
+### Card
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |
+
+### CardHeader/CardFooter/CardContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native div props |

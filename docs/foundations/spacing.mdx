@@ -1,0 +1,146 @@
+# Spacing
+
+Spacing tokens are defined per breakpoint — Phone, Tablet, Desktop, and XL — so layouts breathe correctly at every screen size. All values follow an 8px base grid.
+
+## Breakpoints
+
+<ComponentPreview>
+<div className="w-full overflow-x-auto">
+  <div className="flex items-end gap-3 min-w-[640px]">
+    <div className="flex flex-col items-center gap-2 flex-1">
+      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "80px"}}>Phone</div>
+      <span className="text-xs text-muted-foreground">&lt; 768px</span>
+    </div>
+    <div className="flex flex-col items-center gap-2 flex-1">
+      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "104px"}}>Tablet</div>
+      <span className="text-xs text-muted-foreground">768px – 1023px</span>
+    </div>
+    <div className="flex flex-col items-center gap-2 flex-1">
+      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "128px"}}>Desktop</div>
+      <span className="text-xs text-muted-foreground">1024px – 1279px</span>
+    </div>
+    <div className="flex flex-col items-center gap-2 flex-1">
+      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "160px"}}>XL</div>
+      <span className="text-xs text-muted-foreground">≥ 1280px</span>
+    </div>
+  </div>
+</div>
+</ComponentPreview>
+
+| Breakpoint | Min Width | Tailwind Prefix | Columns | Gutter | Margin |
+|------------|-----------|-----------------|---------|--------|--------|
+| Phone | — | _(default)_ | 4 | 16px (`gap-4`) | 16px (`px-4`) |
+| Tablet | 768px | `md:` | 8 | 24px (`gap-6`) | 24px (`px-6`) |
+| Desktop | 1024px | `lg:` | 12 | 32px (`gap-8`) | 32px (`px-8`) |
+| XL | 1280px | `xl:` | 12 | 32px (`gap-8`) | 64px (`px-16`) |
+
+## Spacing Tokens per Breakpoint
+
+### Phone `< 768px`
+
+<ComponentPreview>
+<div className="flex flex-col gap-2 w-full max-w-sm">
+  <div className="p-2 bg-secondary rounded text-xs">token-space-1 — 8px</div>
+  <div className="p-4 bg-secondary rounded text-xs">token-space-2 — 16px</div>
+  <div className="p-6 bg-secondary rounded text-xs">token-space-3 — 24px</div>
+  <div className="p-8 bg-secondary rounded text-xs">token-space-4 — 32px</div>
+</div>
+</ComponentPreview>
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| `token-space-1` | 8px | `p-2`, `gap-2` | Inner component padding |
+| `token-space-2` | 16px | `p-4`, `gap-4` | Section gutter / default margin |
+| `token-space-3` | 24px | `p-6`, `gap-6` | Card / panel padding |
+| `token-space-4` | 32px | `p-8`, `gap-8` | Section vertical rhythm |
+
+### Tablet `md:` — 768px+
+
+<ComponentPreview>
+<div className="flex flex-col gap-2 w-full">
+  <div className="p-3 bg-secondary rounded text-xs">token-space-1 — 12px</div>
+  <div className="p-6 bg-secondary rounded text-xs">token-space-2 — 24px</div>
+  <div className="p-8 bg-secondary rounded text-xs">token-space-3 — 32px</div>
+  <div className="p-12 bg-secondary rounded text-xs">token-space-4 — 48px</div>
+</div>
+</ComponentPreview>
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| `token-space-1` | 12px | `md:p-3`, `md:gap-3` | Inner component padding |
+| `token-space-2` | 24px | `md:p-6`, `md:gap-6` | Section gutter / default margin |
+| `token-space-3` | 32px | `md:p-8`, `md:gap-8` | Card / panel padding |
+| `token-space-4` | 48px | `md:p-12`, `md:gap-12` | Section vertical rhythm |
+
+### Desktop `lg:` — 1024px+
+
+<ComponentPreview>
+<div className="flex flex-col gap-2 w-full">
+  <div className="p-4 bg-secondary rounded text-xs">token-space-1 — 16px</div>
+  <div className="p-8 bg-secondary rounded text-xs">token-space-2 — 32px</div>
+  <div className="p-12 bg-secondary rounded text-xs">token-space-3 — 48px</div>
+  <div className="p-16 bg-secondary rounded text-xs">token-space-4 — 64px</div>
+</div>
+</ComponentPreview>
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| `token-space-1` | 16px | `lg:p-4`, `lg:gap-4` | Inner component padding |
+| `token-space-2` | 32px | `lg:p-8`, `lg:gap-8` | Section gutter / default margin |
+| `token-space-3` | 48px | `lg:p-12`, `lg:gap-12` | Card / panel padding |
+| `token-space-4` | 64px | `lg:p-16`, `lg:gap-16` | Section vertical rhythm |
+
+### XL `xl:` — 1280px+
+
+<ComponentPreview>
+<div className="flex flex-col gap-2 w-full">
+  <div className="p-6 bg-secondary rounded text-xs">token-space-1 — 24px</div>
+  <div className="p-12 bg-secondary rounded text-xs">token-space-2 — 48px</div>
+  <div className="p-16 bg-secondary rounded text-xs">token-space-3 — 64px</div>
+  <div className="p-24 bg-secondary rounded text-xs">token-space-4 — 96px</div>
+</div>
+</ComponentPreview>
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| `token-space-1` | 24px | `xl:p-6`, `xl:gap-6` | Inner component padding |
+| `token-space-2` | 48px | `xl:p-12`, `xl:gap-12` | Section gutter / default margin |
+| `token-space-3` | 64px | `xl:p-16`, `xl:gap-16` | Card / panel padding |
+| `token-space-4` | 96px | `xl:p-24`, `xl:gap-24` | Section vertical rhythm |
+
+## Usage
+
+Apply spacing tokens responsively using Tailwind's breakpoint prefixes:
+
+```tsx
+{/* Page margin — grows with viewport */}
+<main className="px-4 md:px-6 lg:px-8 xl:px-16">
+
+{/* Card padding */}
+<div className="p-6 md:p-8 lg:p-12">
+
+{/* Section vertical rhythm */}
+<section className="py-8 md:py-12 lg:py-16 xl:py-24">
+
+{/* Component grid gutter */}
+<div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
+```
+
+## Base Spacing Scale
+
+All tokens above are derived from the following primitive scale (8px base grid):
+
+| Step | Value (px) | Value (rem) | Tailwind Class |
+|------|------------|-------------|----------------|
+| 1 | 4px | 0.25rem | `p-1`, `m-1`, `gap-1` |
+| 2 | 8px | 0.5rem | `p-2`, `m-2`, `gap-2` |
+| 3 | 12px | 0.75rem | `p-3`, `m-3`, `gap-3` |
+| 4 | 16px | 1rem | `p-4`, `m-4`, `gap-4` |
+| 6 | 24px | 1.5rem | `p-6`, `m-6`, `gap-6` |
+| 8 | 32px | 2rem | `p-8`, `m-8`, `gap-8` |
+| 12 | 48px | 3rem | `p-12`, `m-12`, `gap-12` |
+| 16 | 64px | 4rem | `p-16`, `m-16`, `gap-16` |
+| 20 | 80px | 5rem | `p-20`, `m-20`, `gap-20` |
+| 24 | 96px | 6rem | `p-24`, `m-24`, `gap-24` |
+| 32 | 128px | 8rem | `p-32`, `m-32`, `gap-32` |
+| 40 | 160px | 10rem | `p-40`, `m-40`, `gap-40` |

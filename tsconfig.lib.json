@@ -49,7 +49,7 @@
     "alwaysStrict": true,
     "exactOptionalPropertyTypes": false,
 
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./lib/*"]
     }

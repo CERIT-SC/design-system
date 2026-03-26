@@ -1,15 +1,15 @@
 "use client";
 
-import { Button } from "../../../lib/components/ui/button";
-import { Badge } from "../../../lib/components/ui/badge";
-import { Input } from "../../../lib/components/ui/input";
-import { Label } from "../../../lib/components/ui/label";
-import { Checkbox } from "../../../lib/components/ui/checkbox";
+import { Button } from "../../../lib/components/primitives/button";
+import { Badge } from "../../../lib/components/primitives/badge";
+import { Input } from "../../../lib/components/primitives/input";
+import { Label } from "../../../lib/components/primitives/label";
+import { Checkbox } from "../../../lib/components/primitives/checkbox";
 import {
   Alert,
   AlertTitle,
   AlertDescription,
-} from "../../../lib/components/ui/alert";
+} from "../../../lib/components/primitives/alert";
 import {
   Table,
   TableBody,
@@ -17,32 +17,35 @@ import {
   TableHeader,
   TableRow,
   TableCell,
-} from "../../../lib/components/ui/table";
+} from "../../../lib/components/primitives/table";
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "../../../lib/components/ui/tabs";
+} from "../../../lib/components/primitives/tabs";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "../../../lib/components/ui/breadcrumb";
+} from "../../../lib/components/primitives/breadcrumb";
 import {
   Panel,
   PanelHeader,
   PanelTitle,
   PanelDescription,
   PanelContent,
-} from "../../../lib/components/ui/panel";
+} from "../../../lib/components/primitives/panel";
 
 import { Info, CheckCircle, ChevronRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Avatar } from "../../../lib/components/ui/avatar";
-import { AvatarImage, AvatarFallback } from "../../../lib/components/ui/avatar";
+import { Avatar } from "../../../lib/components/primitives/avatar";
+import {
+  AvatarImage,
+  AvatarFallback,
+} from "../../../lib/components/primitives/avatar";
 
 export function ComponentsShowcase() {
   return (

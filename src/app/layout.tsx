@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { Header } from "../../lib/components/layout/header";
+import Image from "next/image";
+import {
+  Header,
+  HeaderContent,
+  HeaderLeft,
+  HeaderRight,
+} from "../../lib/components/layout/header";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../../lib/components/primitives/navigation-menu";
 import { Footer } from "../../lib/components/layout/footer";
+import EinfraLogo from "../../public/e-INFRA_logo_RGB_lilek.png";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +33,39 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header
-          variant="navigation"
-          navigationItems={[
-            { label: "Components Overview", href: "/components-overview" },
-            { label: "Design Guidelines", href: "/design-guidelines" },
-            { label: "Docs", href: "/docs" },
-          ]}
-        />
+        <Header>
+          <HeaderContent container={false}>
+            <HeaderLeft>
+              <Link href="/" className="flex items-center gap-2">
+                <Image
+                  src={EinfraLogo}
+                  alt="e-INFRA Logo"
+                  width={120}
+                  height={40}
+                  className="h-20 w-auto"
+                />
+              </Link>
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="/">Home</NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="/docs/foundations">
+                      Foundations
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink href="/docs/components">
+                      Components
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </HeaderLeft>
+            <HeaderRight>{/* Additional actions can go here */}</HeaderRight>
+          </HeaderContent>
+        </Header>
         {children}
         <Footer></Footer>
       </body>

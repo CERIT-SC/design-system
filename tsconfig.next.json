@@ -43,7 +43,7 @@
     "alwaysStrict": true,
     "exactOptionalPropertyTypes": false,
 
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./lib/*"],
       "@/components/*": ["./lib/components/*"],
@@ -51,12 +51,19 @@
       "@/lib/*": ["./lib/lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "src", "lib"],
+  "include": [
+    "global.d.ts",
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    ".storybook/**/*.ts",
+    "next.config.ts",
+    "postcss.config.js"
+  ],
   "exclude": [
-    "node_modules",
-    "dist",
     "**/*.stories.tsx",
     "**/*.stories.ts",
-    "*.config.ts"
   ]
 }

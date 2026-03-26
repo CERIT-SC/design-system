@@ -1,0 +1,217 @@
+# Sidebar
+
+Sidebar is a composable navigation container with support for header, content, and footer sections. It includes navigation items and collapsible groups for organizing navigation links.
+
+<ComponentPreview>
+<div className="flex flex-row gap-8">
+<Sidebar className="h-92">
+  <SidebarHeader>
+    <div className=" font-semibold">Default Sidebar</div>
+  </SidebarHeader>
+  <SidebarContent>
+    <CollapsibleGroup title="Navigation" defaultOpen={true}>
+      <NavItem href="/" isActive>Home</NavItem>
+      <NavItem href="/docs">Documentation</NavItem>
+      <NavItem href="/settings">Settings</NavItem>
+    </CollapsibleGroup>
+  </SidebarContent>
+  <SidebarFooter>
+    <div className="px-4 py-2 text-sm text-muted-foreground">v1.0.0</div>
+  </SidebarFooter>
+</Sidebar>
+<Sidebar className="h-92 bg-linear-to-br from-tertiary to-secondary">
+        <SidebarHeader className="">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold">Custom Colored Sidebar</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Navigation" defaultOpen={true}>
+            <NavItem
+              href="/"
+              className="hover:bg-primary hover:text-primary-foreground"
+            >
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </NavItem>
+            <NavItem
+              href="/docs"
+              className="hover:bg-primary hover:text-primary-foreground"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Documentation</span>
+            </NavItem>
+            <NavItem
+              href="/settings"
+              className="hover:bg-primary hover:text-primary-foreground"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+        <SidebarFooter>
+          <div className="flex items-center gap-2">
+            
+            <div className="flex flex-col">
+              <span className="text-xs font-medium">John Doe</span>
+              <span className="text-xs">john@example.com</span>
+            </div>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      </div>
+</ComponentPreview>
+
+## Usage - Default Sidebar
+
+```tsx
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  NavItem,
+  CollapsibleGroup,
+} from '@e-infra/design-system'
+
+<Sidebar>
+  <SidebarHeader>
+    <div className=" font-semibold">Default Sidebar</div>
+  </SidebarHeader>
+  <SidebarContent>
+    <CollapsibleGroup title="Navigation" defaultOpen={true}>
+      <NavItem href="/" isActive>Home</NavItem>
+      <NavItem href="/docs">Documentation</NavItem>
+      <NavItem href="/settings">Settings</NavItem>
+    </CollapsibleGroup>
+  </SidebarContent>
+  <SidebarFooter>
+    <div className="px-4 py-2 text-sm text-muted-foreground">v1.0.0</div>
+  </SidebarFooter>
+</Sidebar>
+```
+
+## Usage - Custom Sidebar
+
+```tsx
+<Sidebar className="bg-linear-to-br from-tertiary to-secondary">
+  <SidebarHeader className="">
+    <div className="flex items-center gap-2">
+      <span className="font-semibold">Custom Colored Sidebar</span>
+    </div>
+  </SidebarHeader>
+  <SidebarContent>
+    <CollapsibleGroup title="Navigation" defaultOpen={true}>
+      <NavItem
+        href="/"
+        className="hover:bg-primary hover:text-primary-foreground"
+      >
+        <Home className="h-4 w-4" />
+        <span>Home</span>
+      </NavItem>
+      <NavItem
+        href="/docs"
+        className="hover:bg-primary hover:text-primary-foreground"
+      >
+        <FileText className="h-4 w-4" />
+        <span>Documentation</span>
+      </NavItem>
+      <NavItem
+        href="/settings"
+        className="hover:bg-primary hover:text-primary-foreground"
+      >
+        <Settings className="h-4 w-4" />
+        <span>Settings</span>
+      </NavItem>
+    </CollapsibleGroup>
+  </SidebarContent>
+  <SidebarFooter>
+    <div className="flex items-center gap-2">        
+      <div className="flex flex-col">
+        <span className="text-xs font-medium">John Doe</span>
+        <span className="text-xs">john@example.com</span>
+      </div>
+    </div>
+  </SidebarFooter>
+</Sidebar>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Sidebar` | Main sidebar container with sticky positioning |
+| `SidebarHeader` | Header area inside sidebar with bottom border |
+| `SidebarContent` | Scrollable content area |
+| `SidebarFooter` | Footer area inside sidebar with top border |
+| `NavItem` | Navigation link item with active state support |
+| `CollapsibleGroup` | Collapsible section for grouping navigation items |
+
+## Props
+
+### Sidebar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+### SidebarHeader
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+### SidebarContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+### SidebarFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+### NavItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | `boolean` | `false` | Use child element as the anchor |
+| isActive | `boolean` | `false` | Whether the item is active |
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.AnchorHTMLAttributes<HTMLAnchorElement>` | - | Native anchor props |
+
+### CollapsibleGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | - | Group title displayed in trigger |
+| defaultOpen | `boolean` | `false` | Whether the group is open by default |
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+## Styling
+
+The sidebar uses the following default styles:
+
+- **Width**: 72 (18rem / 288px)
+- **Position**: Sticky at top
+- **Height**: Full viewport height
+- **Background**: `bg-sidebar/50` (semi-transparent sidebar color)
+- **Text**: `text-sidebar-foreground`
+- **Shadow**: Right-side shadow for depth
+
+## Behavior
+
+| Feature | Details |
+|---------|---------|
+| Sticky positioning | Sidebar stays fixed while scrolling |
+| Active states | `NavItem` supports `isActive` prop for styling active links |
+| Collapsible groups | `CollapsibleGroup` uses Radix UI Collapsible for smooth animations |
+| Flexible content | Header, content, and footer areas can contain any React children |

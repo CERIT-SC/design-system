@@ -1,0 +1,57 @@
+# Radio Group
+
+Radio groups allow users to select exactly one option from a set of mutually exclusive choices.
+
+<ComponentPreview>
+<RadioGroup defaultValue="option-1">
+  <div className="flex items-center gap-2"><RadioGroupItem id="r1" value="option-1" /><Label htmlFor="r1">Option 1</Label></div>
+  <div className="flex items-center gap-2"><RadioGroupItem id="r2" value="option-2" /><Label htmlFor="r2">Option 2</Label></div>
+  <div className="flex items-center gap-2"><RadioGroupItem id="r3" value="option-3" /><Label htmlFor="r3">Option 3</Label></div>
+</RadioGroup>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { RadioGroup, RadioGroupItem } from '@e-infra/design-system'
+
+<RadioGroup defaultValue="option-1">
+  <div className="flex items-center space-x-2">
+    <RadioGroupItem id="option-1" value="option-1" />
+    <Label htmlFor="option-1">Option 1</Label>
+  </div>
+  <div className="flex items-center space-x-2">
+    <RadioGroupItem id="option-2" value="option-2" />
+    <Label htmlFor="option-2">Option 2</Label>
+  </div>
+</RadioGroup>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `RadioGroup` | Container component |
+| `RadioGroupItem` | Individual radio button |
+
+## Props
+
+### RadioGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | - | Selected value (controlled) |
+| defaultValue | string | - | Initial selected value (uncontrolled) |
+| onValueChange | (value: string) => void | - | Callback when value changes |
+| disabled | boolean | `false` | Disable the group |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI RadioGroup props |
+
+### RadioGroupItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | - | Value for this option (required) |
+| disabled | boolean | `false` | Disable this option |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Item props |

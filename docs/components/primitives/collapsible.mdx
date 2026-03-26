@@ -1,0 +1,67 @@
+# Collapsible
+
+Collapsible components allow users to show and hide content sections with smooth animations.
+
+<ComponentPreview>
+<div className="w-full max-w-sm">
+  <Collapsible>
+    <div className="flex items-center justify-between mb-2">
+      <p className="text-sm font-semibold">Starred repositories</p>
+      <CollapsibleTrigger asChild><Button variant="ghost" size="sm">Toggle</Button></CollapsibleTrigger>
+    </div>
+    <div className="rounded-md border border-border px-4 py-3 text-sm">@radix-ui/primitives</div>
+    <CollapsibleContent>
+      <div className="mt-2 space-y-2">
+        <div className="rounded-md border border-border px-4 py-3 text-sm">@radix-ui/colors</div>
+        <div className="rounded-md border border-border px-4 py-3 text-sm">@stitches/react</div>
+      </div>
+    </CollapsibleContent>
+  </Collapsible>
+</div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@e-infra/design-system'
+
+<Collapsible>
+  <CollapsibleTrigger>Toggle content</CollapsibleTrigger>
+  <CollapsibleContent>
+    <p>This content can be shown or hidden.</p>
+  </CollapsibleContent>
+</Collapsible>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Collapsible` | Container component |
+| `CollapsibleTrigger` | Element that toggles visibility |
+| `CollapsibleContent` | Content to show/hide |
+
+## Props
+
+### Collapsible
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| open | boolean | - | Open state (controlled) |
+| defaultOpen | boolean | - | Initial open state (uncontrolled) |
+| onOpenChange | (open: boolean) => void | - | Callback when open state changes |
+| ...props | React.ComponentProps | - | Radix UI Collapsible props |
+
+### CollapsibleTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | boolean | `false` | Render as child component |
+| ...props | React.HTMLAttributes | - | Native element props |
+
+### CollapsibleContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |

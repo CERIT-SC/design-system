@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardContent,
   CardTitle,
-} from "../../../lib/components/ui/card";
+} from "../../../lib/components/primitives/card";
 
 const features = [
   {

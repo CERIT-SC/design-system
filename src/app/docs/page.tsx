@@ -1,39 +1,33 @@
-"use client";
+import Link from "next/link";
+import { Content } from "../../../lib/components/layout/content";
+import { buildDocsNavStructure } from "../../lib/docs-nav";
 
-import * as React from "react";
-import { DocsHeader } from "../../components/docs_/DocsHeader";
-import { DocsSection } from "../../components/docs_/DocsSection";
-import { DocsFooter } from "../../components/docs_/DocsFooter";
-import { ButtonDoc } from "../../components/docs_/components/primitives/ButtonDoc";
-import { BreadcrumbDoc } from "../../components/docs_/components/primitives/BreadcrumbDoc";
-import { CheckboxDoc } from "../../components/docs_/components/primitives/CheckboxDoc";
-import { FeedbackFormDoc } from "../../components/docs_/components/composed/FeedbackFormDoc";
-
-export default function DocsPage() {
-  const navigationLinks = [
-    { id: "button", label: "Button", category: "Primitives" },
-    { id: "breadcrumb", label: "Breadcrumb", category: "Primitives" },
-    { id: "checkbox", label: "Checkbox", category: "Primitives" },
-    { id: "feedbackform", label: "FeedbackForm", category: "Composed" },
-  ];
+export default function DocsIndexPage() {
+  // Auto-generated from the /docs directory — no manual updates needed.
+  const sections = buildDocsNavStructure();
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8 max-w-5xl">
-        <DocsHeader navigationLinks={navigationLinks} />
-
-        <DocsSection category="Primitives">
-          <ButtonDoc />
-          <BreadcrumbDoc />
-          <CheckboxDoc />
-        </DocsSection>
-
-        <DocsSection category="Composed">
-          <FeedbackFormDoc />
-        </DocsSection>
-
-        <DocsFooter />
-      </div>
-    </div>
+    <Content>
+      <Content.Heading>Documentation</Content.Heading>
+      <Content.Body>
+        {sections.map((section) => (
+          <div key={section.slug} className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
+            <ul className="space-y-2">
+              {section.items.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    href={item.path}
+                    className="text-primary hover:underline"
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </Content.Body>
+    </Content>
   );
 }

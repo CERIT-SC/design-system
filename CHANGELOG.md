@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.0.9
+
+## v0.0.8
+
+- Major changes
+
 ## v0.0.7
 
 - Migrate showcase app to Next.js

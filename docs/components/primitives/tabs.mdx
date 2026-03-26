@@ -1,0 +1,85 @@
+# Tabs
+
+Tabs organize content into multiple sections that can be toggled to reveal different content while keeping the same container.
+
+<ComponentPreview>
+<Tabs defaultValue="account" className="w-full max-w-md">
+  <TabsList className="grid w-full grid-cols-2">
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    <Card>
+      <CardHeader>
+        <CardTitle>Account</CardTitle>
+        <CardDescription>Make changes to your account here.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1.5"><Label htmlFor="username">Username</Label><Input id="username" defaultValue="@shadcn" /></div>
+      </CardContent>
+      <CardFooter><Button>Save changes</Button></CardFooter>
+    </Card>
+  </TabsContent>
+  <TabsContent value="password">
+    <Card>
+      <CardHeader>
+        <CardTitle>Password</CardTitle>
+        <CardDescription>Change your password here.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1.5"><Label htmlFor="current">Current password</Label><Input id="current" type="password" /></div>
+        <div className="flex flex-col gap-1.5"><Label htmlFor="new-pass">New password</Label><Input id="new-pass" type="password" /></div>
+      </CardContent>
+      <CardFooter><Button>Save password</Button></CardFooter>
+    </Card>
+  </TabsContent>
+</Tabs>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@e-infra/design-system'
+
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    Make changes to your account here.
+  </TabsContent>
+  <TabsContent value="password">
+    Change your password here.
+  </TabsContent>
+</Tabs>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Tabs` | Container component |
+| `TabsList` | Container for tab triggers |
+| `TabsTrigger` | Clickable tab button |
+| `TabsContent` | Content for each tab |
+
+## Props
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultValue | string | - | Default active tab (uncontrolled) |
+| value | string | - | Active tab (controlled) |
+| onValueChange | (value: string) => void | - | Callback when tab changes |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Tabs props |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | string | - | Tab value (required) |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Trigger props |

@@ -1,0 +1,92 @@
+# Menubar
+
+Menubars provide a traditional application menu bar at the top of the screen.
+
+<ComponentPreview>
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New Tab</MenubarItem>
+      <MenubarItem>New Window</MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Print</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+  <MenubarMenu>
+    <MenubarTrigger>Edit</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>Undo</MenubarItem>
+      <MenubarItem>Redo</MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Cut</MenubarItem>
+      <MenubarItem>Copy</MenubarItem>
+      <MenubarItem>Paste</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+  <MenubarMenu>
+    <MenubarTrigger>View</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>Zoom In</MenubarItem>
+      <MenubarItem>Zoom Out</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarLabel } from '@e-infra/design-system'
+
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New</MenubarItem>
+      <MenubarItem>Open</MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Exit</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Menubar` | Root container |
+| `MenubarMenu` | Menu container |
+| `MenubarTrigger` | Menu trigger button |
+| `MenubarContent` | Menu content |
+| `MenubarItem` | Menu item |
+| `MenubarCheckboxItem` | Checkable item |
+| `MenubarRadioItem` | Radio item |
+| `MenubarLabel` | Non-interactive label |
+| `MenubarSeparator` | Horizontal divider |
+| `MenubarShortcut` | Keyboard shortcut |
+| `MenubarGroup` | Item group |
+| `MenubarPortal` | Portal wrapper |
+| `MenubarSub` | Submenu container |
+| `MenubarSubTrigger` | Submenu trigger |
+| `MenubarSubContent` | Submenu content |
+
+## Props
+
+### MenubarTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Trigger props |
+
+### MenubarContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| align | `start` \| `center` \| `end` | `start` | Horizontal alignment |
+| alignOffset | number | `-4` | Alignment offset |
+| sideOffset | number | `8` | Vertical offset |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Radix UI Content props |

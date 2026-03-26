@@ -1,0 +1,43 @@
+# Calendar
+
+Calendar provides a date picker component with month and year navigation for selecting dates.
+
+<ComponentPreview>
+<Calendar mode="single" />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Calendar } from '@e-infra/design-system'
+
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| mode | `single` \| `range` \| `multiple` | `single` | Selection mode |
+| selected | Date \| Date[] | - | Selected date(s) (controlled) |
+| defaultValue | Date \| Date[] | - | Initial selected date(s) (uncontrolled) |
+| onSelect | (date: Date \| Date[]) => void | - | Callback when date selected |
+| showOutsideDays | boolean | `true` | Show days from previous/next month |
+| captionLayout | `label` \| `dropdown` | `label` | Month/year selector type |
+| buttonVariant | Button variant | `ghost` | Variant for navigation buttons |
+| className | string | - | Additional CSS classes |
+| classNames | object | - | Custom class names for elements |
+| formatters | object | - | Custom date formatters |
+| components | object | - | Custom component overrides |
+
+## Modes
+
+| Mode | Description |
+|------|-------------|
+| `single` | Select one date |
+| `range` | Select start and end date |
+| `multiple` | Select multiple dates |
