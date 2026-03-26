@@ -35,3 +35,5 @@ design-system-*.tgz
 dist/
 types/
 .next/
+
+/storybook-static
