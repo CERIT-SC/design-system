@@ -15,7 +15,6 @@ import {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
-  NavigationMenuTriggerStyle,
 } from "../primitives/navigation-menu";
 import { Content } from "./content";
 import {
@@ -178,6 +177,8 @@ export const WithDropdown: Story = {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
+              {/* NavigationMenuIndicator shows an arrow pointing to the active trigger */}
+              <NavigationMenuIndicator />
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
@@ -197,8 +198,10 @@ export const WithDropdown: Story = {
           <Content.Subheading>Usage</Content.Subheading>
           <Content.Body>
             Use NavigationMenuTrigger and NavigationMenuContent to create dropdown menus
-            in the navigation. This provides a rich navigation experience with
-            animated transitions and proper accessibility.
+            in the navigation. Add NavigationMenuIndicator inside NavigationMenu (after
+            NavigationMenuList) to show a visual arrow pointing to the active trigger.
+            NavigationMenuViewport is automatically rendered by NavigationMenu to contain
+            the dropdown content with animations.
           </Content.Body>
         </Content>
       </main>
@@ -279,11 +282,11 @@ export const WithSidebar: Story = {
               <Home className="h-4 w-4" />
               <span>Active Studies</span>
             </NavItem>
-            <NavItem href="/docs">
+            <NavItem href="#">
               <FileText className="h-4 w-4" />
               <span>Completed</span>
             </NavItem>
-            <NavItem href="/settings">
+            <NavItem href="#">
               <Settings className="h-4 w-4" />
               <span>Settings</span>
             </NavItem>
