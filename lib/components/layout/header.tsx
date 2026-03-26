@@ -1,86 +1,101 @@
 "use client";
+
+import * as React from "react";
 import { cn } from "../../lib/utils";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
 } from "../primitives/navigation-menu";
-import { PanelRight } from "lucide-react";
-import eInfraLogoDefault from "./e-INFRA_logo_RGB_lilek.png";
 
-/** Accepts a plain URL string or a Next.js / bundler static-import object. */
-type LogoSrc = string | { src: string; width?: number; height?: number };
-
-function resolveLogoSrc(logo: LogoSrc): string {
-  return typeof logo === "string" ? logo : logo.src;
-}
-
-interface HeaderProps {
-  children?: React.ReactNode;
-  className?: string;
-  variant?: "sidebar" | "navigation";
-  navigationItems?: {
-    label: string;
-    href: string;
-  }[];
-  logo?: LogoSrc;
-  logoAlt?: string;
-}
-
-export function Header({
-  children,
-  className,
-  variant = "navigation",
-  navigationItems = [],
-  logo = eInfraLogoDefault,
-  logoAlt = "e-INFRA Logo",
-}: HeaderProps) {
-  return (
+// ==========================================
+// Header Root (The shell)
+// ==========================================
+const Header = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
+  ({ className, ...props }, ref) => (
     <header
+      ref={ref}
       className={cn(
-        "sticky top-0 z-50 w-full bg-background/95 shadow-xl shadow-secondary/20 backdrop-blur supports-backdrop-filter:bg-background/60",
+        "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60",
         className
       )}
-    >
-      <div
-        className={cn(
-          "flex h-16 items-center justify-between px-2",
-          variant === "navigation" && "container"
-        )}
-      >
-        {/* Left section */}
-        <div className="flex items-center gap-6">
-          {variant === "sidebar" && <PanelRight />}
+      {...props}
+    />
+  )
+);
+Header.displayName = "Header";
 
-          <a href="/" className="flex items-center">
-            <img
-              src={resolveLogoSrc(logo)}
-              alt={logoAlt}
-              className="h-20 w-auto"
-            />
-          </a>
+// ==========================================
+// Layout Components
+// ==========================================
 
-          {variant === "navigation" && navigationItems.length > 0 && (
-            <>
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {navigationItems.map((item) => (
-                    <NavigationMenuItem key={item.href}>
-                      <NavigationMenuLink href={item.href}>
-                        {item.label}
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </>
-          )}
-        </div>
-
-        {/* Right section */}
-        <div className="flex items-center gap-2">{children}</div>
-      </div>
-    </header>
-  );
+interface HeaderContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Whether to constrain width to container max-width. Default: true */
+  container?: boolean;
 }
+
+const HeaderContent = React.forwardRef<HTMLDivElement, HeaderContentProps>(
+  ({ className, container = true, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "flex h-14 items-center gap-4 px-4 md:gap-6", // h-14 = 56px
+        container && "container mx-auto",
+        className
+      )}
+      {...props}
+    />
+  )
+);
+HeaderContent.displayName = "HeaderContent";
+
+/** Left section: Logo, Navigation, etc. */
+const HeaderLeft = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center gap-4 md:gap-6", className)}
+    {...props}
+  />
+));
+HeaderLeft.displayName = "HeaderLeft";
+
+/** Right section: Actions, User menu, etc. (pushes to far right) */
+const HeaderRight = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("ml-auto flex items-center gap-2", className)}
+    {...props}
+  />
+));
+HeaderRight.displayName = "HeaderRight";
+
+/** Center section: For centered navigation logos or middle-aligned items */
+const HeaderCenter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-1 items-center justify-center", className)}
+    {...props}
+  />
+));
+HeaderCenter.displayName = "HeaderCenter"; 
+    
+
+export {
+  Header,
+  HeaderContent,
+  HeaderLeft,
+  HeaderRight,
+  HeaderCenter,
+};

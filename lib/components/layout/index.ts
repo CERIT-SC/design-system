@@ -1,5 +1,11 @@
 export { Content, ContentExample } from "./content";
-export { Header } from "./header";
+export {
+  Header,
+  HeaderContent,
+  HeaderLeft,
+  HeaderRight,
+  HeaderCenter,
+} from "./header";
 export { Footer } from "./footer";
 export {
   Sidebar,

@@ -224,7 +224,13 @@ import {
 // ── Layout ────────────────────────────────────────────────────────────────────
 import { Content } from "../../lib/components/layout/content";
 import { Footer } from "../../lib/components/layout/footer";
-import { Header } from "../../lib/components/layout/header";
+import {
+  Header,
+  HeaderCenter,
+  HeaderContent,
+  HeaderLeft,
+  HeaderRight,
+} from "../../lib/components/layout/header";
 
 // ── Mid-level (Compounds) ─────────────────────────────────────────────────────
 import { CookiesBanner } from "../../lib/components/compounds/cookies-banner";
@@ -247,6 +253,9 @@ import {
   Small,
   Strong,
 } from "../../lib/components/foundations";
+
+// ── Icons ─────────────────────────────────────────────────────────────────────
+import { Home, Settings, FileText } from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Plain object — safe to iterate with Object.keys / Object.entries in any
@@ -453,6 +462,10 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   Content,
   Footer,
   Header,
+  HeaderContent,
+  HeaderCenter,
+  HeaderLeft,
+  HeaderRight,
   // Mid-level / Compounds
   CookiesBanner,
   FeedbackForm,
@@ -471,4 +484,8 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   P,
   Small,
   Strong,
+  // Icons
+  Home,
+  Settings,
+  FileText,
 };

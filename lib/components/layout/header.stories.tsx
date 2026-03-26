@@ -1,20 +1,44 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Header } from "./header";
+import {
+  Header,
+  HeaderContent,
+  HeaderLeft,
+  HeaderRight,
+  HeaderCenter,
+} from "./header";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuIndicator,
+  NavigationMenuViewport,
+  NavigationMenuTriggerStyle,
+} from "../primitives/navigation-menu";
 import { Content } from "./content";
 import {
-  SidebarProvider,
   Sidebar,
-  SidebarContent,
   SidebarHeader,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-} from "../layout/sidebar";
+  SidebarContent,
+  NavItem,
+  CollapsibleGroup,
+} from "./sidebar";
 import { Avatar, AvatarImage, AvatarFallback } from "../primitives/avatar";
-import { Home, FileText, Settings } from "lucide-react";
+import { Button } from "../primitives/button";
+import { Input } from "../primitives/input";
+import {
+  Home,
+  FileText,
+  Settings,
+  FlaskConical,
+  Search,
+  Bell,
+  BarChart3,
+  Users,
+  HelpCircle,
+} from "lucide-react";
 
 const meta = {
   title: "Layout/Header",
@@ -23,173 +47,57 @@ const meta = {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["sidebar", "navigation"],
-    },
-    logo: {
-      control: "text",
-    },
-    logoAlt: {
-      control: "text",
-    },
-  },
 } satisfies Meta<typeof Header>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const NavigationVariant: Story = {
-  args: {
-    variant: "navigation",
-    navigationItems: [
-      { label: "Dashboard", href: "/dashboard" },
-      { label: "Projects", href: "/projects" },
-      { label: "Team", href: "/team" },
-      { label: "Settings", href: "/settings" },
-    ],
-  },
-  render: (args) => (
+export const Default: Story = {
+  render: () => (
     <div className="min-h-screen flex flex-col">
-      <Header {...args} />
-      <main className="flex-1 container mx-auto px">
-        <Content>
-          <Content.Heading>Navigation Variant</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
-            Use this variant for most applications that require a standard
-            header with navigation links.
-          </Content.Body>
-        </Content>
-      </main>
-    </div>
-  ),
-};
-
-export const SidebarVariant: Story = {
-  args: {
-    variant: "sidebar",
-  },
-  render: (args) => (
-    <SidebarProvider>
-      <div className="flex min-h-150 w-full">
-        <Sidebar>
-          <SidebarHeader>
-            <div className="flex items-center gap-2 px-4 py-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="text-sm font-bold">e</span>
-              </div>
-              <span className="font-semibold">e-INFRA</span>
+      <Header>
+        <HeaderContent>
+          <HeaderLeft>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
             </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/">
-                        <Home className="h-4 w-4" />
-                        <span>Home</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/docs">
-                        <FileText className="h-4 w-4" />
-                        <span>Documentation</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href="/settings">
-                        <Settings className="h-4 w-4" />
-                        <span>Settings</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-        </Sidebar>
-        <div className="min-h-screen flex flex-col">
-          <Header {...args} />
-          <main className="flex-1 container mx-auto px-4">
-            <Content>
-              <Content.Heading>Sidebar Variant</Content.Heading>
-              <Content.Subheading>Usage</Content.Subheading>
-              <Content.Body>
-                Use this variant when you want a header that works in
-                conjunction with a sidebar. The header will include a trigger to
-                toggle the sidebar visibility on smaller screens.
-              </Content.Body>
-            </Content>
-          </main>
-        </div>
-      </div>
-    </SidebarProvider>
-  ),
-};
-
-export const CustomLogo: Story = {
-  args: {
-    variant: "navigation",
-    logo: "https://placehold.co/200x100/png?text=Custom+Logo&font=lato",
-    logoAlt: "Custom Logo",
-    navigationItems: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  render: (args) => (
-    <div className="min-h-screen flex flex-col">
-      <Header {...args} />
-      <main className="flex-1 container mx-auto px-4">
-        <Content>
-          <Content.Heading>Custom Logo Variant</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
-            You can easily replace the default logo with your own by passing a
-            custom image URL to the `logo` prop. Don&apos;t forget to provide an
-            appropriate `alt` text for accessibility.
-          </Content.Body>
-        </Content>
-      </main>
-    </div>
-  ),
-};
-
-export const WithCustomContent: Story = {
-  args: {
-    variant: "navigation",
-    navigationItems: [
-      { label: "Dashboard", href: "/dashboard" },
-      { label: "Projects", href: "/projects" },
-    ],
-  },
-  render: (args) => (
-    <div className="min-h-100">
-      <Header {...args}>
-        <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Dashboard</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Projects</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Team</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Settings</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </HeaderLeft>
+          <HeaderRight>
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </HeaderRight>
+        </HeaderContent>
       </Header>
-      <main className="flex-1 container mx-auto px-4">
+      <main className="flex-1 container mx-auto px-4 py-8">
         <Content>
-          <Content.Heading>Custom Content Variant</Content.Heading>
+          <Content.Heading>Default Header</Content.Heading>
           <Content.Subheading>Usage</Content.Subheading>
           <Content.Body>
-            The `Header` component accepts custom content as children, which
-            willbe rendered in the right section of the header. This is useful
-            for adding user avatars, action buttons, or any other custom
-            elements you want to include in the header.
+            The default header uses the compound component pattern with
+            HeaderContent, HeaderLeft, and HeaderRight. Navigation links use the
+            NavigationMenu primitive components (NavigationMenu, NavigationMenuList,
+            NavigationMenuItem, NavigationMenuLink) for consistent styling and behavior.
           </Content.Body>
         </Content>
       </main>
@@ -197,21 +105,323 @@ export const WithCustomContent: Story = {
   ),
 };
 
-export const MinimalNavigation: Story = {
-  args: {
-    variant: "navigation",
-    navigationItems: [],
-  },
-  render: (args) => (
-    <div className="min-h-100">
-      <Header {...args} />
-      <div className="container mx-auto p-8">
-        <h2 className="text-2xl font-bold">Minimal Navigation</h2>
-        <p className="mt-4 text-muted-foreground">
-          Navigation variant without any navigation items, showing only the logo
-          and action buttons.
-        </p>
+export const WithDropdown: Story = {
+  render: () => (
+    <div className="min-h-screen flex flex-col">
+      <Header>
+        <HeaderContent>
+          <HeaderLeft>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Dashboard</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Analytics</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid gap-3 p-4 w-[400px]">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                          <BarChart3 className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium">Overview</div>
+                          <div className="text-xs text-muted-foreground">
+                            View your analytics dashboard
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                          <Users className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium">Users</div>
+                          <div className="text-xs text-muted-foreground">
+                            Manage user analytics
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid gap-3 p-4 w-[400px]">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                          <FileText className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium">Documentation</div>
+                          <div className="text-xs text-muted-foreground">
+                            Read the docs
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                          <HelpCircle className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium">Help Center</div>
+                          <div className="text-xs text-muted-foreground">
+                            Get support
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </HeaderLeft>
+          <HeaderRight>
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </HeaderRight>
+        </HeaderContent>
+      </Header>
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <Content>
+          <Content.Heading>Header with Dropdown Menus</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            Use NavigationMenuTrigger and NavigationMenuContent to create dropdown menus
+            in the navigation. This provides a rich navigation experience with
+            animated transitions and proper accessibility.
+          </Content.Body>
+        </Content>
+      </main>
+    </div>
+  ),
+};
+
+export const WithSearch: Story = {
+  render: () => (
+    <div className="min-h-screen flex flex-col">
+      <Header>
+        <HeaderContent>
+          <HeaderLeft>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Dashboard</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Projects</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </HeaderLeft>
+          <HeaderCenter>
+            <div className="relative w-full max-w-md">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search..."
+                className="w-full pl-8"
+              />
+            </div>
+          </HeaderCenter>
+          <HeaderRight>
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </HeaderRight>
+        </HeaderContent>
+      </Header>
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <Content>
+          <Content.Heading>Header with Centered Search</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            Use HeaderCenter for centered content like search bars or centered
+            navigation. The center section flexes to fill available space.
+          </Content.Body>
+        </Content>
+      </main>
+    </div>
+  ),
+};
+
+export const WithSidebar: Story = {
+  render: () => (
+    <div className="flex min-h-screen w-full">
+      <Sidebar>
+        <SidebarHeader>
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <span className="font-semibold">Lab Management</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Experiments" defaultOpen={true}>
+            <NavItem href="/">
+              <Home className="h-4 w-4" />
+              <span>Active Studies</span>
+            </NavItem>
+            <NavItem href="/docs">
+              <FileText className="h-4 w-4" />
+              <span>Completed</span>
+            </NavItem>
+            <NavItem href="/settings">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+      </Sidebar>
+      <div className="min-h-screen flex flex-col flex-1">
+        <Header>
+          <HeaderContent container={false}>
+            <HeaderRight>
+              <Button variant="ghost" size="icon">
+                <Bell className="h-4 w-4" />
+              </Button>
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+                <AvatarFallback>U</AvatarFallback>
+              </Avatar>
+            </HeaderRight>
+          </HeaderContent>
+        </Header>
+        <main className="flex-1 container mx-auto px-4 py-8">
+          <Content>
+            <Content.Heading>Header with Sidebar</Content.Heading>
+            <Content.Subheading>Usage</Content.Subheading>
+            <Content.Body>
+              When using a sidebar layout, the header typically has no logo
+              (handled by the sidebar). Use container=false on HeaderContent to
+              allow the header content to span the full width. Place actions in
+              HeaderRight.
+            </Content.Body>
+          </Content>
+        </main>
       </div>
+    </div>
+  ),
+};
+
+export const CustomBackground: Story = {
+  render: () => (
+    <div className="min-h-screen flex flex-col">
+      <Header className="bg-gradient-to-r from-primary/90 to-secondary/90 border-transparent">
+        <HeaderContent>
+          <HeaderLeft>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink
+                    href="#"
+                    className="text-white/90 hover:text-white"
+                  >
+                    Dashboard
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink
+                    href="#"
+                    className="text-white/90 hover:text-white"
+                  >
+                    Projects
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </HeaderLeft>
+          <HeaderRight>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/20"
+            >
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </HeaderRight>
+        </HeaderContent>
+      </Header>
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <Content>
+          <Content.Heading>Custom Background</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            Apply custom backgrounds using the className prop on Header. This
+            example uses a gradient background with adjusted text colors for
+            contrast.
+          </Content.Body>
+        </Content>
+      </main>
+    </div>
+  ),
+};
+
+export const WithoutContainer: Story = {
+  render: () => (
+    <div className="min-h-screen flex flex-col">
+      <Header>
+        <HeaderContent container={false}>
+          <HeaderLeft>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Dashboard</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Projects</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </HeaderLeft>
+          <HeaderRight>
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </HeaderRight>
+        </HeaderContent>
+      </Header>
+      <main className="flex-1 px-4 py-8">
+        <Content>
+          <Content.Heading>Full-Width Header</Content.Heading>
+          <Content.Subheading>Usage</Content.Subheading>
+          <Content.Body>
+            Use container=false on HeaderContent to make the header span the
+            full width without the default container max-width constraint.
+          </Content.Body>
+        </Content>
+      </main>
     </div>
   ),
 };

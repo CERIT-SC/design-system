@@ -14,7 +14,7 @@ const Sidebar = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex min-h-screen w-72 flex-col shadow-xl bg-sidebar/50 text-sidebar-foreground",
+      "sticky top-0 h-screen w-72 flex-col shadow-[4px_0_6px_-1px_rgba(0,0,0,0.1),2px_0_4px_-2px_rgba(0,0,0,0.1)] shadow-secondary bg-sidebar/50 text-sidebar-foreground flex",
       className
     )}
     {...props}
@@ -102,7 +102,7 @@ const CollapsibleGroup = React.forwardRef<
         <CollapsiblePrimitive.Trigger
           className={cn(
             "flex w-full items-center justify-between rounded-md px-2 py-1.5",
-            "font-semibold uppercase tracking-wider text-primary",
+            "font-semibold uppercase tracking-wider hover:cursor-pointer",
             "transition-colors [&[data-state=open]>svg]:rotate-180"
           )}
         >

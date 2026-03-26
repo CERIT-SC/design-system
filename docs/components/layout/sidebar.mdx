@@ -1,11 +1,12 @@
 # Sidebar
 
-Sidebar is a composable navigation system built from primitives. It supports responsive mobile sheet behavior, desktop collapse modes, grouped navigation, submenus, badges, skeleton loaders, and an optional inset content area.
+Sidebar is a composable navigation container with support for header, content, and footer sections. It includes navigation items and collapsible groups for organizing navigation links.
 
 <ComponentPreview>
-<Sidebar>
+<div className="flex flex-row gap-8">
+<Sidebar className="h-92">
   <SidebarHeader>
-    <div className="px-4 py-2 font-semibold">My Application</div>
+    <div className=" font-semibold">Default Sidebar</div>
   </SidebarHeader>
   <SidebarContent>
     <CollapsibleGroup title="Navigation" defaultOpen={true}>
@@ -18,9 +19,51 @@ Sidebar is a composable navigation system built from primitives. It supports res
     <div className="px-4 py-2 text-sm text-muted-foreground">v1.0.0</div>
   </SidebarFooter>
 </Sidebar>
+<Sidebar className="h-92 bg-linear-to-br from-tertiary to-secondary">
+        <SidebarHeader className="">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold">Custom Colored Sidebar</span>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Navigation" defaultOpen={true}>
+            <NavItem
+              href="/"
+              className="hover:bg-primary hover:text-primary-foreground"
+            >
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </NavItem>
+            <NavItem
+              href="/docs"
+              className="hover:bg-primary hover:text-primary-foreground"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Documentation</span>
+            </NavItem>
+            <NavItem
+              href="/settings"
+              className="hover:bg-primary hover:text-primary-foreground"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+        <SidebarFooter>
+          <div className="flex items-center gap-2">
+            
+            <div className="flex flex-col">
+              <span className="text-xs font-medium">John Doe</span>
+              <span className="text-xs">john@example.com</span>
+            </div>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      </div>
 </ComponentPreview>
 
-## Usage
+## Usage - Default Sidebar
 
 ```tsx
 import {
@@ -34,7 +77,7 @@ import {
 
 <Sidebar>
   <SidebarHeader>
-    <div className="px-4 py-2 font-semibold">My Application</div>
+    <div className=" font-semibold">Default Sidebar</div>
   </SidebarHeader>
   <SidebarContent>
     <CollapsibleGroup title="Navigation" defaultOpen={true}>
@@ -49,97 +92,126 @@ import {
 </Sidebar>
 ```
 
+## Usage - Custom Sidebar
+
+```tsx
+<Sidebar className="bg-linear-to-br from-tertiary to-secondary">
+  <SidebarHeader className="">
+    <div className="flex items-center gap-2">
+      <span className="font-semibold">Custom Colored Sidebar</span>
+    </div>
+  </SidebarHeader>
+  <SidebarContent>
+    <CollapsibleGroup title="Navigation" defaultOpen={true}>
+      <NavItem
+        href="/"
+        className="hover:bg-primary hover:text-primary-foreground"
+      >
+        <Home className="h-4 w-4" />
+        <span>Home</span>
+      </NavItem>
+      <NavItem
+        href="/docs"
+        className="hover:bg-primary hover:text-primary-foreground"
+      >
+        <FileText className="h-4 w-4" />
+        <span>Documentation</span>
+      </NavItem>
+      <NavItem
+        href="/settings"
+        className="hover:bg-primary hover:text-primary-foreground"
+      >
+        <Settings className="h-4 w-4" />
+        <span>Settings</span>
+      </NavItem>
+    </CollapsibleGroup>
+  </SidebarContent>
+  <SidebarFooter>
+    <div className="flex items-center gap-2">        
+      <div className="flex flex-col">
+        <span className="text-xs font-medium">John Doe</span>
+        <span className="text-xs">john@example.com</span>
+      </div>
+    </div>
+  </SidebarFooter>
+</Sidebar>
+```
+
 ## Components
 
 | Component | Description |
 |-----------|-------------|
-| `SidebarProvider` | Context provider for sidebar state, mobile state, and toggle behavior |
-| `Sidebar` | Main sidebar container |
-| `SidebarTrigger` | Toggle sidebar visibility |
-| `SidebarRail` | Clickable rail used for resize/toggle interactions |
-| `SidebarInset` | Main content area that adapts to sidebar state |
-| `SidebarHeader` | Header area inside sidebar |
-| `SidebarFooter` | Footer area inside sidebar |
-| `SidebarSeparator` | Sidebar-specific separator |
-| `SidebarInput` | Compact input style for sidebar search/filter |
-| `SidebarContent` | Content area |
-| `SidebarGroup` | Group container inside content |
-| `SidebarGroupLabel` | Label for group sections |
-| `SidebarGroupAction` | Action button for a group |
-| `SidebarGroupContent` | Wrapper for group body |
-| `SidebarMenu` | Menu container |
-| `SidebarMenuItem` | Menu item |
-| `SidebarMenuButton` | Menu button |
-| `SidebarMenuAction` | Item-level action button |
-| `SidebarMenuBadge` | Badge for counts/status |
-| `SidebarMenuSkeleton` | Skeleton placeholder for loading states |
-| `SidebarMenuSub` | Submenu |
-| `SidebarMenuSubItem` | Submenu item |
-| `SidebarMenuSubButton` | Submenu button |
+| `Sidebar` | Main sidebar container with sticky positioning |
+| `SidebarHeader` | Header area inside sidebar with bottom border |
+| `SidebarContent` | Scrollable content area |
+| `SidebarFooter` | Footer area inside sidebar with top border |
+| `NavItem` | Navigation link item with active state support |
+| `CollapsibleGroup` | Collapsible section for grouping navigation items |
 
 ## Props
-
-### SidebarProvider
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| defaultOpen | `boolean` | `true` | Initial open state (uncontrolled mode) |
-| open | `boolean` | - | Controlled desktop open state |
-| onOpenChange | `(open: boolean) => void` | - | Controlled state callback |
-| className | `string` | - | Additional classes on wrapper |
-| style | `React.CSSProperties` | - | Style overrides (supports sidebar width vars) |
-| ...props | `React.ComponentProps<"div">` | - | Native `div` props |
 
 ### Sidebar
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| side | `left` \| `right` | `left` | Sidebar side |
-| variant | `sidebar` \| `floating` \| `inset` | `sidebar` | Sidebar visual variant |
-| collapsible | `offcanvas` \| `icon` \| `none` | `offcanvas` | Collapse behavior |
 | className | `string` | - | Additional CSS classes |
-| children | `React.ReactNode` | - | Sidebar content |
-| ...props | `React.ComponentProps<"div">` | - | Native `div` props |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
 
-### SidebarTrigger
+### SidebarHeader
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | className | `string` | - | Additional CSS classes |
-| onClick | `(event) => void` | - | Optional click handler (runs before internal toggle) |
-| ...props | `React.ComponentProps<typeof Button>` | - | Button props |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
 
-## Variants
+### SidebarContent
 
-| Variant | Description |
-|---------|-------------|
-| `sidebar` | Standard docked sidebar |
-| `floating` | Sidebar with rounded panel and shadow treatment |
-| `inset` | Inset layout style coordinated with `SidebarInset` |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
 
-## Collapsible Options
+### SidebarFooter
 
-| Option | Behavior |
-|--------|----------|
-| `none` | Always visible |
-| `icon` | Collapse to icon-width rail |
-| `offcanvas` | Slide out completely |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+### NavItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| asChild | `boolean` | `false` | Use child element as the anchor |
+| isActive | `boolean` | `false` | Whether the item is active |
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.AnchorHTMLAttributes<HTMLAnchorElement>` | - | Native anchor props |
+
+### CollapsibleGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | - | Group title displayed in trigger |
+| defaultOpen | `boolean` | `false` | Whether the group is open by default |
+| className | `string` | - | Additional CSS classes |
+| ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
+
+## Styling
+
+The sidebar uses the following default styles:
+
+- **Width**: 72 (18rem / 288px)
+- **Position**: Sticky at top
+- **Height**: Full viewport height
+- **Background**: `bg-sidebar/50` (semi-transparent sidebar color)
+- **Text**: `text-sidebar-foreground`
+- **Shadow**: Right-side shadow for depth
 
 ## Behavior
 
-| Behavior | Details |
-|----------|---------|
-| Mobile mode | Renders as a `Sheet` using `openMobile` state from context |
-| Desktop mode | Uses `data-state`, `data-collapsible`, `data-variant`, and `data-side` for styling |
-| Keyboard shortcut | `Cmd/Ctrl + b` toggles sidebar |
-| Persisted state | Open/closed state is stored in cookie `sidebar_state` for 7 days |
-| Tooltip support | `SidebarMenuButton` can show tooltips when collapsed |
-
-## Storybook Coverage
-
-The primitive is showcased in:
-
-1. `Default`
-2. `Collapsed`
-3. `WithSubmenu`
-4. `WithSkeleton`
+| Feature | Details |
+|---------|---------|
+| Sticky positioning | Sidebar stays fixed while scrolling |
+| Active states | `NavItem` supports `isActive` prop for styling active links |
+| Collapsible groups | `CollapsibleGroup` uses Radix UI Collapsible for smooth animations |
+| Flexible content | Header, content, and footer areas can contain any React children |

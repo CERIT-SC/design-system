@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { Header } from "../../lib/components/layout/header";
+import Image from "next/image";
+import {
+  Header,
+  HeaderContent,
+  HeaderLeft,
+  HeaderRight,
+} from "../../lib/components/layout/header";
 import { Footer } from "../../lib/components/layout/footer";
+import EinfraLogo from "../../public/e-INFRA_logo_RGB_lilek.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +26,42 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header
-          variant="navigation"
-          navigationItems={[
-            { label: "Home", href: "/" },
-            { label: "Foundations", href: "/docs/foundations" },
-            { label: "Components", href: "/docs/components" },
-          ]}
-        />
+        <Header>
+          <HeaderContent container={false}>
+            <HeaderLeft>
+              <a href="/" className="flex items-center gap-2">
+                <Image
+                  src={EinfraLogo}
+                  alt="e-INFRA Logo"
+                  width={120}
+                  height={40}
+                  className="h-20 w-auto"
+                />
+              </a>
+              <nav className="flex items-center gap-6">
+                <a
+                  href="/"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  Home
+                </a>
+                <a
+                  href="/docs/foundations"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  Foundations
+                </a>
+                <a
+                  href="/docs/components"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  Components
+                </a>
+              </nav>
+            </HeaderLeft>
+            <HeaderRight>{/* Additional actions can go here */}</HeaderRight>
+          </HeaderContent>
+        </Header>
         {children}
         <Footer></Footer>
       </body>

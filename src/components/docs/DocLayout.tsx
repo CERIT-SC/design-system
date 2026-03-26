@@ -51,6 +51,20 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
     <div className="flex min-h-svh w-full">
       <Sidebar>
         <SidebarContent>
+          <CollapsibleGroup title="Overview" defaultOpen={true}>
+            <NavItem
+              href="/docs/foundations"
+              isActive={isActivePath("/docs/foundations")}
+            >
+              Foundations
+            </NavItem>
+            <NavItem
+              href="/docs/components"
+              isActive={isActivePath("/docs/components")}
+            >
+              Components
+            </NavItem>
+          </CollapsibleGroup>
           {navStructure.map((section) => (
             <CollapsibleGroup
               key={section.slug}
@@ -76,7 +90,7 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
       </Sidebar>
 
       <div className="flex-1 flex flex-col min-h-svh">
-        <header className="sticky top-0 flex h-14 items-center gap-2 border-b bg-background px-6">
+        <header className=" flex h-14 items-center gap-2 bg-background px-6">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>

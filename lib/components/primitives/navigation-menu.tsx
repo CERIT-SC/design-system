@@ -60,7 +60,7 @@ function NavigationMenuItem({
   );
 }
 
-const navigationMenuTriggerStyle = cva(
+const NavigationMenuTriggerStyle = cva(
   "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
 );
 
@@ -72,7 +72,7 @@ function NavigationMenuTrigger({
   return (
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
-      className={cn(navigationMenuTriggerStyle(), "group", className)}
+      className={cn(NavigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
       {children}{" "}
@@ -166,5 +166,5 @@ export {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
+  NavigationMenuTriggerStyle,
 };

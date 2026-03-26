@@ -87,8 +87,8 @@ export const Default: Story = {
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Main Content Area</h2>
           <p className="mt-2 text-muted-foreground">
-            This is where your main content would go. The sidebar is
-            collapsible and responsive.
+            This is where your main content would go. The sidebar is collapsible
+            and responsive.
           </p>
         </div>
       </main>
@@ -208,16 +208,15 @@ export const WithoutGroups: Story = {
           </NavItem>
         </SidebarContent>
         <SidebarFooter>
-          <div className="text-xs text-muted-foreground">
-            © 2024 e-INFRA
-          </div>
+          <div className="text-xs text-muted-foreground">© 2024 e-INFRA</div>
         </SidebarFooter>
       </Sidebar>
       <main className="flex-1 p-8">
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Without Groups</h2>
           <p className="mt-2 text-muted-foreground">
-            NavItems can be used directly without wrapping them in CollapsibleGroup.
+            NavItems can be used directly without wrapping them in
+            CollapsibleGroup.
           </p>
         </div>
       </main>
@@ -228,50 +227,45 @@ export const WithoutGroups: Story = {
 export const CustomStyling: Story = {
   render: () => (
     <div className="flex h-screen w-full">
-      <Sidebar className="bg-slate-900 text-slate-100">
-        <SidebarHeader className="border-slate-700">
+      <Sidebar className="bg-linear-to-br from-tertiary to-secondary">
+        <SidebarHeader className="">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500 text-white">
-              <span className="text-sm font-bold">e</span>
-            </div>
-            <span className="font-semibold">e-INFRA</span>
+            <span className="font-semibold">e-INFRA CZ</span>
           </div>
         </SidebarHeader>
         <SidebarContent>
           <CollapsibleGroup title="Navigation" defaultOpen={true}>
-            <NavItem 
-              href="/" 
-              className="hover:bg-slate-800 hover:text-white"
+            <NavItem
+              href="/"
+              className="hover:bg-primary hover:text-primary-foreground"
             >
               <Home className="h-4 w-4" />
               <span>Home</span>
             </NavItem>
-            <NavItem 
+            <NavItem
               href="/docs"
-              className="hover:bg-slate-800 hover:text-white"
+              className="hover:bg-primary hover:text-primary-foreground"
             >
               <FileText className="h-4 w-4" />
               <span>Documentation</span>
             </NavItem>
-            <NavItem 
+            <NavItem
               href="/settings"
-              className="hover:bg-slate-800 hover:text-white"
+              className="hover:bg-primary hover:text-primary-foreground"
             >
               <Settings className="h-4 w-4" />
               <span>Settings</span>
             </NavItem>
           </CollapsibleGroup>
         </SidebarContent>
-        <SidebarFooter className="border-slate-700">
+        <SidebarFooter>
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-xs font-medium">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium">
               JD
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-medium">John Doe</span>
-              <span className="text-xs text-slate-400">
-                john@example.com
-              </span>
+              <span className="text-xs">john@example.com</span>
             </div>
           </div>
         </SidebarFooter>
@@ -280,7 +274,8 @@ export const CustomStyling: Story = {
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Custom Styling</h2>
           <p className="mt-2 text-muted-foreground">
-            The sidebar can be customized with different colors using the className prop.
+            The sidebar can be customized with different colors using the
+            className prop.
           </p>
         </div>
       </main>
