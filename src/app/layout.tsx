@@ -15,7 +15,7 @@ import {
   NavigationMenuList,
 } from "../../lib/components/primitives/navigation-menu";
 import { Footer } from "../../lib/components/layout/footer";
-import EinfraLogo from "../../public/e-INFRA_logo_RGB_lilek.png";
+import EinfraLogo from "../../public/einfra-logo.svg";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,7 +41,7 @@ export default function RootLayout({
                   src={EinfraLogo}
                   alt="e-INFRA Logo"
                   width={120}
-                  height={40}
+                  height={16}
                   className="h-20 w-auto"
                 />
               </Link>
