@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.1
+
+- Update header component with bigger components
+- Update sidebar spacings, update font boldness, remove uppercase from links
+- Update Ghost, Link, and Outline button variants with new colors and hover states
+- Add Animated Underline button variant
+- Change "muted" color to match purple color scheme
+
 ## v0.1.0
 
 - Update header component
