@@ -102,7 +102,7 @@
   --secondary: #d9d6e6;
   --secondary-foreground: #000000;
 
-  --muted: #e4e4e4;
+  --muted: #f8f9fa;
   --muted-foreground: #101828;
 
   --info: #7ecdf8;
@@ -117,7 +117,7 @@
   --error: #f65a4f;
   --error-foreground: #311210;
 
-  --border: #efeef1;
+  --border: #c6c2d4;
   --input: #aca8bc;
   --ring: #2f2557;
 
@@ -135,7 +135,7 @@
   --sidebar-primary-foreground: #ffffff;
   --sidebar-tertiary: var(--tertiary);
   --sidebar-tertiary-foreground: var(--tertiary-foreground);
-  --sidebar-border: var(--border);
+  --sidebar-border: #efeef1;
   --sidebar-ring: var(--ring);
 }
 
