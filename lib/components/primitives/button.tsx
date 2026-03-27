@@ -30,7 +30,7 @@ const buttonVariants = cva(
           "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary-foreground after:transition-all after:duration-300 hover:after:w-full hover:translate-none",
       },
       size: {
-        default: "h-11 px-6 py-2 has-[>svg]:px-3",
+        default: "h-10 px-6 py-2 has-[>svg]:px-3",
         sm: "h-9 gap-1.5 px-4 has-[>svg]:px-2.5",
         lg: "h-12 px-8 has-[>svg]:px-4",
         icon: "size-9",
