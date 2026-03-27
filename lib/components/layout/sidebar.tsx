@@ -6,7 +6,6 @@ import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "../../lib/utils";
 
-// Main Sidebar Container
 const Sidebar = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -14,7 +13,7 @@ const Sidebar = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "sticky top-0 h-screen w-72 flex-col shadow-[4px_0_6px_-1px_rgba(0,0,0,0.1),2px_0_4px_-2px_rgba(0,0,0,0.1)] shadow-secondary bg-sidebar/50 text-sidebar-foreground flex",
+      "sticky lg:sticky top-16 h-[calc(100vh-64px)] w-64 bg-sidebar border-r border-sidebar-border p-6 flex flex-col z-40 transition-transform duration-300 lg:translate-x-0",
       className
     )}
     {...props}
@@ -22,14 +21,16 @@ const Sidebar = React.forwardRef<
 ));
 Sidebar.displayName = "Sidebar";
 
-// Sidebar Sections
 const SidebarHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col gap-2 border-b p-3", className)}
+    className={cn(
+      "flex flex-col gap-2 border-b border-sidebar-border p-3",
+      className
+    )}
     {...props}
   />
 ));
@@ -39,11 +40,7 @@ const SidebarContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex-1 overflow-auto py-4 pl-2", className)}
-    {...props}
-  />
+  <div ref={ref} className={cn("flex-1 overflow-auto", className)} {...props} />
 ));
 SidebarContent.displayName = "SidebarContent";
 
@@ -53,13 +50,15 @@ const SidebarFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col gap-2 border-t p-4 mt-auto", className)}
+    className={cn(
+      "flex flex-col gap-2 border-t border-sidebar-border p-4 mt-auto",
+      className
+    )}
     {...props}
   />
 ));
 SidebarFooter.displayName = "SidebarFooter";
 
-// NavItem Component
 interface NavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   asChild?: boolean;
   isActive?: boolean;
@@ -86,7 +85,6 @@ const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
 );
 NavItem.displayName = "NavItem";
 
-// Collapsible Group Component
 interface CollapsibleGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   defaultOpen?: boolean;
@@ -102,7 +100,7 @@ const CollapsibleGroup = React.forwardRef<
         <CollapsiblePrimitive.Trigger
           className={cn(
             "flex w-full items-center justify-between rounded-md px-2 py-1.5",
-            "font-semibold uppercase tracking-wider hover:cursor-pointer",
+            "font-semibold hover:cursor-pointer",
             "transition-colors [&[data-state=open]>svg]:rotate-180"
           )}
         >
