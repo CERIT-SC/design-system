@@ -16,6 +16,7 @@ import {
 } from "../../lib/components/primitives/navigation-menu";
 import { Footer } from "../../lib/components/layout/footer";
 import EinfraLogo from "../../public/einfra-logo.svg";
+import type { StaticImageData } from "next/image";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -38,7 +39,7 @@ export default function RootLayout({
             <HeaderLeft>
               <Link href="/" className="flex items-center gap-2">
                 <Image
-                  src={EinfraLogo}
+                  src={EinfraLogo as StaticImageData}
                   alt="e-INFRA Logo"
                   width={120}
                   height={16}
