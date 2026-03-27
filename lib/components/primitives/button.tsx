@@ -27,7 +27,7 @@ const buttonVariants = cva(
           "hover:bg-secondary/40 hover:text-primary dark:hover:bg-tertiary/50 hover:translate-none",
         link: "text-primary underline-offset-4 hover:underline hover:translate-none",
         "animated-underline":
-          "relative text-tertiary-foreground bg-transparent hover:scale-100 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary-foreground after:transition-all after:duration-300 hover:after:w-full",
+          "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary-foreground after:transition-all after:duration-300 hover:after:w-full hover:translate-none",
       },
       size: {
         default: "h-11 px-6 py-2 has-[>svg]:px-3",
