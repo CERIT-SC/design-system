@@ -3,15 +3,12 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-// ==========================================
-// Header Root (The shell)
-// ==========================================
 const Header = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
   ({ className, ...props }, ref) => (
     <header
       ref={ref}
       className={cn(
-        "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60",
+        "sticky top-0 z-50 w-full bg-background h-16 flex items-center border-b border-sidebar-border justify-between backdrop-blur supports-backdrop-filter:bg-background/60",
         className
       )}
       {...props}
@@ -19,10 +16,6 @@ const Header = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
   )
 );
 Header.displayName = "Header";
-
-// ==========================================
-// Layout Components
-// ==========================================
 
 interface HeaderContentProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Whether to constrain width to container max-width. Default: true */
@@ -44,7 +37,6 @@ const HeaderContent = React.forwardRef<HTMLDivElement, HeaderContentProps>(
 );
 HeaderContent.displayName = "HeaderContent";
 
-/** Left section: Logo, Navigation, etc. */
 const HeaderLeft = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -57,7 +49,6 @@ const HeaderLeft = React.forwardRef<
 ));
 HeaderLeft.displayName = "HeaderLeft";
 
-/** Right section: Actions, User menu, etc. (pushes to far right) */
 const HeaderRight = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -70,7 +61,6 @@ const HeaderRight = React.forwardRef<
 ));
 HeaderRight.displayName = "HeaderRight";
 
-/** Center section: For centered navigation logos or middle-aligned items */
 const HeaderCenter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>

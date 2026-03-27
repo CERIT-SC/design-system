@@ -4,13 +4,19 @@ Buttons are primary interactive elements used to trigger actions or navigate. Th
 
 <ComponentPreview>
 <div className="flex flex-col gap-10 items-center">
-  <div className="flex flex-wrap gap-4">
+  <div className="flex flex-wrap gap-4 w-full">
     <Button>Default</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="tertiary">Tertiary</Button>
+    <Button variant="success">Success</Button>
+    <Button variant="warning">Warning</Button>
+    <Button variant="error">Error</Button>
+  </div>
+  <div className="flex flex-wrap gap-4">
     <Button variant="outline">Outline</Button>
     <Button variant="ghost">Ghost</Button>
     <Button variant="link">Link</Button>
+    <Button variant="animated-underline">Animated Underline</Button>
     <Button disabled>Disabled</Button>
   </div>
   <div className="flex flex-wrap gap-4">
@@ -54,18 +60,18 @@ import { Button } from "@einfra/components/primitives/button"
 | success | `success` | `success-foreground` | `success/90` |
 | warning | `warning` | `warning-foreground` | `warning/90` |
 | error | `error` | `error-foreground` | `error/90` |
-| outline | `background` | `foreground` | `tertiary` |
-| ghost | `transparent` | `foreground` | `tertiary` |
+| outline | `background` | `foreground` | `muted` |
+| ghost | `transparent` | `foreground` | `secondary/40` |
 | link | `transparent` | `primary` | `underline` |
-| animated-underline | `transparent` | `tertiary-foreground` | `tertiary-foreground` |
+| animated-underline | `transparent` | `inherit` | Animated underline effect |
 
 ## Sizes
 
 | Size | Height | Padding |
 |------|--------|---------|
-| default | 36px | 16px horizontal |
-| sm | 32px | 12px horizontal |
-| lg | 40px | 24px horizontal |
-| icon | 36px | Centered |
-| icon-sm | 32px | Centered |
-| icon-lg | 40px | Centered |
+| default | 44px (h-11) | 16px horizontal (px-6) |
+| sm | 36px (h-9) | 12px horizontal (px-4) |
+| lg | 48px (h-12) | 24px horizontal (px-8) |
+| icon | 36px (size-9) | Centered |
+| icon-sm | 32px (size-8) | Centered |
+| icon-lg | 40px (size-10) | Centered |

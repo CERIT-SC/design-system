@@ -19,6 +19,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  --primary-gradient: var(--primary-gradient);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
@@ -80,6 +82,8 @@
   --background: #ffffff;
   --foreground: #090711;
 
+  --primary-gradient: linear-gradient(90deg, #1a0f41 0%, #2F2557 100%);
+
   --card: #f2f1f7;
   --card-foreground: #090711;
 
@@ -92,17 +96,13 @@
   --primary: #2f2557;
   --primary-foreground: #ffffff;
 
-  /* --secondary: #CA83AC;
-  --secondary-foreground: #281A22; */
-
-  /* e-INFRA cyan alternative  */
   --tertiary: #d3eef3;
   --tertiary-foreground: #0e444e;
 
   --secondary: #d9d6e6;
   --secondary-foreground: #000000;
 
-  --muted: #e4e4e4;
+  --muted: #f8f9fa;
   --muted-foreground: #101828;
 
   --info: #7ecdf8;
@@ -117,7 +117,7 @@
   --error: #f65a4f;
   --error-foreground: #311210;
 
-  --border: #d5d3dd;
+  --border: #c6c2d4;
   --input: #aca8bc;
   --ring: #2f2557;
 
@@ -129,13 +129,13 @@
   --chart-4: #1cc16f;
   --chart-5: #f7ce5b;
 
-  --sidebar: #f5f4f9; /* light primary tint  */
+  --sidebar: #f8f9fa;
   --sidebar-foreground: #090711;
   --sidebar-primary: #2f2557;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-tertiary: var(--tertiary);
   --sidebar-tertiary-foreground: var(--tertiary-foreground);
-  --sidebar-border: var(--border);
+  --sidebar-border: #efeef1;
   --sidebar-ring: var(--ring);
 }
 

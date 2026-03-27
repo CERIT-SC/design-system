@@ -36,7 +36,7 @@ function NavigationMenuList({
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
       className={cn(
-        "group flex flex-1 list-none items-center justify-center gap-1",
+        "group flex flex-1 list-none items-center justify-center gap-4",
         className
       )}
       {...props}
@@ -52,7 +52,7 @@ function NavigationMenuItem({
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
       className={cn(
-        "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary-foreground after:transition-all after:duration-300 hover:after:w-full hover:text-tertiary-foreground transition-colors",
+        "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors",
         className
       )}
       {...props}
@@ -61,7 +61,7 @@ function NavigationMenuItem({
 }
 
 const NavigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
+  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 font-medium disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
 );
 
 function NavigationMenuTrigger({
@@ -77,7 +77,7 @@ function NavigationMenuTrigger({
     >
       {children}{" "}
       <ChevronDownIcon
-        className="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+        className="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
         aria-hidden="true"
       />
     </NavigationMenuPrimitive.Trigger>
@@ -131,7 +131,7 @@ function NavigationMenuLink({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "relative data-[active=true]:bg-tertiary/50 data-[active=true]:text-tertiary-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary-foreground after:transition-all after:duration-300 hover:after:w-full",
+        "relative font-medium flex flex-col gap-1 p-2 transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary-foreground after:transition-all after:duration-300 hover:after:w-full",
         className
       )}
       {...props}
@@ -147,7 +147,7 @@ function NavigationMenuIndicator({
     <NavigationMenuPrimitive.Indicator
       data-slot="navigation-menu-indicator"
       className={cn(
-        "data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
+        "data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-1 flex h-1.5 items-end justify-center overflow-hidden",
         className
       )}
       {...props}
