@@ -1,5 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { H3, Small } from "../foundations/typography";
 
 const cardVariants = cva(
   "bg-card text-card-foreground flex flex-col gap-6 rounded-md py-6 drop-shadow-md ",
@@ -56,21 +57,28 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({
+  className,
+  asChild = false,
+  ...props
+}: React.ComponentProps<typeof H3> & { asChild?: boolean }) {
   return (
-    <div
+    <H3
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn("leading-none", className)}
       {...props}
     />
   );
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+function CardDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof Small>) {
   return (
-    <div
+    <Small
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-muted-foreground", className)}
       {...props}
     />
   );

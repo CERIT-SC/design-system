@@ -9,6 +9,7 @@ import {
   CardAction,
 } from "./card";
 import { Button } from "./button";
+import { P } from "../foundations/typography";
 
 const meta = {
   title: "Components/Card",
@@ -45,7 +46,7 @@ export const Default: Story = {
           <CardDescription>Card Description</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card content goes here.</p>
+          <P>Card content goes here.</P>
         </CardContent>
         <CardFooter>
           <Button>Action</Button>
@@ -67,7 +68,7 @@ export const Primary: Story = {
           <CardDescription>Uses primary background color</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card uses the primary color scheme.</p>
+          <P>This card uses the primary color scheme.</P>
         </CardContent>
         <CardFooter>
           <Button variant="secondary">Action</Button>
@@ -88,7 +89,7 @@ export const Secondary: Story = {
           <CardDescription>Uses secondary background color</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card uses the secondary color scheme.</p>
+          <P>This card uses the secondary color scheme.</P>
         </CardContent>
         <CardFooter>
           <Button>Action</Button>
@@ -109,7 +110,7 @@ export const Tertiary: Story = {
           <CardDescription>Uses tertiary background color</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card uses the tertiary color scheme.</p>
+          <P>This card uses the tertiary color scheme.</P>
         </CardContent>
         <CardFooter>
           <Button variant="secondary">Action</Button>
@@ -130,9 +131,9 @@ export const Gradient: Story = {
           <CardDescription>Uses gradient background</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>
+          <P>
             This card features a gradient from secondary to tertiary colors.
-          </p>
+          </P>
         </CardContent>
         <CardFooter>
           <Button variant="secondary">Action</Button>
@@ -155,7 +156,7 @@ export const NoAnimation: Story = {
           <CardDescription>Hover effects disabled</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card has no hover animation or shadow change.</p>
+          <P>This card has no hover animation or shadow change.</P>
         </CardContent>
         <CardFooter>
           <Button>Action</Button>
@@ -173,7 +174,7 @@ export const Simple: Story = {
         <CardTitle>Simple Card</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>This is a simple card with minimal content.</p>
+        <P>This is a simple card with minimal content.</P>
       </CardContent>
     </Card>
   ),
@@ -192,10 +193,10 @@ export const WithAction: Story = {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <p>
+        <P>
           This card demonstrates the CardAction component positioned in the
           header.
-        </p>
+        </P>
       </CardContent>
     </Card>
   ),
@@ -209,7 +210,7 @@ export const WithoutFooter: Story = {
         <CardDescription>Card without a footer section</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>This card only has a header and content area, no footer.</p>
+        <P>This card only has a header and content area, no footer.</P>
       </CardContent>
     </Card>
   ),
@@ -222,7 +223,7 @@ export const WithoutDescription: Story = {
         <CardTitle>Title Only</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>This card has a title but no description in the header.</p>
+        <P>This card has a title but no description in the header.</P>
       </CardContent>
       <CardFooter>
         <Button variant="outline">Cancel</Button>
@@ -236,7 +237,7 @@ export const ContentOnly: Story = {
   render: () => (
     <Card className="w-[350px]">
       <CardContent className="pt-6">
-        <p>This card has only content, no header or footer.</p>
+        <P>This card has only content, no header or footer.</P>
       </CardContent>
     </Card>
   ),
@@ -252,7 +253,7 @@ export const AllVariants: Story = {
           <CardDescription>Standard card appearance</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Default card with standard styling.</p>
+          <P>Default card with standard styling.</P>
         </CardContent>
       </Card>
 
@@ -262,7 +263,7 @@ export const AllVariants: Story = {
           <CardDescription>Primary color scheme</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card with primary background.</p>
+          <P>Card with primary background.</P>
         </CardContent>
       </Card>
 
@@ -272,7 +273,7 @@ export const AllVariants: Story = {
           <CardDescription>Secondary color scheme</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card with secondary background.</p>
+          <P>Card with secondary background.</P>
         </CardContent>
       </Card>
 
@@ -282,7 +283,7 @@ export const AllVariants: Story = {
           <CardDescription>Tertiary color scheme</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card with tertiary background.</p>
+          <P>Card with tertiary background.</P>
         </CardContent>
       </Card>
 
@@ -292,17 +293,17 @@ export const AllVariants: Story = {
           <CardDescription>Gradient background</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card with gradient background.</p>
+          <P>Card with gradient background.</P>
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="default" animation="none">
+      <Card className="w-[280px]" variant="default" animation="static">
         <CardHeader>
           <CardTitle>No Animation</CardTitle>
           <CardDescription>Animation disabled</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Card without hover effects.</p>
+          <P>Card without hover effects.</P>
         </CardContent>
       </Card>
     </div>
