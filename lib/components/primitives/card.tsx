@@ -1,6 +1,20 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 import { H3, Small } from "../foundations/typography";
+import { Slot } from "@radix-ui/react-slot";
+
+const cardMediaVariants = cva("w-full overflow-hidden", {
+  variants: {
+    aspectRatio: {
+      auto: "",
+      square: "aspect-square",
+      video: "aspect-video",
+    },
+  },
+  defaultVariants: {
+    aspectRatio: "video",
+  },
+});
 
 const cardVariants = cva(
   "bg-card text-card-foreground flex flex-col gap-6 rounded-md py-6 drop-shadow-md ",
@@ -123,6 +137,32 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+interface CardMediaProps
+  extends React.ComponentProps<"img">,
+    VariantProps<typeof cardMediaVariants> {
+  asChild?: boolean;
+}
+
+function CardMedia({
+  className,
+  aspectRatio = "video",
+  alt = "",
+  asChild = false,
+  ...props
+}: CardMediaProps) {
+  const Comp = asChild ? Slot : "img";
+  return (
+    <div className={cn(cardMediaVariants({ aspectRatio }), "-mt-6")}>
+      <Comp
+        data-slot="card-media"
+        className={cn("h-full w-full rounded-t-md object-cover", className)}
+        alt={alt}
+        {...props}
+      />
+    </div>
+  );
+}
+
 export {
   Card,
   CardHeader,
@@ -132,4 +172,5 @@ export {
   CardDescription,
   CardContent,
   CardIcon,
+  CardMedia,
 };

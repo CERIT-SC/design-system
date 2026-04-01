@@ -8,10 +8,11 @@ import {
   CardFooter,
   CardAction,
   CardIcon,
+  CardMedia,
 } from "./card";
 import { Button } from "./button";
 import { P } from "../foundations/typography";
-import { Info, Settings, Bell, Shield } from "lucide-react";
+import { Info, Shield } from "lucide-react";
 
 const meta = {
   title: "Components/Card",
@@ -331,4 +332,79 @@ export const AllVariants: Story = {
       </Card>
     </div>
   ),
+};
+
+// Card with Media stories
+export const WithMedia: Story = {
+  render: () => (
+    <Card className="w-[350px]">
+      <CardMedia
+        src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
+        alt="Laboratory research"
+      />
+      <CardHeader>
+        <CardTitle>Research Project</CardTitle>
+        <CardDescription>Visual documentation of scientific work</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>
+          The CardMedia component displays imagery that extends to the edges
+          of the card.
+        </P>
+      </CardContent>
+      <CardFooter>
+        <Button>View Details</Button>
+      </CardFooter>
+    </Card>
+  ),
+};
+
+export const WithMediaSquare: Story = {
+  render: () => (
+    <Card className="w-[300px]">
+      <CardMedia
+        src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&auto=format&fit=crop"
+        alt="Microscope sample"
+        aspectRatio="square"
+      />
+      <CardHeader>
+        <CardTitle>Sample Analysis</CardTitle>
+        <CardDescription>1:1 aspect ratio for detailed views</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Ideal for 1:1 aspect ration images showcasing detailed imaginery.</P>
+      </CardContent>
+    </Card>
+  ),
+};
+
+export const WithCustomImageComponent: Story = {
+  render: () => {
+    // Example of using a custom image component (e.g., Next.js Image)
+    // In a real Next.js app, you would import: import Image from "next/image";
+    const CustomImage = (props: React.ComponentProps<"img">) => (
+      <img {...props} data-custom="true" />
+    );
+
+    return (
+      <Card className="w-[350px]">
+        <CardMedia asChild aspectRatio="video">
+          <CustomImage
+            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
+            alt="Custom component example"
+          />
+        </CardMedia>
+        <CardHeader>
+          <CardTitle>Custom Image Component</CardTitle>
+          <CardDescription>Using asChild pattern</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <P>
+            Use the <code>asChild</code> prop to pass a custom image component like Next.js Image.
+            This allows framework-specific optimizations while keeping the component reusable.
+          </P>
+        </CardContent>
+      </Card>
+    );
+  },
 };
