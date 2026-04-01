@@ -23,7 +23,7 @@ export const H2 = forwardRef<
   return (
     <h2
       ref={ref}
-      className={cn("text-3xl font-semibold tracking-tight", className)}
+      className={cn("text-3xl font-semibold", className)}
       {...props}
     />
   );
@@ -34,12 +34,7 @@ export function H3({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) {
-  return (
-    <h3
-      className={cn("text-2xl font-semibold tracking-tight", className)}
-      {...props}
-    />
-  );
+  return <h3 className={cn("text-2xl font-semibold", className)} {...props} />;
 }
 
 // H4 - Sub-section
@@ -63,12 +58,7 @@ export function Lead({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return (
-    <p
-      className={cn("text-lg leading-8 text-muted-foreground", className)}
-      {...props}
-    />
-  );
+  return <p className={cn("text-lg leading-8", className)} {...props} />;
 }
 
 // Strong - Bold Paragraph
@@ -89,12 +79,7 @@ export function Small({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return (
-    <p
-      className={cn("text-sm text-muted-foreground leading-6", className)}
-      {...props}
-    />
-  );
+  return <p className={cn("text-sm leading-6", className)} {...props} />;
 }
 
 // Muted - Extra Small / Caption
