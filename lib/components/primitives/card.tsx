@@ -1,13 +1,56 @@
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { H3, Small } from "../foundations/typography";
+import { Slot } from "@radix-ui/react-slot";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+const cardMediaVariants = cva("w-full overflow-hidden", {
+  variants: {
+    aspectRatio: {
+      auto: "",
+      square: "aspect-square",
+      video: "aspect-video",
+    },
+  },
+  defaultVariants: {
+    aspectRatio: "video",
+  },
+});
+
+const cardVariants = cva(
+  "bg-card text-card-foreground flex flex-col justify-center gap-6 rounded-md py-6 drop-shadow-md",
+  {
+    variants: {
+      variant: {
+        default: "",
+        primary: "bg-primary text-primary-foreground",
+        secondary: "bg-secondary text-secondary-foreground",
+        tertiary: "bg-tertiary text-tertiary-foreground",
+        gradient: "bg-gradient-to-br from-secondary to-tertiary",
+      },
+      animation: {
+        translate:
+          "hover:drop-shadow-lg hover:-translate-y-0.5 duration-500 transition-all",
+        static:
+          "hover:drop-shadow-lg hover:translate-none duration-0 transition-none",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      animation: "static",
+    },
+  }
+);
+
+function Card({
+  className,
+  variant = "default",
+  animation = "static",
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
   return (
     <div
       data-slot="card"
-      className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-md border py-6 shadow-sm hover:bg-primary/12 transition-all duration-500 hover:scale-102",
-        className
-      )}
+      className={cn(cardVariants({ variant, animation }), className)}
       {...props}
     />
   );
@@ -26,21 +69,34 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardIcon({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      data-slot="card-icon"
+      className={cn("flex text-muted-foreground mb-4", className)}
       {...props}
     />
   );
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({ className, ...props }: React.ComponentProps<typeof H3>) {
   return (
-    <div
+    <H3
+      data-slot="card-title"
+      className={cn("leading-none", className)}
+      {...props}
+    />
+  );
+}
+
+function CardDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof Small>) {
+  return (
+    <Small
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("", className)}
       {...props}
     />
   );
@@ -79,6 +135,34 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+type CardMediaProps = VariantProps<typeof cardMediaVariants> & {
+  asChild?: boolean;
+  alt?: string;
+} & Omit<React.ComponentProps<"img">, "asChild" | "alt">;
+
+function CardMedia({
+  className,
+  aspectRatio = "video",
+  alt,
+  asChild = false,
+  children,
+  ...props
+}: CardMediaProps & { children?: React.ReactNode }) {
+  const Comp = asChild ? Slot : "img";
+  return (
+    <div className={cn(cardMediaVariants({ aspectRatio }), "-mt-6")}>
+      <Comp
+        data-slot="card-media"
+        className={cn("h-full w-full rounded-t-md object-cover", className)}
+        {...(!asChild && alt !== undefined ? { alt } : {})}
+        {...props}
+      >
+        {asChild ? children : null}
+      </Comp>
+    </div>
+  );
+}
+
 export {
   Card,
   CardHeader,
@@ -87,4 +171,6 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardIcon,
+  CardMedia,
 };

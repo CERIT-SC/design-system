@@ -54,6 +54,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CardIcon,
+  CardMedia,
 } from "../../lib/components/primitives/card";
 import { Checkbox } from "../../lib/components/primitives/checkbox";
 import {
@@ -255,7 +257,7 @@ import {
 } from "../../lib/components/foundations";
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
-import { Home, Settings, FileText } from "lucide-react";
+import { Home, Settings, FileText, Shield } from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Plain object — safe to iterate with Object.keys / Object.entries in any
@@ -299,6 +301,8 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   CardFooter,
   CardHeader,
   CardTitle,
+  CardIcon,
+  CardMedia,
   // Checkbox
   Checkbox,
   // Collapsible
@@ -488,4 +492,5 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   Home,
   Settings,
   FileText,
+  Shield,
 };
