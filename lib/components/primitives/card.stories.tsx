@@ -280,7 +280,11 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="default" animation="translate">
+      <Card
+        className="w-full max-w-[280px]"
+        variant="default"
+        animation="translate"
+      >
         <CardHeader>
           <CardTitle>With Animation</CardTitle>
           <CardDescription>Hover animation enabled</CardDescription>
@@ -339,12 +343,14 @@ export const WithMedia: Story = {
       />
       <CardHeader>
         <CardTitle>Research Project</CardTitle>
-        <CardDescription>Visual documentation of scientific work</CardDescription>
+        <CardDescription>
+          Visual documentation of scientific work
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <P>
-          The CardMedia component displays imagery that extends to the edges
-          of the card.
+          The CardMedia component displays imagery that extends to the edges of
+          the card.
         </P>
       </CardContent>
       <CardFooter>
@@ -393,8 +399,9 @@ export const WithCustomImageComponent: Story = {
         </CardHeader>
         <CardContent>
           <P>
-            Use the <code>asChild</code> prop to pass a custom image component like Next.js Image.
-            This allows framework-specific optimizations while keeping the component reusable.
+            Use the <code>asChild</code> prop to pass a custom image component
+            like Next.js Image. This allows framework-specific optimizations
+            while keeping the component reusable.
           </P>
         </CardContent>
       </Card>
