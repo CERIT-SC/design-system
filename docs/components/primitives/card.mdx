@@ -1,34 +1,113 @@
 # Card
 
-Cards display related content and actions in a structured container with header, body, and footer sections.
+Cards display related content and actions in a structured container with header, body, and footer sections. The Card component also supports a `CardMedia` subcomponent for displaying images with configurable aspect ratios. All the sections are **optional**, allowing for flexible layouts.
 
 <ComponentPreview>
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl">
-  <Card>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-5xl">
+  <Card className="w-full ">
     <CardHeader>
-      <CardTitle>Design System</CardTitle>
-      <CardDescription>A set of reusable UI components.</CardDescription>
+      <CardTitle>Default</CardTitle>
+      <CardDescription>Standard card appearance.</CardDescription>
     </CardHeader>
-    <CardContent><p className="text-sm text-muted-foreground">Build beautiful interfaces with consistent design tokens.</p></CardContent>
-    <CardFooter><Button size="sm">Learn more</Button></CardFooter>
+    <CardContent><P>Default styling with subtle shadow.</P></CardContent>
+    <CardFooter><Button>Action</Button></CardFooter>
   </Card>
-  <Card>
+  <Card variant="primary" className="w-full">
     <CardHeader>
-      <CardTitle>Components</CardTitle>
-      <CardDescription>Over 30 accessible components.</CardDescription>
+      <CardTitle>Primary</CardTitle>
+      <CardDescription>Primary color scheme.</CardDescription>
     </CardHeader>
-    <CardContent><p className="text-sm text-muted-foreground">Fully styled, dark mode ready, and keyboard navigable.</p></CardContent>
-    <CardFooter><Button size="sm" variant="outline">Browse</Button></CardFooter>
+    <CardContent><P>Uses primary background color.</P></CardContent>
+    <CardFooter><Button variant="secondary">Action</Button></CardFooter>
+  </Card>
+  <Card variant="secondary" className="w-full ">
+    <CardHeader>
+      <CardTitle>Secondary</CardTitle>
+      <CardDescription>Secondary color scheme.</CardDescription>
+    </CardHeader>
+    <CardContent><P>Uses secondary background color.</P></CardContent>
+    <CardFooter><Button>Action</Button></CardFooter>
+  </Card>
+  <Card variant="tertiary" className="w-full ">
+    <CardHeader>
+      <CardTitle>Tertiary</CardTitle>
+      <CardDescription>Tertiary color scheme.</CardDescription>
+    </CardHeader>
+    <CardContent><P>Uses tertiary background color.</P></CardContent>
+    <CardFooter><Button variant="default">Action</Button></CardFooter>
+  </Card>
+  <Card variant="gradient" className="w-full ">
+    <CardHeader>
+      <CardTitle>Gradient</CardTitle>
+      <CardDescription>Gradient background.</CardDescription>
+    </CardHeader>
+    <CardContent><P>Features a gradient from secondary to tertiary.</P></CardContent>
+    <CardFooter><Button variant="default">Action</Button></CardFooter>
+  </Card>
+  <Card animation="translate" className="w-full ">
+    <CardHeader>
+      <CardTitle>Animated</CardTitle>
+      <CardDescription>With hover animation.</CardDescription>
+    </CardHeader>
+    <CardContent><P>Hover to see the translate effect.</P></CardContent>
+    <CardFooter><Button>Action</Button></CardFooter>
+  </Card>
+  <Card className="w-full max-w-sm" variant="primary">
+    <CardHeader>
+      <CardIcon>
+        <Shield className="h-8 w-8 text-primary-foreground/80" />
+      </CardIcon>
+      <CardTitle>With Icon</CardTitle>
+      <CardDescription>Icon + title layout</CardDescription>
+    </CardHeader>
+      <CardContent>
+        <P>Card featuring an icon in the header. </P>
+      </CardContent>
+    <CardFooter><Button variant="secondary">Action</Button></CardFooter>
+  </Card>
+  <Card className="w-full" variant="default">
+    <CardHeader>
+      <CardTitle>With Action</CardTitle>
+      <CardDescription>Action button in header</CardDescription>
+      <CardAction>
+        <Button size="sm" variant="outline">
+          Edit
+        </Button>
+      </CardAction>
+    </CardHeader>
+    <CardContent>
+      <P>Card with an action button positioned in the header.</P>
+    </CardContent>
+  </Card>
+</div>
+</ComponentPreview>
+
+<ComponentPreview>
+<div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-5xl">
+  <Card className="w-full">
+    <CardMedia
+      src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
+      alt="Random Image"
+      aspectRatio="video"
+    />
+    <CardHeader>
+      <CardTitle>Card with Media</CardTitle>
+      <CardDescription>Image extends to edges.</CardDescription>
+    </CardHeader>
+    <CardContent><P>Use CardMedia for images with aspect ratio control.</P></CardContent>
+    <CardFooter><Button size="sm">Action</Button></CardFooter>
   </Card>
 </div>
 </ComponentPreview>
 
 ## Usage
 
+### Default Card
+
 ```tsx
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@e-infra/design-system'
 
-<Card>
+<Card className="w-full max-w-sm">
   <CardHeader>
     <CardTitle>Card Title</CardTitle>
     <CardDescription>Card Description</CardDescription>
@@ -39,6 +118,104 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
   <CardFooter>
     <Button>Action</Button>
   </CardFooter>
+</Card>
+```
+
+### Variant Cards
+
+```tsx
+// Primary variant
+<Card variant="primary" className="w-full max-w-sm">
+  <CardHeader>
+    <CardTitle>Primary Card</CardTitle>
+    <CardDescription>Uses primary background</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content with primary color scheme.</p>
+  </CardContent>
+</Card>
+
+// Secondary variant
+<Card variant="secondary" className="w-full max-w-sm">
+  <CardHeader>
+    <CardTitle>Secondary Card</CardTitle>
+    <CardDescription>Uses secondary background</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content with secondary color scheme.</p>
+  </CardContent>
+</Card>
+
+// Tertiary variant
+<Card variant="tertiary" className="w-full max-w-sm">
+  <CardHeader>
+    <CardTitle>Tertiary Card</CardTitle>
+    <CardDescription>Uses tertiary background</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content with tertiary color scheme.</p>
+  </CardContent>
+</Card>
+
+// Gradient variant
+<Card variant="gradient" className="w-full max-w-sm">
+  <CardHeader>
+    <CardTitle>Gradient Card</CardTitle>
+    <CardDescription>Gradient background</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Features a gradient from secondary to tertiary colors.</p>
+  </CardContent>
+</Card>
+```
+
+### Card with Animation
+
+```tsx
+<Card animation="translate" className="w-full max-w-sm">
+  <CardHeader>
+    <CardTitle>Animated Card</CardTitle>
+    <CardDescription>Hover to see the effect</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>This card has a translate animation on hover.</p>
+  </CardContent>
+</Card>
+```
+
+### Card with Action
+
+```tsx
+<Card className="w-full max-w-sm">
+  <CardHeader>
+    <CardTitle>Card with Action</CardTitle>
+    <CardDescription>Has an action button in the header</CardDescription>
+    <CardAction>
+      <Button size="sm" variant="outline">Edit</Button>
+    </CardAction>
+  </CardHeader>
+  <CardContent>
+    <p>The action button is positioned in the header.</p>
+  </CardContent>
+</Card>
+```
+
+### Card with Icon
+
+```tsx
+import { Info } from "lucide-react"
+
+<Card className="w-full max-w-sm">
+  <CardHeader>
+    <CardIcon>
+      <Info className="h-8 w-8" />
+    </CardIcon>
+    <CardTitle>Card with Icon</CardTitle>
+    <CardDescription>Icon positioned in the header</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Use CardIcon to display an icon above the title.</p>
+  </CardContent>
 </Card>
 ```
 
@@ -53,6 +230,8 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 | `CardDescription` | Description element |
 | `CardContent` | Content area |
 | `CardAction` | Action area |
+| `CardIcon` | Icon container |
+| `CardMedia` | Image container with aspect ratio support |
 
 ## Props
 
@@ -60,6 +239,8 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| variant | `default` \| `primary` \| `secondary` \| `tertiary` \| `gradient` | `default` | Visual style variant |
+| animation | `static` \| `translate` | `static` | Hover animation behavior |
 | className | string | - | Additional CSS classes |
 | ...props | React.ComponentProps | - | Native div props |
 
@@ -69,3 +250,56 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 |------|------|---------|-------------|
 | className | string | - | Additional CSS classes |
 | ...props | React.ComponentProps | - | Native div props |
+
+### CardMedia
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| aspectRatio | `auto` \| `square` \| `video` | `video` | Aspect ratio of the media container |
+| asChild | boolean | `false` | Use a custom image component (e.g., Next.js Image) |
+| alt | string | `""` | Image alt text |
+| className | string | - | Additional CSS classes |
+| ...props | React.ComponentProps | - | Native img props |
+
+## Responsive Design
+
+Cards are responsive by default. Use `w-full` with `max-w-*` utility classes to control the card width:
+
+```tsx
+// Card that fills container but maxes out at small breakpoint
+<Card className="w-full max-w-sm">
+  ...
+</Card>
+
+// Card with custom max width
+<Card className="w-full max-w-[400px]">
+  ...
+</Card>
+```
+
+## Card with Media
+
+Use `CardMedia` to display images that extend to the edges of the card:
+
+```tsx
+<Card className="w-full max-w-sm">
+  <CardMedia
+    src="/path/to/image.jpg"
+    alt="Description"
+    aspectRatio="video"
+  />
+  <CardHeader>
+    <CardTitle>Card with Image</CardTitle>
+    <CardDescription>Visual content</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content goes here.</p>
+  </CardContent>
+</Card>
+```
+
+### Aspect Ratios
+
+- `video` (16:9) - Default, ideal for landscape images
+- `square` (1:1) - Ideal for profile pictures or detailed views
+- `auto` - Natural image dimensions

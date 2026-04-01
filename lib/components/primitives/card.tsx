@@ -17,7 +17,7 @@ const cardMediaVariants = cva("w-full overflow-hidden", {
 });
 
 const cardVariants = cva(
-  "bg-card text-card-foreground flex flex-col gap-6 rounded-md py-6 drop-shadow-md",
+  "bg-card text-card-foreground flex flex-col justify-center gap-6 rounded-md py-6 drop-shadow-md",
   {
     variants: {
       variant: {
