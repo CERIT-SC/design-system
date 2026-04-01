@@ -219,6 +219,33 @@ import { Info } from "lucide-react"
 </Card>
 ```
 
+## Card with Media
+
+Use `CardMedia` to display images that extend to the edges of the card:
+
+```tsx
+<Card className="w-full max-w-sm">
+  <CardMedia
+    src="/path/to/image.jpg"
+    alt="Description"
+    aspectRatio="video"
+  />
+  <CardHeader>
+    <CardTitle>Card with Image</CardTitle>
+    <CardDescription>Visual content</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content goes here.</p>
+  </CardContent>
+</Card>
+```
+
+### Aspect Ratios
+
+- `video` (16:9) - Default, ideal for landscape images
+- `square` (1:1) - Ideal for profile pictures or detailed views
+- `auto` - Natural image dimensions
+
 ## Components
 
 | Component | Description |
@@ -277,29 +304,4 @@ Cards are responsive by default. Use `w-full` with `max-w-*` utility classes to 
 </Card>
 ```
 
-## Card with Media
 
-Use `CardMedia` to display images that extend to the edges of the card:
-
-```tsx
-<Card className="w-full max-w-sm">
-  <CardMedia
-    src="/path/to/image.jpg"
-    alt="Description"
-    aspectRatio="video"
-  />
-  <CardHeader>
-    <CardTitle>Card with Image</CardTitle>
-    <CardDescription>Visual content</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p>Content goes here.</p>
-  </CardContent>
-</Card>
-```
-
-### Aspect Ratios
-
-- `video` (16:9) - Default, ideal for landscape images
-- `square` (1:1) - Ideal for profile pictures or detailed views
-- `auto` - Natural image dimensions
