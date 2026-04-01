@@ -14,15 +14,15 @@ const cardVariants = cva(
         gradient: "bg-gradient-to-br from-secondary to-tertiary",
       },
       animation: {
-        default:
+        translate:
           "hover:drop-shadow-lg hover:-translate-y-0.5 duration-500 transition-all",
         static:
-          "hover:drop-shadow-md hover:translate-none duration-0 transition-none",
+          "hover:drop-shadow-lg hover:translate-none duration-0 transition-none",
       },
     },
     defaultVariants: {
       variant: "default",
-      animation: "default",
+      animation: "static",
     },
   }
 );
@@ -30,7 +30,7 @@ const cardVariants = cva(
 function Card({
   className,
   variant = "default",
-  animation = "default",
+  animation = "static",
   asChild = false,
   ...props
 }: React.ComponentProps<"div"> &
@@ -57,11 +57,17 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardTitle({
-  className,
-  asChild = false,
-  ...props
-}: React.ComponentProps<typeof H3> & { asChild?: boolean }) {
+function CardIcon({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-icon"
+      className={cn("flex text-muted-foreground mb-4", className)}
+      {...props}
+    />
+  );
+}
+
+function CardTitle({ className, ...props }: React.ComponentProps<typeof H3>) {
   return (
     <H3
       data-slot="card-title"
@@ -78,7 +84,7 @@ function CardDescription({
   return (
     <Small
       data-slot="card-description"
-      className={cn("text-muted-foreground", className)}
+      className={cn("text-sm leading-6", className)}
       {...props}
     />
   );
@@ -125,4 +131,5 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardIcon,
 };

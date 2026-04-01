@@ -7,9 +7,11 @@ import {
   CardContent,
   CardFooter,
   CardAction,
+  CardIcon,
 } from "./card";
 import { Button } from "./button";
 import { P } from "../foundations/typography";
+import { Info, Settings, Bell, Shield } from "lucide-react";
 
 const meta = {
   title: "Components/Card",
@@ -37,7 +39,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     variant: "default",
-    animation: "default",
     className: "w-[350px]",
     children: (
       <>
@@ -144,19 +145,19 @@ export const Gradient: Story = {
 };
 
 // Animation variants
-export const NoAnimation: Story = {
+export const WithAnimation: Story = {
   args: {
     variant: "default",
-    animation: "static",
+    animation: "translate",
     className: "w-[350px]",
     children: (
       <>
         <CardHeader>
-          <CardTitle>No Animation</CardTitle>
-          <CardDescription>Hover effects disabled</CardDescription>
+          <CardTitle>With Hover Animation</CardTitle>
+          <CardDescription>Hover animation card</CardDescription>
         </CardHeader>
         <CardContent>
-          <P>This card has no hover animation or shadow change.</P>
+          <P>This card has hover animation and shadow change.</P>
         </CardContent>
         <CardFooter>
           <Button>Action</Button>
@@ -166,18 +167,21 @@ export const NoAnimation: Story = {
   },
 };
 
-// Card structure variations
 export const Simple: Story = {
-  render: () => (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Simple Card</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <P>This is a simple card with minimal content.</P>
-      </CardContent>
-    </Card>
-  ),
+  args: {
+    animation: "translate",
+    className: "w-[350px]",
+    children: (
+      <>
+        <CardHeader>
+          <CardTitle>Simple Card</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <P>This is a simple card with minimal content.</P>
+        </CardContent>
+      </>
+    ),
+  },
 };
 
 export const WithAction: Story = {
@@ -187,7 +191,7 @@ export const WithAction: Story = {
         <CardTitle>Card with Action</CardTitle>
         <CardDescription>Has an action button in the header</CardDescription>
         <CardAction>
-          <Button size="sm" variant="ghost">
+          <Button size="sm" variant="outline">
             Edit
           </Button>
         </CardAction>
@@ -202,43 +206,25 @@ export const WithAction: Story = {
   ),
 };
 
-export const WithoutFooter: Story = {
+export const WithIcon: Story = {
   render: () => (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>No Footer</CardTitle>
-        <CardDescription>Card without a footer section</CardDescription>
+        <CardIcon>
+          <Info className="h-8 w-8" />
+        </CardIcon>
+        <CardTitle>Card with Icon</CardTitle>
+        <CardDescription>Icon positioned on the left side</CardDescription>
       </CardHeader>
       <CardContent>
-        <P>This card only has a header and content area, no footer.</P>
-      </CardContent>
-    </Card>
-  ),
-};
-
-export const WithoutDescription: Story = {
-  render: () => (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Title Only</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <P>This card has a title but no description in the header.</P>
+        <P>
+          This card demonstrates the CardIcon component positioned to the left
+          of the title and description.
+        </P>
       </CardContent>
       <CardFooter>
-        <Button variant="outline">Cancel</Button>
-        <Button>Submit</Button>
+        <Button>Learn More</Button>
       </CardFooter>
-    </Card>
-  ),
-};
-
-export const ContentOnly: Story = {
-  render: () => (
-    <Card className="w-[350px]">
-      <CardContent className="pt-6">
-        <P>This card has only content, no header or footer.</P>
-      </CardContent>
     </Card>
   ),
 };
@@ -297,13 +283,50 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="default" animation="static">
+      <Card className="w-[280px]" variant="default" animation="translate">
         <CardHeader>
-          <CardTitle>No Animation</CardTitle>
-          <CardDescription>Animation disabled</CardDescription>
+          <CardTitle>With Animation</CardTitle>
+          <CardDescription>Hover animation enabled</CardDescription>
         </CardHeader>
         <CardContent>
-          <P>Card without hover effects.</P>
+          <P>Card with translate hover animation.</P>
+        </CardContent>
+      </Card>
+
+      <Card className="w-[280px]" variant="default">
+        <CardHeader>
+          <CardTitle>Simple</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <P>Simple card with minimal content, no description or footer.</P>
+        </CardContent>
+      </Card>
+
+      <Card className="w-[280px]" variant="default">
+        <CardHeader>
+          <CardTitle>With Action</CardTitle>
+          <CardDescription>Action button in header</CardDescription>
+          <CardAction>
+            <Button size="sm" variant="outline">
+              Edit
+            </Button>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <P>Card with an action button positioned in the header.</P>
+        </CardContent>
+      </Card>
+
+      <Card className="w-[280px]" variant="primary">
+        <CardHeader>
+          <CardIcon>
+            <Shield className="h-8 w-8 text-primary-foreground/80" />
+          </CardIcon>
+          <CardTitle>With Icon</CardTitle>
+          <CardDescription>Icon + title layout</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <P>Card featuring an icon in the header.</P>
         </CardContent>
       </Card>
     </div>
