@@ -113,7 +113,7 @@ export const Tertiary: Story = {
           <P>This card uses the tertiary color scheme.</P>
         </CardContent>
         <CardFooter>
-          <Button variant="secondary">Action</Button>
+          <Button>Action</Button>
         </CardFooter>
       </>
     ),
@@ -136,7 +136,7 @@ export const Gradient: Story = {
           </P>
         </CardContent>
         <CardFooter>
-          <Button variant="secondary">Action</Button>
+          <Button>Action</Button>
         </CardFooter>
       </>
     ),
@@ -373,7 +373,7 @@ export const WithMediaSquare: Story = {
         <CardDescription>1:1 aspect ratio for detailed views</CardDescription>
       </CardHeader>
       <CardContent>
-        <P>Ideal for 1:1 aspect ration images showcasing detailed imaginery.</P>
+        <P>Ideal for 1:1 aspect ratio images showcasing detailed image.</P>
       </CardContent>
     </Card>
   ),

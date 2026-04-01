@@ -246,6 +246,34 @@ Use `CardMedia` to display images that extend to the edges of the card:
 - `square` (1:1) - Ideal for profile pictures or detailed views
 - `auto` - Natural image dimensions
 
+### Custom Image Component (asChild)
+
+Use the `asChild` prop to render a custom image component (e.g., Next.js Image) while maintaining the CardMedia styling and aspect ratio:
+
+```tsx
+import Image from "next/image"
+
+<Card className="w-full max-w-sm">
+  <CardMedia asChild aspectRatio="video">
+    <Image
+      src="/path/to/image.jpg"
+      alt="Description"
+      width={800}
+      height={450}
+    />
+  </CardMedia>
+  <CardHeader>
+    <CardTitle>Card with Next.js Image</CardTitle>
+    <CardDescription>Using asChild pattern</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Allows framework-specific image optimizations.</p>
+  </CardContent>
+</Card>
+```
+
+When `asChild` is `true`, CardMedia will clone and render the child element instead of an `<img>` tag, passing all styling and props to it.
+
 ## Components
 
 | Component | Description |

@@ -135,18 +135,19 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-interface CardMediaProps
-  extends React.ComponentProps<"img">, VariantProps<typeof cardMediaVariants> {
+type CardMediaProps = VariantProps<typeof cardMediaVariants> & {
   asChild?: boolean;
-}
+  alt?: string;
+} & Omit<React.ComponentProps<"img">, "asChild" | "alt">;
 
 function CardMedia({
   className,
   aspectRatio = "video",
   alt = "",
   asChild = false,
+  children,
   ...props
-}: CardMediaProps) {
+}: CardMediaProps & { children?: React.ReactNode }) {
   const Comp = asChild ? Slot : "img";
   return (
     <div className={cn(cardMediaVariants({ aspectRatio }), "-mt-6")}>
@@ -155,7 +156,9 @@ function CardMedia({
         className={cn("h-full w-full rounded-t-md object-cover", className)}
         alt={alt}
         {...props}
-      />
+      >
+        {children}
+      </Comp>
     </div>
   );
 }
