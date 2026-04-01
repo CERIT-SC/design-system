@@ -17,7 +17,7 @@ const cardMediaVariants = cva("w-full overflow-hidden", {
 });
 
 const cardVariants = cva(
-  "bg-card text-card-foreground flex flex-col gap-6 rounded-md py-6 drop-shadow-md ",
+  "bg-card text-card-foreground flex flex-col gap-6 rounded-md py-6 drop-shadow-md",
   {
     variants: {
       variant: {
@@ -45,10 +45,8 @@ function Card({
   className,
   variant = "default",
   animation = "static",
-  asChild = false,
   ...props
-}: React.ComponentProps<"div"> &
-  VariantProps<typeof cardVariants> & { asChild?: boolean }) {
+}: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
   return (
     <div
       data-slot="card"
@@ -138,8 +136,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 interface CardMediaProps
-  extends React.ComponentProps<"img">,
-    VariantProps<typeof cardMediaVariants> {
+  extends React.ComponentProps<"img">, VariantProps<typeof cardMediaVariants> {
   asChild?: boolean;
 }
 

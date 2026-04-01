@@ -36,11 +36,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default card
 export const Default: Story = {
   args: {
     variant: "default",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -58,11 +57,10 @@ export const Default: Story = {
   },
 };
 
-// Variant showcases
 export const Primary: Story = {
   args: {
     variant: "primary",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -83,7 +81,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     variant: "secondary",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -104,7 +102,7 @@ export const Secondary: Story = {
 export const Tertiary: Story = {
   args: {
     variant: "tertiary",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -125,7 +123,7 @@ export const Tertiary: Story = {
 export const Gradient: Story = {
   args: {
     variant: "gradient",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -145,12 +143,11 @@ export const Gradient: Story = {
   },
 };
 
-// Animation variants
 export const WithAnimation: Story = {
   args: {
     variant: "default",
     animation: "translate",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -171,7 +168,7 @@ export const WithAnimation: Story = {
 export const Simple: Story = {
   args: {
     animation: "translate",
-    className: "w-[350px]",
+    className: "w-full max-w-sm",
     children: (
       <>
         <CardHeader>
@@ -187,7 +184,7 @@ export const Simple: Story = {
 
 export const WithAction: Story = {
   render: () => (
-    <Card className="w-[350px]">
+    <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Card with Action</CardTitle>
         <CardDescription>Has an action button in the header</CardDescription>
@@ -209,7 +206,7 @@ export const WithAction: Story = {
 
 export const WithIcon: Story = {
   render: () => (
-    <Card className="w-[350px]">
+    <Card className="w-full max-w-sm">
       <CardHeader>
         <CardIcon>
           <Info className="h-8 w-8" />
@@ -230,11 +227,10 @@ export const WithIcon: Story = {
   ),
 };
 
-// All variants showcase
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-6">
-      <Card className="w-[280px]" variant="default">
+      <Card className="w-full max-w-[280px]" variant="default">
         <CardHeader>
           <CardTitle>Default</CardTitle>
           <CardDescription>Standard card appearance</CardDescription>
@@ -244,7 +240,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="primary">
+      <Card className="w-full max-w-[280px]" variant="primary">
         <CardHeader>
           <CardTitle>Primary</CardTitle>
           <CardDescription>Primary color scheme</CardDescription>
@@ -254,7 +250,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="secondary">
+      <Card className="w-full max-w-[280px]" variant="secondary">
         <CardHeader>
           <CardTitle>Secondary</CardTitle>
           <CardDescription>Secondary color scheme</CardDescription>
@@ -264,7 +260,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="tertiary">
+      <Card className="w-full max-w-[280px]" variant="tertiary">
         <CardHeader>
           <CardTitle>Tertiary</CardTitle>
           <CardDescription>Tertiary color scheme</CardDescription>
@@ -274,7 +270,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="gradient">
+      <Card className="w-full max-w-[280px]" variant="gradient">
         <CardHeader>
           <CardTitle>Gradient</CardTitle>
           <CardDescription>Gradient background</CardDescription>
@@ -284,7 +280,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="default" animation="translate">
+      <Card className="w-full max-w-[280px]" variant="default" animation="translate">
         <CardHeader>
           <CardTitle>With Animation</CardTitle>
           <CardDescription>Hover animation enabled</CardDescription>
@@ -294,7 +290,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="default">
+      <Card className="w-full max-w-[280px]" variant="default">
         <CardHeader>
           <CardTitle>Simple</CardTitle>
         </CardHeader>
@@ -303,7 +299,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="default">
+      <Card className="w-full max-w-[280px]" variant="default">
         <CardHeader>
           <CardTitle>With Action</CardTitle>
           <CardDescription>Action button in header</CardDescription>
@@ -318,7 +314,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-[280px]" variant="primary">
+      <Card className="w-full max-w-[280px]" variant="primary">
         <CardHeader>
           <CardIcon>
             <Shield className="h-8 w-8 text-primary-foreground/80" />
@@ -334,10 +330,9 @@ export const AllVariants: Story = {
   ),
 };
 
-// Card with Media stories
 export const WithMedia: Story = {
   render: () => (
-    <Card className="w-[350px]">
+    <Card className="w-full max-w-sm">
       <CardMedia
         src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
         alt="Laboratory research"
@@ -361,7 +356,7 @@ export const WithMedia: Story = {
 
 export const WithMediaSquare: Story = {
   render: () => (
-    <Card className="w-[300px]">
+    <Card className="w-full max-w-xs">
       <CardMedia
         src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&auto=format&fit=crop"
         alt="Microscope sample"
@@ -380,14 +375,12 @@ export const WithMediaSquare: Story = {
 
 export const WithCustomImageComponent: Story = {
   render: () => {
-    // Example of using a custom image component (e.g., Next.js Image)
-    // In a real Next.js app, you would import: import Image from "next/image";
     const CustomImage = (props: React.ComponentProps<"img">) => (
       <img {...props} data-custom="true" />
     );
 
     return (
-      <Card className="w-[350px]">
+      <Card className="w-full max-w-sm">
         <CardMedia asChild aspectRatio="video">
           <CustomImage
             src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
