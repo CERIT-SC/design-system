@@ -96,7 +96,7 @@ function CardDescription({
   return (
     <Small
       data-slot="card-description"
-      className={cn("text-sm leading-6", className)}
+      className={cn("", className)}
       {...props}
     />
   );
@@ -143,7 +143,7 @@ type CardMediaProps = VariantProps<typeof cardMediaVariants> & {
 function CardMedia({
   className,
   aspectRatio = "video",
-  alt = "",
+  alt,
   asChild = false,
   children,
   ...props
@@ -154,10 +154,10 @@ function CardMedia({
       <Comp
         data-slot="card-media"
         className={cn("h-full w-full rounded-t-md object-cover", className)}
-        alt={alt}
+        {...(!asChild && alt !== undefined ? { alt } : {})}
         {...props}
       >
-        {children}
+        {asChild ? children : null}
       </Comp>
     </div>
   );
