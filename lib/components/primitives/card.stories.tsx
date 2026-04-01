@@ -28,7 +28,7 @@ const meta = {
     },
     animation: {
       control: "select",
-      options: ["default", "none"],
+      options: ["static", "translate"],
     },
   },
 } satisfies Meta<typeof Card>;
