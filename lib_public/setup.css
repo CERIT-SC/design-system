@@ -19,8 +19,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --primary-gradient: var(--primary-gradient);
-
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
@@ -79,13 +77,11 @@
 :root {
   --radius: 0.75rem;
 
-  --background: #ffffff;
-  --foreground: #090711;
+  --background: #fefefe;
+  --foreground: #130f23;
 
-  --primary-gradient: linear-gradient(90deg, #1a0f41 0%, #2F2557 100%);
-
-  --card: #f2f1f7;
-  --card-foreground: #090711;
+  --card: #f8f9fa;
+  --card-foreground: #130f23;
 
   --panel: #ffffff89;
   --panel-foreground: #000000;

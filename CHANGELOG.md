@@ -1,8 +1,13 @@
 # Changelog
 
+## v0.1.4
+
 ## v0.1.3
 
 ## v0.1.2
+
+- Update typography components with new styles and variants
+- Update card component with new variants and animation
 
 ## v0.1.1
 
