@@ -1,0 +1,138 @@
+name: Build and Deploy Showcase App
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  Quality_Checks:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun ci
+
+      - name: Run Linter
+        run: bun run lint
+
+      - name: Run Formatting Check
+        run: bun run format:check
+
+      - name: Run Type Check
+        run: bun run typecheck:showcase
+
+  Build_and_Push:
+    runs-on: ubuntu-24.04
+    needs: Quality_Checks
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check if tag is on main branch
+        run: |
+          if ! git branch -r --contains ${{ github.sha }} | grep -q "origin/main"; then
+            echo "Tag was not created on main branch. Skipping."
+            exit 1
+          fi
+          echo "Tag is on main branch. Proceeding."
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract Version from Tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./deployment/containers/prod/Dockerfile.bun
+          push: true
+          tags: |
+            ${{ vars.DOCKER_REGISTRY }}/${{ vars.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
+            ${{ vars.DOCKER_REGISTRY }}/${{ vars.IMAGE_NAME }}:prod
+          build-args: |
+            NEXT_PUBLIC_TAG=${{ steps.version.outputs.VERSION }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  Deploy:
+    runs-on: ubuntu-24.04
+    needs: Build_and_Push
+    env:
+      KUBECONFIG: ${{ github.workspace }}/kubeconfig
+      KUBE_NAMESPACE: einfra-design-system-ns
+      IMAGE_VERSION: ${{ needs.Build_and_Push.outputs.version }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: "v1.30.0"
+
+      - name: Create kubeconfig
+        run: |
+          cat > $KUBECONFIG << 'EOF'
+          apiVersion: v1
+          kind: Config
+          clusters:
+          - name: "rancher"
+            cluster:
+              server: "https://rancher.cloud.e-infra.cz"
+          - name: "kuba-cluster"
+            cluster:
+              server: "https://rancher.cloud.e-infra.cz/k8s/clusters/c-m-qvndqhf6"
+          users:
+          - name: "rancher"
+            user:
+              token: "${{ secrets.RANCHER_TOKEN }}"
+          contexts:
+          - name: "rancher"
+            context:
+              user: "rancher"
+              cluster: "rancher"
+          - name: "kuba-cluster"
+            context:
+              user: "rancher"
+              cluster: "kuba-cluster"
+          current-context: "kuba-cluster"
+          EOF
+          chmod 600 $KUBECONFIG
+
+      - name: Apply Kubernetes Manifests
+        run: |
+          envsubst '$IMAGE_VERSION' < deployment/manifests/deployment.yaml | kubectl apply -f - --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/service.yaml --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/ingress.yaml --namespace=$KUBE_NAMESPACE
+
+      - name: Cleanup kubeconfig
+        if: always()
+        run: rm -f $KUBECONFIG

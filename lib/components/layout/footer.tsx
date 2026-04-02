@@ -27,11 +27,13 @@ const RedirectListItem: React.FC<RedirectListItemProps> = ({ href, text }) => {
 interface FooterProps {
   logo?: LogoSrc;
   logoAlt?: string;
+  tag?: string;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   logo = eInfraLogoDefault,
   logoAlt = "e-INFRA CZ Logo",
+  tag,
 }) => {
   return (
     <footer className="flex flex-col mt-0 items-center px-5 bg-gray-100 border-t border-gray-300 pb-5">
@@ -118,6 +120,8 @@ export const Footer: React.FC<FooterProps> = ({
             Privacy Policy
           </a>
         </div>
+
+        {tag && <p className="text-xs text-neutral-300 mt-2 md:mt-0">{tag}</p>}
       </div>
     </footer>
   );

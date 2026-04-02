@@ -68,7 +68,7 @@ export default function RootLayout({
           </HeaderContent>
         </Header>
         {children}
-        <Footer></Footer>
+        <Footer tag={process.env.NEXT_PUBLIC_TAG} />
       </body>
     </html>
   );

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: designsystem-deployment-prod
+  name: designsystem-app-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: designsystem-selector-prod
+      app: designsystem-app-prod
   template:
     metadata:
       labels:
-        app: designsystem-selector-prod
+        app: designsystem-app-prod
     spec:
       imagePullSecrets:
         - name: cerit-io-harbor-accesstoken
@@ -22,9 +22,9 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-        - name: designsystem-container-prod
-          image: cerit.io/design-system/design-system-showcase:latest
-          imagePullPolicy: Always
+        - name: designsystem-app-prod
+          image: cerit.io/design-system/designsystem-app:${IMAGE_VERSION}
+          imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 1000
             allowPrivilegeEscalation: false
@@ -36,10 +36,10 @@ spec:
               containerPort: 80
           resources:
             limits:
-              memory: "4Gi"
+              memory: "6Gi"
               cpu: "2"
             requests:
-              memory: "512Mi"
+              memory: "3Gi"
               cpu: "2"
 
           # startupProbe:

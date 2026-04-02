@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: designsystem-ingress-prod
+  name: designsystem-app-prod
   annotations:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -18,7 +18,7 @@ spec:
         paths:
           - backend:
               service:
-                name: designsystem-service-prod
+                name: designsystem-app-prod
                 port:
                   number: 80
             pathType: ImplementationSpecific
