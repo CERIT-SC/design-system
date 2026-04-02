@@ -1,8 +1,13 @@
-FROM oven/bun:1.3.9 AS base
+FROM node:22-alpine AS base
 
 WORKDIR /app
 
-FROM base AS depenencies
+# Install Bun for package management
+RUN apk add --no-cache curl unzip bash
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/root/.bun/bin:$PATH"
+
+FROM base AS dependencies
 
 COPY package.json bun.lock* ./
 RUN bun install --no-save --frozen-lockfile
@@ -11,8 +16,12 @@ FROM base AS builder
 
 WORKDIR /app
 
-COPY --from=depenencies /app/node_modules ./node_modules
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
+
+# Accept build argument for the tag/version
+ARG NEXT_PUBLIC_TAG
+ENV NEXT_PUBLIC_TAG=${NEXT_PUBLIC_TAG}
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -31,8 +40,8 @@ ENV NODE_ENV=production \
     PORT=80 \
     HOSTNAME="0.0.0.0"
 
-RUN groupadd --system --gid 1001 nodejs && \
-    useradd --system --uid 1001 --no-log-init -g nodejs nextjs
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001
 
 COPY --from=builder /app/public ./public
 
@@ -44,4 +53,4 @@ USER nextjs
 
 EXPOSE 80
 
-CMD ["bun", "./server.js"]
+CMD ["node", "server.js"]

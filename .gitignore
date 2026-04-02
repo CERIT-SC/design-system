@@ -38,3 +38,5 @@ types/
 
 /storybook-static
 .roo
+
+.env*

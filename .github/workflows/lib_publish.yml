@@ -1,0 +1,64 @@
+name: Build and Publish Package to npmjs
+
+on:
+  push:
+    tags: ["v*"] # Trigger on version tags like v1.0.0
+
+jobs:
+  Quality_Checks:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun ci
+
+      - name: Run Linter
+        run: bun run lint
+
+      - name: Run Formatting Check
+        run: bun run format:check
+
+      - name: Run Type Check
+        run: bun run typecheck:lib
+
+  Build_and_Publish:
+    runs-on: ubuntu-24.04
+    needs: Quality_Checks
+    permissions:
+      contents: read # For checkout
+      id-token: write # For authentication with npm
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # Fetch all history for branch check
+
+      - name: Check if tag is on main branch
+        run: |
+          if ! git branch -r --contains ${{ github.sha }} | grep -q "origin/main"; then
+            echo "Tag was not created on main branch. Skipping."
+            exit 1
+          fi
+          echo "Tag is on main branch. Proceeding."
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          registries: |
+            https://registry.npmjs.org/|${{ secrets.NPMJS_TOKEN }}
+
+      - name: Install Dependencies
+        run: bun ci
+
+      - name: Build Package
+        run: bun run build:lib
+
+      - name: Publish
+        run: bun publish --provenance --access public
