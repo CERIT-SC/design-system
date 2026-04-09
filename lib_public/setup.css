@@ -226,33 +226,66 @@
 }
 
 .dark {
-  /* Dark mode: inverted color scheme with adjusted colors */
-  --background: #2f2557; /* Dark purple background */
-  --foreground: #ffffff; /* Light foreground */
+  /* Dark mode: palette mapped from provided swatches */
+  --background: #0b0819;
+  --foreground: #f8f7fc;
 
-  --card: #3d3068; /* Slightly lighter than background */
-  --card-foreground: #ffffff;
+  --card: #17142a;
+  --card-foreground: #f8f7fc;
 
-  --panel: #4a3f7a89; /* Translucent panel */
-  --panel-foreground: #ffffff;
+  --panel: #1b173180;
+  --panel-foreground: #f8f7fc;
 
-  --popover: #3d3068;
-  --popover-foreground: #ffffff;
+  --popover: #17142a;
+  --popover-foreground: #f8f7fc;
 
-  /* Primary remains the same brand color but inverted usage */
-  --primary: #c0bad6; /* Light purple for dark mode */
-  --primary-foreground: #2f2557; /* Dark text on light primary */
+  /* Primary: #d9d6e6 with full shade scale */
+  --primary: #d9d6e6;
+  --primary-foreground: #000000;
+  --color-primary-50: #fcfcfd;
+  --color-primary-100: #f7f6f9;
+  --color-primary-200: #f1f0f6;
+  --color-primary-300: #e9e7f0;
+  --color-primary-400: #e1deeb;
+  --color-primary-500: #d9d6e6;
+  --color-primary-600: #aca4c8;
+  --color-primary-700: #8374aa;
+  --color-primary-800: #5a497e;
+  --color-primary-900: #2f2543;
+  --color-primary-950: #1d162b;
 
-  /* Secondary: same pink for dark mode */
-  --secondary: #ca83ac;
-  --secondary-foreground: #ffffff;
+  /* Secondary: #d3eef3 with full shade scale */
+  --secondary: #d3eef3;
+  --secondary-foreground: #0e444e;
+  --color-secondary-50: #f9fdfd;
+  --color-secondary-100: #f4fbfc;
+  --color-secondary-200: #eef8fa;
+  --color-secondary-300: #e3f4f7;
+  --color-secondary-400: #ddf2f6;
+  --color-secondary-500: #d3eef3;
+  --color-secondary-600: #8dbec6;
+  --color-secondary-700: #658a90;
+  --color-secondary-800: #425b60;
+  --color-secondary-900: #202e31;
+  --color-secondary-950: #111b1d;
 
-  /* Tertiary */
-  --tertiary: #c0bad6;
-  --tertiary-foreground: #2f2557;
+  /* Tertiary: #2f2557 with full shade scale */
+  --tertiary: #2f2557;
+  --tertiary-foreground: #ffffff;
+  --color-tertiary-50: #e8e7f4;
+  --color-tertiary-100: #d2cfe9;
+  --color-tertiary-200: #a59dd2;
+  --color-tertiary-300: #7c6fbb;
+  --color-tertiary-400: #564597;
+  --color-tertiary-500: #2f2557;
+  --color-tertiary-600: #271f4b;
+  --color-tertiary-700: #1f183d;
+  --color-tertiary-800: #17112f;
+  --color-tertiary-900: #0f0a22;
+  --color-tertiary-950: #080516;
 
-  --muted: #4a4371; /* Muted slightly lighter */
-  --muted-foreground: #d5d3dd; /* Muted text */
+  --muted: #4a4371;
+  --muted-foreground: #d5d3dd;
 
   --info: #7ecdf8;
   --info-foreground: #192932;
@@ -266,11 +299,27 @@
   --error: #f65a4f;
   --error-foreground: #311210;
 
-  --border: #5a5184;
-  --input: #6d6594;
-  --ring: #c0bad6; /* Light purple ring in dark mode */
+  --base: #0b0819;
+  --color-base-50: #f0eff3;
+  --color-base-100: #dfdde8;
+  --color-base-200: #c8c5d7;
+  --color-base-300: #adabc0;
+  --color-base-400: #908da8;
+  --color-base-500: #75728e;
+  --color-base-600: #5e5b76;
+  --color-base-700: #45435a;
+  --color-base-800: #2f2d41;
+  --color-base-900: #19172b;
+  --color-base-950: #0b0819;
 
-  --heading: #c0bad6;
+  --muted: #201d33;
+  --muted-foreground: #cbc8db;
+
+  --border: #2f2d41;
+  --input: #45435a;
+  --ring: #d9d6e6;
+
+  --heading: #d9d6e6;
 
   /* Chart colors for dark mode */
   --chart-1: oklch(0.488 0.243 264.376);
@@ -280,14 +329,14 @@
   --chart-5: oklch(0.645 0.246 16.439);
 
   /* Sidebar for dark mode */
-  --sidebar: #3d3068;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #c0bad6;
-  --sidebar-primary-foreground: #2f2557;
-  --sidebar-tertiary: #c0bad6;
-  --sidebar-tertiary-foreground: #2f2557;
-  --sidebar-border: #5a5184;
-  --sidebar-ring: #c0bad6;
+  --sidebar: #17142a;
+  --sidebar-foreground: #f8f7fc;
+  --sidebar-primary: #d9d6e6;
+  --sidebar-primary-foreground: #2f2543;
+  --sidebar-tertiary: #d3eef3;
+  --sidebar-tertiary-foreground: #202e31;
+  --sidebar-border: #2f2d41;
+  --sidebar-ring: #d9d6e6;
 }
 
 @layer base {
