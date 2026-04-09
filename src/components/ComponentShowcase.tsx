@@ -61,6 +61,10 @@ import {
   Separator,
   Skeleton,
   Slider,
+  Stepper,
+  StepperContent,
+  StepperFooter,
+  StepperHeader,
   Switch,
   Table,
   TableBody,
@@ -162,6 +166,12 @@ const ComponentCopySelect = ({
 function ComponentShowcase() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [progress, setProgress] = useState(33);
+  const stepperDemoSteps = [
+    { label: "Publication Info" },
+    { label: "Duplicity Check" },
+    { label: "Authors" },
+    { label: "Acknowledgements" },
+  ];
 
   return (
     <>
@@ -528,6 +538,90 @@ function ComponentShowcase() {
                   </CardContent>
                 </Card>
               </div>
+            </section>
+
+            <Separator />
+
+            {/* Stepper Section */}
+            <section className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-semibold tracking-tight">
+                  Stepper
+                </h2>
+                <ComponentCopySelect
+                  components={[
+                    {
+                      name: "Stepper",
+                      import:
+                        "import { Stepper, StepperHeader, StepperContent, StepperFooter } from '@e-infra/design-system';",
+                    },
+                  ]}
+                />
+              </div>
+
+              <Panel>
+                <PanelHeader>
+                  <PanelTitle>Multi-step flow</PanelTitle>
+                  <PanelDescription>
+                    Guide users through sequential steps with progress
+                    visualization.
+                  </PanelDescription>
+                </PanelHeader>
+                <PanelContent>
+                  <Stepper initialStep={1} totalSteps={stepperDemoSteps.length}>
+                    <StepperHeader steps={stepperDemoSteps} />
+                    <StepperContent>
+                      <Panel>
+                        <PanelHeader>
+                          <PanelTitle>Publication Info</PanelTitle>
+                        </PanelHeader>
+                        <PanelContent>
+                          <p className="text-sm text-muted-foreground">
+                            Enter publication details and metadata.
+                          </p>
+                        </PanelContent>
+                      </Panel>
+                      <Panel>
+                        <PanelHeader>
+                          <PanelTitle>Duplicity Check</PanelTitle>
+                        </PanelHeader>
+                        <PanelContent>
+                          <p className="text-sm text-muted-foreground">
+                            Validate whether this record already exists.
+                          </p>
+                        </PanelContent>
+                      </Panel>
+                      <Panel>
+                        <PanelHeader>
+                          <PanelTitle>Authors</PanelTitle>
+                        </PanelHeader>
+                        <PanelContent>
+                          <p className="text-sm text-muted-foreground">
+                            Add and verify author information.
+                          </p>
+                        </PanelContent>
+                      </Panel>
+                      <Panel>
+                        <PanelHeader>
+                          <PanelTitle>Acknowledgements</PanelTitle>
+                        </PanelHeader>
+                        <PanelContent>
+                          <p className="text-sm text-muted-foreground">
+                            Provide acknowledgements and funding details.
+                          </p>
+                        </PanelContent>
+                      </Panel>
+                    </StepperContent>
+                    <StepperFooter
+                      onFinish={() => {
+                        toast.success("Stepper complete", {
+                          description: "All steps have been completed.",
+                        });
+                      }}
+                    />
+                  </Stepper>
+                </PanelContent>
+              </Panel>
             </section>
 
             <Separator />
