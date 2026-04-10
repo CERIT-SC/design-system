@@ -1,9 +1,40 @@
 # Colors
 
-The design system uses a cohesive color palette with support for light and dark modes. Colors are defined as CSS variables in `setup.css` for easy customization.
+The design system uses a cohesive, token-based palette with dedicated light and dark mode values. Core tokens and full shade ramps are defined in `setup.css` and exposed as Tailwind utility colors.
 
 <ColorsPreview />
 
+## Surface hierarchy
+
+The neutral surface system uses three layers to communicate elevation and visual priority:
+
+- `background`: Page canvas and app shell backdrop.
+- `surface`: Standard containers such as cards, sidebars, and inputs.
+- `surface-raised`: Floating or elevated UI such as dropdowns, popovers, and modals.
+
+Use this progression consistently so overlays feel intentionally lifted above base content.
+
+```tsx
+<main className="bg-background text-text min-h-screen p-6">
+  <section className="bg-surface border border-border rounded-xl p-4">
+    Base content on surface
+
+    <div className="mt-4 bg-surface-raised border border-border rounded-lg p-3 shadow-sm">
+      Elevated content (popover/modal style)
+    </div>
+  </section>
+</main>
+```
+
+## Shade ramps
+
+In addition to core tokens (for example `primary`, `success`, `warning`), the system provides 50-950 ramps such as `--color-primary-50` ... `--color-primary-950`.
+
+Use ramps when you need nuanced states:
+
+- Lower steps (50-200): Subtle backgrounds and soft tints.
+- Mid steps (300-600): Interactive fills, hovers, and active states.
+- Higher steps (700-950): Strong contrast accents, text on light tints, and emphasis.
 
 ## Usage
 
@@ -13,5 +44,13 @@ import '@/lib_public/setup.css'
 // Use CSS variables as tailwind classes
 <div className="bg-primary text-primary-foreground">
   Primary color background with foreground text
+</div>
+
+<div className="bg-primary-100 text-primary-900">
+  Subtle tinted background using the primary ramp
+</div>
+
+<div className="bg-surface-raised border border-border">
+  Elevated panel
 </div>
 ```
