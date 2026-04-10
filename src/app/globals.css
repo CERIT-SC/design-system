@@ -1,3 +1,4 @@
 @import "tailwindcss";
 
 @import "../../lib_public/setup.css";
+@import "../../lib_public/compatibility-shim.css";
