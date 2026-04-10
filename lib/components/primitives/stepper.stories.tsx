@@ -86,7 +86,7 @@ function Step2DuplicityCheck() {
       </CardHeader>
       <CardContent>
         <div className="text-center py-8">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-text">
             Checking for duplicate publications...
           </p>
           <p className="text-sm text-green-600 mt-4">No duplicates found!</p>
@@ -217,7 +217,7 @@ export const WithCustomFooter: Story = {
           <Step4Acknowledgements />
         </StepperContent>
         <StepperFooter showDefaultButtons={false}>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-text">
             Custom footer content goes here
           </div>
         </StepperFooter>

@@ -3,17 +3,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  "relative backdrop-blur w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   {
     variants: {
       variant: {
-        default: "bg-tertiary/50 border-tertiary text-panel-foreground",
+        default:
+          "bg-tertiary/50 border-tertiary supports-backdrop-filter:bg-tertiary/60",
         success:
-          "bg-success/50 border-success text-success-foreground [&>svg]:text-success-foreground",
+          "bg-success/50 border-success supports-backdrop-filter:bg-success/60",
         warning:
-          "bg-warning/50 border-warning text-warning-foreground [&>svg]:text-warning-foreground",
-        error:
-          "text-error-foreground bg-error/50 border-error [&>svg]:text-current *:data-[slot=alert-description]:text-error-foreground",
+          "bg-warning/50 border-warning supports-backdrop-filter:bg-warning/60",
+        error: " bg-error/50 border-error supports-backdrop-filter:bg-error/60",
       },
     },
     defaultVariants: {
@@ -58,7 +58,7 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
+        "text-text col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
         className
       )}
       {...props}

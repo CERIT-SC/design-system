@@ -106,10 +106,10 @@ export default async function DocsPage({
     return (
       <>
         <div>
-          <h1 className="text-2xl font-bold text-heading mb-2">
+          <h1 className="text-2xl font-bold text-text-heading mb-2">
             Page Not Found
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-text">
             The requested documentation page could not be found.
           </p>
         </div>
@@ -134,11 +134,11 @@ export default async function DocsPage({
       <article className="max-w-none">
         {page.frontmatter.title && (
           <div className="mb-8 pb-6 border-b border-border">
-            <h1 className="text-3xl font-extrabold tracking-tight text-heading mb-2">
+            <h1 className="text-3xl font-extrabold tracking-tight text-text-heading mb-2">
               {page.frontmatter.title}
             </h1>
             {page.frontmatter.description && (
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-text leading-relaxed">
                 {page.frontmatter.description}
               </p>
             )}

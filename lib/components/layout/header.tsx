@@ -8,7 +8,7 @@ const Header = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
     <header
       ref={ref}
       className={cn(
-        "sticky top-0 z-50 w-full bg-background h-16 flex items-center border-b border-sidebar-border justify-between backdrop-blur supports-backdrop-filter:bg-background/60",
+        "sticky top-0 z-50 w-full bg-background h-16 flex items-center border-b border-border justify-between backdrop-blur supports-backdrop-filter:bg-background/60",
         className
       )}
       {...props}

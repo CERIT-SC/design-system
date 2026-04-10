@@ -185,7 +185,7 @@ export const DataDisplay: Story = {
             <span className="font-medium">CPU Cores</span>
             <span>48 of 96 used</span>
           </div>
-          <div className="h-2 rounded-full bg-muted">
+          <div className="h-2 rounded-full bg-surface">
             <div
               className="h-2 rounded-full bg-chart-1"
               style={{ width: "50%" }}
@@ -195,7 +195,7 @@ export const DataDisplay: Story = {
             <span className="font-medium">Memory</span>
             <span>128 GB of 256 GB used</span>
           </div>
-          <div className="h-2 rounded-full bg-muted">
+          <div className="h-2 rounded-full bg-surface">
             <div
               className="h-2 rounded-full bg-chart-2"
               style={{ width: "50%" }}
@@ -205,7 +205,7 @@ export const DataDisplay: Story = {
             <span className="font-medium">Storage</span>
             <span>2.5 TB of 5 TB used</span>
           </div>
-          <div className="h-2 rounded-full bg-muted">
+          <div className="h-2 rounded-full bg-surface">
             <div
               className="h-2 rounded-full bg-chart-3"
               style={{ width: "50%" }}

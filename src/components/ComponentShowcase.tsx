@@ -149,11 +149,9 @@ const ComponentCopySelect = ({
           >
             <div className="font-semibold text-sm mb-1">{comp.name}</div>
             {comp.description && (
-              <div className="text-xs text-muted-foreground mb-2">
-                {comp.description}
-              </div>
+              <div className="text-xs text-text mb-2">{comp.description}</div>
             )}
-            <code className="text-xs bg-muted px-2 py-1 rounded block w-full">
+            <code className="text-xs bg-surface px-2 py-1 rounded block w-full">
               {comp.import}
             </code>
           </DropdownMenuItem>
@@ -181,7 +179,7 @@ function ComponentShowcase() {
             <Content>
               <Content.Heading>Components Overview</Content.Heading>
               <Content.Body>
-                <p className="text-base leading-7 text-muted-foreground">
+                <p className="text-base leading-7 text-text">
                   Component showcase for the e-INFRA CZ Design System built with
                   shadcn/ui
                 </p>
@@ -503,9 +501,7 @@ function ComponentShowcase() {
                         </Avatar>
                         <div className="space-y-1">
                           <p className="text-sm font-medium">John Doe</p>
-                          <p className="text-xs text-muted-foreground">
-                            2 minutes ago
-                          </p>
+                          <p className="text-xs text-text">2 minutes ago</p>
                         </div>
                       </div>
                     </div>
@@ -952,7 +948,7 @@ function ComponentShowcase() {
                       <PanelDescription>Manage your settings.</PanelDescription>
                     </PanelHeader>
                     <PanelContent>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-text">
                         Settings content goes here.
                       </p>
                     </PanelContent>
@@ -1366,7 +1362,7 @@ function ComponentShowcase() {
               <div className="w-full max-w-md">
                 <AspectRatio
                   ratio={16 / 9}
-                  className="bg-muted rounded-md overflow-hidden"
+                  className="bg-surface rounded-md overflow-hidden"
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"

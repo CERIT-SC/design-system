@@ -19,8 +19,8 @@ export function ComponentPreview({
         className
       )}
     >
-      <div className="flex items-center rounded-none justify-between px-4 py-2.5 bg-card border-b border-border">
-        <div className="flex items-center rounded-none gap-1.5 text-muted-foreground">
+      <div className="flex items-center rounded-none justify-between px-4 py-2.5 bg-surface border-b border-border">
+        <div className="flex items-center rounded-none gap-1.5 text-text">
           <Eye className="size-3.5" />
           <span className="text-xs font-medium">Preview</span>
         </div>

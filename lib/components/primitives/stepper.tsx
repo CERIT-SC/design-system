@@ -163,7 +163,7 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
                         "h-7 w-7 border-2 border-background bg-warning text-warning-foreground",
                         !isComplete &&
                         !isCurrent &&
-                        "h-7 w-7 border-2 border-background bg-muted-foreground text-background"
+                        "h-7 w-7 border-2 border-background bg-border/80 text-foreground"
                       )}
                       style={{
                         boxShadow: isComplete

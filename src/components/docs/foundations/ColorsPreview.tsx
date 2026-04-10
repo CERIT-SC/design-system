@@ -109,8 +109,8 @@ const colorGroups: ColorGroup[] = [
       },
       {
         name: "Card",
-        cssVar: "--card",
-        twBg: "bg-card",
+        cssVar: "--surface",
+        twBg: "bg-surface",
         lightHex: "#f2f1f7",
         darkHex: "#3d3068",
         description: "Elevated surface for cards and panels.",
@@ -118,7 +118,7 @@ const colorGroups: ColorGroup[] = [
       {
         name: "Muted",
         cssVar: "--muted",
-        twBg: "bg-muted",
+        twBg: "bg-surface",
         lightHex: "#e4e4e4",
         darkHex: "#4a4371",
         description: "De-emphasized backgrounds for subdued areas.",
@@ -197,7 +197,7 @@ function CopyableHex({ value }: { value: string }) {
       onClick={copy}
       disabled={isPlaceholder}
       className={cn(
-        "group/hex flex items-center gap-1 font-mono text-[11px] text-foreground rounded transition-colors",
+        "group/hex flex items-center gap-1 font-mono text-[11px] text-text rounded transition-colors",
         isPlaceholder ? "cursor-default" : "cursor-pointer hover:text-primary"
       )}
       title={isPlaceholder ? undefined : `Copy ${value}`}
@@ -218,13 +218,11 @@ function CopyableHex({ value }: { value: string }) {
 
 function ColorCard({ color }: { color: ColorToken }) {
   return (
-    <div className="group flex flex-col rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
+    <div className="group flex flex-col rounded-xl overflow-hidden border border-border bg-surface shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
       <div className={cn("h-20 w-full", color.twBg)} />
       <div className="p-3 flex flex-col gap-2">
-        <span className="font-semibold text-sm text-foreground">
-          {color.name}
-        </span>
-        <code className="self-start text-[11px] font-mono bg-muted text-muted-foreground rounded px-1.5 py-0.5">
+        <span className="font-semibold text-sm text-text">{color.name}</span>
+        <code className="self-start text-[11px] font-mono bg-surface text-text rounded px-1.5 py-0.5">
           {color.cssVar}
         </code>
         {color.description && (
@@ -253,10 +251,10 @@ export default function ColorsPreview() {
       {colorGroups.map((group) => (
         <section key={group.label} className="space-y-4">
           <div className="flex items-center gap-3">
-            <H2 className="text-heading">{group.label}</H2>
+            <H2 className="text-text-heading">{group.label}</H2>
             <Badge variant={group.badge}>{group.colors.length} tokens</Badge>
           </div>
-          <p className="text-sm text-muted-foreground">{group.description}</p>
+          <p className="text-sm text-text">{group.description}</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
             {group.colors.map((color) => (
               <ColorCard key={color.cssVar} color={color} />

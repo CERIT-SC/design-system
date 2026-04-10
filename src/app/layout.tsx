@@ -15,7 +15,8 @@ import {
   NavigationMenuList,
 } from "../../lib/components/primitives/navigation-menu";
 import { Footer } from "../../lib/components/layout/footer";
-import EinfraLogo from "../../public/einfra-logo.svg";
+import EinfraLogoLight from "../../public/einfra-logo.svg";
+import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "../components/mode-toggle";
@@ -47,11 +48,18 @@ export default function RootLayout({
               <HeaderLeft>
                 <Link href="/" className="flex items-center gap-2">
                   <Image
-                    src={EinfraLogo as StaticImageData}
-                    alt="e-INFRA Logo"
+                    src={EinfraLogoLight as StaticImageData}
+                    alt="e-INFRA Logo (light mode)"
                     width={120}
                     height={16}
-                    className="h-20 w-auto"
+                    className="h-20 w-auto dark:hidden"
+                  />
+                  <Image
+                    src={EinfraLogoDark as StaticImageData}
+                    alt="e-INFRA Logo (dark mode)"
+                    width={120}
+                    height={16}
+                    className="hidden h-20 w-auto dark:block"
                   />
                 </Link>
                 <NavigationMenu>
