@@ -179,7 +179,7 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
                 >
                   {index + 1}
                 </button>
-                <span className="text-xs text-foreground text-center leading-tight">
+                <span className="text-xs text-text text-center leading-tight">
                   {step.label}
                 </span>
               </div>

@@ -124,23 +124,23 @@ export const WithDropdown: Story = {
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-4 w-[400px]">
                       <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
                           <BarChart3 className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">Overview</div>
-                          <div className="text-xs text-muted-foreground">
+                          <div className="text-xs text-text">
                             View your analytics dashboard
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
                           <Users className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">Users</div>
-                          <div className="text-xs text-muted-foreground">
+                          <div className="text-xs text-text">
                             Manage user analytics
                           </div>
                         </div>
@@ -153,27 +153,23 @@ export const WithDropdown: Story = {
                   <NavigationMenuContent>
                     <div className="grid gap-3 p-4 w-[400px]">
                       <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
                           <FileText className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">
                             Documentation
                           </div>
-                          <div className="text-xs text-muted-foreground">
-                            Read the docs
-                          </div>
+                          <div className="text-xs text-text">Read the docs</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
                           <HelpCircle className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">Help Center</div>
-                          <div className="text-xs text-muted-foreground">
-                            Get support
-                          </div>
+                          <div className="text-xs text-text">Get support</div>
                         </div>
                       </div>
                     </div>
@@ -235,7 +231,7 @@ export const WithSearch: Story = {
           </HeaderLeft>
           <HeaderCenter>
             <div className="relative w-full max-w-md">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-text" />
               <Input
                 type="search"
                 placeholder="Search..."

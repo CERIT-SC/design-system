@@ -5,7 +5,7 @@ function Panel({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="panel"
       className={cn(
-        "bg-panel text-foreground rounded-md border p-6 shadow-sm",
+        "bg-surface text-text rounded-md border p-6 shadow-sm",
         className
       )}
       {...props}
@@ -43,7 +43,7 @@ function PanelDescription({
   return (
     <div
       data-slot="panel-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-text text-sm", className)}
       {...props}
     />
   );
