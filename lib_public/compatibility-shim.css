@@ -1,0 +1,39 @@
+/* compatibility-shim.css — import this AFTER your old design-system.css */
+/* Delete each line as you migrate the corresponding usages */
+
+:root {
+  --card:              var(--surface);
+  --card-foreground:   var(--text);
+  --panel:             var(--surface);
+  --panel-foreground:  var(--text);
+  --popover:           var(--surface-raised);
+  --popover-foreground: var(--text);
+  --muted:             var(--surface);
+  --muted-foreground:  var(--text-muted);
+  --sidebar:           var(--surface);
+  --sidebar-foreground: var(--text);
+  --sidebar-primary:   var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-border:    var(--border);
+  --heading:           var(--text-heading);
+  --input:             var(--border);
+  --ring:              var(--border-focus);
+  --foreground:        var(--text);
+}
+
+.dark {
+  --card:              var(--surface);
+  --card-foreground:   var(--text);
+  --panel:             var(--surface);
+  --panel-foreground:  var(--text);
+  --popover:           var(--surface-raised);
+  --popover-foreground: var(--text);
+  --muted:             var(--surface);
+  --muted-foreground:  var(--text-muted);
+  --sidebar:           var(--surface);
+  --sidebar-foreground: var(--text);
+  --heading:           var(--text-heading);
+  --input:             var(--border);
+  --ring:              var(--border-focus);
+  --foreground:        var(--text);
+}
