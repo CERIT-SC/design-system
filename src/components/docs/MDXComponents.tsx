@@ -182,7 +182,7 @@ export const mdxComponents: MDXComponents = {
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead
       className={cn(
-        "border-b border-border bg-surface/50 text-primary [&>tr]:border-b",
+        "border-b border-border bg-surface text-primary [&>tr]:border-b",
         className
       )}
       {...props}
@@ -200,7 +200,7 @@ export const mdxComponents: MDXComponents = {
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <tfoot
       className={cn(
-        "border-t bg-surface/50 font-medium [&>tr]:border-t",
+        "border-t bg-surface font-medium [&>tr]:border-t",
         className
       )}
       {...props}
@@ -209,7 +209,7 @@ export const mdxComponents: MDXComponents = {
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
       className={cn(
-        "border-b border-border transition-colors hover:bg-surface/20 data-[state=selected]:bg-surface",
+        "border-b border-border transition-colors hover:bg-surface/60 data-[state=selected]:bg-surface",
         className
       )}
       {...props}

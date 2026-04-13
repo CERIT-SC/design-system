@@ -73,28 +73,28 @@ const colorGroups: ColorGroup[] = [
       {
         name: "Background",
         cssVar: "--background",
-        lightHex: "#f4f3f8",
+        lightHex: "#f4f5f9",
         darkHex: "#0f0e14",
         usage: "Page-level canvas and app shell backdrop.",
       },
       {
         name: "Surface",
         cssVar: "--surface",
-        lightHex: "#eeedf4",
-        darkHex: "#18171f",
+        lightHex: "#eaebf1",
+        darkHex: "#191820",
         usage: "Cards, sidebars, inputs, and standard containers.",
       },
       {
         name: "Surface Raised",
         cssVar: "--surface-raised",
-        lightHex: "#e8e7f1",
-        darkHex: "#22212c",
+        lightHex: "#dddee6",
+        darkHex: "#242330",
         usage: "Popovers, dropdowns, modals, and floating layers.",
       },
       {
         name: "Border",
         cssVar: "--border",
-        lightHex: "#d0cedd",
+        lightHex: "#c9cad4",
         darkHex: "#2e2c3c",
         usage: "Component dividers and subtle outlines.",
       },
@@ -150,7 +150,7 @@ const colorGroups: ColorGroup[] = [
       {
         name: "Chart 2",
         cssVar: "--chart-2",
-        lightHex: "#d9d6e6",
+        lightHex: "#ca83ac",
         darkHex: "#34d399",
         usage: "Secondary series or comparison line.",
       },
@@ -312,10 +312,10 @@ const shadeFamilies: ShadeFamily[] = [
     tokenPrefix: "--color-base",
     description: "Neutral foundation used by surface and text tokens.",
     stops: [
-      { step: "50", lightHex: "#f4f3f8", darkHex: "#f4f3f8" },
-      { step: "100", lightHex: "#eeedf4", darkHex: "#eeedf4" },
-      { step: "200", lightHex: "#e8e7f1", darkHex: "#e8e7f1" },
-      { step: "300", lightHex: "#d0cedd", darkHex: "#d0cedd" },
+      { step: "50", lightHex: "#f4f5f9", darkHex: "#f4f5f9" },
+      { step: "100", lightHex: "#eaebf1", darkHex: "#eaebf1" },
+      { step: "200", lightHex: "#dddee6", darkHex: "#dddee6" },
+      { step: "300", lightHex: "#c9cad4", darkHex: "#c9cad4" },
       { step: "400", lightHex: "#b0adbe", darkHex: "#b0adbe" },
       { step: "500", lightHex: "#6e6a82", darkHex: "#6e6a82" },
       { step: "600", lightHex: "#534f66", darkHex: "#534f66" },
@@ -425,16 +425,16 @@ function SurfaceStory() {
       <div className="grid gap-4 lg:grid-cols-2">
         <SurfaceStoryCard
           title="Light"
-          background="#f4f3f8"
-          surface="#eeedf4"
-          raised="#e8e7f1"
+          background="#f4f5f9"
+          surface="#eaebf1"
+          raised="#dddee6"
           text="#130f23"
         />
         <SurfaceStoryCard
           title="Dark"
           background="#0f0e14"
-          surface="#18171f"
-          raised="#22212c"
+          surface="#191820"
+          raised="#242330"
           text="#f3f0f4"
         />
       </div>
