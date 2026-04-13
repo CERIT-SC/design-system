@@ -14,7 +14,6 @@ import {
   NavigationMenuTrigger,
   NavigationMenuLink,
   NavigationMenuIndicator,
-  NavigationMenuViewport,
 } from "../primitives/navigation-menu";
 import { Content } from "./content";
 import {
@@ -122,7 +121,7 @@ export const WithDropdown: Story = {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Analytics</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid gap-3 p-4 w-[400px]">
+                    <div className="grid gap-3 p-4 w-100">
                       <div className="flex items-center gap-4">
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
                           <BarChart3 className="h-5 w-5" />
@@ -151,7 +150,7 @@ export const WithDropdown: Story = {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid gap-3 p-4 w-[400px]">
+                    <div className="grid gap-3 p-4 w-100">
                       <div className="flex items-center gap-4">
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
                           <FileText className="h-5 w-5" />
@@ -176,7 +175,6 @@ export const WithDropdown: Story = {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
-              {/* NavigationMenuIndicator shows an arrow pointing to the active trigger */}
               <NavigationMenuIndicator />
             </NavigationMenu>
           </HeaderLeft>
@@ -327,7 +325,7 @@ export const WithSidebar: Story = {
 export const CustomBackground: Story = {
   render: () => (
     <div className="min-h-screen flex flex-col">
-      <Header className="bg-gradient-to-r from-primary/90 to-secondary/90 border-transparent">
+      <Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
         <HeaderContent>
           <HeaderLeft>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white">
