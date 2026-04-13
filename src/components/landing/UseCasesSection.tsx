@@ -48,7 +48,10 @@ const useCases = [
 
 export function UseCasesSection() {
   return (
-    <section id="usecases" className="py-24 bg-white relative overflow-hidden">
+    <section
+      id="usecases"
+      className="py-24 bg-surface-raised relative overflow-hidden"
+    >
       <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -56,10 +59,10 @@ export function UseCasesSection() {
           <h2 className="text-base font-semibold text-primary uppercase tracking-wide mb-2">
             Implementations
           </h2>
-          <h3 className="text-4xl font-bold text-slate-900 mb-4">
+          <h3 className="text-4xl font-bold text-text-heading mb-4">
             Use Cases within e-INFRA CZ
           </h3>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-text-muted max-w-2xl mx-auto">
             From research portals to educational platforms, see how we&apos;re
             standardizing interfaces across various e-INFRA CZ projects.
           </p>
@@ -76,7 +79,7 @@ export function UseCasesSection() {
                   height={200}
                   className="absolute w-full h-full rounded-t-lg object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-linear-to-t from-background to-transparent opacity-60" />
                 <Badge
                   className="mb-2 absolute top-5 left-5"
                   variant="secondary"

@@ -29,18 +29,18 @@ const features = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-white relative overflow-hidden">
-      <div className="absolute inset-0  pointer-events-none" />
+    <section id="about" className="py-24 bg-surface-raised relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-base font-semibold text-primary uppercase tracking-wide mb-2">
             Purpose
           </h2>
-          <h3 className="text-4xl font-bold text-slate-900 mb-6">
+          <h3 className="text-4xl font-bold text-text-heading mb-6">
             Built for Academic Excellence
           </h3>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-text-muted">
             E-INFRA Design System is specifically crafted for Czech academic
             e-infrastructure, providing a unified design language for research
             institutions, universities, and scientific facilities.
