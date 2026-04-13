@@ -49,14 +49,14 @@ import {
 
 export function ComponentsShowcase() {
   return (
-    <section id="components" className="py-24 bg-slate-50 relative">
+    <section id="components" className="py-24 bg-background relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
           <div className="text-center md:text-left">
             <h2 className="text-base font-semibold text-primary uppercase tracking-wide mb-2">
               Component Library
             </h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-900">
+            <h3 className="text-3xl md:text-4xl font-bold text-text-heading">
               Modular Building Blocks
             </h3>
           </div>
@@ -77,7 +77,7 @@ export function ComponentsShowcase() {
               <PanelTitle>Buttons</PanelTitle>
               <PanelDescription>8 variants</PanelDescription>
             </PanelHeader>
-            <PanelContent className="bg-gray-100 p-4 rounded-lg mt-2">
+            <PanelContent className="bg-surface-raised p-4 rounded-lg mt-2">
               <div className="space-y-3">
                 <div className="flex gap-2">
                   <Button variant="default" size="sm" className="flex-1">
@@ -108,12 +108,12 @@ export function ComponentsShowcase() {
               <PanelTitle>Form Elements</PanelTitle>
               <PanelDescription>10 variants</PanelDescription>
             </PanelHeader>
-            <PanelContent className="bg-gray-100 p-4 rounded-lg mt-2">
+            <PanelContent className="bg-surface-raised p-4 rounded-lg mt-2">
               <div className="space-y-4">
                 <div>
                   <Label
                     htmlFor="email"
-                    className="text-xs font-medium text-slate-700"
+                    className="text-xs font-medium text-text-muted"
                   >
                     Email
                   </Label>
@@ -126,7 +126,10 @@ export function ComponentsShowcase() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Checkbox id="subscribe" />
-                  <Label htmlFor="subscribe" className="text-xs text-slate-700">
+                  <Label
+                    htmlFor="subscribe"
+                    className="text-xs text-text-muted"
+                  >
                     Subscribe to newsletter
                   </Label>
                 </div>
@@ -141,7 +144,7 @@ export function ComponentsShowcase() {
               <PanelTitle>Data Display</PanelTitle>
               <PanelDescription>12 variants</PanelDescription>
             </PanelHeader>
-            <PanelContent className="bg-gray-100 p-4 rounded-lg mt-2">
+            <PanelContent className="bg-surface-raised p-4 rounded-lg mt-2">
               <div className="space-x-3 ">
                 <Badge variant="default">Default</Badge>
                 <Badge variant="secondary">Secondary</Badge>
@@ -168,20 +171,20 @@ export function ComponentsShowcase() {
               <PanelTitle>Navigation</PanelTitle>
               <PanelDescription>5 variants</PanelDescription>
             </PanelHeader>
-            <PanelContent className="bg-gray-100 p-4 rounded-lg mt-2">
+            <PanelContent className="bg-surface-raised p-4 rounded-lg mt-2">
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem>
                     <BreadcrumbLink href="#">Home</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator>
-                    <ChevronRight className="w-3 h-3 text-slate-400" />
+                    <ChevronRight className="w-3 h-3 text-text-muted" />
                   </BreadcrumbSeparator>
                   <BreadcrumbItem>
                     <BreadcrumbLink href="#">Projects</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator>
-                    <ChevronRight className="w-3 h-3 text-slate-400" />
+                    <ChevronRight className="w-3 h-3 text-text-muted" />
                   </BreadcrumbSeparator>
                   <BreadcrumbItem>
                     <BreadcrumbLink href="#">Project A</BreadcrumbLink>
@@ -190,16 +193,16 @@ export function ComponentsShowcase() {
               </Breadcrumb>
 
               <Tabs defaultValue="overview" className="w-full mt-4">
-                <TabsList className="bg-slate-200 rounded-md p-1">
+                <TabsList className="bg-surface rounded-md p-1">
                   <TabsTrigger
                     value="overview"
-                    className="data-[state=active]:bg-primary text-sm text-slate-700 data-[state=active]:text-white rounded-md px-3 py-1"
+                    className="data-[state=active]:bg-primary text-sm text-text-muted data-[state=active]:text-primary-foreground rounded-md px-3 py-1"
                   >
                     Overview
                   </TabsTrigger>
                   <TabsTrigger
                     value="details"
-                    className="data-[state=active]:bg-primary text-sm text-slate-700 data-[state=active]:text-white rounded-md px-3 py-1"
+                    className="data-[state=active]:bg-primary text-sm text-text-muted data-[state=active]:text-primary-foreground rounded-md px-3 py-1"
                   >
                     Details
                   </TabsTrigger>
@@ -220,7 +223,7 @@ export function ComponentsShowcase() {
               <PanelTitle>Feedback & Alerts</PanelTitle>
               <PanelDescription>4 variants</PanelDescription>
             </PanelHeader>
-            <PanelContent className="bg-gray-100 p-4 rounded-lg mt-2 space-y-3">
+            <PanelContent className="bg-surface-raised p-4 rounded-lg mt-2 space-y-3">
               <Alert variant="default">
                 <Info className="w-4 h-4 text-info" />
                 <div>
@@ -248,7 +251,7 @@ export function ComponentsShowcase() {
               <PanelTitle>Data Tables</PanelTitle>
               <PanelDescription>1 variant</PanelDescription>
             </PanelHeader>
-            <PanelContent className="bg-gray-100 p-4 rounded-lg mt-2">
+            <PanelContent className="bg-surface-raised p-4 rounded-lg mt-2">
               <Table>
                 <TableHeader>
                   <TableRow>
