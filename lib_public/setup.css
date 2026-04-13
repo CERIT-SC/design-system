@@ -4,8 +4,9 @@
  * Surface hierarchy (light):  background → surface → surface-raised
  * Surface hierarchy (dark):   background → surface → surface-raised
  *
- * All neutrals derive from a violet-grey base to stay
- * cohesive with the primary purple brand color.
+ * Neutrals use a cool grey with a ~3% violet tint to stay cohesive
+ * with the primary purple brand without reading as a colour.
+ * Elevation steps are 10–12 lightness units apart for clear hierarchy.
  */
 
 @custom-variant dark (&:is(.dark *));
@@ -30,26 +31,26 @@
   --color-text-heading: var(--text-heading);
 
   /* Brand */
-  --color-primary:             var(--primary);
-  --color-primary-foreground:  var(--primary-foreground);
-  --color-secondary:           var(--secondary);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-tertiary:            var(--tertiary);
-  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-tertiary:             var(--tertiary);
+  --color-tertiary-foreground:  var(--tertiary-foreground);
 
   /* Borders */
   --color-border:       var(--border);
   --color-border-focus: var(--border-focus);
 
   /* Semantic */
-  --color-info:              var(--info);
-  --color-info-foreground:   var(--info-foreground);
-  --color-success:           var(--success);
+  --color-info:               var(--info);
+  --color-info-foreground:    var(--info-foreground);
+  --color-success:            var(--success);
   --color-success-foreground: var(--success-foreground);
-  --color-warning:           var(--warning);
+  --color-warning:            var(--warning);
   --color-warning-foreground: var(--warning-foreground);
-  --color-error:             var(--error);
-  --color-error-foreground:  var(--error-foreground);
+  --color-error:              var(--error);
+  --color-error-foreground:   var(--error-foreground);
 
   /* Charts */
   --color-chart-1: var(--chart-1);
@@ -63,15 +64,15 @@
 :root {
   --radius: 0.75rem;
 
-  /* Surfaces — violet-grey tinted, 3 elevation levels */
-  --background:     #f4f3f8; /* page canvas, faint violet tint  */
-  --surface:        #eeedf4; /* cards, sidebar, inputs           */
-  --surface-raised: #e8e7f1; /* popovers, dropdowns, modals      */
+  /* Surfaces — cool neutral grey, ~3% violet tint, 10–12 lightness units per step */
+  --background:     #f4f5f9; /* page canvas — near-neutral, barely-there cool tint */
+  --surface:        #eaebf1; /* cards, sidebar, inputs — clear step from background */
+  --surface-raised: #dddee6; /* popovers, dropdowns, modals — clearly above surface */
 
   /* Text */
   --text:         #130f23; /* near-black, matches primary family */
-  --text-muted:   #6e6a82; /* violet-grey muted                 */
-  --text-heading: #2f2557; /* primary brand purple              */
+  --text-muted:   #6e6a82; /* violet-grey muted                  */
+  --text-heading: #2f2557; /* primary brand purple               */
 
   /* Brand */
   --primary:            #2f2557;
@@ -84,18 +85,18 @@
   --tertiary-foreground: #0e444e;
 
   /* Borders */
-  --border:       #d0cedd; /* violet-grey, same family as surfaces */
-  --border-focus: #2f2557; /* primary, used for focus rings        */
+  --border:       #c9cad4; /* cool neutral, consistent with surfaces */
+  --border-focus: #2f2557; /* primary, used for focus rings          */
 
-  /* Semantic — unchanged, they're already well-calibrated */
-  --info:              #7ecdf8;
-  --info-foreground:   #192932;
-  --success:           #1cc16f;
+  /* Semantic — unchanged, well-calibrated for both modes */
+  --info:               #7ecdf8;
+  --info-foreground:    #192932;
+  --success:            #1cc16f;
   --success-foreground: #062716;
-  --warning:           #f7ce5b;
+  --warning:            #f7ce5b;
   --warning-foreground: #312912;
-  --error:             #f65a4f;
-  --error-foreground:  #311210;
+  --error:              #f65a4f;
+  --error-foreground:   #311210;
 
   /* Charts */
   --chart-1: #2f2557;
@@ -104,7 +105,7 @@
   --chart-4: #1cc16f;
   --chart-5: #f7ce5b;
 
-  /* ── Full color ramps (use for hover states, tinted badges, etc.) ── */
+  /* ── Color ramps — use for hover states, tinted badges, disabled fills ── */
 
   --color-primary-50:  #e8e7f4;
   --color-primary-100: #d2cfe9;
@@ -190,10 +191,14 @@
   --color-error-900: #3e1005;
   --color-error-950: #290902;
 
-  --color-base-50:  #f4f3f8;
-  --color-base-100: #eeedf4;
-  --color-base-200: #e8e7f1;
-  --color-base-300: #d0cedd;
+  /* Base ramp — cool neutral grey, shared by both modes.
+     Light uses low stops (50–300) for surfaces, high (700–950) for text.
+     Dark uses high stops (700–950) for surfaces, low (50–200) for text.
+     Stops 50–300 mirror the surface tokens exactly for consistency. */
+  --color-base-50:  #f4f5f9;
+  --color-base-100: #eaebf1;
+  --color-base-200: #dddee6;
+  --color-base-300: #c9cad4;
   --color-base-400: #b0adbe;
   --color-base-500: #6e6a82;
   --color-base-600: #534f66;
@@ -205,10 +210,10 @@
 
 /* ─── Dark mode ───────────────────────────────────────────── */
 .dark {
-  /* Surfaces — near-black with violet warmth, 3 elevation levels */
-  --background:     #0f0e14; /* page canvas                       */
-  --surface:        #18171f; /* cards, sidebar, inputs            */
-  --surface-raised: #22212c; /* popovers, dropdowns, modals       */
+  /* Surfaces — near-black with faint violet warmth, ~10 lightness units per step */
+  --background:     #0f0e14; /* page canvas                      */
+  --surface:        #191820; /* cards, sidebar, inputs           */
+  --surface-raised: #242330; /* popovers, dropdowns, modals      */
 
   /* Text */
   --text:         #f3f0f4;
@@ -229,15 +234,15 @@
   --border:       #2e2c3c;
   --border-focus: #d9d6e6;
 
-  /* Semantic — identical to light, they're designed to work on both */
-  --info:              #7ecdf8;
-  --info-foreground:   #192932;
-  --success:           #1cc16f;
+  /* Semantic — identical to light, designed to work on both */
+  --info:               #7ecdf8;
+  --info-foreground:    #192932;
+  --success:            #1cc16f;
   --success-foreground: #062716;
-  --warning:           #f7ce5b;
+  --warning:            #f7ce5b;
   --warning-foreground: #312912;
-  --error:             #f65a4f;
-  --error-foreground:  #311210;
+  --error:              #f65a4f;
+  --error-foreground:   #311210;
 
   /* Charts */
   --chart-1: #818cf8;
@@ -246,7 +251,7 @@
   --chart-4: #c084fc;
   --chart-5: #f87171;
 
-  /* ── Full color ramps ── */
+  /* ── Color ramps (dark mode overrides) ── */
 
   --color-primary-50:  #fcfcfd;
   --color-primary-100: #f7f6f9;
@@ -284,17 +289,7 @@
   --color-tertiary-900: #0f0a22;
   --color-tertiary-950: #080516;
 
-  --color-base-50:  #f4f3f8;
-  --color-base-100: #eeedf4;
-  --color-base-200: #e8e7f1;
-  --color-base-300: #d0cedd;
-  --color-base-400: #b0adbe;
-  --color-base-500: #6e6a82;
-  --color-base-600: #534f66;
-  --color-base-700: #3b3850;
-  --color-base-800: #27243a;
-  --color-base-900: #18172b;
-  --color-base-950: #0f0e14;
+  /* --color-base-* ramp is theme-independent — defined once in :root above */
 }
 
 @layer base {
