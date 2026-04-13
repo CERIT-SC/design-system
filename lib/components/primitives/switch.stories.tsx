@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Switch } from "./switch";
+import { Label } from "./label";
 
 const meta = {
   title: "Components/Switch",
@@ -14,28 +15,39 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  render: () => (
+    <div className="flex items-center gap-3">
+      <Switch id="switch-default" />
+      <Label htmlFor="switch-default">Wi-Fi</Label>
+    </div>
+  ),
 };
 
 export const Checked: Story = {
-  args: {
-    defaultChecked: true,
-  },
+  render: () => (
+    <div className="flex items-center gap-3">
+      <Switch id="switch-checked" defaultChecked />
+      <Label htmlFor="switch-checked">Bluetooth</Label>
+    </div>
+  ),
 };
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
+  render: () => (
+    <div className="flex items-center gap-3">
+      <Switch id="switch-disabled" disabled />
+      <Label htmlFor="switch-disabled" className="text-text">
+        Airplane mode
+      </Label>
+    </div>
+  ),
 };
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-3">
       <Switch id="airplane-mode" />
-      <label htmlFor="airplane-mode" className="text-sm font-medium">
-        Airplane Mode
-      </label>
+      <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>
   ),
 };

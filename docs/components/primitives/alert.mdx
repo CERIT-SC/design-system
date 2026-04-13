@@ -3,18 +3,46 @@
 Alerts communicate important messages and actions to users with visual indicators for different message types (info, success, warning, error).
 
 <ComponentPreview>
-<div className="flex flex-col gap-4 w-full"> 
-  <Alert> <AlertTitle>Heads up!</AlertTitle> <AlertDescription> You can add components to your app using the cli. </AlertDescription>  </Alert>
-  <Alert variant="success"> <AlertTitle>Success</AlertTitle> <AlertDescription> Your settings have been saved successfully. </AlertDescription> </Alert>
-  <Alert variant="warning"> <AlertTitle>Warning</AlertTitle> <AlertDescription> Your trial period is about to expire. </AlertDescription> </Alert>
-  <Alert variant="error"> <AlertTitle>Error</AlertTitle> <AlertDescription> Something went wrong. Please try again. </AlertDescription> </Alert>
-</div>
+  <div className="flex flex-col gap-4 w-full">
+    <Alert>
+      {" "}
+      <AlertTitle>Heads up!</AlertTitle>{" "}
+      <AlertDescription>
+        {" "}
+        You can add components to your app using the cli.{" "}
+      </AlertDescription>{" "}
+    </Alert>
+    <Alert variant="success">
+      {" "}
+      <AlertTitle>Success</AlertTitle>{" "}
+      <AlertDescription>
+        {" "}
+        Your settings have been saved successfully.{" "}
+      </AlertDescription>{" "}
+    </Alert>
+    <Alert variant="warning">
+      {" "}
+      <AlertTitle>Warning</AlertTitle>{" "}
+      <AlertDescription>
+        {" "}
+        Your trial period is about to expire.{" "}
+      </AlertDescription>{" "}
+    </Alert>
+    <Alert variant="error">
+      {" "}
+      <AlertTitle>Error</AlertTitle>{" "}
+      <AlertDescription>
+        {" "}
+        Something went wrong. Please try again.{" "}
+      </AlertDescription>{" "}
+    </Alert>
+  </div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from '@e-infra/design-system'
+import { Alert, AlertTitle, AlertDescription } from "@e-infra/design-system"
 
 <Alert variant="default">
   <Info className="h-4 w-4" /> // Here add an icon from your own icon library
@@ -33,31 +61,31 @@ import { Alert, AlertTitle, AlertDescription } from '@e-infra/design-system'
 
 ### Alert
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `default` \| `success` \| `warning` \| `error` | `default` | Visual style variant |
-| className | string | - | Additional CSS classes |
-| ...props | React.HTMLAttributes | - | Native div props |
+| Prop      | Type                                           | Default   | Description            |
+| --------- | ---------------------------------------------- | --------- | ---------------------- |
+| variant   | `default` \| `success` \| `warning` \| `error` | `default` | Visual style variant   |
+| className | string                                         | -         | Additional CSS classes |
+| ...props  | React.HTMLAttributes                           | -         | Native div props       |
 
 ### AlertTitle
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| className | string | - | Additional CSS classes |
-| ...props | React.HTMLAttributes | - | Native div props |
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
 
 ### AlertDescription
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| className | string | - | Additional CSS classes |
-| ...props | React.HTMLAttributes | - | Native div props |
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
 
 ## Variants
 
-| Variant | Background | Border | Text |
-|---------|------------|--------|------|
-| default | `tertiary/50` | `tertiary` | `text` |
-| success | `success/50` | `success` | `success-foreground` |
-| warning | `warning/50` | `warning` | `warning-foreground` |
-| error | `error/50` | `error` | `error-foreground` |
+| Variant | Background    | Border     | Text                 |
+| ------- | ------------- | ---------- | -------------------- |
+| default | `tertiary/50` | `tertiary` | `text`               |
+| success | `success/50`  | `success`  | `success-foreground` |
+| warning | `warning/50`  | `warning`  | `warning-foreground` |
+| error   | `error/50`    | `error`    | `error-foreground`   |

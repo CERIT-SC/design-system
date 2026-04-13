@@ -3,101 +3,131 @@
 Cards display related content and actions in a structured container with header, body, and footer sections. The Card component also supports a `CardMedia` subcomponent for displaying images with configurable aspect ratios. All the sections are **optional**, allowing for flexible layouts.
 
 <ComponentPreview>
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-5xl">
-  <Card className="w-full ">
-    <CardHeader>
-      <CardTitle>Default</CardTitle>
-      <CardDescription>Standard card appearance.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Default styling with subtle shadow.</P></CardContent>
-    <CardFooter><Button>Action</Button></CardFooter>
-  </Card>
-  <Card variant="primary" className="w-full">
-    <CardHeader>
-      <CardTitle>Primary</CardTitle>
-      <CardDescription>Primary color scheme.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Uses primary background color.</P></CardContent>
-    <CardFooter><Button variant="secondary">Action</Button></CardFooter>
-  </Card>
-  <Card variant="secondary" className="w-full ">
-    <CardHeader>
-      <CardTitle>Secondary</CardTitle>
-      <CardDescription>Secondary color scheme.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Uses secondary background color.</P></CardContent>
-    <CardFooter><Button>Action</Button></CardFooter>
-  </Card>
-  <Card variant="tertiary" className="w-full ">
-    <CardHeader>
-      <CardTitle>Tertiary</CardTitle>
-      <CardDescription>Tertiary color scheme.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Uses tertiary background color.</P></CardContent>
-    <CardFooter><Button variant="default">Action</Button></CardFooter>
-  </Card>
-  <Card variant="gradient" className="w-full ">
-    <CardHeader>
-      <CardTitle>Gradient</CardTitle>
-      <CardDescription>Gradient background.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Features a gradient from secondary to tertiary.</P></CardContent>
-    <CardFooter><Button variant="default">Action</Button></CardFooter>
-  </Card>
-  <Card animation="translate" className="w-full ">
-    <CardHeader>
-      <CardTitle>Animated</CardTitle>
-      <CardDescription>With hover animation.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Hover to see the translate effect.</P></CardContent>
-    <CardFooter><Button>Action</Button></CardFooter>
-  </Card>
-  <Card className="w-full max-w-sm" variant="primary">
-    <CardHeader>
-      <CardIcon>
-        <Shield className="h-8 w-8 text-primary-foreground/80" />
-      </CardIcon>
-      <CardTitle>With Icon</CardTitle>
-      <CardDescription>Icon + title layout</CardDescription>
-    </CardHeader>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-5xl">
+    <Card className="w-full ">
+      <CardHeader>
+        <CardTitle>Default</CardTitle>
+        <CardDescription>Standard card appearance.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Default styling with subtle shadow.</P>
+      </CardContent>
+      <CardFooter>
+        <Button>Action</Button>
+      </CardFooter>
+    </Card>
+    <Card variant="primary" className="w-full">
+      <CardHeader>
+        <CardTitle>Primary</CardTitle>
+        <CardDescription>Primary color scheme.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Uses primary background color.</P>
+      </CardContent>
+      <CardFooter>
+        <Button variant="secondary">Action</Button>
+      </CardFooter>
+    </Card>
+    <Card variant="secondary" className="w-full ">
+      <CardHeader>
+        <CardTitle>Secondary</CardTitle>
+        <CardDescription>Secondary color scheme.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Uses secondary background color.</P>
+      </CardContent>
+      <CardFooter>
+        <Button>Action</Button>
+      </CardFooter>
+    </Card>
+    <Card variant="tertiary" className="w-full ">
+      <CardHeader>
+        <CardTitle>Tertiary</CardTitle>
+        <CardDescription>Tertiary color scheme.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Uses tertiary background color.</P>
+      </CardContent>
+      <CardFooter>
+        <Button variant="default">Action</Button>
+      </CardFooter>
+    </Card>
+    <Card variant="gradient" className="w-full ">
+      <CardHeader>
+        <CardTitle>Gradient</CardTitle>
+        <CardDescription>Gradient background.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Features a gradient from secondary to tertiary.</P>
+      </CardContent>
+      <CardFooter>
+        <Button variant="default">Action</Button>
+      </CardFooter>
+    </Card>
+    <Card animation="translate" className="w-full ">
+      <CardHeader>
+        <CardTitle>Animated</CardTitle>
+        <CardDescription>With hover animation.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Hover to see the translate effect.</P>
+      </CardContent>
+      <CardFooter>
+        <Button>Action</Button>
+      </CardFooter>
+    </Card>
+    <Card className="w-full max-w-sm" variant="primary">
+      <CardHeader>
+        <CardIcon>
+          <Shield className="h-8 w-8 text-primary-foreground/80" />
+        </CardIcon>
+        <CardTitle>With Icon</CardTitle>
+        <CardDescription>Icon + title layout</CardDescription>
+      </CardHeader>
       <CardContent>
         <P>Card featuring an icon in the header. </P>
       </CardContent>
-    <CardFooter><Button variant="secondary">Action</Button></CardFooter>
-  </Card>
-  <Card className="w-full" variant="default">
-    <CardHeader>
-      <CardTitle>With Action</CardTitle>
-      <CardDescription>Action button in header</CardDescription>
-      <CardAction>
-        <Button size="sm" variant="outline">
-          Edit
-        </Button>
-      </CardAction>
-    </CardHeader>
-    <CardContent>
-      <P>Card with an action button positioned in the header.</P>
-    </CardContent>
-  </Card>
-</div>
+      <CardFooter>
+        <Button variant="secondary">Action</Button>
+      </CardFooter>
+    </Card>
+    <Card className="w-full" variant="default">
+      <CardHeader>
+        <CardTitle>With Action</CardTitle>
+        <CardDescription>Action button in header</CardDescription>
+        <CardAction>
+          <Button size="sm" variant="outline">
+            Edit
+          </Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <P>Card with an action button positioned in the header.</P>
+      </CardContent>
+    </Card>
+  </div>
 </ComponentPreview>
 
 <ComponentPreview>
-<div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-5xl">
-  <Card className="w-full">
-    <CardMedia
-      src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
-      alt="Random Image"
-      aspectRatio="video"
-    />
-    <CardHeader>
-      <CardTitle>Card with Media</CardTitle>
-      <CardDescription>Image extends to edges.</CardDescription>
-    </CardHeader>
-    <CardContent><P>Use CardMedia for images with aspect ratio control.</P></CardContent>
-    <CardFooter><Button size="sm">Action</Button></CardFooter>
-  </Card>
-</div>
+  <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-5xl">
+    <Card className="w-full">
+      <CardMedia
+        src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
+        alt="Random Image"
+        aspectRatio="video"
+      />
+      <CardHeader>
+        <CardTitle>Card with Media</CardTitle>
+        <CardDescription>Image extends to edges.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <P>Use CardMedia for images with aspect ratio control.</P>
+      </CardContent>
+      <CardFooter>
+        <Button size="sm">Action</Button>
+      </CardFooter>
+    </Card>
+  </div>
 </ComponentPreview>
 
 ## Usage
@@ -105,7 +135,15 @@ Cards display related content and actions in a structured container with header,
 ### Default Card
 
 ```tsx
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, Button } from '@e-infra/design-system'
+import {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  Button,
+} from "@e-infra/design-system";
 
 <Card className="w-full max-w-sm">
   <CardHeader>
@@ -118,7 +156,7 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, 
   <CardFooter>
     <Button>Action</Button>
   </CardFooter>
-</Card>
+</Card>;
 ```
 
 ### Variant Cards
@@ -191,7 +229,9 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, 
     <CardTitle>Card with Action</CardTitle>
     <CardDescription>Has an action button in the header</CardDescription>
     <CardAction>
-      <Button size="sm" variant="outline">Edit</Button>
+      <Button size="sm" variant="outline">
+        Edit
+      </Button>
     </CardAction>
   </CardHeader>
   <CardContent>
@@ -203,7 +243,7 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, 
 ### Card with Icon
 
 ```tsx
-import { Info } from "lucide-react"
+import { Info } from "lucide-react";
 
 <Card className="w-full max-w-sm">
   <CardHeader>
@@ -216,7 +256,7 @@ import { Info } from "lucide-react"
   <CardContent>
     <p>Use CardIcon to display an icon above the title.</p>
   </CardContent>
-</Card>
+</Card>;
 ```
 
 ## Card with Media
@@ -225,11 +265,7 @@ Use `CardMedia` to display images that extend to the edges of the card:
 
 ```tsx
 <Card className="w-full max-w-sm">
-  <CardMedia
-    src="/path/to/image.jpg"
-    alt="Description"
-    aspectRatio="video"
-  />
+  <CardMedia src="/path/to/image.jpg" alt="Description" aspectRatio="video" />
   <CardHeader>
     <CardTitle>Card with Image</CardTitle>
     <CardDescription>Visual content</CardDescription>
@@ -251,7 +287,7 @@ Use `CardMedia` to display images that extend to the edges of the card:
 Use the `asChild` prop to render a custom image component (e.g., Next.js Image) while maintaining the CardMedia styling and aspect ratio:
 
 ```tsx
-import Image from "next/image"
+import Image from "next/image";
 
 <Card className="w-full max-w-sm">
   <CardMedia asChild aspectRatio="video">
@@ -269,52 +305,52 @@ import Image from "next/image"
   <CardContent>
     <p>Allows framework-specific image optimizations.</p>
   </CardContent>
-</Card>
+</Card>;
 ```
 
 When `asChild` is `true`, CardMedia will clone and render the child element instead of an `<img>` tag, passing all styling and props to it.
 
 ## Components
 
-| Component | Description |
-|-----------|-------------|
-| `Card` | Main container |
-| `CardHeader` | Header section |
-| `CardFooter` | Footer section |
-| `CardTitle` | Title element |
-| `CardDescription` | Description element |
-| `CardContent` | Content area |
-| `CardAction` | Action area |
-| `CardIcon` | Icon container |
-| `CardMedia` | Image container with aspect ratio support |
+| Component         | Description                               |
+| ----------------- | ----------------------------------------- |
+| `Card`            | Main container                            |
+| `CardHeader`      | Header section                            |
+| `CardFooter`      | Footer section                            |
+| `CardTitle`       | Title element                             |
+| `CardDescription` | Description element                       |
+| `CardContent`     | Content area                              |
+| `CardAction`      | Action area                               |
+| `CardIcon`        | Icon container                            |
+| `CardMedia`       | Image container with aspect ratio support |
 
 ## Props
 
 ### Card
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `default` \| `primary` \| `secondary` \| `tertiary` \| `gradient` | `default` | Visual style variant |
-| animation | `static` \| `translate` | `static` | Hover animation behavior |
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Native div props |
+| Prop      | Type                                                              | Default   | Description              |
+| --------- | ----------------------------------------------------------------- | --------- | ------------------------ |
+| variant   | `default` \| `primary` \| `secondary` \| `tertiary` \| `gradient` | `default` | Visual style variant     |
+| animation | `static` \| `translate`                                           | `static`  | Hover animation behavior |
+| className | string                                                            | -         | Additional CSS classes   |
+| ...props  | React.ComponentProps                                              | -         | Native div props         |
 
 ### CardHeader/CardFooter/CardContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Native div props |
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.ComponentProps | -       | Native div props       |
 
 ### CardMedia
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| aspectRatio | `auto` \| `square` \| `video` | `video` | Aspect ratio of the media container |
-| asChild | boolean | `false` | Use a custom image component (e.g., Next.js Image) |
-| alt | string | `""` | Image alt text |
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Native img props |
+| Prop        | Type                          | Default | Description                                        |
+| ----------- | ----------------------------- | ------- | -------------------------------------------------- |
+| aspectRatio | `auto` \| `square` \| `video` | `video` | Aspect ratio of the media container                |
+| asChild     | boolean                       | `false` | Use a custom image component (e.g., Next.js Image) |
+| alt         | string                        | `""`    | Image alt text                                     |
+| className   | string                        | -       | Additional CSS classes                             |
+| ...props    | React.ComponentProps          | -       | Native img props                                   |
 
 ## Responsive Design
 
@@ -327,9 +363,7 @@ Cards are responsive by default. Use `w-full` with `max-w-*` utility classes to 
 </Card>
 
 // Card with custom max width
-<Card className="w-full max-w-[400px]">
+<Card className="w-full max-w-100">
   ...
 </Card>
 ```
-
-

@@ -3,75 +3,74 @@
 Buttons are primary interactive elements used to trigger actions or navigate. They support multiple variants and sizes for different use cases.
 
 <ComponentPreview>
-<div className="flex flex-col gap-10 items-center">
-  <div className="flex flex-wrap gap-4 w-full">
-    <Button>Default</Button>
-    <Button variant="secondary">Secondary</Button>
-    <Button variant="tertiary">Tertiary</Button>
-    <Button variant="success">Success</Button>
-    <Button variant="warning">Warning</Button>
-    <Button variant="error">Error</Button>
+  <div className="flex flex-col gap-10 items-center">
+    <div className="flex flex-wrap gap-4 w-full">
+      <Button>Default</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="tertiary">Tertiary</Button>
+      <Button variant="success">Success</Button>
+      <Button variant="warning">Warning</Button>
+      <Button variant="error">Error</Button>
+    </div>
+    <div className="flex flex-wrap gap-4">
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+      <Button variant="animated-underline">Animated Underline</Button>
+      <Button disabled>Disabled</Button>
+    </div>
+    <div className="flex flex-wrap gap-4">
+      <Button size="sm">Small</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">Large</Button>
+    </div>
   </div>
-  <div className="flex flex-wrap gap-4">
-    <Button variant="outline">Outline</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="link">Link</Button>
-    <Button variant="animated-underline">Animated Underline</Button>
-    <Button disabled>Disabled</Button>
-  </div>
-  <div className="flex flex-wrap gap-4">
-    <Button size="sm">Small</Button>
-    <Button size="default">Default</Button>
-    <Button size="lg">Large</Button>
-  </div>
-</div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Button } from "@einfra/components/primitives/button" 
+import { Button } from "@e-infra/design-system";
 
 <Button variant="default" size="default">
   Click me
-</Button>
-``` 
-
+</Button>;
+```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | See variants below | `default` | Visual style variant |
-| size | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-lg` | `default` | Button size |
-| className | string | - | Additional CSS classes |
-| asChild | boolean | `false` | Render as child component |
-| disabled | boolean | `false` | Disable the button |
-| ...props | React.ButtonHTMLAttributes | - | Native button props |
+| Prop      | Type                                                          | Default   | Description               |
+| --------- | ------------------------------------------------------------- | --------- | ------------------------- |
+| variant   | See variants below                                            | `default` | Visual style variant      |
+| size      | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-lg` | `default` | Button size               |
+| className | string                                                        | -         | Additional CSS classes    |
+| asChild   | boolean                                                       | `false`   | Render as child component |
+| disabled  | boolean                                                       | `false`   | Disable the button        |
+| ...props  | React.ButtonHTMLAttributes                                    | -         | Native button props       |
 
 ## Variants
 
-| Variant | Background | Text | Hover |
-|---------|------------|------|-------|
-| default | `primary` | `primary-foreground` | `primary/90` |
-| secondary | `secondary` | `secondary-foreground` | `secondary/80` |
-| tertiary | `tertiary` | `tertiary-foreground` | `tertiary/80` |
-| info | `info` | `info-foreground` | `info/90` |
-| success | `success` | `success-foreground` | `success/90` |
-| warning | `warning` | `warning-foreground` | `warning/90` |
-| error | `error` | `error-foreground` | `error/90` |
-| outline | `background` | `foreground` | `muted` |
-| ghost | `transparent` | `foreground` | `secondary/40` |
-| link | `transparent` | `primary` | `underline` |
-| animated-underline | `transparent` | `inherit` | Animated underline effect |
+| Variant            | Background    | Text                   | Hover                     |
+| ------------------ | ------------- | ---------------------- | ------------------------- |
+| default            | `primary`     | `primary-foreground`   | `primary/90`              |
+| secondary          | `secondary`   | `secondary-foreground` | `secondary/80`            |
+| tertiary           | `tertiary`    | `tertiary-foreground`  | `tertiary/80`             |
+| info               | `info`        | `info-foreground`      | `info/90`                 |
+| success            | `success`     | `success-foreground`   | `success/90`              |
+| warning            | `warning`     | `warning-foreground`   | `warning/90`              |
+| error              | `error`       | `error-foreground`     | `error/90`                |
+| outline            | `background`  | `foreground`           | `muted`                   |
+| ghost              | `transparent` | `foreground`           | `secondary/40`            |
+| link               | `transparent` | `primary`              | `underline`               |
+| animated-underline | `transparent` | `inherit`              | Animated underline effect |
 
 ## Sizes
 
-| Size | Height | Padding |
-|------|--------|---------|
-| default | 44px (h-11) | 16px horizontal (px-6) |
-| sm | 36px (h-9) | 12px horizontal (px-4) |
-| lg | 48px (h-12) | 24px horizontal (px-8) |
-| icon | 36px (size-9) | Centered |
-| icon-sm | 32px (size-8) | Centered |
-| icon-lg | 40px (size-10) | Centered |
+| Size    | Height         | Padding                |
+| ------- | -------------- | ---------------------- |
+| default | 40px (h-10)    | 16px horizontal (px-6) |
+| sm      | 36px (h-9)     | 12px horizontal (px-4) |
+| lg      | 48px (h-12)    | 24px horizontal (px-8) |
+| icon    | 36px (size-9)  | Centered               |
+| icon-sm | 32px (size-8)  | Centered               |
+| icon-lg | 40px (size-10) | Centered               |

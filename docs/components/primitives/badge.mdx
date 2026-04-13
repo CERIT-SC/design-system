@@ -3,18 +3,18 @@
 Badges are used to highlight small pieces of information like statuses, counts, or tags. They can be styled with different variants for context.
 
 <ComponentPreview>
-<div className="flex flex-wrap gap-3">
-  <Badge>Default</Badge>
-  <Badge variant="secondary">Secondary</Badge>
-  <Badge variant="error">Error</Badge>
-  <Badge variant="outline">Outline</Badge>
-</div>
+  <div className="flex flex-wrap gap-3">
+    <Badge>Default</Badge>
+    <Badge variant="secondary">Secondary</Badge>
+    <Badge variant="error">Error</Badge>
+    <Badge variant="outline">Outline</Badge>
+  </div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Badge } from '@e-infra/design-system'
+import { Badge } from "@e-infra/design-system"
 
 <Badge>Default</Badge>
 <Badge variant="secondary">Secondary</Badge>
@@ -24,18 +24,18 @@ import { Badge } from '@e-infra/design-system'
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `default` \| `secondary` \| `error` \| `outline` | `default` | Visual style variant |
-| className | string | - | Additional CSS classes |
-| asChild | boolean | `false` | Render as child component |
-| ...props | React.HTMLAttributes | - | Native span props |
+| Prop      | Type                                             | Default   | Description               |
+| --------- | ------------------------------------------------ | --------- | ------------------------- |
+| variant   | `default` \| `secondary` \| `error` \| `outline` | `default` | Visual style variant      |
+| className | string                                           | -         | Additional CSS classes    |
+| asChild   | boolean                                          | `false`   | Render as child component |
+| ...props  | React.HTMLAttributes                             | -         | Native span props         |
 
 ## Variants
 
-| Variant | Background | Border | Text |
-|---------|------------|--------|------|
-| default | `primary` | `transparent` | `primary-foreground` |
-| secondary | `secondary` | `transparent` | `secondary-foreground` |
-| error | `error` | `transparent` | `white` |
-| outline | `transparent` | `text-text` | `text-text` |
+| Variant   | Background    | Border          | Text                   |
+| --------- | ------------- | --------------- | ---------------------- |
+| default   | `primary`     | `transparent`   | `primary-foreground`   |
+| secondary | `secondary`   | `transparent`   | `secondary-foreground` |
+| error     | `error`       | `transparent`   | `white`                |
+| outline   | `transparent` | `border-border` | `text-text`            |
