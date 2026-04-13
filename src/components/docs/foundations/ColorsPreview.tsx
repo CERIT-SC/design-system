@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Check, Copy } from "lucide-react";
-import { H2, Muted } from "../../../../lib/components/foundations/typography";
+import { H2 } from "../../../../lib/components/foundations/typography";
 import { Badge } from "../../../../lib/components/primitives/badge";
-import { cn } from "../../../../lib/lib/utils";
 
 interface ColorToken {
   name: string;
@@ -329,10 +328,8 @@ const shadeFamilies: ShadeFamily[] = [
 
 function CopyableHex({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
-  const isPlaceholder = !value.startsWith("#");
 
   const copy = () => {
-    if (isPlaceholder) return;
     void navigator.clipboard.writeText(value).then(() => {
       setCopied(true);
       setTimeout(() => {
@@ -345,64 +342,171 @@ function CopyableHex({ value }: { value: string }) {
     <button
       type="button"
       onClick={copy}
-      disabled={isPlaceholder}
-      className={cn(
-        "group/hex flex items-center gap-1 font-mono text-[11px] text-text rounded transition-colors",
-        isPlaceholder ? "cursor-default" : "cursor-pointer hover:text-primary"
-      )}
-      title={isPlaceholder ? undefined : `Copy ${value}`}
+      className="group/hex flex items-center gap-1 font-mono text-sm rounded transition-colors cursor-pointer"
+      title={`Copy ${value}`}
     >
       {value}
-      {!isPlaceholder && (
-        <span className="opacity-0 group-hover/hex:opacity-100 transition-opacity">
-          {copied ? (
-            <Check className="size-3 text-success" />
-          ) : (
-            <Copy className="size-3" />
-          )}
-        </span>
-      )}
+      <span className="opacity-0 group-hover/hex:opacity-100 transition-opacity">
+        {copied ? (
+          <Check className="size-3 text-success" />
+        ) : (
+          <Copy className="size-3" />
+        )}
+      </span>
     </button>
   );
 }
 
-function SurfaceStoryCard({
-  title,
-  background,
-  surface,
-  raised,
-  text,
-}: {
-  title: string;
-  background: string;
-  surface: string;
-  raised: string;
-  text: string;
-}) {
+type Mode = "light" | "dark";
+
+const modeTokenStyles: Record<Mode, CSSProperties> = {
+  light: {
+    "--background": "#f4f5f9",
+    "--surface": "#eaebf1",
+    "--surface-raised": "#dddee6",
+    "--text": "#130f23",
+    "--primary": "#2f2557",
+    "--primary-foreground": "#ffffff",
+    "--secondary": "#d9d6e6",
+    "--secondary-foreground": "#2f2543",
+    "--tertiary": "#d3eef3",
+    "--tertiary-foreground": "#0e444e",
+    "--info": "#7ecdf8",
+    "--info-foreground": "#192932",
+    "--success": "#1cc16f",
+    "--success-foreground": "#062716",
+    "--warning": "#f7ce5b",
+    "--warning-foreground": "#312912",
+    "--error": "#f65a4f",
+    "--error-foreground": "#311210",
+    "--chart-1": "#2f2557",
+    "--chart-2": "#ca83ac",
+    "--chart-3": "#7ecdf8",
+    "--chart-4": "#1cc16f",
+    "--chart-5": "#f7ce5b",
+  } as CSSProperties,
+  dark: {
+    "--background": "#0f0e14",
+    "--surface": "#191820",
+    "--surface-raised": "#242330",
+    "--text": "#f3f0f4",
+    "--primary": "#d9d6e6",
+    "--primary-foreground": "#0f0e14",
+    "--secondary": "#d3eef3",
+    "--secondary-foreground": "#0f0e14",
+    "--tertiary": "#2f2557",
+    "--tertiary-foreground": "#f3f0f4",
+    "--info": "#7ecdf8",
+    "--info-foreground": "#192932",
+    "--success": "#1cc16f",
+    "--success-foreground": "#062716",
+    "--warning": "#f7ce5b",
+    "--warning-foreground": "#312912",
+    "--error": "#f65a4f",
+    "--error-foreground": "#311210",
+    "--chart-1": "#818cf8",
+    "--chart-2": "#34d399",
+    "--chart-3": "#fbbf24",
+    "--chart-4": "#c084fc",
+    "--chart-5": "#f87171",
+  } as CSSProperties,
+};
+
+const foregroundTokenVarByColorVar: Record<string, string> = {
+  "--primary": "--primary-foreground",
+  "--secondary": "--secondary-foreground",
+  "--tertiary": "--tertiary-foreground",
+  "--info": "--info-foreground",
+  "--success": "--success-foreground",
+  "--warning": "--warning-foreground",
+  "--error": "--error-foreground",
+};
+
+function ModeCard({ colors, mode }: { colors: ColorToken[]; mode: Mode }) {
+  const modeLabel = mode === "light" ? "Light" : "Dark";
+
   return (
     <div
       className="rounded-2xl border border-border p-5 md:p-6"
-      style={{ backgroundColor: background }}
+      style={{ ...modeTokenStyles[mode], backgroundColor: "var(--background)" }}
     >
-      <p className="text-xs uppercase tracking-[0.08em] text-text-muted mb-4">
-        {title}
+      <div className="mb-4">
+        <p
+          className="text-xs uppercase tracking-[0.08em]"
+          style={{ color: "var(--text)" }}
+        >
+          {modeLabel}
+        </p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {colors.map((color) => {
+          const hex = mode === "light" ? color.lightHex : color.darkHex;
+          const foregroundVar =
+            foregroundTokenVarByColorVar[color.cssVar] ?? "--text";
+          return (
+            <div
+              key={`${mode}-${color.cssVar}`}
+              className="relative h-32 rounded-2xl p-3 flex items-end"
+              style={{ backgroundColor: `var(${color.cssVar})` }}
+            >
+              <div
+                className="leading-tight flex flex-col gap-1"
+                style={{ color: `var(${foregroundVar})` }}
+              >
+                <p className="text-lg font-semibold">{color.name}</p>
+                <p className="text-md">
+                  <CopyableHex value={hex.toLowerCase()} />
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ColorGroupStory({ colors }: { colors: ColorToken[] }) {
+  return (
+    <section className="space-y-4">
+      <div className="grid gap-4 lg:grid-cols-2">
+        <ModeCard colors={colors} mode="light" />
+        <ModeCard colors={colors} mode="dark" />
+      </div>
+    </section>
+  );
+}
+
+function SurfaceStoryCard({ mode }: { mode: Mode }) {
+  const textColor = "var(--text)";
+
+  return (
+    <div
+      className="rounded-2xl border border-border p-5 md:p-6"
+      style={{ ...modeTokenStyles[mode], backgroundColor: "var(--background)" }}
+    >
+      <p
+        className="text-xs uppercase tracking-[0.08em] mb-4"
+        style={{ color: "var(--text)" }}
+      >
+        {mode === "light" ? "Light" : "Dark"}
       </p>
       <div
         className="relative rounded-2xl p-4 min-h-36"
-        style={{ backgroundColor: surface }}
+        style={{ backgroundColor: "var(--surface)" }}
       >
-        <div className="text-sm" style={{ color: text }}>
+        <div className="text-sm" style={{ color: textColor }}>
           <p className="text-xl font-medium">surface</p>
           <p className="text-[15px] opacity-90">Card / Sidebar / Input</p>
         </div>
         <div
           className="absolute right-4 bottom-4 rounded-xl p-3 w-44"
-          style={{ backgroundColor: raised }}
+          style={{ backgroundColor: "var(--surface-raised)" }}
         >
-          <p className="text-lg" style={{ color: text }}>
+          <p className="text-lg" style={{ color: textColor }}>
             surface-raised
           </p>
-          <p className="text-[15px] opacity-90" style={{ color: text }}>
+          <p className="text-[15px] opacity-90" style={{ color: textColor }}>
             Popover / Modal
           </p>
         </div>
@@ -423,64 +527,10 @@ function SurfaceStory() {
         surface-raised for overlays that need stronger separation.
       </p>
       <div className="grid gap-4 lg:grid-cols-2">
-        <SurfaceStoryCard
-          title="Light"
-          background="#f4f5f9"
-          surface="#eaebf1"
-          raised="#dddee6"
-          text="#130f23"
-        />
-        <SurfaceStoryCard
-          title="Dark"
-          background="#0f0e14"
-          surface="#191820"
-          raised="#242330"
-          text="#f3f0f4"
-        />
+        <SurfaceStoryCard mode="light" />
+        <SurfaceStoryCard mode="dark" />
       </div>
     </section>
-  );
-}
-
-function ColorCard({ color }: { color: ColorToken }) {
-  return (
-    <div className="group flex flex-col rounded-xl overflow-hidden border border-border bg-surface shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300">
-      <div className="grid grid-cols-2 h-20 w-full">
-        <div
-          className="p-2 flex items-end"
-          style={{ backgroundColor: color.lightHex }}
-        >
-          <span className="text-[10px] font-medium rounded bg-black/15 px-1.5 py-0.5 text-white">
-            Light
-          </span>
-        </div>
-        <div
-          className="p-2 flex items-end justify-end"
-          style={{ backgroundColor: color.darkHex }}
-        >
-          <span className="text-[10px] font-medium rounded bg-black/15 px-1.5 py-0.5 text-white">
-            Dark
-          </span>
-        </div>
-      </div>
-      <div className="p-3 flex flex-col gap-2">
-        <span className="font-semibold text-sm text-text">{color.name}</span>
-        <code className="self-start text-[11px] font-mono bg-surface text-text rounded px-1.5 py-0.5">
-          {color.cssVar}
-        </code>
-        <Muted className="text-[11px] leading-relaxed">{color.usage}</Muted>
-        <div className="mt-auto pt-2 border-t border-border flex flex-col gap-0.5">
-          <div className="flex items-center justify-between">
-            <Muted className="text-[11px]">Light</Muted>
-            <CopyableHex value={color.lightHex} />
-          </div>
-          <div className="flex items-center justify-between">
-            <Muted className="text-[11px]">Dark</Muted>
-            <CopyableHex value={color.darkHex} />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -550,11 +600,9 @@ export default function ColorsPreview() {
             <Badge variant={group.badge}>{group.colors.length} tokens</Badge>
           </div>
           <p className="text-sm text-text">{group.description}</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-            {group.colors.map((color) => (
-              <ColorCard key={color.cssVar} color={color} />
-            ))}
-          </div>
+          {["Brand", "Surface", "Semantic", "Data Visualization"].includes(
+            group.label
+          ) && <ColorGroupStory colors={group.colors} />}
         </section>
       ))}
 
