@@ -26,7 +26,7 @@ export const Default: Story = {
   },
 
   render: () => (
-    <Alert className="w-[400px]">
+    <Alert className="w-100">
       <Info className="h-4 w-4" />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>
@@ -42,7 +42,7 @@ export const Success: Story = {
   },
 
   render: () => (
-    <Alert variant="success" className="w-[400px]">
+    <Alert variant="success" className="w-100">
       <CircleCheck className="h-4 w-4" />
       <AlertTitle>Success</AlertTitle>
       <AlertDescription>
@@ -58,7 +58,7 @@ export const Warning: Story = {
   },
 
   render: () => (
-    <Alert variant="warning" className="w-[400px]">
+    <Alert variant="warning" className="w-100">
       <CircleAlert className="h-4 w-4" />
       <AlertTitle>Warning</AlertTitle>
       <AlertDescription>
@@ -75,7 +75,7 @@ export const Error: Story = {
   },
 
   render: () => (
-    <Alert variant="error" className="w-[400px]">
+    <Alert variant="error" className="w-100">
       <CircleX className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>

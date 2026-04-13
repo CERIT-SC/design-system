@@ -3,22 +3,22 @@
 Labels provide accessible text descriptions for form inputs. They improve accessibility and user experience.
 
 <ComponentPreview>
-<div className="flex flex-col gap-4">
-  <div className="flex flex-col gap-1.5">
-    <Label htmlFor="label-name">Full name</Label>
-    <Input id="label-name" placeholder="Enter your name" />
+  <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-1.5">
+      <Label htmlFor="label-name">Full name</Label>
+      <Input id="label-name" placeholder="Enter your name" />
+    </div>
+    <div className="flex flex-col gap-1.5">
+      <Label htmlFor="label-email">Email address</Label>
+      <Input id="label-email" type="email" placeholder="Enter your email" />
+    </div>
   </div>
-  <div className="flex flex-col gap-1.5">
-    <Label htmlFor="label-email">Email address</Label>
-    <Input id="label-email" type="email" placeholder="Enter your email" />
-  </div>
-</div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Label } from '@e-infra/design-system'
+import { Label } from "@e-infra/design-system"
 
 <Label htmlFor="email">Email address</Label>
 <Input id="email" type="email" />
@@ -26,11 +26,11 @@ import { Label } from '@e-infra/design-system'
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| htmlFor | string | - | ID of the controlled input (required) |
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Radix UI Label props |
+| Prop      | Type                 | Default | Description                           |
+| --------- | -------------------- | ------- | ------------------------------------- |
+| htmlFor   | string               | -       | ID of the controlled input (required) |
+| className | string               | -       | Additional CSS classes                |
+| ...props  | React.ComponentProps | -       | Radix UI Label props                  |
 
 ## Accessibility
 
