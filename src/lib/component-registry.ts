@@ -509,5 +509,5 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   FlaskConical,
   HelpCircle,
   Search,
-  Users
+  Users,
 };
