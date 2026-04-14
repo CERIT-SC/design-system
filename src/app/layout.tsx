@@ -19,8 +19,8 @@ import EinfraLogoLight from "../../public/einfra-logo.svg";
 import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
-import { ModeToggle } from "../components/mode-toggle";
-import { ThemeProvider } from "../components/theme-provider";
+import { ModeToggle } from "../components/ModeToggle";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

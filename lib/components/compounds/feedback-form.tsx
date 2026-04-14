@@ -245,9 +245,7 @@ function FeedbackModal({
         )}
 
         <div className="p-6">
-          <h4 className="text-lg font-semibold text-text mb-1">
-            {title}
-          </h4>
+          <h4 className="text-lg font-semibold text-text mb-1">{title}</h4>
           <p className="text-sm text-text mb-4">{description}</p>
 
           {submitStatus === "success" ? (
