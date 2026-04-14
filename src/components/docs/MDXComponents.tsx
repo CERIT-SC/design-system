@@ -46,7 +46,7 @@ export const mdxComponents: MDXComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
-        "scroll-m-20 text-4xl font-extrabold tracking-tight text-heading lg:text-5xl mt-8 mb-6",
+        "scroll-m-20 text-4xl font-extrabold text-text-heading lg:text-5xl mt-8 mb-6",
         className
       )}
       {...props}
@@ -55,7 +55,7 @@ export const mdxComponents: MDXComponents = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "scroll-m-20 text-2xl font-bold tracking-tight text-heading mt-8 mb-4",
+        "scroll-m-20 text-2xl font-bold text-text-heading mt-8 mb-4",
         className
       )}
       {...props}
@@ -64,7 +64,7 @@ export const mdxComponents: MDXComponents = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "scroll-m-20 text-xl font-semibold tracking-tight text-heading mt-6 mb-3",
+        "scroll-m-20 text-xl font-semibold  text-text-heading mt-6 mb-3",
         className
       )}
       {...props}
@@ -73,7 +73,7 @@ export const mdxComponents: MDXComponents = {
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
-        "scroll-m-20 text-lg font-semibold tracking-tight text-heading mt-4 mb-2",
+        "scroll-m-20 text-lg font-semibold  text-text-heading mt-4 mb-2",
         className
       )}
       {...props}
@@ -82,7 +82,7 @@ export const mdxComponents: MDXComponents = {
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h5
       className={cn(
-        "scroll-m-20 text-base font-medium tracking-tight text-heading mt-4 mb-2",
+        "scroll-m-20 text-base font-medium  text-text-heading mt-4 mb-2",
         className
       )}
       {...props}
@@ -91,7 +91,7 @@ export const mdxComponents: MDXComponents = {
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h6
       className={cn(
-        "scroll-m-20 text-sm font-medium tracking-tight text-heading mt-4 mb-2",
+        "scroll-m-20 text-sm font-medium  text-text-heading mt-4 mb-2",
         className
       )}
       {...props}
@@ -101,7 +101,7 @@ export const mdxComponents: MDXComponents = {
   // ── Text & inline ──────────────────────────────────────────────────────────
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 not-first:mt-6 text-foreground", className)}
+      className={cn("leading-7 not-first:mt-6 text-text", className)}
       {...props}
     />
   ),
@@ -117,7 +117,7 @@ export const mdxComponents: MDXComponents = {
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative rounded bg-muted/50 px-[0.3rem] py-[0.2rem] font-mono text-sm text-foreground",
+        "relative rounded bg-surface/50 px-[0.3rem] py-[0.2rem] font-mono text-sm text-text",
         className
       )}
       {...props}
@@ -145,26 +145,23 @@ export const mdxComponents: MDXComponents = {
   }: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 border-border pl-6 italic text-foreground",
+        "mt-6 border-l-2 border-border pl-6 italic text-text",
         className
       )}
       {...props}
     />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul
-      className={cn("my-6 ml-6 list-disc text-foreground", className)}
-      {...props}
-    />
+    <ul className={cn("my-6 ml-6 list-disc text-text", className)} {...props} />
   ),
   ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className={cn("my-6 ml-6 list-decimal text-foreground", className)}
+      className={cn("my-6 ml-6 list-decimal text-text", className)}
       {...props}
     />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className={cn("mt-2 text-foreground", className)} {...props} />
+    <li className={cn("mt-2 text-text", className)} {...props} />
   ),
   hr: ({ className, ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className={cn("my-8 border-border", className)} {...props} />
@@ -174,10 +171,7 @@ export const mdxComponents: MDXComponents = {
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto">
       <table
-        className={cn(
-          "w-full text-sm leading-relaxed text-foreground",
-          className
-        )}
+        className={cn("w-full text-sm leading-relaxed text-text", className)}
         {...props}
       />
     </div>
@@ -188,7 +182,7 @@ export const mdxComponents: MDXComponents = {
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead
       className={cn(
-        "border-b border-border bg-muted/50 text-[#101828] [&>tr]:border-b",
+        "border-b border-border bg-surface text-primary [&>tr]:border-b",
         className
       )}
       {...props}
@@ -206,7 +200,7 @@ export const mdxComponents: MDXComponents = {
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <tfoot
       className={cn(
-        "border-t bg-muted/50 font-medium [&>tr]:border-t",
+        "border-t bg-surface font-medium [&>tr]:border-t",
         className
       )}
       {...props}
@@ -215,7 +209,7 @@ export const mdxComponents: MDXComponents = {
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
       className={cn(
-        "border-b border-border transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+        "border-b border-border transition-colors hover:bg-surface/60 data-[state=selected]:bg-surface",
         className
       )}
       {...props}
@@ -224,7 +218,7 @@ export const mdxComponents: MDXComponents = {
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "h-12 px-4 text-left align-middle font-medium text-[#101828] [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-left align-middle font-medium text-primary [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}
@@ -233,7 +227,7 @@ export const mdxComponents: MDXComponents = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "p-4 align-middle text-foreground [&:has([role=checkbox])]:pr-0",
+        "p-4 align-middle text-text [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}

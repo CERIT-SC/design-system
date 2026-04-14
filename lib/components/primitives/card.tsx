@@ -17,7 +17,7 @@ const cardMediaVariants = cva("w-full overflow-hidden", {
 });
 
 const cardVariants = cva(
-  "bg-card text-card-foreground flex flex-col justify-center gap-6 rounded-md py-6 drop-shadow-md",
+  "bg-surface text-text flex flex-col justify-center gap-6 rounded-md py-6 drop-shadow-md",
   {
     variants: {
       variant: {
@@ -73,7 +73,7 @@ function CardIcon({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-icon"
-      className={cn("flex text-muted-foreground mb-4", className)}
+      className={cn("flex text-text mb-4", className)}
       {...props}
     />
   );

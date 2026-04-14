@@ -22,7 +22,7 @@ const buttonVariants = cva(
         error:
           "bg-error border border-error text-error-foreground hover:bg-error/90 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/60",
         outline:
-          "border bg-background hover:bg-muted dark:bg-input/30 dark:border-input dark:hover:bg-input/50 hover:translate-none",
+          "bg-background border border-border hover:bg-surface dark:bg-background dark:border-border dark:hover:bg-surface hover:translate-none",
         ghost:
           "hover:bg-secondary/40 hover:text-primary dark:hover:bg-tertiary/50 hover:translate-none",
         link: "text-primary underline-offset-4 hover:underline hover:translate-none",

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.5
+
+- Added Dark Mode support
+- Added surface and surface-raised colors for separating content and creating depth
+- Added shade ramps for brand and semantic colors to provide more options for design and accessibility
+
 ## v0.1.4
 
 ## v0.1.3

@@ -257,7 +257,18 @@ import {
 } from "../../lib/components/foundations";
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
-import { Home, Settings, FileText, Shield } from "lucide-react";
+import {
+  Home,
+  Settings,
+  FileText,
+  Shield,
+  BarChart3,
+  Bell,
+  FlaskConical,
+  HelpCircle,
+  Search,
+  Users,
+} from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Plain object — safe to iterate with Object.keys / Object.entries in any
@@ -493,4 +504,10 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   Settings,
   FileText,
   Shield,
+  BarChart3,
+  Bell,
+  FlaskConical,
+  HelpCircle,
+  Search,
+  Users,
 };

@@ -3,23 +3,38 @@
 Breadcrumbs show users their current location within a website's hierarchy and provide navigation back to parent pages.
 
 <ComponentPreview>
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem><BreadcrumbLink href="/docs">Docs</BreadcrumbLink></BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem><BreadcrumbLink href="/docs/components">Components</BreadcrumbLink></BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem><BreadcrumbPage>Breadcrumb</BreadcrumbPage></BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from '@e-infra/design-system'
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@e-infra/design-system";
 
 <Breadcrumb>
   <BreadcrumbList>
@@ -35,34 +50,34 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbS
       <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
     </BreadcrumbItem>
   </BreadcrumbList>
-</Breadcrumb>
+</Breadcrumb>;
 ```
 
 ## Components
 
-| Component | Description |
-|-----------|-------------|
-| `Breadcrumb` | Container (nav element) |
-| `BreadcrumbList` | List container (ol) |
-| `BreadcrumbItem` | List item (li) |
-| `BreadcrumbLink` | Navigate to parent page (a) |
-| `BreadcrumbPage` | Current page (span) |
-| `BreadcrumbSeparator` | Separator (chevron) |
-| `BreadcrumbEllipsis` | Show more indicator |
+| Component             | Description                 |
+| --------------------- | --------------------------- |
+| `Breadcrumb`          | Container (nav element)     |
+| `BreadcrumbList`      | List container (ol)         |
+| `BreadcrumbItem`      | List item (li)              |
+| `BreadcrumbLink`      | Navigate to parent page (a) |
+| `BreadcrumbPage`      | Current page (span)         |
+| `BreadcrumbSeparator` | Separator (chevron)         |
+| `BreadcrumbEllipsis`  | Show more indicator         |
 
 ## Props
 
 ### Breadcrumb
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Native nav props |
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.ComponentProps | -       | Native nav props       |
 
 ### BreadcrumbLink
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| asChild | boolean | `false` | Render as child component |
-| className | string | - | Additional CSS classes |
-| ...props | React.AnchorHTMLAttributes | - | Native anchor props |
+| Prop      | Type                       | Default | Description               |
+| --------- | -------------------------- | ------- | ------------------------- |
+| asChild   | boolean                    | `false` | Render as child component |
+| className | string                     | -       | Additional CSS classes    |
+| ...props  | React.AnchorHTMLAttributes | -       | Native anchor props       |

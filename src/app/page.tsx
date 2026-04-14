@@ -6,7 +6,7 @@ import { CTASection } from "../components/landing/CTASection";
 
 export default function HomePage() {
   return (
-    <div className="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+    <div className="bg-background text-text antialiased overflow-x-hidden">
       <main>
         <HeroSection />
         <AboutSection />

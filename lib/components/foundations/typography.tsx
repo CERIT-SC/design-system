@@ -88,10 +88,7 @@ export function Muted({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p
-      className={cn("text-xs text-muted-foreground leading-5", className)}
-      {...props}
-    />
+    <p className={cn("text-xs text-text leading-5", className)} {...props} />
   );
 }
 
@@ -102,7 +99,10 @@ export function Code({
 }: React.HTMLAttributes<HTMLElement>) {
   return (
     <code
-      className={cn("text-sm font-mono bg-muted px-2 py-1 rounded", className)}
+      className={cn(
+        "text-sm font-mono bg-surface px-2 py-1 rounded",
+        className
+      )}
       {...props}
     />
   );

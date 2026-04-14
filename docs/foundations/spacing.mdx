@@ -2,26 +2,28 @@
 
 Spacing tokens are defined per breakpoint — Phone, Tablet, Desktop, and XL — so layouts breathe correctly at every screen size. All values follow an 8px base grid.
 
+All examples on this page use the neutral surface palette (`background`, `surface`, `surface-raised`, `text`, and `border`) so spacing decisions are previewed in the same visual language as production layouts.
+
 ## Breakpoints
 
 <ComponentPreview>
 <div className="w-full overflow-x-auto">
-  <div className="flex items-end gap-3 min-w-[640px]">
+  <div className="flex items-end gap-3 min-w-160">
     <div className="flex flex-col items-center gap-2 flex-1">
-      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "80px"}}>Phone</div>
-      <span className="text-xs text-muted-foreground">&lt; 768px</span>
+      <div className="w-full bg-surface border border-border rounded flex items-center justify-center text-xs font-medium text-text" style={{height: "80px"}}>Phone</div>
+      <span className="text-xs text-text">&lt; 768px</span>
     </div>
     <div className="flex flex-col items-center gap-2 flex-1">
-      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "104px"}}>Tablet</div>
-      <span className="text-xs text-muted-foreground">768px – 1023px</span>
+      <div className="w-full bg-surface border border-border rounded flex items-center justify-center text-xs font-medium text-text" style={{height: "104px"}}>Tablet</div>
+      <span className="text-xs text-text">768px – 1023px</span>
     </div>
     <div className="flex flex-col items-center gap-2 flex-1">
-      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "128px"}}>Desktop</div>
-      <span className="text-xs text-muted-foreground">1024px – 1279px</span>
+      <div className="w-full bg-surface-raised border border-border rounded flex items-center justify-center text-xs font-medium text-text">Desktop</div>
+      <span className="text-xs text-text">1024px – 1279px</span>
     </div>
     <div className="flex flex-col items-center gap-2 flex-1">
-      <div className="w-full bg-secondary rounded flex items-center justify-center text-xs font-medium text-secondary-foreground" style={{height: "160px"}}>XL</div>
-      <span className="text-xs text-muted-foreground">≥ 1280px</span>
+      <div className="w-full bg-surface-raised border border-border rounded flex items-center justify-center text-xs font-medium text-text" style={{height: "160px"}}>XL</div>
+      <span className="text-xs text-text">≥ 1280px</span>
     </div>
   </div>
 </div>
@@ -40,10 +42,10 @@ Spacing tokens are defined per breakpoint — Phone, Tablet, Desktop, and XL —
 
 <ComponentPreview>
 <div className="flex flex-col gap-2 w-full max-w-sm">
-  <div className="p-2 bg-secondary rounded text-xs">token-space-1 — 8px</div>
-  <div className="p-4 bg-secondary rounded text-xs">token-space-2 — 16px</div>
-  <div className="p-6 bg-secondary rounded text-xs">token-space-3 — 24px</div>
-  <div className="p-8 bg-secondary rounded text-xs">token-space-4 — 32px</div>
+  <div className="p-2 bg-surface border border-border text-text rounded text-xs">token-space-1 — 8px</div>
+  <div className="p-4 bg-surface border border-border text-text rounded text-xs">token-space-2 — 16px</div>
+  <div className="p-6 bg-surface border border-border text-text rounded text-xs">token-space-3 — 24px</div>
+  <div className="p-8 bg-surface-raised border border-border text-text rounded text-xs">token-space-4 — 32px</div>
 </div>
 </ComponentPreview>
 
@@ -58,10 +60,10 @@ Spacing tokens are defined per breakpoint — Phone, Tablet, Desktop, and XL —
 
 <ComponentPreview>
 <div className="flex flex-col gap-2 w-full">
-  <div className="p-3 bg-secondary rounded text-xs">token-space-1 — 12px</div>
-  <div className="p-6 bg-secondary rounded text-xs">token-space-2 — 24px</div>
-  <div className="p-8 bg-secondary rounded text-xs">token-space-3 — 32px</div>
-  <div className="p-12 bg-secondary rounded text-xs">token-space-4 — 48px</div>
+  <div className="p-3 bg-surface border border-border text-text rounded text-xs">token-space-1 — 12px</div>
+  <div className="p-6 bg-surface border border-border text-text rounded text-xs">token-space-2 — 24px</div>
+  <div className="p-8 bg-surface border border-border text-text rounded text-xs">token-space-3 — 32px</div>
+  <div className="p-12 bg-surface-raised border border-border text-text rounded text-xs">token-space-4 — 48px</div>
 </div>
 </ComponentPreview>
 
@@ -76,10 +78,10 @@ Spacing tokens are defined per breakpoint — Phone, Tablet, Desktop, and XL —
 
 <ComponentPreview>
 <div className="flex flex-col gap-2 w-full">
-  <div className="p-4 bg-secondary rounded text-xs">token-space-1 — 16px</div>
-  <div className="p-8 bg-secondary rounded text-xs">token-space-2 — 32px</div>
-  <div className="p-12 bg-secondary rounded text-xs">token-space-3 — 48px</div>
-  <div className="p-16 bg-secondary rounded text-xs">token-space-4 — 64px</div>
+  <div className="p-4 bg-surface border border-border text-text rounded text-xs">token-space-1 — 16px</div>
+  <div className="p-8 bg-surface border border-border text-text rounded text-xs">token-space-2 — 32px</div>
+  <div className="p-12 bg-surface border border-border text-text rounded text-xs">token-space-3 — 48px</div>
+  <div className="p-16 bg-surface-raised border border-border text-text rounded text-xs">token-space-4 — 64px</div>
 </div>
 </ComponentPreview>
 
@@ -94,10 +96,10 @@ Spacing tokens are defined per breakpoint — Phone, Tablet, Desktop, and XL —
 
 <ComponentPreview>
 <div className="flex flex-col gap-2 w-full">
-  <div className="p-6 bg-secondary rounded text-xs">token-space-1 — 24px</div>
-  <div className="p-12 bg-secondary rounded text-xs">token-space-2 — 48px</div>
-  <div className="p-16 bg-secondary rounded text-xs">token-space-3 — 64px</div>
-  <div className="p-24 bg-secondary rounded text-xs">token-space-4 — 96px</div>
+  <div className="p-6 bg-surface border border-border text-text rounded text-xs">token-space-1 — 24px</div>
+  <div className="p-12 bg-surface border border-border text-text rounded text-xs">token-space-2 — 48px</div>
+  <div className="p-16 bg-surface border border-border text-text rounded text-xs">token-space-3 — 64px</div>
+  <div className="p-24 bg-surface-raised border border-border text-text rounded text-xs">token-space-4 — 96px</div>
 </div>
 </ComponentPreview>
 
@@ -117,7 +119,10 @@ Apply spacing tokens responsively using Tailwind's breakpoint prefixes:
 <main className="px-4 md:px-6 lg:px-8 xl:px-16">
 
 {/* Card padding */}
-<div className="p-6 md:p-8 lg:p-12">
+<div className="bg-surface border border-border rounded-xl p-6 md:p-8 lg:p-12">
+
+{/* Elevated overlay block */}
+<div className="bg-surface-raised border border-border rounded-lg p-4 md:p-6">
 
 {/* Section vertical rhythm */}
 <section className="py-8 md:py-12 lg:py-16 xl:py-24">

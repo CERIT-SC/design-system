@@ -76,9 +76,7 @@ export const Default: Story = {
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-medium">John Doe</span>
-              <span className="text-xs text-muted-foreground">
-                john@example.com
-              </span>
+              <span className="text-xs text-text">john@example.com</span>
             </div>
           </div>
         </SidebarFooter>
@@ -86,7 +84,7 @@ export const Default: Story = {
       <main className="flex-1 p-8">
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Main Content Area</h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-text">
             This is where your main content would go. The sidebar is collapsible
             and responsive.
           </p>
@@ -128,7 +126,7 @@ export const WithActiveState: Story = {
       <main className="flex-1 p-8">
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Active State Example</h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-text">
             The Documentation link is marked as active with the isActive prop.
           </p>
         </div>
@@ -172,7 +170,7 @@ export const CollapsedGroups: Story = {
       <main className="flex-1 p-8">
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Collapsed Groups</h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-text">
             All groups start collapsed. Click on a group header to expand it.
           </p>
         </div>
@@ -208,13 +206,13 @@ export const WithoutGroups: Story = {
           </NavItem>
         </SidebarContent>
         <SidebarFooter>
-          <div className="text-xs text-muted-foreground">© 2024 e-INFRA</div>
+          <div className="text-xs text-text">© 2024 e-INFRA</div>
         </SidebarFooter>
       </Sidebar>
       <main className="flex-1 p-8">
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Without Groups</h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-text">
             NavItems can be used directly without wrapping them in
             CollapsibleGroup.
           </p>
@@ -273,7 +271,7 @@ export const CustomStyling: Story = {
       <main className="flex-1 p-8">
         <div className="h-96 rounded-lg border border-dashed p-8 text-center">
           <h2 className="text-xl font-bold">Custom Styling</h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-text">
             The sidebar can be customized with different colors using the
             className prop.
           </p>

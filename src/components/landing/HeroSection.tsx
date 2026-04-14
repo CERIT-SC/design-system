@@ -38,7 +38,7 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Hero Content */}
           <div className="space-y-8">
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-slate-900">
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-text-heading">
               Design for <br />
               <span className="bg-linear-to-br from-primary to-tertiary bg-clip-text text-transparent">
                 Czech Science
@@ -90,21 +90,21 @@ export function HeroSection() {
                       <span className="font-medium">CPU Cores</span>
                       <span>48 of 96 used</span>
                     </div>
-                    <div className="h-2 rounded-full bg-muted">
+                    <div className="h-2 rounded-full bg-surface">
                       <div className="h-2 rounded-full bg-chart-1 w-1/2"></div>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-medium">Memory</span>
                       <span>128 GB of 256 GB used</span>
                     </div>
-                    <div className="h-2 rounded-full bg-muted">
+                    <div className="h-2 rounded-full bg-surface">
                       <div className="h-2 rounded-full bg-chart-2 w-1/2"></div>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-medium">Storage</span>
                       <span>2.5 TB of 5 TB used</span>
                     </div>
-                    <div className="h-2 rounded-full bg-muted">
+                    <div className="h-2 rounded-full bg-surface">
                       <div className="h-2 rounded-full bg-chart-3 w-1/2"></div>
                     </div>
                   </div>

@@ -1,18 +1,15 @@
 # Header
 
-Header is a sticky top navigation bar built with a compound component pattern for maximum flexibility. It provides layout sections for branding, navigation, and actions.
+Header is a sticky top navigation bar built as a compound component. It is meant for layout composition rather than variant switching, so the public API stays intentionally small: `Header`, `HeaderContent`, `HeaderLeft`, `HeaderCenter`, and `HeaderRight`.
 
 <ComponentPreview>
   <div className="flex flex-col gap-8 w-full">
-    {/* Default Header with NavigationMenu */}
     <div className="rounded-lg border border-dashed overflow-hidden">
       <Header>
         <HeaderContent>
           <HeaderLeft>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>
-              </svg>
+              <FlaskConical className="h-4 w-4" />
             </div>
             <NavigationMenu>
               <NavigationMenuList>
@@ -29,24 +26,27 @@ Header is a sticky top navigation bar built with a compound component pattern fo
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <div className="h-8 w-8 rounded-full bg-muted" />
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
           </HeaderRight>
         </HeaderContent>
       </Header>
-      <div className="h-32 bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">
-        Page content area
+      <div className="h-28 bg-surface flex items-center justify-center text-text text-sm">
+        Default header layout
       </div>
     </div>
 
-    {/* Header with Dropdown Menus */}
     <div className="rounded-lg border border-dashed overflow-hidden">
       <Header>
         <HeaderContent>
           <HeaderLeft>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>
-              </svg>
+              <FlaskConical className="h-4 w-4" />
             </div>
             <NavigationMenu>
               <NavigationMenuList>
@@ -56,27 +56,23 @@ Header is a sticky top navigation bar built with a compound component pattern fo
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Analytics</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid gap-3 p-4 w-[300px]">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
-                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
-                          </svg>
+                    <div className="grid gap-3 p-4 w-100">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
+                          <BarChart3 className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">Overview</div>
-                          <div className="text-xs text-muted-foreground">View analytics</div>
+                          <div className="text-xs text-text">View your analytics dashboard</div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
-                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                          </svg>
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
+                          <Users className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">Users</div>
-                          <div className="text-xs text-muted-foreground">Manage users</div>
+                          <div className="text-xs text-text">Manage user analytics</div>
                         </div>
                       </div>
                     </div>
@@ -85,16 +81,23 @@ Header is a sticky top navigation bar built with a compound component pattern fo
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid gap-3 p-4 w-[300px]">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
-                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/>
-                          </svg>
+                    <div className="grid gap-3 p-4 w-100">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
+                          <FileText className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">Documentation</div>
-                          <div className="text-xs text-muted-foreground">Read the docs</div>
+                          <div className="text-xs text-text">Read the docs</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
+                          <HelpCircle className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium">Help Center</div>
+                          <div className="text-xs text-text">Get support</div>
                         </div>
                       </div>
                     </div>
@@ -105,24 +108,27 @@ Header is a sticky top navigation bar built with a compound component pattern fo
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <div className="h-8 w-8 rounded-full bg-muted" />
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
           </HeaderRight>
         </HeaderContent>
       </Header>
-      <div className="h-32 bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">
-        Page content area
+      <div className="h-28 bg-surface flex items-center justify-center text-text text-sm">
+        Header with dropdown navigation
       </div>
     </div>
 
-    {/* Header with Centered Search */}
     <div className="rounded-lg border border-dashed overflow-hidden">
       <Header>
         <HeaderContent>
           <HeaderLeft>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>
-              </svg>
+              <FlaskConical className="h-4 w-4" />
             </div>
             <NavigationMenu>
               <NavigationMenuList>
@@ -136,28 +142,39 @@ Header is a sticky top navigation bar built with a compound component pattern fo
             </NavigationMenu>
           </HeaderLeft>
           <HeaderCenter>
-            <div className="w-full max-w-md h-9 rounded-md border bg-background px-3 flex items-center text-sm text-muted-foreground">
-              Search...
+            <div className="relative w-full max-w-md">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-text" />
+              <Input type="search" placeholder="Search..." className="w-full pl-8" />
             </div>
           </HeaderCenter>
           <HeaderRight>
-            <div className="h-8 w-8 rounded-full bg-muted" />
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
           </HeaderRight>
         </HeaderContent>
       </Header>
-      <div className="h-32 bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">
-        Page content area
+      <div className="h-28 bg-surface flex items-center justify-center text-text text-sm">
+        Header with centered search
       </div>
     </div>
 
-    {/* Header with Sidebar */}
     <div className="rounded-lg border border-dashed overflow-hidden">
       <div className="flex">
-        <div className="w-48 h-48 bg-muted/50 border-r p-4">
-          <div className="font-semibold mb-4">Sidebar</div>
-          <div className="space-y-2 text-sm text-muted-foreground">
-            <div>Dashboard</div>
-            <div>Projects</div>
+        <div className="w-52 bg-surface border-r p-4">
+          <div className="mb-4 flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <span className="font-semibold">Lab Management</span>
+          </div>
+          <div className="space-y-2 text-sm text-text">
+            <div>Active studies</div>
+            <div>Completed</div>
             <div>Settings</div>
           </div>
         </div>
@@ -165,55 +182,103 @@ Header is a sticky top navigation bar built with a compound component pattern fo
           <Header>
             <HeaderContent container={false}>
               <HeaderRight>
-                <div className="h-8 w-8 rounded-full bg-muted" />
+                <Button variant="ghost" size="icon">
+                  <Bell className="h-4 w-4" />
+                </Button>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+                  <AvatarFallback>U</AvatarFallback>
+                </Avatar>
               </HeaderRight>
             </HeaderContent>
           </Header>
-          <div className="h-32 bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">
-            Page content area
+          <div className="h-28 bg-surface flex items-center justify-center text-text text-sm">
+            Header used with a sidebar layout
           </div>
         </div>
       </div>
     </div>
 
-    {/* Custom Background */}
     <div className="rounded-lg border border-dashed overflow-hidden">
-      <Header className="bg-gradient-to-r from-primary/90 to-secondary/90 border-transparent">
+      <Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
         <HeaderContent>
           <HeaderLeft>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>
-              </svg>
+              <FlaskConical className="h-4 w-4" />
             </div>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="#" className="text-white/90 hover:text-white">Dashboard</NavigationMenuLink>
+                  <NavigationMenuLink href="#" className="text-white/90 hover:text-white">
+                    Dashboard
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="#" className="text-white/90 hover:text-white">Projects</NavigationMenuLink>
+                  <NavigationMenuLink href="#" className="text-white/90 hover:text-white">
+                    Projects
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <div className="h-8 w-8 rounded-full bg-white/20" />
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
           </HeaderRight>
         </HeaderContent>
       </Header>
-      <div className="h-32 bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">
-        Page content area
+      <div className="h-28 bg-surface flex items-center justify-center text-text text-sm">
+        Header with a custom background
       </div>
     </div>
+
+    <div className="rounded-lg border border-dashed overflow-hidden">
+      <Header>
+        <HeaderContent container={false}>
+          <HeaderLeft>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <FlaskConical className="h-4 w-4" />
+            </div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Dashboard</NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Projects</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </HeaderLeft>
+          <HeaderRight>
+            <Button variant="ghost" size="icon">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </HeaderRight>
+        </HeaderContent>
+      </Header>
+      <div className="h-28 bg-surface flex items-center justify-center text-text text-sm">
+        Full-width header content
+      </div>
+    </div>
+
   </div>
 </ComponentPreview>
 
 ## Usage
 
-### Default Header
+### Default layout
 
-The standard header layout with logo, navigation, and actions.
+Use `HeaderContent` with `HeaderLeft` and `HeaderRight` for the standard layout: branding and navigation on the left, actions on the right.
 
 ```tsx
 import {
@@ -229,25 +294,14 @@ import { Bell } from "lucide-react";
 <Header>
   <HeaderContent>
     <HeaderLeft>
-      {/* Logo */}
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <LogoIcon className="h-4 w-4" />
-      </div>
-      {/* Navigation */}
+      <Logo />
       <nav className="flex items-center gap-4 text-sm font-medium">
-        <a href="/dashboard" className="transition-colors hover:text-foreground/80">
-          Dashboard
-        </a>
-        <a href="/projects" className="transition-colors hover:text-foreground/80">
-          Projects
-        </a>
-        <a href="/team" className="transition-colors hover:text-foreground/80">
-          Team
-        </a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/projects">Projects</a>
+        <a href="/team">Team</a>
       </nav>
     </HeaderLeft>
     <HeaderRight>
-      {/* Actions */}
       <Button variant="ghost" size="icon">
         <Bell className="h-4 w-4" />
       </Button>
@@ -260,158 +314,9 @@ import { Bell } from "lucide-react";
 </Header>;
 ```
 
-### Header with NavigationMenu
+### Centered content
 
-Use the [`NavigationMenu`](/docs/components/primitives/navigation-menu) primitive components for consistent styling, accessibility, and dropdown support.
-
-```tsx
-import {
-  Header,
-  HeaderContent,
-  HeaderLeft,
-  HeaderRight,
-} from "@e-infra/design-system";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-} from "@e-infra/design-system";
-
-<Header>
-  <HeaderContent>
-    <HeaderLeft>
-      <Logo />
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/dashboard">Dashboard</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/projects">Projects</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/team">Team</NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-        {/* Optional: Shows an arrow indicator below the active trigger */}
-        <NavigationMenuIndicator />
-      </NavigationMenu>
-    </HeaderLeft>
-    <HeaderRight>
-      <UserActions />
-    </HeaderRight>
-  </HeaderContent>
-</Header>;
-```
-
-### Header with Dropdown Menus
-
-Create rich dropdown menus using `NavigationMenuTrigger` and `NavigationMenuContent`.
-
-```tsx
-import {
-  Header,
-  HeaderContent,
-  HeaderLeft,
-  HeaderRight,
-} from "@e-infra/design-system";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-} from "@e-infra/design-system";
-import { BarChart3, Users, FileText, HelpCircle } from "lucide-react";
-
-<Header>
-  <HeaderContent>
-    <HeaderLeft>
-      <Logo />
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/dashboard">Dashboard</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Analytics</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-3 p-4 w-[400px]">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
-                    <BarChart3 className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium">Overview</div>
-                    <div className="text-xs text-muted-foreground">
-                      View your analytics dashboard
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
-                    <Users className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium">Users</div>
-                    <div className="text-xs text-muted-foreground">
-                      Manage user analytics
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-3 p-4 w-[400px]">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
-                    <FileText className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium">Documentation</div>
-                    <div className="text-xs text-muted-foreground">
-                      Read the docs
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
-                    <HelpCircle className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium">Help Center</div>
-                    <div className="text-xs text-muted-foreground">
-                      Get support
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-        {/* Visual indicator arrow - appears below active trigger */}
-        <NavigationMenuIndicator />
-      </NavigationMenu>
-    </HeaderLeft>
-    <HeaderRight>
-      <UserActions />
-    </HeaderRight>
-  </HeaderContent>
-</Header>;
-```
-
-### Header with Centered Content
-
-Use `HeaderCenter` for search bars or centered navigation elements.
+`HeaderCenter` is a flex item that fills the available space between the left and right sections. It works well for search bars and centered tools.
 
 ```tsx
 import {
@@ -430,11 +335,12 @@ import { Search } from "lucide-react";
       <Logo />
       <nav className="flex items-center gap-4 text-sm font-medium">
         <a href="/dashboard">Dashboard</a>
+        <a href="/projects">Projects</a>
       </nav>
     </HeaderLeft>
     <HeaderCenter>
       <div className="relative w-full max-w-md">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-text" />
         <Input type="search" placeholder="Search..." className="w-full pl-8" />
       </div>
     </HeaderCenter>
@@ -445,48 +351,9 @@ import { Search } from "lucide-react";
 </Header>;
 ```
 
-### Header with Sidebar
+### Navigation menus
 
-When using a sidebar layout, the header typically has no logo (handled by the sidebar). Use `container={false}` on `HeaderContent` to allow the header content to span the full width.
-
-```tsx
-import {
-  Header,
-  HeaderContent,
-  HeaderRight,
-} from "@e-infra/design-system";
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-} from "@e-infra/design-system";
-
-<div className="flex min-h-screen">
-  <Sidebar>
-    <SidebarHeader>
-      <span className="font-semibold">Lab Management</span>
-    </SidebarHeader>
-    <SidebarContent>{/* Navigation items */}</SidebarContent>
-  </Sidebar>
-  <div className="flex-1">
-    <Header>
-      <HeaderContent container={false}>
-        <HeaderRight>
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-            <AvatarFallback>U</AvatarFallback>
-          </Avatar>
-        </HeaderRight>
-      </HeaderContent>
-    </Header>
-    <main className="p-6">{/* Page content */}</main>
-  </div>
-</div>;
-```
-
-### Custom Background
-
-Apply custom styling using the `className` prop on `Header` for gradients, colors, or other visual treatments.
+Use the `NavigationMenu` primitives for dropdown menus and multi-level navigation. `NavigationMenu` renders the viewport automatically by default, and `NavigationMenuIndicator` should be placed after `NavigationMenuList` when you want the active indicator arrow.
 
 ```tsx
 import {
@@ -495,16 +362,34 @@ import {
   HeaderLeft,
   HeaderRight,
 } from "@e-infra/design-system";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+} from "@e-infra/design-system";
 
-<Header className="bg-gradient-to-r from-primary/90 to-secondary/90 border-transparent">
+<Header>
   <HeaderContent>
     <HeaderLeft>
       <Logo />
-      <nav className="flex items-center gap-4 text-sm font-medium">
-        <a href="#" className="text-white/90 hover:text-white">
-          Dashboard
-        </a>
-      </nav>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="/dashboard">Dashboard</NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Analytics</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="grid gap-3 p-4 w-100">...</div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+        <NavigationMenuIndicator />
+      </NavigationMenu>
     </HeaderLeft>
     <HeaderRight>
       <UserActions />
@@ -513,137 +398,134 @@ import {
 </Header>;
 ```
 
-## NavigationMenu Components
-
-When using the NavigationMenu primitive components in the Header, here are the key components:
-
-### NavigationMenu
-
-The root container that manages the navigation state and renders the viewport automatically.
-
-| Prop      | Type                | Default | Description                                           |
-| --------- | ------------------- | ------- | ----------------------------------------------------- |
-| viewport  | `boolean`           | `true`  | Whether to automatically render the viewport          |
-| className | `string`            | -       | Additional CSS classes                                |
-| children  | `React.ReactNode`   | -       | Navigation content (NavigationMenuList, etc.)         |
-
-### NavigationMenuList
-
-The list container for navigation items.
-
-### NavigationMenuItem
-
-A single navigation item with hover underline animation.
-
-### NavigationMenuLink
-
-A styled link for navigation items.
-
-### NavigationMenuTrigger
-
-A button that toggles dropdown content. Includes a chevron icon that rotates when open.
-
-### NavigationMenuContent
-
-The dropdown content container with animations.
-
-### NavigationMenuIndicator
-
-An optional visual indicator that shows an arrow pointing to the active trigger. Place it inside `NavigationMenu` after `NavigationMenuList`.
-
-```tsx
-<NavigationMenu>
-  <NavigationMenuList>...</NavigationMenuList>
-  <NavigationMenuIndicator />
-</NavigationMenu>
-```
-
-### NavigationMenuViewport
-
-The container that displays dropdown content. **Automatically rendered** by `NavigationMenu` when `viewport={true}` (default). Only use manually if you need custom positioning:
+If you need to place the viewport manually, disable the automatic viewport and render `NavigationMenuViewport` yourself.
 
 ```tsx
 <NavigationMenu viewport={false}>
   <NavigationMenuList>...</NavigationMenuList>
-  <NavigationMenuViewport className="custom-styles" />
+  <NavigationMenuViewport />
 </NavigationMenu>
 ```
 
-### NavigationMenuTriggerStyle
+### Sidebar layouts
 
-A CVA style utility (not a component) for creating custom triggers. Used internally by `NavigationMenuTrigger`.
+When a sidebar already owns branding, use `container={false}` so the header can span the full width without an extra max-width wrapper.
 
 ```tsx
-import { NavigationMenuTriggerStyle } from "@e-infra/design-system";
+import { Header, HeaderContent, HeaderRight } from "@e-infra/design-system";
+import { Sidebar, SidebarHeader, SidebarContent } from "@e-infra/design-system";
 
-// Use for custom triggers
-<button className={NavigationMenuTriggerStyle()}>
-  Custom Trigger
-</button>
+<div className="flex min-h-screen">
+  <Sidebar>
+    <SidebarHeader>
+      <span className="font-semibold">Lab Management</span>
+    </SidebarHeader>
+    <SidebarContent>{/* navigation */}</SidebarContent>
+  </Sidebar>
+  <div className="flex-1">
+    <Header>
+      <HeaderContent container={false}>
+        <HeaderRight>
+          <UserActions />
+        </HeaderRight>
+      </HeaderContent>
+    </Header>
+  </div>
+</div>;
+```
+
+### Full-width and custom backgrounds
+
+`Header` accepts native `className` overrides, so you can apply gradients, transparent borders, or other visual treatments without changing the component implementation.
+
+```tsx
+<Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
+  <HeaderContent>
+    <HeaderLeft>
+      <Logo />
+      <nav className="flex items-center gap-4 text-sm font-medium text-white/90">
+        <a href="#" className="hover:text-white">
+          Dashboard
+        </a>
+      </nav>
+    </HeaderLeft>
+    <HeaderRight>
+      <UserActions />
+    </HeaderRight>
+  </HeaderContent>
+</Header>
 ```
 
 ## Components
 
+| Component       | Description                                         |
+| --------------- | --------------------------------------------------- |
+| `Header`        | Root sticky header element rendered as `header`     |
+| `HeaderContent` | Inner flex container with optional width constraint |
+| `HeaderLeft`    | Left-aligned row for branding and navigation        |
+| `HeaderCenter`  | Center flex area for search or centered controls    |
+| `HeaderRight`   | Right-aligned row for actions and user controls     |
+
+## Props
+
 ### Header
 
-The root container component that provides sticky positioning and base styling.
-
-| Prop      | Type                | Default | Description                          |
-| --------- | ------------------- | ------- | ------------------------------------ |
-| className | `string`            | -       | Additional CSS classes               |
-| children  | `React.ReactNode`   | -       | Header content (typically HeaderContent) |
+| Prop      | Type                                | Default | Description            |
+| --------- | ----------------------------------- | ------- | ---------------------- |
+| className | `string`                            | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLElement>` | -       | Native `header` props  |
 
 ### HeaderContent
 
-The inner container that manages layout, spacing, and width constraints.
-
-| Prop      | Type                | Default | Description                                           |
-| --------- | ------------------- | ------- | ----------------------------------------------------- |
-| container | `boolean`           | `true`  | Whether to constrain width to container max-width       |
-| className | `string`            | -       | Additional CSS classes                                |
-| children  | `React.ReactNode`   | -       | Layout sections (HeaderLeft, HeaderCenter, HeaderRight) |
+| Prop      | Type                                   | Default | Description                                           |
+| --------- | -------------------------------------- | ------- | ----------------------------------------------------- |
+| container | `boolean`                              | `true`  | Whether to constrain width to the container max-width |
+| className | `string`                               | -       | Additional CSS classes                                |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props                                    |
 
 ### HeaderLeft
 
-Left-aligned section for logo, navigation, and primary actions.
-
-| Prop      | Type                | Default | Description            |
-| --------- | ------------------- | ------- | ---------------------- |
-| className | `string`            | -       | Additional CSS classes |
-| children  | `React.ReactNode`   | -       | Left-side content      |
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
 
 ### HeaderCenter
 
-Centered section that flexes to fill available space. Ideal for search bars or centered navigation.
-
-| Prop      | Type                | Default | Description            |
-| --------- | ------------------- | ------- | ---------------------- |
-| className | `string`            | -       | Additional CSS classes |
-| children  | `React.ReactNode`   | -       | Center content         |
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
 
 ### HeaderRight
 
-Right-aligned section (pushed to far right with `ml-auto`) for actions, user menu, etc.
-
-| Prop      | Type                | Default | Description            |
-| --------- | ------------------- | ------- | ---------------------- |
-| className | `string`            | -       | Additional CSS classes |
-| children  | `React.ReactNode`   | -       | Right-side content     |
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
 
 ## Structure
 
-| Part           | Details                                                              |
-| -------------- | -------------------------------------------------------------------- |
-| Outer wrapper  | Sticky top header (`sticky top-0`) with backdrop blur and border       |
-| HeaderContent  | Flex container with `h-14` (56px) height, horizontal padding          |
-| HeaderLeft     | Flex row with gap for logo and navigation                            |
-| HeaderCenter   | Flex item with `flex-1` and centered content                         |
-| HeaderRight    | Flex row with `ml-auto` to push to far right                         |
+| Part           | Details                                                                        |
+| -------------- | ------------------------------------------------------------------------------ |
+| Outer wrapper  | Sticky `header` with top positioning, border-bottom, blur, and `z-50` layering |
+| Content row    | Flex container with `h-14`, horizontal padding, and responsive gap spacing     |
+| Left section   | `flex items-center gap-4 md:gap-6` for branding and navigation                 |
+| Center section | `flex flex-1 items-center justify-center` for balanced centered content        |
+| Right section  | `ml-auto flex items-center gap-2` for action controls                          |
+
+## Behavior
+
+| Behavior              | Details                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------ |
+| Sticky layout         | Header stays pinned to the top of the viewport while scrolling                       |
+| Width control         | `HeaderContent` constrains width by default and can opt out with `container={false}` |
+| Composition-first API | Layout is built by arranging the subcomponents rather than selecting from variants   |
+| Navigation menus      | The header works with the `NavigationMenu` primitives for dropdowns and indicators   |
+| Custom styling        | Native `className` props allow local overrides without changing the implementation   |
 
 ## Notes
 
-- The Header component uses `supports-backdrop-filter:bg-background/60` for progressive enhancement
-- Navigation elements (menus, dropdowns) can be composed using the separate [`NavigationMenu`](/docs/components/primitives/navigation-menu) primitive components
-- All layout sections accept `className` for custom styling while maintaining the base layout behavior
-- `NavigationMenuViewport` is automatically rendered by `NavigationMenu` - you don't need to add it manually unless customizing
-- Add `NavigationMenuIndicator` for a polished visual indicator showing which dropdown is active
+- `HeaderCenter` is optional, but it is the supported way to place centered content in this layout.
+- `NavigationMenuViewport` is rendered automatically by `NavigationMenu` unless you set `viewport={false}`.
+- The header implementation is intentionally small; prefer composing the existing subcomponents over adding new header-specific props.
