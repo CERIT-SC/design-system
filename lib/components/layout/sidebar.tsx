@@ -13,7 +13,7 @@ const Sidebar = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "sticky lg:sticky top-16 h-[calc(100vh-64px)] w-64 bg-sidebar border-r border-sidebar-border p-6 flex flex-col z-40 transition-transform duration-300 lg:translate-x-0",
+      "sticky lg:sticky text-text top-16 h-[calc(100vh-64px)] w-64 bg-surface border-r border-border p-6 flex flex-col z-40 transition-transform duration-300 lg:translate-x-0",
       className
     )}
     {...props}
@@ -27,10 +27,7 @@ const SidebarHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "flex flex-col gap-2 border-b border-sidebar-border p-3",
-      className
-    )}
+    className={cn("flex flex-col gap-2 border-b border-border p-3", className)}
     {...props}
   />
 ));
@@ -51,7 +48,7 @@ const SidebarFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col gap-2 border-t border-sidebar-border p-4 mt-auto",
+      "flex flex-col gap-2 border-t border-border p-4 mt-auto",
       className
     )}
     {...props}
@@ -74,7 +71,7 @@ const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
         className={cn(
           "flex items-center gap-2 rounded-md px-3 py-2 transition-colors",
           "hover:bg-tertiary/50 hover:text-tertiary-foreground",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus",
           isActive && "bg-secondary text-secondary-foreground",
           className
         )}

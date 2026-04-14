@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "./checkbox";
+import { Label } from "./label";
 
 const meta = {
   title: "Components/Checkbox",
@@ -14,38 +15,50 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Checkbox id="checkbox-default" />
+      <Label htmlFor="checkbox-default">Accept terms and conditions</Label>
+    </div>
+  ),
 };
 
 export const Checked: Story = {
-  args: {
-    defaultChecked: true,
-  },
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Checkbox id="checkbox-checked" defaultChecked />
+      <Label htmlFor="checkbox-checked">Subscribe to newsletter</Label>
+    </div>
+  ),
 };
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Checkbox id="checkbox-disabled" disabled />
+      <Label htmlFor="checkbox-disabled" className="text-text">
+        Disabled option
+      </Label>
+    </div>
+  ),
 };
 
 export const DisabledChecked: Story = {
-  args: {
-    disabled: true,
-    defaultChecked: true,
-  },
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Checkbox id="checkbox-disabled-checked" disabled defaultChecked />
+      <Label htmlFor="checkbox-disabled-checked" className="text-text">
+        Disabled checked option
+      </Label>
+    </div>
+  ),
 };
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-2">
       <Checkbox id="terms" />
-      <label
-        htmlFor="terms"
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        Accept terms and conditions
-      </label>
+      <Label htmlFor="terms">Accept terms and conditions</Label>
     </div>
   ),
 };

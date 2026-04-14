@@ -223,7 +223,7 @@ function FeedbackModal({
       />
 
       {/* Modal */}
-      <div className="relative w-full sm:w-96 bg-card border-t sm:border border-border shadow-lg sm:rounded-2xl overflow-hidden animate-slideUp">
+      <div className="relative w-full sm:w-96 bg-surface border-t sm:border border-border shadow-lg sm:rounded-2xl overflow-hidden animate-slideUp">
         {/* Close button */}
         <Button
           onClick={onClose}
@@ -236,7 +236,7 @@ function FeedbackModal({
         </Button>
 
         {submitStatus === "success" && autoCloseOnSuccess && (
-          <div className="absolute top-0 left-0 right-0 h-1 bg-muted overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-surface overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-50 ease-linear"
               style={{ width: `${String(progress)}%` }}
@@ -245,10 +245,8 @@ function FeedbackModal({
         )}
 
         <div className="p-6">
-          <h4 className="text-lg font-semibold text-foreground mb-1">
-            {title}
-          </h4>
-          <p className="text-sm text-muted-foreground mb-4">{description}</p>
+          <h4 className="text-lg font-semibold text-text mb-1">{title}</h4>
+          <p className="text-sm text-text mb-4">{description}</p>
 
           {submitStatus === "success" ? (
             <div className="py-4">{successMessage}</div>

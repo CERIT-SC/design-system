@@ -230,7 +230,7 @@ export const WithIcon: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap gap-6">
-      <Card className="w-full max-w-[280px]" variant="default">
+      <Card className="w-full max-w-70" variant="default">
         <CardHeader>
           <CardTitle>Default</CardTitle>
           <CardDescription>Standard card appearance</CardDescription>
@@ -240,7 +240,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="primary">
+      <Card className="w-full max-w-70" variant="primary">
         <CardHeader>
           <CardTitle>Primary</CardTitle>
           <CardDescription>Primary color scheme</CardDescription>
@@ -250,7 +250,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="secondary">
+      <Card className="w-full max-w-70" variant="secondary">
         <CardHeader>
           <CardTitle>Secondary</CardTitle>
           <CardDescription>Secondary color scheme</CardDescription>
@@ -260,7 +260,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="tertiary">
+      <Card className="w-full max-w-70" variant="tertiary">
         <CardHeader>
           <CardTitle>Tertiary</CardTitle>
           <CardDescription>Tertiary color scheme</CardDescription>
@@ -270,7 +270,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="gradient">
+      <Card className="w-full max-w-70" variant="gradient">
         <CardHeader>
           <CardTitle>Gradient</CardTitle>
           <CardDescription>Gradient background</CardDescription>
@@ -280,11 +280,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card
-        className="w-full max-w-[280px]"
-        variant="default"
-        animation="translate"
-      >
+      <Card className="w-full max-w-70" variant="default" animation="translate">
         <CardHeader>
           <CardTitle>With Animation</CardTitle>
           <CardDescription>Hover animation enabled</CardDescription>
@@ -294,7 +290,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="default">
+      <Card className="w-full max-w-70" variant="default">
         <CardHeader>
           <CardTitle>Simple</CardTitle>
         </CardHeader>
@@ -303,7 +299,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="default">
+      <Card className="w-full max-w-70" variant="default">
         <CardHeader>
           <CardTitle>With Action</CardTitle>
           <CardDescription>Action button in header</CardDescription>
@@ -318,7 +314,7 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-[280px]" variant="primary">
+      <Card className="w-full max-w-70" variant="primary">
         <CardHeader>
           <CardIcon>
             <Shield className="h-8 w-8 text-primary-foreground/80" />

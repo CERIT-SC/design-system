@@ -1,243 +1,317 @@
 /**
- * Design System Styles
- * Only includes theme variables and base styles - NO Tailwind utilities
- * Consumers should have their own Tailwind setup
+ * Design System — Simplified Token Structure
+ *
+ * Surface hierarchy (light):  background → surface → surface-raised
+ * Surface hierarchy (dark):   background → surface → surface-raised
+ *
+ * Neutrals use a cool grey with a ~3% violet tint to stay cohesive
+ * with the primary purple brand without reading as a colour.
+ * Elevation steps are 10–12 lightness units apart for clear hierarchy.
  */
 
 @custom-variant dark (&:is(.dark *));
 
-/* These variables are mapped to more descriptive names for easier use in the CSS framework, all the variables from :root must be included in here too. */
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm:  calc(var(--radius) - 4px);
+  --radius-md:  calc(var(--radius) - 2px);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Surfaces */
+  --color-background:     var(--background);
+  --color-surface:        var(--surface);
+  --color-surface-raised: var(--surface-raised);
 
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  /* Text */
+  --color-text:         var(--text);
+  --color-text-muted:   var(--text-muted);
+  --color-text-heading: var(--text-heading);
 
-  --color-panel: var(--panel);
-  --color-panel-foreground: var(--panel-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
+  /* Brand */
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-tertiary:             var(--tertiary);
+  --color-tertiary-foreground:  var(--tertiary-foreground);
 
-  --color-tertiary: var(--tertiary);
-  --color-tertiary-foreground: var(--tertiary-foreground);
+  /* Borders */
+  --color-border:       var(--border);
+  --color-border-focus: var(--border-focus);
 
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-
-  --color-success: var(--success);
+  /* Semantic */
+  --color-info:               var(--info);
+  --color-info-foreground:    var(--info-foreground);
+  --color-success:            var(--success);
   --color-success-foreground: var(--success-foreground);
-
-  --color-warning: var(--warning);
+  --color-warning:            var(--warning);
   --color-warning-foreground: var(--warning-foreground);
+  --color-error:              var(--error);
+  --color-error-foreground:   var(--error-foreground);
 
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-heading: var(--heading);
-
+  /* Charts */
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-tertiary: var(--sidebar-tertiary);
-  --color-sidebar-tertiary-foreground: var(--sidebar-tertiary-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ─── Light mode ──────────────────────────────────────────── */
 :root {
   --radius: 0.75rem;
 
-  --background: #fefefe;
-  --foreground: #130f23;
+  /* Surfaces — cool neutral grey, ~3% violet tint, 10–12 lightness units per step */
+  --background:     #f4f5f9; /* page canvas — near-neutral, barely-there cool tint */
+  --surface:        #eaebf1; /* cards, sidebar, inputs — clear step from background */
+  --surface-raised: #dddee6; /* popovers, dropdowns, modals — clearly above surface */
 
-  --card: #f8f9fa;
-  --card-foreground: #130f23;
+  /* Text */
+  --text:         #130f23; /* near-black, matches primary family */
+  --text-muted:   #6e6a82; /* violet-grey muted                  */
+  --text-heading: #2f2557; /* primary brand purple               */
 
-  --panel: #ffffff89;
-  --panel-foreground: #000000;
-
-  --popover: #ffffff;
-  --popover-foreground: #090711;
-
-  --primary: #2f2557;
+  /* Brand */
+  --primary:            #2f2557;
   --primary-foreground: #ffffff;
 
-  --tertiary: #d3eef3;
+  --secondary:            #d9d6e6;
+  --secondary-foreground: #2f2543;
+
+  --tertiary:            #d3eef3;
   --tertiary-foreground: #0e444e;
 
-  --secondary: #d9d6e6;
-  --secondary-foreground: #000000;
+  /* Borders */
+  --border:       #c9cad4; /* cool neutral, consistent with surfaces */
+  --border-focus: #2f2557; /* primary, used for focus rings          */
 
-  --muted: #f8f9fa;
-  --muted-foreground: #101828;
-
-  --info: #7ecdf8;
-  --info-foreground: #192932;
-
-  --success: #1cc16f;
+  /* Semantic — unchanged, well-calibrated for both modes */
+  --info:               #7ecdf8;
+  --info-foreground:    #192932;
+  --success:            #1cc16f;
   --success-foreground: #062716;
-
-  --warning: #f7ce5b;
+  --warning:            #f7ce5b;
   --warning-foreground: #312912;
+  --error:              #f65a4f;
+  --error-foreground:   #311210;
 
-  --error: #f65a4f;
-  --error-foreground: #311210;
-
-  --border: #c6c2d4;
-  --input: #aca8bc;
-  --ring: #2f2557;
-
-  --heading: #2f2557;
-
+  /* Charts */
   --chart-1: #2f2557;
   --chart-2: #ca83ac;
   --chart-3: #7ecdf8;
   --chart-4: #1cc16f;
   --chart-5: #f7ce5b;
 
-  --sidebar: #f8f9fa;
-  --sidebar-foreground: #090711;
-  --sidebar-primary: #2f2557;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-tertiary: var(--tertiary);
-  --sidebar-tertiary-foreground: var(--tertiary-foreground);
-  --sidebar-border: #efeef1;
-  --sidebar-ring: var(--ring);
+  /* ── Color ramps — use for hover states, tinted badges, disabled fills ── */
+
+  --color-primary-50:  #e8e7f4;
+  --color-primary-100: #d2cfe9;
+  --color-primary-200: #a59dd2;
+  --color-primary-300: #7c6fbb;
+  --color-primary-400: #564597;
+  --color-primary-500: #2f2557;
+  --color-primary-600: #271f4b;
+  --color-primary-700: #1f183d;
+  --color-primary-800: #17112f;
+  --color-primary-900: #0f0a22;
+  --color-primary-950: #080516;
+
+  --color-secondary-50:  #fcfcfd;
+  --color-secondary-100: #f7f6f9;
+  --color-secondary-200: #f1f0f6;
+  --color-secondary-300: #e9e7f0;
+  --color-secondary-400: #e1deeb;
+  --color-secondary-500: #d9d6e6;
+  --color-secondary-600: #aca4c8;
+  --color-secondary-700: #8374aa;
+  --color-secondary-800: #5a497e;
+  --color-secondary-900: #2f2543;
+  --color-secondary-950: #1d162b;
+
+  --color-tertiary-50:  #f9fdfd;
+  --color-tertiary-100: #f4fbfc;
+  --color-tertiary-200: #eef8fa;
+  --color-tertiary-300: #e3f4f7;
+  --color-tertiary-400: #ddf2f6;
+  --color-tertiary-500: #d3eef3;
+  --color-tertiary-600: #8dbec6;
+  --color-tertiary-700: #658a90;
+  --color-tertiary-800: #425b60;
+  --color-tertiary-900: #202e31;
+  --color-tertiary-950: #111b1d;
+
+  --color-info-50:  #f5fafe;
+  --color-info-100: #ebf5fe;
+  --color-info-200: #d6ebfc;
+  --color-info-300: #b9dffb;
+  --color-info-400: #9fd6f9;
+  --color-info-500: #7ecdf8;
+  --color-info-600: #3ca3d1;
+  --color-info-700: #2a779b;
+  --color-info-800: #1a506b;
+  --color-info-900: #0a2b3c;
+  --color-info-950: #041a26;
+
+  --color-success-50:  #dcffea;
+  --color-success-100: #b2fed1;
+  --color-success-200: #28fb9e;
+  --color-success-300: #24e58c;
+  --color-success-400: #20d37d;
+  --color-success-500: #1cc16f;
+  --color-success-600: #149758;
+  --color-success-700: #0c6f41;
+  --color-success-800: #054c2d;
+  --color-success-900: #022a17;
+  --color-success-950: #011a0d;
+
+  --color-warning-50:  #fef9ed;
+  --color-warning-100: #fdf6e5;
+  --color-warning-200: #fcedc9;
+  --color-warning-300: #fbe3ac;
+  --color-warning-400: #f9d77b;
+  --color-warning-500: #f7ce5b;
+  --color-warning-600: #bfa045;
+  --color-warning-700: #8e7731;
+  --color-warning-800: #5d4f1e;
+  --color-warning-900: #32290c;
+  --color-warning-950: #1c1705;
+
+  --color-error-50:  #fef1ef;
+  --color-error-100: #fce2e0;
+  --color-error-200: #fac5c0;
+  --color-error-300: #f9a6a0;
+  --color-error-400: #f7857d;
+  --color-error-500: #f65a4f;
+  --color-error-600: #d13b24;
+  --color-error-700: #9c2e19;
+  --color-error-800: #6a1f0e;
+  --color-error-900: #3e1005;
+  --color-error-950: #290902;
+
+  /* Base ramp — cool neutral grey, shared by both modes.
+     Light uses low stops (50–300) for surfaces, high (700–950) for text.
+     Dark uses high stops (700–950) for surfaces, low (50–200) for text.
+     Stops 50–300 mirror the surface tokens exactly for consistency. */
+  --color-base-50:  #f4f5f9;
+  --color-base-100: #eaebf1;
+  --color-base-200: #dddee6;
+  --color-base-300: #c9cad4;
+  --color-base-400: #b0adbe;
+  --color-base-500: #6e6a82;
+  --color-base-600: #534f66;
+  --color-base-700: #3b3850;
+  --color-base-800: #27243a;
+  --color-base-900: #18172b;
+  --color-base-950: #0f0e14;
 }
 
+/* ─── Dark mode ───────────────────────────────────────────── */
 .dark {
-  /* Dark mode: inverted color scheme with adjusted colors */
-  --background: #2f2557; /* Dark purple background */
-  --foreground: #ffffff; /* Light foreground */
+  /* Surfaces — near-black with faint violet warmth, ~10 lightness units per step */
+  --background:     #0f0e14; /* page canvas                      */
+  --surface:        #191820; /* cards, sidebar, inputs           */
+  --surface-raised: #242330; /* popovers, dropdowns, modals      */
 
-  --card: #3d3068; /* Slightly lighter than background */
-  --card-foreground: #ffffff;
+  /* Text */
+  --text:         #f3f0f4;
+  --text-muted:   #908da8;
+  --text-heading: #d9d6e6;
 
-  --panel: #4a3f7a89; /* Translucent panel */
-  --panel-foreground: #ffffff;
+  /* Brand — inverted for dark mode */
+  --primary:            #d9d6e6;
+  --primary-foreground: #0f0e14;
 
-  --popover: #3d3068;
-  --popover-foreground: #ffffff;
+  --secondary:            #d3eef3;
+  --secondary-foreground: #0f0e14;
 
-  /* Primary remains the same brand color but inverted usage */
-  --primary: #c0bad6; /* Light purple for dark mode */
-  --primary-foreground: #2f2557; /* Dark text on light primary */
+  --tertiary:            #2f2557;
+  --tertiary-foreground: #f3f0f4;
 
-  /* Secondary: same pink for dark mode */
-  --secondary: #ca83ac;
-  --secondary-foreground: #ffffff;
+  /* Borders */
+  --border:       #2e2c3c;
+  --border-focus: #d9d6e6;
 
-  /* Tertiary */
-  --tertiary: #c0bad6;
-  --tertiary-foreground: #2f2557;
-
-  --muted: #4a4371; /* Muted slightly lighter */
-  --muted-foreground: #d5d3dd; /* Muted text */
-
-  --info: #7ecdf8;
-  --info-foreground: #192932;
-
-  --success: #1cc16f;
+  /* Semantic — identical to light, designed to work on both */
+  --info:               #7ecdf8;
+  --info-foreground:    #192932;
+  --success:            #1cc16f;
   --success-foreground: #062716;
-
-  --warning: #f7ce5b;
+  --warning:            #f7ce5b;
   --warning-foreground: #312912;
+  --error:              #f65a4f;
+  --error-foreground:   #311210;
 
-  --error: #f65a4f;
-  --error-foreground: #311210;
+  /* Charts */
+  --chart-1: #818cf8;
+  --chart-2: #34d399;
+  --chart-3: #fbbf24;
+  --chart-4: #c084fc;
+  --chart-5: #f87171;
 
-  --border: #5a5184;
-  --input: #6d6594;
-  --ring: #c0bad6; /* Light purple ring in dark mode */
+  /* ── Color ramps (dark mode overrides) ── */
 
-  --heading: #c0bad6;
+  --color-primary-50:  #fcfcfd;
+  --color-primary-100: #f7f6f9;
+  --color-primary-200: #f1f0f6;
+  --color-primary-300: #e9e7f0;
+  --color-primary-400: #e1deeb;
+  --color-primary-500: #d9d6e6;
+  --color-primary-600: #aca4c8;
+  --color-primary-700: #8374aa;
+  --color-primary-800: #5a497e;
+  --color-primary-900: #2f2543;
+  --color-primary-950: #1d162b;
 
-  /* Chart colors for dark mode */
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --color-secondary-50:  #f9fdfd;
+  --color-secondary-100: #f4fbfc;
+  --color-secondary-200: #eef8fa;
+  --color-secondary-300: #e3f4f7;
+  --color-secondary-400: #ddf2f6;
+  --color-secondary-500: #d3eef3;
+  --color-secondary-600: #8dbec6;
+  --color-secondary-700: #658a90;
+  --color-secondary-800: #425b60;
+  --color-secondary-900: #202e31;
+  --color-secondary-950: #111b1d;
 
-  /* Sidebar for dark mode */
-  --sidebar: #3d3068;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #c0bad6;
-  --sidebar-primary-foreground: #2f2557;
-  --sidebar-tertiary: #c0bad6;
-  --sidebar-tertiary-foreground: #2f2557;
-  --sidebar-border: #5a5184;
-  --sidebar-ring: #c0bad6;
+  --color-tertiary-50:  #e8e7f4;
+  --color-tertiary-100: #d2cfe9;
+  --color-tertiary-200: #a59dd2;
+  --color-tertiary-300: #7c6fbb;
+  --color-tertiary-400: #564597;
+  --color-tertiary-500: #2f2557;
+  --color-tertiary-600: #271f4b;
+  --color-tertiary-700: #1f183d;
+  --color-tertiary-800: #17112f;
+  --color-tertiary-900: #0f0a22;
+  --color-tertiary-950: #080516;
+
+  /* --color-base-* ramp is theme-independent — defined once in :root above */
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-border-focus/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-text;
   }
 }
 
 @layer utilities {
-  /* Slide animations for sheets/modals */
-  .slide-in-from-bottom {
-    animation: slideInFromBottom 0.3s ease-out;
-  }
-  
-  .slide-out-to-bottom {
-    animation: slideOutToBottom 0.3s ease-in;
-  }
-  
+  .slide-in-from-bottom { animation: slideInFromBottom 0.3s ease-out; }
+  .slide-out-to-bottom  { animation: slideOutToBottom 0.3s ease-in; }
+  .animate-slideUp      { animation: slideInFromBottom 0.3s ease-out; }
+
   @keyframes slideInFromBottom {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
   }
-  
   @keyframes slideOutToBottom {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
-  
-  .animate-slideUp {
-    animation: slideInFromBottom 0.3s ease-out;
+    from { transform: translateY(0); }
+    to   { transform: translateY(100%); }
   }
 }

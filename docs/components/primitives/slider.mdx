@@ -3,17 +3,17 @@
 Sliders allow users to select a value from a continuous or discrete range by dragging a thumb along a track.
 
 <ComponentPreview>
-<div className="flex flex-col gap-6 w-full max-w-sm">
-  <Slider defaultValue={[50]} max={100} step={1} />
-  <Slider defaultValue={[25, 75]} max={100} step={1} />
-  <Slider defaultValue={[33]} max={100} step={1} disabled />
-</div>
+  <div className="flex flex-col gap-6 w-full max-w-sm">
+    <Slider defaultValue={[50]} max={100} step={1} />
+    <Slider defaultValue={[25, 75]} max={100} step={1} />
+    <Slider defaultValue={[33]} max={100} step={1} disabled />
+  </div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Slider } from '@e-infra/design-system'
+import { Slider } from "@e-infra/design-system"
 
 <Slider defaultValue={[50]} max={100} step={1} />
 <Slider defaultValue={[25, 75]} min={0} max={100} />
@@ -21,19 +21,19 @@ import { Slider } from '@e-infra/design-system'
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| value | number[] | - | Current value(s) (controlled) |
-| defaultValue | number[] | - | Initial value(s) (uncontrolled) |
-| min | number | `0` | Minimum value |
-| max | number | `100` | Maximum value |
-| step | number | - | Step size for discrete values |
-| disabled | boolean | `false` | Disable the slider |
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Radix UI Slider props |
+| Prop         | Type                 | Default | Description                     |
+| ------------ | -------------------- | ------- | ------------------------------- |
+| value        | number[]             | -       | Current value(s) (controlled)   |
+| defaultValue | number[]             | -       | Initial value(s) (uncontrolled) |
+| min          | number               | `0`     | Minimum value                   |
+| max          | number               | `100`   | Maximum value                   |
+| step         | number               | -       | Step size for discrete values   |
+| disabled     | boolean              | `false` | Disable the slider              |
+| className    | string               | -       | Additional CSS classes          |
+| ...props     | React.ComponentProps | -       | Radix UI Slider props           |
 
 ## API
 
-| Component | Description |
-|-----------|-------------|
-| `Slider` | Main component with track and thumb |
+| Component | Description                         |
+| --------- | ----------------------------------- |
+| `Slider`  | Main component with track and thumb |

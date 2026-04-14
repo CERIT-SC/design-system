@@ -18,7 +18,7 @@ export const Horizontal: Story = {
     <div className="w-100">
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-text">
           An open-source UI component library.
         </p>
       </div>

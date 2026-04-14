@@ -46,7 +46,7 @@ export function CookiesBanner({
     <div
       data-slot="cookies-banner"
       className={cn(
-        "fixed bottom-0 left-0 right-0 bg-card border-t border-border shadow-lg z-50",
+        "fixed bottom-0 left-0 right-0 bg-surface border-t border-border shadow-lg z-50",
         className
       )}
       {...props}
@@ -54,7 +54,7 @@ export function CookiesBanner({
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex-1">
-            <Small className="text-foreground">
+            <Small className="text-text">
               {message}
               {learnMoreLink}
             </Small>

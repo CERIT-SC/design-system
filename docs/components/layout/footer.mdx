@@ -1,6 +1,6 @@
 # Footer
 
-Footer is a presentational layout component that renders the e-INFRA CZ footer content, support information, external links, a configurable logo, and a generated version date.
+Footer is a presentational layout component that renders fixed e-INFRA CZ content, support information, external links, and a configurable logo.
 
 <ComponentPreview>
   <Footer />
@@ -25,22 +25,29 @@ import customLogo from './my-logo.png'
 />
 ```
 
+### Optional Tag
+
+```tsx
+<Footer tag="build-2026-04-13" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | logo | `string \| { src: string; width?: number; height?: number }` | bundled e-INFRA logo asset | Logo source for the centered image near the bottom |
 | logoAlt | `string` | `e-INFRA CZ Logo` | Alt text for the logo image |
+| tag | `string` | `undefined` | Optional small text rendered at the right side of the bottom row on desktop (below on mobile) |
 
 ## Structure
 
 | Section | Details |
 |---------|---------|
-| Outer footer | `footer` with `bg-gray-100`, top border, horizontal padding, and bottom padding |
-| Main content row | Three-column responsive layout inside `max-w-[1100px]` |
+| Outer footer | `footer` with `mt-0 flex flex-col items-center border-t border-border bg-background px-5 pb-5` |
+| Main content row | Three-column responsive layout inside `mx-auto flex w-full max-w-275 flex-col items-center justify-between md:flex-row md:items-start` |
 | Dividers | Vertical separators shown from `md:` upward |
-| Logo row | Centered image rendered below the main content |
-| Bottom meta row | Copyright, privacy policy link, and generated version date |
+| Logo row | `mx-auto mt-4 flex w-full max-w-275 items-center justify-center` with `img` class `h-22 w-auto` |
+| Bottom meta row | `mx-auto flex w-full max-w-275 flex-col items-center justify-center md:flex-row md:justify-between` with copyright, privacy link, and optional `tag` |
 
 ## Built-in Content
 
@@ -54,6 +61,11 @@ Renders two fixed links:
 
 1. `https://blog.e-infra.cz/`
 2. `https://e-infra.cz/`
+
+Each link is rendered through an internal `RedirectListItem` helper using:
+
+- icon `MoveRight`
+- anchor class `text-primary hover:text-primary/80 flex items-center gap-2 transition-colors`
 
 ### Support
 
@@ -69,7 +81,7 @@ The bottom row contains:
 
 1. `Copyright © 2025 e-INFRA CZ`
 2. Privacy policy link to `https://www.e-infra.cz/en/personal-data-processing`
-3. `Version: ...` label derived from `Date.now()` and formatted with `toLocaleDateString("cs-CS")`
+3. Optional `tag` text when provided
 
 ## Behavior
 
@@ -78,9 +90,10 @@ The bottom row contains:
 | Responsiveness | Stacks content vertically on small screens and switches to a horizontal three-column layout on `md:` |
 | Alignment | Content is centered on mobile and left-aligned within each section on larger screens |
 | Logo handling | Accepts either a plain string URL or an object with a `src` field |
-| Version rendering | Version text is generated at module evaluation time, not passed as a prop |
+| Logo resolution | Internally resolves both string and static-import object formats via `resolveLogoSrc` |
+| Conditional tag | `tag` is rendered only when provided |
 | External links | Blog, website, email, and privacy policy are built into the component |
 
 ## Notes
 
-This component is intentionally opinionated. Most visible content is fixed in the implementation, and the public API only exposes logo customization. If you need custom footer sections or different links, the current implementation would need to be extended rather than configured through props.
+This component is intentionally opinionated. Most visible content is fixed in the implementation. Public customization is limited to `logo`, `logoAlt`, and optional `tag`. If you need custom footer sections or different links, the component implementation needs to be extended.

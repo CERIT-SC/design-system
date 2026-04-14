@@ -3,17 +3,28 @@
 Checkboxes allow users to select one or more options from a list. They provide visual feedback when selected and support indeterminate states.
 
 <ComponentPreview>
-<div className="flex flex-col gap-4">
-  <div className="flex items-center gap-2"><Checkbox id="terms" /><Label htmlFor="terms">Accept terms and conditions</Label></div>
-  <div className="flex items-center gap-2"><Checkbox id="newsletter" defaultChecked /><Label htmlFor="newsletter">Subscribe to newsletter</Label></div>
-  <div className="flex items-center gap-2"><Checkbox id="disabled" disabled /><Label htmlFor="disabled" className="text-muted-foreground">Disabled option</Label></div>
-</div>
+  <div className="flex flex-col gap-4">
+    <div className="flex items-center gap-2">
+      <Checkbox id="terms" />
+      <Label htmlFor="terms">Accept terms and conditions</Label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Checkbox id="newsletter" defaultChecked />
+      <Label htmlFor="newsletter">Subscribe to newsletter</Label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Checkbox id="disabled" disabled />
+      <Label htmlFor="disabled" className="text-text">
+        Disabled option
+      </Label>
+    </div>
+  </div>
 </ComponentPreview>
 
 ## Usage
 
 ```tsx
-import { Checkbox } from '@e-infra/design-system'
+import { Checkbox } from "@e-infra/design-system"
 
 <Checkbox id="terms" />
 <Label htmlFor="terms">Accept terms</Label>
@@ -23,23 +34,23 @@ import { Checkbox } from '@e-infra/design-system'
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| checked | boolean | - | Checked state (controlled) |
-| defaultChecked | boolean | - | Initial checked state (uncontrolled) |
-| required | boolean | `false` | Require selection |
-| disabled | boolean | `false` | Disable the checkbox |
-| className | string | - | Additional CSS classes |
-| ...props | React.ComponentProps | - | Radix UI Checkbox props |
+| Prop           | Type                 | Default | Description                          |
+| -------------- | -------------------- | ------- | ------------------------------------ |
+| checked        | boolean              | -       | Checked state (controlled)           |
+| defaultChecked | boolean              | -       | Initial checked state (uncontrolled) |
+| required       | boolean              | `false` | Require selection                    |
+| disabled       | boolean              | `false` | Disable the checkbox                 |
+| className      | string               | -       | Additional CSS classes               |
+| ...props       | React.ComponentProps | -       | Radix UI Checkbox props              |
 
 ## State
 
-| State | Visual |
-|-------|--------|
-| Unchecked | Empty box with border |
-| Checked | Checkmark inside primary box |
-| Disabled | Grayed out appearance |
-| Indeterminate | Dash inside box |
+| State         | Visual                       |
+| ------------- | ---------------------------- |
+| Unchecked     | Empty box with border        |
+| Checked       | Checkmark inside primary box |
+| Disabled      | Grayed out appearance        |
+| Indeterminate | Dash inside box              |
 
 ## Accessibility
 
