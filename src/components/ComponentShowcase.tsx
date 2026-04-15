@@ -1385,10 +1385,7 @@ function ComponentShowcase() {
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
                           <Label htmlFor="author-name">Author Name</Label>
-                          <Input
-                            id="author-name"
-                            placeholder="John Doe"
-                          />
+                          <Input id="author-name" placeholder="John Doe" />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="author-email">Author Email</Label>

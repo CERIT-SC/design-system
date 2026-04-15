@@ -105,11 +105,10 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
   const { currentStep, previousStep, nextStep, goToStep, totalSteps } =
     useStepper();
   const safeTotalSteps = Math.max(totalSteps, 1);
-  const safeSteps = steps ?? [];
   const progressPercentage =
     safeTotalSteps > 1 ? (currentStep / (safeTotalSteps - 1)) * 100 : 100;
   const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
-    label: safeSteps[index]?.label ?? `Step ${String(index + 1)}`,
+    label: steps[index]?.label ?? `Step ${String(index + 1)}`,
   }));
   const currentStepLabel = stepItems[currentStep]?.label ?? "";
 
@@ -140,7 +139,9 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
               <div className="absolute left-3 right-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-border/80" />
               <div
                 className="absolute left-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary transition-all"
-                style={{ width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * 28px + 28px)` }}
+                style={{
+                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * 28px + 28px)`,
+                }}
               />
 
               <div className="relative flex items-center justify-between">
@@ -152,18 +153,20 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
                     <button
                       key={`${step.label}-${String(index)}`}
                       type="button"
-                      onClick={() => goToStep(index)}
+                      onClick={() => {
+                        goToStep(index);
+                      }}
                       aria-current={isCurrent ? "step" : undefined}
                       aria-label={`Go to section ${String(index + 1)}: ${step.label}`}
                       className={cn(
                         "relative z-10 flex cursor-pointer items-center justify-center rounded-full text-[14px] font-semibold leading-5.25 tracking-[0.07px] transition-all duration-300",
                         isComplete &&
-                        "h-6 w-6 border-4 border-success bg-success text-success-foreground",
+                          "h-6 w-6 border-4 border-success bg-success text-success-foreground",
                         isCurrent &&
-                        "h-7 w-7 border-2 border-background bg-warning text-warning-foreground",
+                          "h-7 w-7 border-2 border-background bg-warning text-warning-foreground",
                         !isComplete &&
-                        !isCurrent &&
-                        "h-7 w-7 border-2 border-background bg-border/80 text-foreground"
+                          !isCurrent &&
+                          "h-7 w-7 border-2 border-background bg-border/80 text-foreground"
                       )}
                       style={{
                         boxShadow: isComplete
