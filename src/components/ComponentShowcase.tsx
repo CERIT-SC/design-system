@@ -61,6 +61,10 @@ import {
   Separator,
   Skeleton,
   Slider,
+  Stepper,
+  StepperContent,
+  StepperFooter,
+  StepperHeader,
   Switch,
   Table,
   TableBody,
@@ -1278,6 +1282,169 @@ function ComponentShowcase() {
                     className="h-full w-full object-cover"
                   />
                 </AspectRatio>
+              </div>
+            </section>
+
+            <Separator />
+
+            {/* Stepper Section */}
+            <section className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-semibold tracking-tight">
+                  Stepper
+                </h2>
+                <ComponentCopySelect
+                  components={[
+                    {
+                      name: "Stepper",
+                      import:
+                        "import { Stepper, StepperHeader, StepperContent, StepperFooter } from '@e-infra/design-system';",
+                    },
+                  ]}
+                />
+              </div>
+              <div className="w-full max-w-4xl">
+                <Stepper totalSteps={4}>
+                  <StepperHeader
+                    steps={[
+                      {
+                        label: "Publication Info",
+                        description: "Enter publication details",
+                      },
+                      {
+                        label: "Duplicity Check",
+                        description: "Check for duplicates",
+                      },
+                      { label: "Authors", description: "Add authors" },
+                      {
+                        label: "Acknowledgements",
+                        description: "Add acknowledgements",
+                      },
+                    ]}
+                  />
+                  <StepperContent>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Publication Information</CardTitle>
+                        <CardDescription>
+                          Enter the basic information about your publication
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="pub-title">Publication Title</Label>
+                          <Input
+                            id="pub-title"
+                            placeholder="Enter publication title"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="pub-year">Publication Year</Label>
+                          <Input
+                            id="pub-year"
+                            type="number"
+                            placeholder="2026"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="pub-abstract">Abstract</Label>
+                          <Textarea
+                            id="pub-abstract"
+                            placeholder="Enter publication abstract"
+                            rows={3}
+                          />
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Duplicity Check</CardTitle>
+                        <CardDescription>
+                          Checking for duplicate publications in the system...
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-center py-8 space-y-4">
+                          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-success/10">
+                            <CircleCheck className="h-8 w-8 text-success" />
+                          </div>
+                          <p className="text-sm text-text">
+                            No duplicate publications found. You can proceed to
+                            the next step.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Authors</CardTitle>
+                        <CardDescription>
+                          Add authors to this publication
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="author-name">Author Name</Label>
+                          <Input
+                            id="author-name"
+                            placeholder="John Doe"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="author-email">Author Email</Label>
+                          <Input
+                            id="author-email"
+                            type="email"
+                            placeholder="john@example.com"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="author-affiliation">
+                            Affiliation
+                          </Label>
+                          <Input
+                            id="author-affiliation"
+                            placeholder="University Name"
+                          />
+                        </div>
+                        <Button size="sm">Add Author</Button>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Acknowledgements</CardTitle>
+                        <CardDescription>
+                          Add acknowledgements and funding information
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="acknowledgements">
+                            Acknowledgements
+                          </Label>
+                          <Textarea
+                            id="acknowledgements"
+                            placeholder="Enter acknowledgements..."
+                            rows={4}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="funding">Funding Information</Label>
+                          <Textarea
+                            id="funding"
+                            placeholder="Enter funding information..."
+                            rows={3}
+                          />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </StepperContent>
+                  <StepperFooter
+                    onFinish={() =>
+                      toast.success("Publication submitted successfully!")
+                    }
+                  />
+                </Stepper>
               </div>
             </section>
 
