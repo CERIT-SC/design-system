@@ -1,0 +1,215 @@
+# Stepper
+
+Stepper displays progress through a multi-step process, allowing users to navigate between steps and track their progress.
+
+<ComponentPreview>
+<Stepper>
+  <StepperHeader steps={[
+    { label: "Publication Info", description: "Enter publication details" },
+    { label: "Duplicity Check", description: "Check for duplicates" },
+    { label: "Authors", description: "Add authors" },
+    { label: "Finish", description: "Complete submission" }
+  ]} />
+  <StepperContent>
+    <Card>
+      <CardHeader>
+        <CardTitle>Publication Information</CardTitle>
+        <CardDescription>Enter the basic information about your publication</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="title">Publication Title</Label>
+          <Input id="title" placeholder="Enter publication title" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="year">Publication Year</Label>
+          <Input id="year" type="number" placeholder="2026" />
+        </div>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Duplicity Check</CardTitle>
+        <CardDescription>Check if this publication already exists in the system</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-center text-muted-foreground">Checking for duplicates...</p>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Authors</CardTitle>
+        <CardDescription>Add authors to this publication</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="author-name">Author Name</Label>
+          <Input id="author-name" placeholder="John Doe" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="author-email">Author Email</Label>
+          <Input id="author-email" type="email" placeholder="john@example.com" />
+        </div>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Complete</CardTitle>
+        <CardDescription>Review and submit your publication</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-center text-muted-foreground">All steps completed!</p>
+      </CardContent>
+    </Card>
+  </StepperContent>
+  <StepperFooter onFinish={() => console.log("Finished")} />
+</Stepper>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Stepper, StepperHeader, StepperContent, StepperFooter } from '@e-infra/design-system'
+
+// Define your steps
+const steps = [
+  { label: "Step 1", description: "First step description" },
+  { label: "Step 2", description: "Second step description" },
+  { label: "Step 3", description: "Third step description" },
+]
+
+// Basic usage
+<Stepper>
+  <StepperHeader steps={steps} />
+  <StepperContent>
+    <YourStep1Content />
+    <YourStep2Content />
+    <YourStep3Content />
+  </StepperContent>
+  <StepperFooter onFinish={() => console.log("Done")} />
+</Stepper>
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Stepper` | Container component that manages step state and context |
+| `StepperHeader` | Displays progress indicator with clickable step buttons |
+| `StepperContent` | Displays content for the current step |
+| `StepperFooter` | Navigation buttons (Previous/Next/Finish) |
+
+## Props
+
+### Stepper
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | React.ReactNode | - | Step content and child components |
+| initialStep | number | `0` | Starting step index |
+| totalSteps | number | - | Total number of steps (auto-detected from children if not provided) |
+| onStepChange | (step: number) => void | - | Callback when step changes |
+
+### StepperHeader
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| steps | Step[] | - | Array of step definitions with `label` and optional `description` |
+| className | string | - | Additional CSS classes |
+
+### StepperContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | React.ReactNode | - | Content for each step |
+| className | string | - | Additional CSS classes |
+
+### StepperFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | React.ReactNode | - | Custom footer content (overrides default buttons) |
+| className | string | - | Additional CSS classes |
+| showDefaultButtons | boolean | `true` | Show default Previous/Next/Finish buttons |
+| nextLabel | string | `"Next"` | Label for Next button |
+| previousLabel | string | `"Previous"` | Label for Previous button |
+| finishLabel | string | `"Finish"` | Label for Finish button on last step |
+| onFinish | () => void | - | Callback when Finish button is clicked |
+
+## Controlled vs Uncontrolled
+
+The Stepper works as an uncontrolled component by default, managing its own internal state. You can also use it in a controlled manner by managing the step externally:
+
+```tsx
+function ControlledStepper() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+  
+  return (
+    <Stepper initialStep={currentStep} onStepChange={setCurrentStep}>
+      <StepperHeader steps={steps} />
+      <StepperContent>
+        {/* Your step content */}
+      </StepperContent>
+      <StepperFooter 
+        onFinish={() => console.log("Finished")}
+        showDefaultButtons={false}
+      >
+        {/* Custom controls using currentStep */}
+      </StepperFooter>
+    </Stepper>
+  );
+}
+```
+
+## Accessibility
+
+The Stepper component includes built-in accessibility features:
+
+- ARIA labels on navigation buttons
+- Keyboard navigation support via clickable step indicators
+- Screen reader announcements for current step changes
+- Semantic HTML structure with proper landmark roles
+
+## Examples
+
+### With Initial Step
+
+Start the stepper at a specific step:
+
+```tsx
+<Stepper initialStep={2}>
+  <StepperHeader steps={steps} />
+  <StepperContent>
+    {/* Your step content */}
+  </StepperContent>
+  <StepperFooter onFinish={() => console.log("Done")} />
+</Stepper>
+```
+
+### Custom Footer
+
+Provide custom navigation controls:
+
+```tsx
+<StepperFooter showDefaultButtons={false}>
+  <Button variant="outline" onClick={() => goToStep(currentStep - 1)}>
+    Back
+  </Button>
+  <Button onClick={() => currentStep === totalSteps - 1 ? submit() : nextStep()}>
+    {currentStep === totalSteps - 1 ? "Submit" : "Continue"}
+  </Button>
+</StepperFooter>
+```
+
+### On Step Change Callback
+
+Track or validate before step changes:
+
+```tsx
+<Stepper onStepChange={(step) => {
+  console.log(`Moving to step ${step}`);
+  // Perform validation or analytics here
+}}>
+  {/* Your stepper content */}
+</Stepper>
+```

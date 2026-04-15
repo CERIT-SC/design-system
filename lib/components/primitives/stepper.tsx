@@ -105,10 +105,11 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
   const { currentStep, previousStep, nextStep, goToStep, totalSteps } =
     useStepper();
   const safeTotalSteps = Math.max(totalSteps, 1);
+  const safeSteps = steps ?? [];
   const progressPercentage =
     safeTotalSteps > 1 ? (currentStep / (safeTotalSteps - 1)) * 100 : 100;
   const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
-    label: steps[index]?.label ?? `Step ${String(index + 1)}`,
+    label: safeSteps[index]?.label ?? `Step ${String(index + 1)}`,
   }));
   const currentStepLabel = stepItems[currentStep]?.label ?? "";
 
