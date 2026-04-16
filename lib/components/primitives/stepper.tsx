@@ -4,7 +4,6 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./button";
-import { Progress } from "./progress";
 
 interface Step {
   label: string;
@@ -44,40 +43,56 @@ export function Stepper({
   totalSteps: totalStepsProp,
   onStepChange,
 }: StepperProps) {
+  const clampStep = React.useCallback((step: number, stepsCount: number) => {
+    const maxIndex = Math.max(stepsCount - 1, 0);
+    return Math.max(0, Math.min(step, maxIndex));
+  }, []);
+
   const [currentStep, setCurrentStep] = React.useState(initialStep);
   const steps = React.Children.toArray(children);
-  const totalSteps = totalStepsProp ?? steps.length;
+  const totalSteps = Math.max(totalStepsProp ?? steps.length, 1);
+  const previousInitialStepRef = React.useRef(initialStep);
 
   const nextStep = React.useCallback(() => {
     setCurrentStep((prev) => {
-      const next = Math.min(prev + 1, totalSteps - 1);
+      const next = clampStep(prev + 1, totalSteps);
       onStepChange?.(next);
       return next;
     });
-  }, [totalSteps, onStepChange]);
+  }, [clampStep, totalSteps, onStepChange]);
 
   const previousStep = React.useCallback(() => {
     setCurrentStep((prev) => {
-      const next = Math.max(prev - 1, 0);
+      const next = clampStep(prev - 1, totalSteps);
       onStepChange?.(next);
       return next;
     });
-  }, [onStepChange]);
+  }, [clampStep, totalSteps, onStepChange]);
 
   const goToStep = React.useCallback(
     (step: number) => {
-      const validStep = Math.max(0, Math.min(step, totalSteps - 1));
+      const validStep = clampStep(step, totalSteps);
       setCurrentStep(validStep);
       onStepChange?.(validStep);
     },
-    [totalSteps, onStepChange]
+    [clampStep, totalSteps, onStepChange]
   );
 
   React.useEffect(() => {
-    if (initialStep !== currentStep) {
-      setCurrentStep(initialStep);
+    setCurrentStep((prev) => {
+      const clamped = clampStep(prev, totalSteps);
+      return prev === clamped ? prev : clamped;
+    });
+  }, [clampStep, totalSteps]);
+
+  React.useEffect(() => {
+    if (previousInitialStepRef.current === initialStep) {
+      return;
     }
-  }, [initialStep, currentStep]);
+
+    previousInitialStepRef.current = initialStep;
+    setCurrentStep(clampStep(initialStep, totalSteps));
+  }, [clampStep, initialStep, totalSteps]);
 
   return (
     <StepperContext.Provider
@@ -95,96 +110,119 @@ export function Stepper({
 }
 
 interface StepperHeaderProps {
-  steps: Step[];
+  steps?: Step[];
   className?: string;
 }
 
-export function StepperHeader({ steps, className }: StepperHeaderProps) {
-  const { currentStep, previousStep, nextStep, totalSteps } = useStepper();
-  const progressPercentage = ((currentStep + 1) / totalSteps) * 100;
+export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
+  const { currentStep, previousStep, nextStep, goToStep, totalSteps } =
+    useStepper();
+  const safeTotalSteps = Math.max(totalSteps, 1);
+  const activeStepIndex = Math.min(
+    Math.max(currentStep, 0),
+    safeTotalSteps - 1
+  );
+  const progressPercentage =
+    safeTotalSteps > 1 ? (activeStepIndex / (safeTotalSteps - 1)) * 100 : 100;
+  const stepMarkerSize = 28;
+  const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
+    label: steps[index]?.label ?? `Step ${String(index + 1)}`,
+  }));
+  const currentStepLabel =
+    stepItems[activeStepIndex]?.label ?? `Step ${String(activeStepIndex + 1)}`;
 
   return (
     <nav aria-label="Progress" className={cn("mb-8", className)}>
-      <div className="flex flex-col gap-4 items-center">
-        {/* Top row: Previous button, Progress bar, Next button */}
-        <div className="flex items-center gap-10 w-full justify-center">
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={previousStep}
-            disabled={currentStep === 0}
-            className="gap-1.5"
-          >
-            <ChevronLeft className="h-3.5 w-3.5" />
-            Previous
-          </Button>
+      <div className="flex w-full flex-col items-center gap-3">
+        <p className="text-center text-xs text-text">
+          <span className="font-normal">Section {activeStepIndex + 1}: </span>
+          <span className="font-semibold">{currentStepLabel}</span>
+        </p>
+        <p
+          className="sr-only"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Section {activeStepIndex + 1} of {safeTotalSteps}: {currentStepLabel}
+        </p>
 
-          {/* Progress Bar */}
-          <Progress value={progressPercentage} className="w-105" />
+        <div className="flex w-full items-center justify-center gap-4 md:gap-10">
+          <div className="shrink-0">
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={previousStep}
+              disabled={currentStep === 0}
+              className="gap-1.5 md:min-w-26"
+            >
+              <ChevronLeft className="h-3.5 w-3.5" />
+              Previous
+            </Button>
+          </div>
 
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={nextStep}
-            disabled={currentStep === totalSteps - 1}
-            className="gap-1.5"
-          >
-            Next
-            <ChevronRight className="h-3.5 w-3.5" />
-          </Button>
-        </div>
-
-        {/* Bottom row: Step indicators */}
-        <div className="relative flex items-center justify-center gap-5">
-          {/* Connector lines */}
-          {steps.map((_, index) => {
-            if (index === 0) return null;
-            const isComplete = index <= currentStep;
-
-            return (
+          <div className="relative w-full max-w-lg">
+            <div className="relative">
+              <div className="absolute left-3 right-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-border/80" />
               <div
-                key={`connector-${String(index)}`}
-                className={cn(
-                  "absolute h-px w-[133px]",
-                  "top-2",
-                  isComplete ? "bg-slate-700" : "bg-border"
-                )}
+                className="absolute left-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary transition-all"
                 style={{
-                  left: `calc(${String((index - 1) * 25)}% + ${String(56 + (index - 1) * 20)}px)`,
+                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * ${String(stepMarkerSize)}px + ${String(stepMarkerSize)}px)`,
                 }}
               />
-            );
-          })}
 
-          {/* Step indicators */}
-          {steps.map((step, index) => {
-            const isComplete = index < currentStep;
-            const isCurrent = index === currentStep;
+              <div className="relative flex items-center justify-between">
+                {stepItems.map((step, index) => {
+                  const isComplete = index < currentStep;
+                  const isCurrent = index === currentStep;
 
-            return (
-              <div
-                key={step.label}
-                className="flex flex-col items-center gap-1 w-28 relative z-10"
-              >
-                <button
-                  onClick={() => {
-                    /* Step navigation can be implemented here */
-                  }}
-                  className={cn(
-                    "flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-semibold transition-colors",
-                    isComplete && "bg-[#36a769]",
-                    isCurrent && "bg-[#c9a224]",
-                    !isComplete && !isCurrent && "bg-[#999]"
-                  )}
-                >
-                  {index + 1}
-                </button>
-                <span className="text-xs text-text text-center leading-tight">
-                  {step.label}
-                </span>
+                  return (
+                    <button
+                      key={`${step.label}-${String(index)}`}
+                      type="button"
+                      onClick={() => {
+                        goToStep(index);
+                      }}
+                      aria-current={isCurrent ? "step" : undefined}
+                      aria-label={`Go to section ${String(index + 1)}: ${step.label}`}
+                      className={cn(
+                        "relative z-10 flex cursor-pointer items-center justify-center rounded-full text-[14px] font-semibold leading-5 tracking-[0.07px] transition-all duration-300",
+                        isComplete &&
+                          "h-6 w-6 border-4 border-success bg-success text-success-foreground",
+                        isCurrent &&
+                          "h-7 w-7 border-2 border-background bg-warning text-warning-foreground",
+                        !isComplete &&
+                          !isCurrent &&
+                          "h-7 w-7 border-2 border-background bg-border/80 text-text"
+                      )}
+                      style={{
+                        boxShadow: isComplete
+                          ? "0 0 8px rgba(22, 154, 89, 0.65), 0 0 16px rgba(22, 154, 89, 0.35)"
+                          : isCurrent
+                            ? "0 0 8px rgba(247, 206, 91, 0.55), 0 0 14px rgba(247, 206, 91, 0.3)"
+                            : "0 0 6px rgba(115, 112, 128, 0.38)",
+                      }}
+                    >
+                      {index + 1}
+                    </button>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          </div>
+
+          <div className="shrink-0">
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={nextStep}
+              disabled={currentStep === totalSteps - 1}
+              className="gap-1.5 md:min-w-26"
+            >
+              Next
+              <ChevronRight className="h-3.5 w-3.5" />
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
