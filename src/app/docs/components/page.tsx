@@ -1,6 +1,10 @@
-"use client";
-import ComponentShowcase from "../../../components/ComponentShowcase";
+import { buildDocsNavStructure } from "../../../lib/docs-nav";
+import ComponentsOverviewGrid from "../../../components/docs/ComponentsOverviewGrid";
 
 export default function ComponentsPage() {
-  return <ComponentShowcase />;
+  const sections = buildDocsNavStructure().filter((section) =>
+    ["primitives", "compounds", "layout"].includes(section.slug)
+  );
+
+  return <ComponentsOverviewGrid sections={sections} />;
 }
