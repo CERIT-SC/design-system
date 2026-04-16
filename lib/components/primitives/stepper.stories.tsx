@@ -20,20 +20,15 @@ import { Button } from "./button";
 
 const meta = {
   title: "Components/Stepper",
+  component: Stepper,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta;
-
-type StepperStory = StoryObj<{
-  initialStep?: number;
-  totalSteps?: number;
-  onStepChange?: (step: number) => void;
-}>;
+} satisfies Meta<typeof Stepper>;
 
 export default meta;
-type Story = StepperStory;
+type Story = StoryObj<typeof meta>;
 
 // Define the steps for the stepper
 const steps = [
@@ -157,14 +152,13 @@ function Step4Acknowledgements() {
 }
 
 /**
- * The default stepper implementation showing a complete multi-step form flow.
- * Includes header with progress indicator, content areas for each step,
- * and footer with navigation buttons.
+ * The default stepper implementation uses header navigation only,
+ * with content areas for each step.
  */
 export const Default: Story = {
   render: () => (
     <div className="w-200">
-      <Stepper>
+      <Stepper totalSteps={steps.length}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -172,7 +166,6 @@ export const Default: Story = {
           <Step3Authors />
           <Step4Acknowledgements />
         </StepperContent>
-        <StepperFooter onFinish={() => alert("Finished!")} />
       </Stepper>
     </div>
   ),
@@ -186,7 +179,7 @@ export const Default: Story = {
 export const WithInitialStep: Story = {
   render: () => (
     <div className="w-200">
-      <Stepper initialStep={2}>
+      <Stepper initialStep={2} totalSteps={steps.length}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -194,21 +187,19 @@ export const WithInitialStep: Story = {
           <Step3Authors />
           <Step4Acknowledgements />
         </StepperContent>
-        <StepperFooter onFinish={() => alert("Finished!")} />
       </Stepper>
     </div>
   ),
 };
 
 /**
- * Shows how to provide custom footer content instead of the default
- * navigation buttons. This is useful when you need custom controls,
- * validation triggers, or step-specific actions.
+ * Shows how to add optional custom actions in the footer while
+ * keeping the header as the primary navigation.
  */
 export const WithCustomFooter: Story = {
   render: () => (
     <div className="w-200">
-      <Stepper>
+      <Stepper totalSteps={steps.length}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -217,9 +208,7 @@ export const WithCustomFooter: Story = {
           <Step4Acknowledgements />
         </StepperContent>
         <StepperFooter showDefaultButtons={false}>
-          <div className="text-sm text-text">
-            Custom footer content goes here
-          </div>
+          <CustomFooterActions />
         </StepperFooter>
       </Stepper>
     </div>
@@ -234,7 +223,10 @@ export const WithCustomFooter: Story = {
 export const OnStepChange: Story = {
   render: () => (
     <div className="w-200">
-      <Stepper onStepChange={(step) => console.log(`Step changed to: ${step}`)}>
+      <Stepper
+        totalSteps={steps.length}
+        onStepChange={(step) => console.log(`Step changed to: ${step}`)}
+      >
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />
@@ -242,11 +234,27 @@ export const OnStepChange: Story = {
           <Step3Authors />
           <Step4Acknowledgements />
         </StepperContent>
-        <StepperFooter onFinish={() => alert("Finished!")} />
       </Stepper>
     </div>
   ),
 };
+
+function CustomFooterActions() {
+  const { currentStep, totalSteps, nextStep, previousStep } = useStepper();
+  const isFirstStep = currentStep === 0;
+  const isLastStep = currentStep === totalSteps - 1;
+
+  return (
+    <div className="flex w-full items-center justify-between gap-4">
+      <Button variant="outline" onClick={previousStep} disabled={isFirstStep}>
+        Back
+      </Button>
+      <Button onClick={isLastStep ? () => alert("Finished!") : nextStep}>
+        {isLastStep ? "Submit" : "Continue"}
+      </Button>
+    </div>
+  );
+}
 
 /**
  * Demonstrates using the useStepper hook to create custom navigation controls.
@@ -254,17 +262,14 @@ export const OnStepChange: Story = {
  * buttons, allowing users to jump to any step at any time.
  */
 function CustomNavigationFooter() {
-  const { currentStep, totalSteps, nextStep, previousStep, goToStep } = useStepper();
+  const { currentStep, totalSteps, nextStep, previousStep, goToStep } =
+    useStepper();
   const isFirstStep = currentStep === 0;
   const isLastStep = currentStep === totalSteps - 1;
 
   return (
     <div className="mt-8 flex flex-wrap justify-between items-center gap-4">
-      <Button
-        variant="outline"
-        onClick={previousStep}
-        disabled={isFirstStep}
-      >
+      <Button variant="outline" onClick={previousStep} disabled={isFirstStep}>
         Previous
       </Button>
       <div className="flex gap-2">
@@ -290,7 +295,7 @@ function CustomNavigationFooter() {
 export const WithCustomNavigation: Story = {
   render: () => (
     <div className="w-200">
-      <Stepper>
+      <Stepper totalSteps={steps.length}>
         <StepperHeader steps={steps} />
         <StepperContent>
           <Step1PublicationInfo />

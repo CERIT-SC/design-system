@@ -43,43 +43,56 @@ export function Stepper({
   totalSteps: totalStepsProp,
   onStepChange,
 }: StepperProps) {
+  const clampStep = React.useCallback((step: number, stepsCount: number) => {
+    const maxIndex = Math.max(stepsCount - 1, 0);
+    return Math.max(0, Math.min(step, maxIndex));
+  }, []);
+
   const [currentStep, setCurrentStep] = React.useState(initialStep);
   const steps = React.Children.toArray(children);
-  const totalSteps = totalStepsProp ?? steps.length;
+  const totalSteps = Math.max(totalStepsProp ?? steps.length, 1);
+  const previousInitialStepRef = React.useRef(initialStep);
 
   const nextStep = React.useCallback(() => {
     setCurrentStep((prev) => {
-      const next = Math.min(prev + 1, totalSteps - 1);
+      const next = clampStep(prev + 1, totalSteps);
       onStepChange?.(next);
       return next;
     });
-  }, [totalSteps, onStepChange]);
+  }, [clampStep, totalSteps, onStepChange]);
 
   const previousStep = React.useCallback(() => {
     setCurrentStep((prev) => {
-      const next = Math.max(prev - 1, 0);
+      const next = clampStep(prev - 1, totalSteps);
       onStepChange?.(next);
       return next;
     });
-  }, [onStepChange]);
+  }, [clampStep, totalSteps, onStepChange]);
 
   const goToStep = React.useCallback(
     (step: number) => {
-      const validStep = Math.max(0, Math.min(step, totalSteps - 1));
+      const validStep = clampStep(step, totalSteps);
       setCurrentStep(validStep);
       onStepChange?.(validStep);
     },
-    [totalSteps, onStepChange]
+    [clampStep, totalSteps, onStepChange]
   );
 
   React.useEffect(() => {
-    const maxIndex = Math.max(totalSteps - 1, 0);
-    const normalizedInitialStep = Math.max(0, Math.min(initialStep, maxIndex));
+    setCurrentStep((prev) => {
+      const clamped = clampStep(prev, totalSteps);
+      return prev === clamped ? prev : clamped;
+    });
+  }, [clampStep, totalSteps]);
 
-    setCurrentStep((prev) =>
-      prev === normalizedInitialStep ? prev : normalizedInitialStep
-    );
-  }, [initialStep, totalSteps]);
+  React.useEffect(() => {
+    if (previousInitialStepRef.current === initialStep) {
+      return;
+    }
+
+    previousInitialStepRef.current = initialStep;
+    setCurrentStep(clampStep(initialStep, totalSteps));
+  }, [clampStep, initialStep, totalSteps]);
 
   return (
     <StepperContext.Provider
@@ -97,27 +110,41 @@ export function Stepper({
 }
 
 interface StepperHeaderProps {
-  steps: Step[];
+  steps?: Step[];
   className?: string;
 }
 
-export function StepperHeader({ steps, className }: StepperHeaderProps) {
+export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
   const { currentStep, previousStep, nextStep, goToStep, totalSteps } =
     useStepper();
   const safeTotalSteps = Math.max(totalSteps, 1);
+  const activeStepIndex = Math.min(
+    Math.max(currentStep, 0),
+    safeTotalSteps - 1
+  );
   const progressPercentage =
-    safeTotalSteps > 1 ? (currentStep / (safeTotalSteps - 1)) * 100 : 100;
+    safeTotalSteps > 1 ? (activeStepIndex / (safeTotalSteps - 1)) * 100 : 100;
+  const stepMarkerSize = 28;
   const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
     label: steps[index]?.label ?? `Step ${String(index + 1)}`,
   }));
-  const currentStepLabel = stepItems[currentStep]?.label ?? "";
+  const currentStepLabel =
+    stepItems[activeStepIndex]?.label ?? `Step ${String(activeStepIndex + 1)}`;
 
   return (
     <nav aria-label="Progress" className={cn("mb-8", className)}>
       <div className="flex w-full flex-col items-center gap-3">
-        <p className="text-center text-xs text-foreground">
-          <span className="font-normal">Section {currentStep + 1}: </span>
+        <p className="text-center text-xs text-text">
+          <span className="font-normal">Section {activeStepIndex + 1}: </span>
           <span className="font-semibold">{currentStepLabel}</span>
+        </p>
+        <p
+          className="sr-only"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Section {activeStepIndex + 1} of {safeTotalSteps}: {currentStepLabel}
         </p>
 
         <div className="flex w-full items-center justify-center gap-4 md:gap-10">
@@ -127,20 +154,20 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
               size="sm"
               onClick={previousStep}
               disabled={currentStep === 0}
-              className="gap-1.5 md:min-w-25.75"
+              className="gap-1.5 md:min-w-26"
             >
               <ChevronLeft className="h-3.5 w-3.5" />
               Previous
             </Button>
           </div>
 
-          <div className="relative w-full max-w-128.25">
+          <div className="relative w-full max-w-lg">
             <div className="relative">
               <div className="absolute left-3 right-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-border/80" />
               <div
                 className="absolute left-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary transition-all"
                 style={{
-                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * 28px + 28px)`,
+                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * ${String(stepMarkerSize)}px + ${String(stepMarkerSize)}px)`,
                 }}
               />
 
@@ -159,14 +186,14 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
                       aria-current={isCurrent ? "step" : undefined}
                       aria-label={`Go to section ${String(index + 1)}: ${step.label}`}
                       className={cn(
-                        "relative z-10 flex cursor-pointer items-center justify-center rounded-full text-[14px] font-semibold leading-5.25 tracking-[0.07px] transition-all duration-300",
+                        "relative z-10 flex cursor-pointer items-center justify-center rounded-full text-[14px] font-semibold leading-5 tracking-[0.07px] transition-all duration-300",
                         isComplete &&
                           "h-6 w-6 border-4 border-success bg-success text-success-foreground",
                         isCurrent &&
                           "h-7 w-7 border-2 border-background bg-warning text-warning-foreground",
                         !isComplete &&
                           !isCurrent &&
-                          "h-7 w-7 border-2 border-background bg-border/80 text-foreground"
+                          "h-7 w-7 border-2 border-background bg-border/80 text-text"
                       )}
                       style={{
                         boxShadow: isComplete
@@ -190,7 +217,7 @@ export function StepperHeader({ steps, className }: StepperHeaderProps) {
               size="sm"
               onClick={nextStep}
               disabled={currentStep === totalSteps - 1}
-              className="gap-1.5 md:min-w-25.75"
+              className="gap-1.5 md:min-w-26"
             >
               Next
               <ChevronRight className="h-3.5 w-3.5" />
