@@ -22,6 +22,7 @@ import type { MDXComponents } from "mdx/types";
 import { cn } from "../../../lib/lib/utils";
 import { CodeBlock } from "./CodeBlock";
 import { ComponentPreview } from "./ComponentPreview";
+import { docsTypography } from "./docs-typography";
 
 // ─── Component registry ───────────────────────────────────────────────────────
 // A plain JS object (not a module namespace Proxy) — safe to iterate with
@@ -44,84 +45,33 @@ export { CodeBlock, ComponentPreview };
 export const mdxComponents: MDXComponents = {
   // ── Headings ──────────────────────────────────────────────────────────────
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1
-      className={cn(
-        "scroll-m-20 text-4xl font-extrabold text-text-heading lg:text-5xl mt-8 mb-6",
-        className
-      )}
-      {...props}
-    />
+    <h1 className={cn(docsTypography.h1, className)} {...props} />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2
-      className={cn(
-        "scroll-m-20 text-2xl font-bold text-text-heading mt-8 mb-4",
-        className
-      )}
-      {...props}
-    />
+    <h2 className={cn(docsTypography.h2, className)} {...props} />
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3
-      className={cn(
-        "scroll-m-20 text-xl font-semibold  text-text-heading mt-6 mb-3",
-        className
-      )}
-      {...props}
-    />
+    <h3 className={cn(docsTypography.h3, className)} {...props} />
   ),
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4
-      className={cn(
-        "scroll-m-20 text-lg font-semibold  text-text-heading mt-4 mb-2",
-        className
-      )}
-      {...props}
-    />
+    <h4 className={cn(docsTypography.h4, className)} {...props} />
   ),
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5
-      className={cn(
-        "scroll-m-20 text-base font-medium  text-text-heading mt-4 mb-2",
-        className
-      )}
-      {...props}
-    />
+    <h5 className={cn(docsTypography.h5, className)} {...props} />
   ),
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6
-      className={cn(
-        "scroll-m-20 text-sm font-medium  text-text-heading mt-4 mb-2",
-        className
-      )}
-      {...props}
-    />
+    <h6 className={cn(docsTypography.h6, className)} {...props} />
   ),
 
   // ── Text & inline ──────────────────────────────────────────────────────────
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p
-      className={cn("leading-7 not-first:mt-6 text-text", className)}
-      {...props}
-    />
+    <p className={cn(docsTypography.bodySpaced, className)} {...props} />
   ),
   a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-    <a
-      className={cn(
-        "font-medium text-primary underline underline-offset-4 hover:text-primary/80",
-        className
-      )}
-      {...props}
-    />
+    <a className={cn(docsTypography.link, className)} {...props} />
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <code
-      className={cn(
-        "relative rounded bg-surface/50 px-[0.3rem] py-[0.2rem] font-mono text-sm text-text",
-        className
-      )}
-      {...props}
-    />
+    <code className={cn(docsTypography.inlineCode, className)} {...props} />
   ),
   pre: ({ children }: React.HTMLAttributes<HTMLPreElement>) => {
     // MDX compiles ```lang\n...\n``` into <pre><code className="language-lang">…</code></pre>.

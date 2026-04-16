@@ -12,6 +12,8 @@ export default defineConfig([
   globalIgnores([
     "dist",
     ".build/**",
+    "index.cjs.js",
+    "index.es.js",
     // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
