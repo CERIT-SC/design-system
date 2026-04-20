@@ -110,9 +110,11 @@ bun run build:lib
 # Build showcase web
 bun run build:showcase
 
-# Run linting and type checks
+# Run linting, format checks and type checks
 bun run lint
-bun run type:check
+bun run format:check
+bun run typecheck:lib
+bun run typecheck:showcase
 ```
 
 For other commands and scripts, see `package.json`.
