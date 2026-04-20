@@ -249,15 +249,9 @@ export const mdxComponents: MDXComponents = {
       height={200}
     />
   ),
-
-  // ── Doc utility components ─────────────────────────────────────────────────
   ComponentPreview,
   CodeBlock,
-
-  // ── Foundation preview components ─────────────────────────────────────────
   ColorsPreview,
-
-  // ── Auto-discovered library components ────────────────────────────────────
   ...libraryComponents,
 };
 

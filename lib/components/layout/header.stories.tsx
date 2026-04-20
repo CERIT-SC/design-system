@@ -15,7 +15,12 @@ import {
   NavigationMenuLink,
   NavigationMenuIndicator,
 } from "../primitives/navigation-menu";
-import { Content } from "./content";
+import {
+  Content,
+  ContentBody,
+  ContentHeading,
+  ContentSubheading,
+} from "./content";
 import {
   Sidebar,
   SidebarHeader,
@@ -89,15 +94,15 @@ export const Default: Story = {
       </Header>
       <main className="flex-1 container mx-auto px-4 py-8">
         <Content>
-          <Content.Heading>Default Header</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
+          <ContentHeading>Default Header</ContentHeading>
+          <ContentSubheading>Usage</ContentSubheading>
+          <ContentBody>
             The default header uses the compound component pattern with
             HeaderContent, HeaderLeft, and HeaderRight. Navigation links use the
             NavigationMenu primitive components (NavigationMenu,
             NavigationMenuList, NavigationMenuItem, NavigationMenuLink) for
             consistent styling and behavior.
-          </Content.Body>
+          </ContentBody>
         </Content>
       </main>
     </div>
@@ -191,16 +196,16 @@ export const WithDropdown: Story = {
       </Header>
       <main className="flex-1 container mx-auto px-4 py-8">
         <Content>
-          <Content.Heading>Header with Dropdown Menus</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
+          <ContentHeading>Header with Dropdown Menus</ContentHeading>
+          <ContentSubheading>Usage</ContentSubheading>
+          <ContentBody>
             Use NavigationMenuTrigger and NavigationMenuContent to create
             dropdown menus in the navigation. Add NavigationMenuIndicator inside
             NavigationMenu (after NavigationMenuList) to show a visual arrow
             pointing to the active trigger. NavigationMenuViewport is
             automatically rendered by NavigationMenu to contain the dropdown
             content with animations.
-          </Content.Body>
+          </ContentBody>
         </Content>
       </main>
     </div>
@@ -250,12 +255,12 @@ export const WithSearch: Story = {
       </Header>
       <main className="flex-1 container mx-auto px-4 py-8">
         <Content>
-          <Content.Heading>Header with Centered Search</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
+          <ContentHeading>Header with Centered Search</ContentHeading>
+          <ContentSubheading>Usage</ContentSubheading>
+          <ContentBody>
             Use HeaderCenter for centered content like search bars or centered
             navigation. The center section flexes to fill available space.
-          </Content.Body>
+          </ContentBody>
         </Content>
       </main>
     </div>
@@ -307,14 +312,14 @@ export const WithSidebar: Story = {
         </Header>
         <main className="flex-1 container mx-auto px-4 py-8">
           <Content>
-            <Content.Heading>Header with Sidebar</Content.Heading>
-            <Content.Subheading>Usage</Content.Subheading>
-            <Content.Body>
+            <ContentHeading>Header with Sidebar</ContentHeading>
+            <ContentSubheading>Usage</ContentSubheading>
+            <ContentBody>
               When using a sidebar layout, the header typically has no logo
               (handled by the sidebar). Use container=false on HeaderContent to
               allow the header content to span the full width. Place actions in
               HeaderRight.
-            </Content.Body>
+            </ContentBody>
           </Content>
         </main>
       </div>
@@ -369,13 +374,13 @@ export const CustomBackground: Story = {
       </Header>
       <main className="flex-1 container mx-auto px-4 py-8">
         <Content>
-          <Content.Heading>Custom Background</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
+          <ContentHeading>Custom Background</ContentHeading>
+          <ContentSubheading>Usage</ContentSubheading>
+          <ContentBody>
             Apply custom backgrounds using the className prop on Header. This
             example uses a gradient background with adjusted text colors for
             contrast.
-          </Content.Body>
+          </ContentBody>
         </Content>
       </main>
     </div>
@@ -415,12 +420,12 @@ export const WithoutContainer: Story = {
       </Header>
       <main className="flex-1 px-4 py-8">
         <Content>
-          <Content.Heading>Full-Width Header</Content.Heading>
-          <Content.Subheading>Usage</Content.Subheading>
-          <Content.Body>
+          <ContentHeading>Full-Width Header</ContentHeading>
+          <ContentSubheading>Usage</ContentSubheading>
+          <ContentBody>
             Use container=false on HeaderContent to make the header span the
             full width without the default container max-width constraint.
-          </Content.Body>
+          </ContentBody>
         </Content>
       </main>
     </div>

@@ -96,6 +96,8 @@ import {
   Code,
   Link as DesignLink,
   Content,
+  ContentBody,
+  ContentHeading,
   PanelHeader,
   Panel,
   PanelTitle,
@@ -171,13 +173,13 @@ function ComponentShowcase() {
         <div className="flex-1 min-h-screen bg-background">
           <div className="container mx-auto px-4 py-8 space-y-8">
             <Content>
-              <Content.Heading>Components Overview</Content.Heading>
-              <Content.Body>
+              <ContentHeading>Components Overview</ContentHeading>
+              <ContentBody>
                 <p className="text-base leading-7 text-text">
                   Component showcase for the e-INFRA CZ Design System built with
                   shadcn/ui
                 </p>
-              </Content.Body>
+              </ContentBody>
             </Content>
 
             {/* Installation Instructions */}
