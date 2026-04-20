@@ -224,7 +224,12 @@ import {
 } from "../../lib/components/primitives/tooltip";
 
 // ── Layout ────────────────────────────────────────────────────────────────────
-import { Content } from "../../lib/components/layout/content";
+import {
+  Content,
+  ContentHeading,
+  ContentSubheading,
+  ContentBody,
+} from "../../lib/components/layout/content";
 import { Footer } from "../../lib/components/layout/footer";
 import {
   Header,
@@ -475,6 +480,9 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   TooltipTrigger,
   // Layout
   Content,
+  ContentHeading,
+  ContentSubheading,
+  ContentBody,
   Footer,
   Header,
   HeaderContent,
