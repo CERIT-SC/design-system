@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.6
+- Added stepper component
+- Fixed shade ramp colors
+- Fixed issues with Content component compounds
+
 ## v0.1.5
 
 - Added Dark Mode support
