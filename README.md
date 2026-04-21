@@ -32,7 +32,7 @@ npm install @e-infra/design-system
 
 ### Peer Dependencies
 
-Make sure ypu have the required peer dependencies installed:
+Make sure you have the required peer dependencies installed:
 
 ```bash
 bun add react react-dom tailwindcss
@@ -123,7 +123,7 @@ For other commands and scripts, see `package.json`.
 
 Run from the project root:
 
-#### Using docker-compise to build and run the production container:
+#### Using docker-compose to build and run the production container:
 
 ```bash
 docker compose -f ./env/prod/docker-compose.yml up --build
