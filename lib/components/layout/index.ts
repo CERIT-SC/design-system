@@ -1,4 +1,9 @@
-export { Content, ContentExample } from "./content";
+export {
+  Content,
+  ContentBody,
+  ContentHeading,
+  ContentSubheading,
+} from "./content";
 export {
   Header,
   HeaderContent,

@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { Content } from "../../../lib/components/layout/content";
+import {
+  Content,
+  ContentBody,
+  ContentHeading,
+} from "../../../lib/components/layout/content";
 import { buildDocsNavStructure } from "../../lib/docs-nav";
 
 export default function DocsIndexPage() {
@@ -8,8 +12,8 @@ export default function DocsIndexPage() {
 
   return (
     <Content>
-      <Content.Heading>Documentation</Content.Heading>
-      <Content.Body>
+      <ContentHeading>Documentation</ContentHeading>
+      <ContentBody>
         {sections.map((section) => (
           <div key={section.slug} className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
@@ -27,7 +31,7 @@ export default function DocsIndexPage() {
             </ul>
           </div>
         ))}
-      </Content.Body>
+      </ContentBody>
     </Content>
   );
 }

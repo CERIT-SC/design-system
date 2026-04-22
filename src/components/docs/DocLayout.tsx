@@ -18,6 +18,7 @@ import {
   CollapsibleGroup,
   NavItem,
 } from "../../../lib/components/layout/sidebar";
+import { Content } from "../../../lib/components/layout/content";
 import type { NavSection } from "../../lib/docs-nav";
 
 interface DocLayoutProps {
@@ -127,8 +128,8 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-7xl p-10">{children}</div>
+        <main>
+          <Content>{children}</Content>
         </main>
       </div>
     </div>

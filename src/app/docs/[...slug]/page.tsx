@@ -1,21 +1,19 @@
 import { readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
-import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 
 import { mdxComponents } from "../../../components/docs/MDXComponents";
+
+import { H1, P } from "../../../../lib/components/foundations/typography";
 
 // Base directory for docs (resolved relative to project root)
 const DOCS_DIR = join(process.cwd(), "docs");
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-interface Frontmatter {
-  title?: string;
-  description?: string;
-  category?: string;
-  status?: string;
+interface PageData {
+  source: string;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -37,7 +35,6 @@ function collectMdxFiles(dir: string): string[] {
 
 /** Read and parse an MDX file by its slug segments. */
 function readMdxFile(slug: string[]): {
-  frontmatter: Frontmatter;
   source: string;
 } | null {
   if (slug.length === 0) return null;
@@ -46,11 +43,15 @@ function readMdxFile(slug: string[]): {
 
   try {
     const raw = readFileSync(filePath, "utf-8");
-    const { data } = matter(raw);
-    return { frontmatter: data as Frontmatter, source: raw };
+    return { source: raw };
   } catch {
     return null;
   }
+}
+
+function slugToTitle(slug: string[]): string {
+  const last = slug[slug.length - 1] ?? "docs";
+  return last.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 // ─── Static Params ────────────────────────────────────────────────────────────
@@ -87,12 +88,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${page.frontmatter.title ?? "Docs"} — e-INFRA CZ Design System`,
-    description: page.frontmatter.description ?? "",
+    title: `${slugToTitle(slug).toUpperCase()} | e-INFRA CZ Design System`,
+    description: "Documentation page for the e-INFRA CZ Design System.",
   };
 }
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function DocsPage({
   params,
@@ -104,20 +103,14 @@ export default async function DocsPage({
 
   if (!page) {
     return (
-      <>
-        <div>
-          <h1 className="text-2xl font-bold text-text-heading mb-2">
-            Page Not Found
-          </h1>
-          <p className="text-text">
-            The requested documentation page could not be found.
-          </p>
-        </div>
-      </>
+      <article className="mx-auto p-10 space-y-8">
+        <H1>Page Not Found</H1>
+        <P>The requested documentation page could not be found.</P>
+      </article>
     );
   }
 
-  const { content } = await compileMDX<Frontmatter>({
+  const { content } = await compileMDX<PageData>({
     source: page.source,
     components: mdxComponents,
     options: {
@@ -129,23 +122,5 @@ export default async function DocsPage({
     },
   });
 
-  return (
-    <>
-      <article className="max-w-none">
-        {page.frontmatter.title && (
-          <div className="mb-8 pb-6 border-b border-border">
-            <h1 className="text-3xl font-extrabold tracking-tight text-text-heading mb-2">
-              {page.frontmatter.title}
-            </h1>
-            {page.frontmatter.description && (
-              <p className="text-base text-text leading-relaxed">
-                {page.frontmatter.description}
-              </p>
-            )}
-          </div>
-        )}
-        {content}
-      </article>
-    </>
-  );
+  return <article>{content}</article>;
 }

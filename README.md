@@ -3,32 +3,31 @@
 [![npm version](https://img.shields.io/npm/v/@e-infra/design-system.svg)](https://www.npmjs.com/package/@e-infra/design-system)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive React component library built with shadcn/ui and Tailwind CSS v4, designed for the e-INFRA CZ app ecosystem.
+React component library for e-INFRA CZ applications, built with TypeScript and Tailwind CSS v4, based on radix UI and shadcn-UI.
 
-## ✨ Features
+## Features
 
-- 🎨 **46+ Components** - Complete set of UI components based on shadcn/ui
-- 🎯 **TypeScript First** - Full TypeScript support with type definitions
-- 💅 **Tailwind CSS v4** - Modern styling with the latest Tailwind features
-- 🌗 **Dark Mode** - Built-in dark mode support
-- ♿ **Accessible** - WAI-ARIA compliant components
-- 📦 **Tree-shakeable** - Import only what you need
-- 🎭 **Customizable** - Easy to theme and customize
+- 30+ reusable components covering common UI patterns
+- Fully typed with TypeScript for type safety
+- Tailwind CSS v4 for utility-first styling
+- Radix UI primitives for accessibility and interactivity
+- Dark mode support and responsive design
+- Comprehensive documentation and live showcase
+- Customizable and extensible for various use cases
 
-## 📦 Installation
+## Installation
 
 ```bash
-# Using npm
-npm install @e-infra/design-system
+bun add @e-infra/design-system
 
-# Using yarn
+# or using yarn
 yarn add @e-infra/design-system
 
-# Using pnpm
+# or using pnpm
 pnpm add @e-infra/design-system
 
-# Using bun
-bun add @e-infra/design-system
+# or using npm
+npm install @e-infra/design-system
 ```
 
 ### Peer Dependencies
@@ -36,21 +35,23 @@ bun add @e-infra/design-system
 Make sure you have the required peer dependencies installed:
 
 ```bash
+bun add react react-dom tailwindcss
+
+# or npm
 npm install react react-dom tailwindcss
 ```
 
-## 🚀 Quick Start
+## Requirements
+
+- React 18 or 19
+- React DOM 18 or 19
+- Tailwind CSS v4
+
+## Quick Start
 
 ### 1. Import Styles
 
-**Important:** Import the CSS file in your main application file **AFTER importing tailwindcss**:
-
-```css
-@import "@e-infra/design-system/setup.css";
-@source "../node_modules/@e-infra/design-system/dist";
-```
-
-Example:
+! Important: Ensure you import the library styles in your global CSS file, ideally immediately after Tailwind in your global stylesheet:
 
 ```css
 @import "tailwindcss";
@@ -58,100 +59,104 @@ Example:
 @source "../node_modules/@e-infra/design-system/dist";
 ```
 
-### 2. Use Components
+### 2. Usage of Components
 
 ```tsx
 import {
   Button,
   Card,
+  CardContent,
   CardHeader,
   CardTitle,
-  CardContent,
-} from "@e-infra/e-infra-design-system";
+} from "@e-infra/design-system";
 
-function App() {
+export function Example() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Welcome to e-INFRA CZ</CardTitle>
+        <CardTitle>Welcome</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Start building with our design system!</p>
-        <Button>Get Started</Button>
+        <Button>Get started</Button>
       </CardContent>
     </Card>
   );
 }
 ```
 
-## 📖 Documentation
+## Package Exports
 
-For full documentation and live examples, visit:
+- `@e-infra/design-system` - Components, utilities, and hooks
+- `@e-infra/design-system/setup.css` - Library CSS entry for Tailwind v4 setup
 
-🔗 **[Live Showcase](https://design-system.e-infra.cz/)**
+## Documentation
 
-## 🛠️ Development
+- Live showcase: https://design-system.e-infra.cz/
+- Comprehensive documentation with usage examples, API reference, and best practices for all components: https://design-system.e-infra.cz/docs
+- Source repository: https://github.com/CERIT-SC/design-system
+
+## Development
 
 ```bash
 # Install dependencies
 bun install
 
-# Start dev server
+# Run development server with live reloading
 bun run dev:showcase
 
 # Build library
 bun run build:lib
 
-# Build showcase
+# Build showcase web
 bun run build:showcase
 
-# Run linting
+# Run linting, format checks and type checks
 bun run lint
-
-# Run type checking
-bun run type:check
+bun run format:check
+bun run typecheck:lib
+bun run typecheck:showcase
 ```
 
-For other commands consult `package.json`.
+For other commands and scripts, see `package.json`.
 
 ## Docker
 
-**Be in root of the project directory.**
+Run from the project root:
 
-### Using Compose File (build and run)
+#### Using docker-compose to build and run the production container:
 
-```sh
+```bash
 docker compose -f ./env/prod/docker-compose.yml up --build
 ```
 
-### Build Only Image
+#### Build image only:
 
-#### Bun as Package Manager and Runtime
+Bun as package manager and runtime:
 
-```sh
+```bash
 docker build -t design-system-showcase:latest -f ./env/prod/Dockerfile.bun .
 ```
 
-#### Bun as Package Manager, Node as Runtime
+Bun as package manager and node as runtime:
 
-```sh
+```bash
 docker build -t design-system-showcase:latest -f ./env/prod/Dockerfile .
 ```
 
-## 📄 License
+## Maintainers
 
-MIT © [CERIT-SC, Masaryk University](https://cerit-sc.cz)
+- Romana Ďuráčiová [duraciova@mail.muni.cz](mailto:duraciova@mail.muni.cz)
+- Jakub Čillík [cillik@muni.cz](mailto:cillik@muni.cz)
+- Michal Mikuš [553650@mail.muni.cz](mailto:553650@mail.muni.cz)
 
-## 👥 Maintainers
+## Contributing
 
-- Jakub Čillík <cillik@muni.cz>
-- Romana Ďuráčiová <duraciova@mail.muni.cz>
-- Michal Mikuš <553650@mail.muni.cz>
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## 🤝 Contributing
+## Issues
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Please report any bugs or issues to our [GitHub repository](https://github.com/CERIT-SC/design-system/issues).
 
-## 🐛 Issues
+## License
 
-Found a bug? Please report it at our [GitHub Issues](https://github.com/CERIT-SC/design-system/issues).
+MIT. See [LICENSE.md](LICENSE.md).
