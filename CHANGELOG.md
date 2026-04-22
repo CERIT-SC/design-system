@@ -4,6 +4,7 @@
 - Added stepper component
 - Fixed shade ramp colors
 - Fixed issues with Content component compounds
+- Broadened lucide-react peer compatibility to support 0.400.x and 1.x releases
 
 ## v0.1.5
 
