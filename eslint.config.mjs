@@ -19,8 +19,6 @@ export default defineConfig([
     "next-env.d.ts",
     "lib/**/*.stories.{js,cjs,mjs,ts,tsx}",
     "eslint.config.mjs",
-    "index.cjs.js",
-    "index.es.js",
   ]),
 
   eslint.configs.recommended,
