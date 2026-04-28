@@ -12,7 +12,7 @@ const ContentContainer = forwardRef<
   return (
     <div
       ref={ref}
-      className={cn("space-y-8 mx-auto max-w-7xl", className)}
+      className={cn("space-y-8 px-10 mx-auto max-w-7xl", className)}
       {...props}
     >
       {children}
