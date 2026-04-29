@@ -1,6 +1,13 @@
 "use client";
 
-import { BookOpen, Info } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Component,
+  EyeIcon,
+  Info,
+  Rocket,
+} from "lucide-react";
 import { Button } from "../../../lib/components/primitives/button";
 import { AnimatedBackground } from "./AnimatedBackground";
 import {
@@ -27,35 +34,45 @@ import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative pb-20 pt-20 overflow-hidden">
+    <section className="relative pb-10 pt-10 overflow-hidden">
       <AnimatedBackground />
 
       {/* Decorative blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl bg-primary/20 animate-[float_10s_ease-in-out_infinite]" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl bg-tertiary/50 animate-[float_10s_ease-in-out_infinite] [animation-delay:5s]" />
+      <div className="absolute bottom-[-30] left-[-30] w-72 h-72 rounded-full blur-3xl bg-primary/20 animate-[float_10s_ease-in-out_infinite]" />
+
+      <div className="absolute top-[-30] right-[-40] w-96 h-96 rounded-full blur-3xl bg-primary/30 animate-[float_10s_ease-in-out_infinite] [animation-delay:5s]" />
+      <div className="absolute top-10 right-50 w-96 h-96 rounded-full blur-3xl bg-secondary/80 animate-[float_10s_ease-in-out_infinite] [animation-delay:5s]" />
+      <div className="absolute top-50 right-[-20] w-96 h-96 rounded-full blur-3xl bg-tertiary/50 animate-[float_10s_ease-in-out_infinite] [animation-delay:5s]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Hero Content */}
           <div className="space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-text-heading">
-              Design for <br />
+              e-INFRA CZ <br />
               <span className="bg-linear-to-br from-primary to-tertiary bg-clip-text text-transparent">
-                Czech Science
+                Design System
               </span>
             </h1>
 
             <p className="text-xl leading-relaxed max-w-lg">
-              A comprehensive UI component library built specifically for Czech
-              e-infrastructure and academic institutions.
+              A React component library built on Tailwind CSS and shadcn/ui
+              featuring 30+ atomic components.
             </p>
-
-            <Link href="/docs" className="flex flex-wrap gap-4">
-              <Button variant="default" size="lg">
-                <BookOpen className="w-5 h-5" />
-                Documentation
-              </Button>
-            </Link>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/docs/components" className="flex flex-wrap gap-4">
+                <Button variant="default" size="lg">
+                  <Component className="w-5 h-5" />
+                  Explore Components
+                </Button>
+              </Link>
+              <Link href="/docs/quick-start" className="flex flex-wrap gap-4">
+                <Button variant="outline" size="lg">
+                  <Rocket className="w-5 h-5" />
+                  Quick Start
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Hero Preview - Floating Cards */}
