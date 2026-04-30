@@ -2,38 +2,42 @@
 
 import {
   Component,
-  Info,
   Rocket,
-  Mail,
-  User,
-  CheckCircle2,
+  Layers,
+  Palette,
+  Frame,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "../../../lib/components/primitives/button";
 import { AnimatedBackground } from "./AnimatedBackground";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../lib/components/primitives/card";
-import { Badge } from "../../../lib/components/primitives/badge";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "../../../lib/components/primitives/alert";
-import { Input } from "../../../lib/components/primitives/input";
-import { Label } from "../../../lib/components/primitives/label";
-import { Textarea } from "../../../lib/components/primitives/textarea";
-import { Checkbox } from "../../../lib/components/primitives/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../../lib/components/primitives/select";
 import Link from "next/link";
+
+const floatingCards = [
+  {
+    icon: Palette,
+    label: "Foundations",
+    value: "Design",
+    description: "Colors, typography, spacing",
+    delay: "2s",
+    position: "top-24 right-56",
+  },
+  {
+    icon: Layers,
+    label: "Components",
+    value: "30+",
+    description: "Atomic primitives",
+    delay: "0s",
+    position: "top-0 right-8",
+  },
+  {
+    icon: Frame,
+    label: "Compatibility",
+    value: "React",
+    description: "Built with React and Tailwind CSS",
+    delay: "4s",
+    position: "top-56 right-4",
+  },
+];
 
 export function HeroSection() {
   return (
@@ -67,6 +71,7 @@ export function HeroSection() {
                 <Button variant="default" size="lg">
                   <Component className="w-5 h-5" />
                   Explore Components
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link href="/docs/quick-start" className="flex flex-wrap gap-4">
@@ -78,143 +83,47 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Components Overview */}
-          <div className="hidden lg:block">
-            <Card>
-              <CardContent className="space-y-4 px-6">
-                {/* Buttons */}
-                <div className="space-y-1.5">
-                  <p className="text-[11px] font-medium text-text-muted uppercase tracking-wider">
-                    Buttons
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Button variant="default" size="sm">
-                      Primary
-                    </Button>
-                    <Button variant="secondary" size="sm">
-                      Secondary
-                    </Button>
-                    <Button variant="tertiary" size="sm">
-                      Tertiary
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      Ghost
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Outline
-                    </Button>
+          {/* Floating Cards */}
+          <div className="hidden lg:block relative w-xl h-[360px]">
+            {floatingCards.map((card) => (
+              <div
+                key={card.label}
+                className={`absolute ${card.position} animate-[float_6s_ease-in-out_infinite]`}
+                style={{ animationDelay: card.delay }}
+              >
+                <div className="bg-surface/80 backdrop-blur-md border border-border rounded-2xl p-5 shadow-lg hover:shadow-xl transition-shadow duration-300 w-72">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      {card.value === "React" ? (
+                        <svg
+                          viewBox="-10.5 -9.45 21 18.9"
+                          fill="none"
+                          className="w-5 h-5 text-primary"
+                        >
+                          <circle cx="0" cy="0" r="2" fill="currentColor" />
+                          <g stroke="currentColor" strokeWidth="1" fill="none">
+                            <ellipse rx="10" ry="4.5" />
+                            <ellipse rx="10" ry="4.5" transform="rotate(60)" />
+                            <ellipse rx="10" ry="4.5" transform="rotate(120)" />
+                          </g>
+                        </svg>
+                      ) : (
+                        <card.icon className="w-5 h-5 text-primary" />
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-text-muted">
+                      {card.label}
+                    </span>
+                  </div>
+                  <div className="text-2xl font-bold text-text-heading mb-1">
+                    {card.value}
+                  </div>
+                  <div className="text-sm text-text-muted">
+                    {card.description}
                   </div>
                 </div>
-
-                {/* Badges */}
-                <div className="space-y-1.5">
-                  <p className="text-[11px] font-medium text-text-muted uppercase tracking-wider">
-                    Badges
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="default">Default</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="error">Error</Badge>
-                    <Badge variant="outline">Outline</Badge>
-                  </div>
-                </div>
-
-                {/* Alerts */}
-                <div className="space-y-1.5">
-                  <p className="text-[11px] font-medium text-text-muted uppercase tracking-wider">
-                    Alerts
-                  </p>
-                  <div className="flex gap-2">
-                    <Alert variant="default" className="py-2 flex-1">
-                      <Info className="h-4 w-4" />
-                      <AlertTitle className="text-sm">Info</AlertTitle>
-                      <AlertDescription className="text-xs">
-                        This is an informational alert message.
-                      </AlertDescription>
-                    </Alert>
-                    <Alert variant="success" className="py-2 flex-1">
-                      <CheckCircle2 className="h-4 w-4" />
-                      <AlertTitle className="text-sm">Success</AlertTitle>
-                      <AlertDescription className="text-xs">
-                        Operation completed successfully.
-                      </AlertDescription>
-                    </Alert>
-                  </div>
-                </div>
-
-                {/* Simple Form */}
-                <div className="space-y-1.5">
-                  <p className="text-[11px] font-medium text-text-muted uppercase tracking-wider">
-                    Form Elements
-                  </p>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="space-y-1">
-                      <Label htmlFor="name" className="text-xs">
-                        Name
-                      </Label>
-                      <div className="relative">
-                        <User className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted" />
-                        <Input
-                          id="name"
-                          placeholder="John Doe"
-                          className="h-7 pl-8 text-xs"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-1">
-                      <Label htmlFor="email" className="text-xs">
-                        Email
-                      </Label>
-                      <div className="relative">
-                        <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted" />
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          className="h-7 pl-8 text-xs"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-1 col-span-2">
-                      <Label htmlFor="role" className="text-xs">
-                        Role
-                      </Label>
-                      <Select>
-                        <SelectTrigger className="h-7 text-xs">
-                          <SelectValue placeholder="Select a role" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="admin">Administrator</SelectItem>
-                          <SelectItem value="editor">Editor</SelectItem>
-                          <SelectItem value="viewer">Viewer</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-1 col-span-2">
-                      <Label htmlFor="message" className="text-xs">
-                        Message
-                      </Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Type your message..."
-                        className="min-h-[40px] text-xs resize-none"
-                      />
-                    </div>
-                    <div className="col-span-2 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Checkbox id="terms" />
-                        <Label htmlFor="terms" className="text-xs font-normal">
-                          I agree to the terms
-                        </Label>
-                      </div>
-                      <Button size="sm" className="h-7 text-xs">
-                        Submit
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
           </div>
         </div>
       </div>

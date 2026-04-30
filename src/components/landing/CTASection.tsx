@@ -1,14 +1,16 @@
 import { Package } from "lucide-react";
 import { H1, P } from "../../../lib/components/foundations/typography";
 import { Button } from "../../../lib/components/primitives/button";
+import { AnimatedBackground } from "./AnimatedBackground";
 import Link from "next/link";
 
 export function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden" id="documentation">
+    <section className="py-24 relative overflow-hidden" id="get_started">
       <div className="absolute inset-0 bg-linear-to-br from-primary to-tertiary" />
+      <AnimatedBackground />
 
-      <div className="max-w-4xl mx-auto space-y-8 px-4 sm:px-6 lg:px-8 relative text-center">
+      <div className="max-w-4xl mx-auto space-y-8 px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <H1 className="text-base-200">
           Get started with the e-INFRA CZ Design System
         </H1>
