@@ -1,5 +1,4 @@
 import { HeroSection } from "../components/landing/HeroSection";
-import { AboutSection } from "../components/landing/AboutSection";
 import { Overview } from "../components/landing/Overview";
 import { UseCasesSection } from "../components/landing/UseCasesSection";
 import { CTASection } from "../components/landing/CTASection";
@@ -10,7 +9,6 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <Overview />
-        <AboutSection />
         <UseCasesSection />
         <CTASection />
       </main>
