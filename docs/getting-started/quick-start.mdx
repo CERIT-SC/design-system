@@ -1,0 +1,85 @@
+# Quick Start
+
+Get up and running with the e-INFRA CZ Design System in minutes.
+
+## Installation
+
+Install the package using your preferred package manager:
+
+```bash
+bun add @e-infra/design-system
+
+# or using yarn
+yarn add @e-infra/design-system
+
+# or using pnpm
+pnpm add @e-infra/design-system
+
+# or using npm
+npm install @e-infra/design-system
+```
+
+### Peer Dependencies
+
+Make sure you have the required peer dependencies installed:
+
+```bash
+bun add react react-dom tailwindcss
+
+# or npm
+npm install react react-dom tailwindcss
+```
+
+## Requirements
+
+- React 18 or 19
+- React DOM 18 or 19
+- Tailwind CSS v4
+
+## Setup Styles
+
+Import the library styles in your global CSS file, ideally immediately after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "@e-infra/design-system/setup.css";
+@source "../node_modules/@e-infra/design-system/dist";
+```
+
+## Using Components
+
+Import and use components directly in your React application:
+
+```tsx
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@e-infra/design-system";
+
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Welcome</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Get started</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## Package Exports
+
+- `@e-infra/design-system` — Components, utilities, and hooks
+- `@e-infra/design-system/setup.css` — Library CSS entry for Tailwind v4 setup
+
+## Next Steps
+
+- Explore the [Foundations](/docs/foundations/colors) to learn about colors, spacing, and typography.
+- Browse the [Components](/docs/components/primitives/button) for detailed usage examples and API references.
+- Check out the live showcase at [design-system.e-infra.cz](https://design-system.e-infra.cz/).

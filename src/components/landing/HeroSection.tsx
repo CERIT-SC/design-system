@@ -74,7 +74,10 @@ export function HeroSection() {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <Link href="/docs/quick-start" className="flex flex-wrap gap-4">
+              <Link
+                href="/docs/getting-started/quick-start"
+                className="flex flex-wrap gap-4"
+              >
                 <Button variant="outline" size="lg">
                   <Rocket className="w-5 h-5" />
                   Quick Start

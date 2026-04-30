@@ -48,10 +48,37 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
 
   const isActivePath = (path: string) => pathname === path;
 
+  const gettingStartedSection = navStructure.find(
+    (s) => s.slug === "getting-started"
+  );
+  const mainSections = navStructure.filter(
+    (s) => s.slug !== "getting-started"
+  );
+
   return (
     <div className="flex min-h-svh w-full">
       <Sidebar>
         <SidebarContent>
+          {gettingStartedSection && (
+            <CollapsibleGroup
+              title={gettingStartedSection.title}
+              defaultOpen={gettingStartedSection.slug === activeCategory}
+            >
+              {gettingStartedSection.items.map((item) => (
+                <NavItem
+                  key={item.slug}
+                  asChild
+                  isActive={isActivePath(item.path)}
+                  className={cn(
+                    isActivePath(item.path) &&
+                      "bg-primary/10 text-primary font-medium"
+                  )}
+                >
+                  <Link href={item.path}>{item.title}</Link>
+                </NavItem>
+              ))}
+            </CollapsibleGroup>
+          )}
           <CollapsibleGroup title="Overview" defaultOpen={true}>
             <NavItem
               href="/docs/foundations"
@@ -66,7 +93,7 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
               Components
             </NavItem>
           </CollapsibleGroup>
-          {navStructure.map((section) => (
+          {mainSections.map((section) => (
             <CollapsibleGroup
               key={section.slug}
               title={section.title}
