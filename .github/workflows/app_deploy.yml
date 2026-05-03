@@ -73,7 +73,7 @@ jobs:
           file: ./deployment/containers/prod/Dockerfile.app.bun
           push: true
           tags: |
-            ${{ vars.DOCKER_REGISTRY }}/design-system/app:latest
+            ${{ vars.DOCKER_REGISTRY }}/design-system/app:prod
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

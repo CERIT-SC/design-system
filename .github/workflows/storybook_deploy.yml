@@ -73,7 +73,7 @@ jobs:
           file: ./deployment/containers/prod/Dockerfile.storybook.bun
           push: true
           tags: |
-            ${{ vars.DOCKER_REGISTRY }}/design-system/storybook:latest
+            ${{ vars.DOCKER_REGISTRY }}/design-system/storybook:prod
           cache-from: type:gha
           cache-to: type=gha,mode=max
 
