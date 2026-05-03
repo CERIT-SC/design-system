@@ -16,9 +16,66 @@ spec:
     - host: "design-system.e-infra.cz"
       http:
         paths:
-          - backend:
+          - path: /storybook
+            pathType: Prefix
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /sb-addons
+            pathType: Prefix
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /sb-manager
+            pathType: Prefix
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /sb-preview
+            pathType: Prefix
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /assets
+            pathType: Prefix
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /iframe.html
+            pathType: Exact
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /index.json
+            pathType: Exact
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /project.json
+            pathType: Exact
+            backend:
+              service:
+                name: designsystem-storybook-prod
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
               service:
                 name: designsystem-app-prod
                 port:
                   number: 80
-            pathType: ImplementationSpecific

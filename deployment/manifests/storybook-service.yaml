@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: designsystem-app-prod
+  name: designsystem-storybook-prod
 spec:
   type: ClusterIP
   ports:
@@ -9,4 +9,4 @@ spec:
       targetPort: 8080
       protocol: TCP
   selector:
-    app: designsystem-app-prod
+    app: designsystem-storybook-prod

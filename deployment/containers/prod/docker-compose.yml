@@ -20,6 +20,27 @@ services:
           memory: 256M
           cpus: "0.25"
 
+  storybook:
+    build:
+      context: ../../../
+      dockerfile: ./deployment/containers/prod/Dockerfile.storybook
+    image: design-system-storybook:latest
+    pull_policy: build
+    container_name: designsystem-storybook
+    restart: unless-stopped
+    networks:
+      - designsystem-app-external
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+
 networks:
   designsystem-app-external:
     driver: bridge
