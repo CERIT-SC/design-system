@@ -2,8 +2,8 @@ services:
   app:
     build:
       context: ../../../
-      dockerfile: ./deployment/containers/prod/Dockerfile.bun
-    image: design-system-showcase:latest
+      dockerfile: ./deployment/containers/prod/Dockerfile.app.bun
+    image: designsystem-app:latest
     pull_policy: build
     container_name: designsystem-app
     restart: unless-stopped
@@ -23,8 +23,8 @@ services:
   storybook:
     build:
       context: ../../../
-      dockerfile: ./deployment/containers/prod/Dockerfile.storybook
-    image: design-system-storybook:latest
+      dockerfile: ./deployment/containers/prod/Dockerfile.storybook.bun
+    image: designsystem-storybook:latest
     pull_policy: build
     container_name: designsystem-storybook
     restart: unless-stopped

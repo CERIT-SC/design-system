@@ -2,12 +2,14 @@
 
 ## Docker Tags Convention
 
-### designsystem-app
+### app
+
 - `latest`
 - `prod` - Image used in deployment of the showcase app
 - (hash)
 
-### designsystem-storybook
+### storybook
+
 - `latest`
 - `prod` - Image used in deployment of the storybook
 - (hash)
@@ -23,19 +25,19 @@ Image in `amd64` architecture is required to be able to run in CERIT-SC Kubernet
 Build:
 
 ```sh
-docker build -t design-system/designsystem-app:latest -f ./deployment/containers/prod/Dockerfile.bun .
+docker build -t designsystem-app:latest -f ./deployment/containers/prod/Dockerfile.app.bun .
 ```
 
 Tag:
 
 ```sh
-docker tag design-system/designsystem-app:latest cerit.io/design-system/designsystem-app:latest
+docker tag designsystem-app:latest cerit.io/design-system/app:latest
 ```
 
 Push:
 
 ```sh
-docker push cerit.io/design-system/designsystem-app:latest
+docker push cerit.io/design-system/app:latest
 ```
 
 #### Storybook
@@ -43,19 +45,19 @@ docker push cerit.io/design-system/designsystem-app:latest
 Build:
 
 ```sh
-docker build -t design-system/designsystem-storybook:latest -f ./deployment/containers/prod/Dockerfile.storybook .
+docker build -t designsystem-storybook:latest -f ./deployment/containers/prod/Dockerfile.storybook.bun .
 ```
 
 Tag:
 
 ```sh
-docker tag design-system/designsystem-storybook:latest cerit.io/design-system/designsystem-storybook:latest
+docker tag designsystem-storybook:latest cerit.io/design-system/storybook:latest
 ```
 
 Push:
 
 ```sh
-docker push cerit.io/design-system/designsystem-storybook:latest
+docker push cerit.io/design-system/storybook:latest
 ```
 
 ### MacOS (with M-series chips)
@@ -65,9 +67,9 @@ docker push cerit.io/design-system/designsystem-storybook:latest
 Build, tag and push:
 
 ```sh
-docker buildx build -f ./deployment/containers/prod/Dockerfile.bun \
+docker buildx build -f ./deployment/containers/prod/Dockerfile.app.bun \
   --platform linux/amd64,linux/arm64 \
-  -t cerit.io/design-system/designsystem-app:latest \
+  -t cerit.io/design-system/app:latest \
   --push .
 ```
 
@@ -76,9 +78,9 @@ docker buildx build -f ./deployment/containers/prod/Dockerfile.bun \
 Build, tag and push:
 
 ```sh
-docker buildx build -f ./deployment/containers/prod/Dockerfile.storybook \
+docker buildx build -f ./deployment/containers/prod/Dockerfile.storybook.bun \
   --platform linux/amd64,linux/arm64 \
-  -t cerit.io/design-system/designsystem-storybook:latest \
+  -t cerit.io/design-system/storybook:latest \
   --push .
 ```
 
@@ -87,13 +89,13 @@ docker buildx build -f ./deployment/containers/prod/Dockerfile.storybook \
 Showcase App:
 
 ```sh
-docker manifest inspect design-system/designsystem-app:latest | jq '.manifests[].platform'
+docker manifest inspect designsystem-app:latest | jq '.manifests[].platform'
 ```
 
 Storybook:
 
 ```sh
-docker manifest inspect design-system/designsystem-storybook:latest | jq '.manifests[].platform'
+docker manifest inspect designsystem-storybook:latest | jq '.manifests[].platform'
 ```
 
 ## 2. Deploy
@@ -101,8 +103,8 @@ docker manifest inspect design-system/designsystem-storybook:latest | jq '.manif
 ### Showcase App
 
 ```sh
-kubectl apply -f ./deployment/manifests/deployment.yaml \
-  && kubectl apply -f ./deployment/manifests/service.yaml \
+kubectl apply -f ./deployment/manifests/app-deployment.yaml \
+  && kubectl apply -f ./deployment/manifests/app-service.yaml \
   && kubectl apply -f ./deployment/manifests/ingress.yaml
 ```
 

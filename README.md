@@ -126,7 +126,7 @@ Run from the project root:
 #### Using docker-compose to build and run the production container:
 
 ```bash
-docker compose -f ./env/prod/docker-compose.yml up --build
+docker compose -f ./deployment/containers/prod/docker-compose.yml up --build
 ```
 
 #### Build image only:
@@ -134,13 +134,7 @@ docker compose -f ./env/prod/docker-compose.yml up --build
 Bun as package manager and runtime:
 
 ```bash
-docker build -t design-system-showcase:latest -f ./env/prod/Dockerfile.bun .
-```
-
-Bun as package manager and node as runtime:
-
-```bash
-docker build -t design-system-showcase:latest -f ./env/prod/Dockerfile .
+docker build -t designsystem-app:latest -f ./deployment/containers/prod/Dockerfile.app.bun .
 ```
 
 ## Maintainers

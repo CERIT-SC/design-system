@@ -38,8 +38,6 @@ jobs:
     needs: Quality_Checks
     permissions:
       contents: read
-    outputs:
-      version: ${{ steps.version.outputs.VERSION }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
@@ -72,12 +70,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./deployment/containers/prod/Dockerfile.storybook
+          file: ./deployment/containers/prod/Dockerfile.storybook.bun
           push: true
           tags: |
-            ${{ vars.DOCKER_REGISTRY }}/designsystem-storybook:${{ steps.version.outputs.VERSION }}
-            ${{ vars.DOCKER_REGISTRY }}/designsystem-storybook:prod
-          cache-from: type=gha
+            ${{ vars.DOCKER_REGISTRY }}/design-system/storybook:latest
+          cache-from: type:gha
           cache-to: type=gha,mode=max
 
   Deploy:
@@ -86,7 +83,6 @@ jobs:
     env:
       KUBECONFIG: ${{ github.workspace }}/kubeconfig
       KUBE_NAMESPACE: einfra-design-system-ns
-      IMAGE_VERSION: ${{ needs.Build_and_Push.outputs.version }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
@@ -127,7 +123,7 @@ jobs:
 
       - name: Apply Kubernetes Manifests
         run: |
-          envsubst '$IMAGE_VERSION' < deployment/manifests/storybook-deployment.yaml | kubectl apply -f - --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/storybook-deployment.yaml --namespace=$KUBE_NAMESPACE
           kubectl apply -f deployment/manifests/storybook-service.yaml --namespace=$KUBE_NAMESPACE
           kubectl apply -f deployment/manifests/ingress.yaml --namespace=$KUBE_NAMESPACE
 

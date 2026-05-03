@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: designsystem-storybook-prod
+  name: prod-storybook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: designsystem-storybook-prod
+      app: prod-storybook
   template:
     metadata:
       labels:
-        app: designsystem-storybook-prod
+        app: prod-storybook
     spec:
       imagePullSecrets:
         - name: cerit-io-harbor-accesstoken
@@ -22,8 +22,8 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-        - name: designsystem-storybook-prod
-          image: cerit.io/design-system/designsystem-storybook:prod
+        - name: prod-storybook
+          image: cerit.io/design-system/storybook:prod
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 1000

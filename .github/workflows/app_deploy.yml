@@ -38,8 +38,6 @@ jobs:
     needs: Quality_Checks
     permissions:
       contents: read
-    outputs:
-      version: ${{ steps.version.outputs.VERSION }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
@@ -72,13 +70,10 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./deployment/containers/prod/Dockerfile.bun
+          file: ./deployment/containers/prod/Dockerfile.app.bun
           push: true
           tags: |
-            ${{ vars.DOCKER_REGISTRY }}/${{ vars.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
-            ${{ vars.DOCKER_REGISTRY }}/${{ vars.IMAGE_NAME }}:prod
-          build-args: |
-            NEXT_PUBLIC_TAG=${{ steps.version.outputs.VERSION }}
+            ${{ vars.DOCKER_REGISTRY }}/design-system/app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -88,7 +83,6 @@ jobs:
     env:
       KUBECONFIG: ${{ github.workspace }}/kubeconfig
       KUBE_NAMESPACE: einfra-design-system-ns
-      IMAGE_VERSION: ${{ needs.Build_and_Push.outputs.version }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
@@ -129,8 +123,8 @@ jobs:
 
       - name: Apply Kubernetes Manifests
         run: |
-          envsubst '$IMAGE_VERSION' < deployment/manifests/deployment.yaml | kubectl apply -f - --namespace=$KUBE_NAMESPACE
-          kubectl apply -f deployment/manifests/service.yaml --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/app-deployment.yaml --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/app-service.yaml --namespace=$KUBE_NAMESPACE
           kubectl apply -f deployment/manifests/ingress.yaml --namespace=$KUBE_NAMESPACE
 
       - name: Cleanup kubeconfig
