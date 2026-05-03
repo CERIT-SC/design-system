@@ -1,11 +1,4 @@
 import {
-  Panel,
-  PanelHeader,
-  PanelTitle,
-  PanelDescription,
-  PanelContent,
-} from "../../../lib/components/primitives/panel";
-import {
   Card,
   CardHeader,
   CardTitle,
@@ -20,8 +13,6 @@ import {
   H3,
   H4,
   P,
-  Lead,
-  Small,
   Muted,
   Code,
 } from "../../../lib/components/foundations/typography";

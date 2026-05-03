@@ -24,7 +24,7 @@ spec:
       containers:
         - name: prod-app
           image: cerit.io/design-system/app:prod
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           securityContext:
             runAsUser: 1000
             allowPrivilegeEscalation: false
