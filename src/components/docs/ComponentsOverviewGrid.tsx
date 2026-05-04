@@ -401,7 +401,7 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
     case "select":
       return (
         <Select defaultValue="system">
-          <SelectTrigger className="w-55">
+          <SelectTrigger className="w-56">
             <SelectValue placeholder="Select a theme" />
           </SelectTrigger>
           <SelectContent>
@@ -422,13 +422,15 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
     case "skeleton":
       return (
         <div className="w-full max-w-sm space-y-2">
-          <Skeleton className="h-4 w-45" />
+          <Skeleton className="h-4 w-44" />
           <Skeleton className="h-4 w-60" />
           <Skeleton className="h-24 w-full" />
         </div>
       );
     case "slider":
-      return <Slider defaultValue={[55]} max={100} step={1} className="w-55" />;
+      return (
+        <Slider defaultValue={[55]} max={100} step={1} className="w-56" />
+      );
     case "switch":
       return (
         <div className="flex items-center gap-2">
@@ -616,7 +618,7 @@ export function ComponentsOverviewGrid({
             </Small>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 2xl:grid-cols-2 5xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
             {section.items.map((item) => (
               <ComponentOverviewCard
                 key={item.path}

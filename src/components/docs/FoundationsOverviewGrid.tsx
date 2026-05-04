@@ -31,7 +31,7 @@ function ColorsMiniPreview() {
       lightHex: "#2f2557",
       darkHex: "#d9d6e6",
       lightClass: "bg-primary",
-      darkClass: "bg-secondary",
+      darkClass: "bg-primary",
       lightTextClass: "text-white",
       darkTextClass: "text-[#111221]",
     },
@@ -40,7 +40,7 @@ function ColorsMiniPreview() {
       lightHex: "#d9d6e6",
       darkHex: "#d3eef3",
       lightClass: "bg-secondary",
-      darkClass: "bg-tertiary",
+      darkClass: "bg-secondary",
       lightTextClass: "text-[#1a1c2f]",
       darkTextClass: "text-[#0f1a20]",
     },
@@ -49,7 +49,7 @@ function ColorsMiniPreview() {
       lightHex: "#d3eef3",
       darkHex: "#2f2557",
       lightClass: "bg-tertiary",
-      darkClass: "bg-primary",
+      darkClass: "bg-tertiary",
       lightTextClass: "text-[#12313b]",
       darkTextClass: "text-white",
     },
@@ -188,7 +188,7 @@ export default function FoundationsOverviewGrid({
           </Small>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 2xl:grid-cols-2 5xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
           {items.map((item) => (
             <ComponentOverviewCard
               key={item.path}

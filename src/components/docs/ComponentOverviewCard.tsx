@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ComponentPreview } from "./ComponentPreview";
 import {
@@ -30,57 +30,52 @@ export function ComponentOverviewCard({
   zoom = 1,
   className,
 }: ComponentOverviewCardProps) {
-  const router = useRouter();
   const safeZoom = Math.min(Math.max(zoom, 0.1), 1.5);
 
-  const handleOpen = () => {
-    router.push(href);
-  };
-
   return (
-    <Card
-      role="link"
-      tabIndex={0}
-      onClick={handleOpen}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleOpen();
-        }
-      }}
-      className={cn(
-        "group rounded-xl border border-border bg-surface transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus py-0 gap-0 drop-shadow-none",
-        className
-      )}
+    <Link
+      href={href}
       aria-label={`Open ${title} documentation`}
+      className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus"
     >
-      <CardHeader className="border-b border-border px-4 py-3">
-        <CardTitle className={docsTypography.cardTitle}>{title}</CardTitle>
-        {description && (
-          <CardDescription className={docsTypography.cardDescription}>
-            {description}
-          </CardDescription>
+      <Card
+        className={cn(
+          "group rounded-xl border border-border bg-surface transition-all hover:-translate-y-0.5 hover:shadow-md py-0 gap-0 drop-shadow-none",
+          className
         )}
-        <CardAction>
-          <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </CardAction>
-      </CardHeader>
+      >
+        <CardHeader className="border-b border-border px-4 py-3">
+          <CardTitle className={docsTypography.cardTitle}>{title}</CardTitle>
+          {description && (
+            <CardDescription className={docsTypography.cardDescription}>
+              {description}
+            </CardDescription>
+          )}
+          <CardAction>
+            <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </CardAction>
+        </CardHeader>
 
-      <ComponentPreview className="my-0 rounded-none border-0">
-        <div className="pointer-events-none mx-auto w-full max-w-full overflow-hidden rounded-lg border border-border/60 bg-background/70">
-          <div className="flex h-56 items-center justify-center overflow-hidden p-3">
-            <div
-              className="origin-center"
-              style={{
-                transform: `scale(${String(safeZoom)})`,
-              }}
-            >
-              {children}
+        <ComponentPreview className="my-0 rounded-none border-0">
+          <div
+            className="pointer-events-none mx-auto w-full max-w-full overflow-hidden rounded-lg border border-border/60 bg-background/70"
+            aria-hidden="true"
+            inert
+          >
+            <div className="flex h-56 items-center justify-center overflow-hidden p-3">
+              <div
+                className="origin-center"
+                style={{
+                  transform: `scale(${String(safeZoom)})`,
+                }}
+              >
+                {children}
+              </div>
             </div>
           </div>
-        </div>
-      </ComponentPreview>
-    </Card>
+        </ComponentPreview>
+      </Card>
+    </Link>
   );
 }
 
