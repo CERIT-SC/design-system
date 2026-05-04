@@ -150,22 +150,22 @@ const ITEM_DESCRIPTIONS: Record<string, string> = {
 };
 
 const ZOOM_BY_SLUG: Record<string, number> = {
-  avatar: 0.9,
-  badge: 0.9,
-  breadcrumb: 0.88,
+  accordion: 1.3,
+  avatar: 1.5,
+  badge: 1.5,
+  breadcrumb: 1.5,
   button: 0.92,
-  checkbox: 0.9,
+  checkbox: 1.3,
   calendar: 0.7,
-  input: 0.9,
-  label: 0.9,
-  pagination: 0.86,
-  progress: 0.9,
-  "radio-group": 0.9,
-  select: 0.9,
-  separator: 0.9,
-  slider: 0.92,
-  switch: 0.92,
-  tooltip: 0.9,
+  input: 1,
+  label: 1,
+  pagination: 1,
+  "radio-group": 1,
+  select: 1,
+  separator: 1,
+  slider: 1,
+  switch: 1,
+  tooltip: 1,
   "cookies-banner": 0.5,
   footer: 0.45,
 };
@@ -307,7 +307,6 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
           <DropdownMenuContent align="start">
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

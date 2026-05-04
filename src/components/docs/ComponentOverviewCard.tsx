@@ -31,7 +31,7 @@ export function ComponentOverviewCard({
   className,
 }: ComponentOverviewCardProps) {
   const router = useRouter();
-  const safeZoom = Math.min(Math.max(zoom, 0.1), 1);
+  const safeZoom = Math.min(Math.max(zoom, 0.1), 1.5);
 
   const handleOpen = () => {
     router.push(href);
