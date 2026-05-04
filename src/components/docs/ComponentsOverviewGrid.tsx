@@ -428,9 +428,7 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
         </div>
       );
     case "slider":
-      return (
-        <Slider defaultValue={[55]} max={100} step={1} className="w-56" />
-      );
+      return <Slider defaultValue={[55]} max={100} step={1} className="w-56" />;
     case "switch":
       return (
         <div className="flex items-center gap-2">
