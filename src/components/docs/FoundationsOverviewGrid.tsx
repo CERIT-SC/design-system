@@ -1,6 +1,15 @@
 "use client";
 
-import { Badge, H1, H2, P, Small } from "../../../lib/components/index";
+import {
+  Badge,
+  Content,
+  ContentBody,
+  ContentHeading,
+  H1,
+  H2,
+  P,
+  Small,
+} from "../../../lib/components/index";
 import type { NavItem } from "../../lib/docs-nav";
 import { ComponentOverviewCard } from "./ComponentOverviewCard";
 import { docsTypography } from "./docs-typography";
@@ -169,46 +178,48 @@ export default function FoundationsOverviewGrid({
   items,
 }: FoundationsOverviewGridProps) {
   return (
-    <div className="space-y-10">
-      <header className="space-y-3">
-        <H1 className={docsTypography.h1}>Foundations Overview</H1>
+    <Content>
+      <ContentHeading className={docsTypography.h1}>
+        Foundations Overview
+      </ContentHeading>
+      <ContentBody>
         <P className={docsTypography.sectionLead}>
           Core design decisions for colors, spacing, and typography. Open each
           tile for detailed tokens, usage guidance, and examples.
         </P>
-      </header>
 
-      <section className="space-y-4" aria-labelledby="section-foundations">
-        <div className="space-y-1">
-          <H2 id="section-foundations" className={docsTypography.h2}>
-            Foundations
-          </H2>
-          <Small className={docsTypography.sectionBody}>
-            Visual language primitives shared by all components.
+        <section className="space-y-4" aria-labelledby="section-foundations">
+          <div className="space-y-1">
+            <H2 id="section-foundations" className={docsTypography.h2}>
+              Foundations
+            </H2>
+            <Small className={docsTypography.sectionBody}>
+              Visual language primitives shared by all components.
+            </Small>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 3xl:grid-cols-3">
+            {items.map((item) => (
+              <ComponentOverviewCard
+                key={item.path}
+                title={item.title}
+                href={item.path}
+                description={FOUNDATIONS_COPY[item.slug]}
+                zoom={ZOOM_BY_SLUG[item.slug]}
+              >
+                {renderFoundationPreview(item.slug)}
+              </ComponentOverviewCard>
+            ))}
+          </div>
+        </section>
+
+        <div className="flex items-center gap-2">
+          <Badge variant="outline">3 categories</Badge>
+          <Small className={docsTypography.caption}>
+            Colors, Spacing, Typography
           </Small>
         </div>
-
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
-          {items.map((item) => (
-            <ComponentOverviewCard
-              key={item.path}
-              title={item.title}
-              href={item.path}
-              description={FOUNDATIONS_COPY[item.slug]}
-              zoom={ZOOM_BY_SLUG[item.slug]}
-            >
-              {renderFoundationPreview(item.slug)}
-            </ComponentOverviewCard>
-          ))}
-        </div>
-      </section>
-
-      <div className="flex items-center gap-2">
-        <Badge variant="outline">3 categories</Badge>
-        <Small className={docsTypography.caption}>
-          Colors, Spacing, Typography
-        </Small>
-      </div>
-    </div>
+      </ContentBody>
+    </Content>
   );
 }

@@ -31,6 +31,7 @@ import {
   CollapsibleTrigger,
   Content,
   ContentBody,
+  ContentHeading,
   ContentSubheading,
   CookiesBanner,
   Dialog,
@@ -49,7 +50,6 @@ import {
   HeaderContent,
   HeaderLeft,
   HeaderRight,
-  H1,
   H2,
   Input,
   Label,
@@ -156,7 +156,7 @@ const ZOOM_BY_SLUG: Record<string, number> = {
   avatar: 1.5,
   badge: 1.5,
   breadcrumb: 1.5,
-  button: 0.92,
+  button: 1,
   checkbox: 1.3,
   calendar: 0.7,
   input: 1,
@@ -168,8 +168,8 @@ const ZOOM_BY_SLUG: Record<string, number> = {
   slider: 1,
   switch: 1,
   tooltip: 1,
-  "cookies-banner": 0.5,
-  footer: 0.45,
+  "cookies-banner": 0.48,
+  footer: 0.42,
 };
 
 function renderPreviewBySlug(slug: string): React.ReactNode {
@@ -209,7 +209,7 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
       );
     case "badge":
       return (
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-2 gap-y-2 gap-x-2">
           <Badge>Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="outline">Outline</Badge>
@@ -591,49 +591,51 @@ export function ComponentsOverviewGrid({
   sections,
 }: ComponentsOverviewGridProps) {
   return (
-    <div className="space-y-10">
-      <header className="space-y-3">
-        <H1 className={docsTypography.h1}>Components Overview</H1>
+    <Content>
+      <ContentHeading className={docsTypography.h1}>
+        Components Overview
+      </ContentHeading>
+      <ContentBody>
         <P className={docsTypography.sectionLead}>
           Browse all component categories. Each tile contains a live preview in
           a zoomed-out viewport and links directly to full documentation.
         </P>
-      </header>
 
-      {sections.map((section) => (
-        <section
-          key={section.slug}
-          className="space-y-4"
-          aria-labelledby={`section-${section.slug}`}
-        >
-          <div className="space-y-1">
-            <H2
-              id={`section-${section.slug}`}
-              className={cn(docsTypography.h2, "mt-0 mb-0")}
-            >
-              {section.title}
-            </H2>
-            <Small className={docsTypography.sectionBody}>
-              {SECTION_COPY[section.slug] ?? "Component documentation section."}
-            </Small>
-          </div>
-
-          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
-            {section.items.map((item) => (
-              <ComponentOverviewCard
-                key={item.path}
-                title={item.title}
-                href={item.path}
-                description={ITEM_DESCRIPTIONS[item.slug]}
-                zoom={ZOOM_BY_SLUG[item.slug]}
+        {sections.map((section) => (
+          <section
+            key={section.slug}
+            className="space-y-4"
+            aria-labelledby={`section-${section.slug}`}
+          >
+            <div className="space-y-1">
+              <H2
+                id={`section-${section.slug}`}
+                className={cn(docsTypography.h2, "mt-0 mb-0")}
               >
-                {renderPreviewBySlug(item.slug)}
-              </ComponentOverviewCard>
-            ))}
-          </div>
-        </section>
-      ))}
-    </div>
+                {section.title}
+              </H2>
+              <Small className={docsTypography.sectionBody}>
+                {SECTION_COPY[section.slug] ?? "Component documentation section."}
+              </Small>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 3xl:grid-cols-3">
+              {section.items.map((item) => (
+                <ComponentOverviewCard
+                  key={item.path}
+                  title={item.title}
+                  href={item.path}
+                  description={ITEM_DESCRIPTIONS[item.slug]}
+                  zoom={ZOOM_BY_SLUG[item.slug]}
+                >
+                  {renderPreviewBySlug(item.slug)}
+                </ComponentOverviewCard>
+              ))}
+            </div>
+          </section>
+        ))}
+      </ContentBody>
+    </Content>
   );
 }
 
