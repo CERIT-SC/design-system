@@ -51,9 +51,7 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
   const gettingStartedSection = navStructure.find(
     (s) => s.slug === "getting-started"
   );
-  const mainSections = navStructure.filter(
-    (s) => s.slug !== "getting-started"
-  );
+  const mainSections = navStructure.filter((s) => s.slug !== "getting-started");
 
   return (
     <div className="flex min-h-svh w-full">
