@@ -30,6 +30,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   Content,
+  ContentBody,
+  ContentSubheading,
   CookiesBanner,
   Dialog,
   DialogContent,
@@ -525,12 +527,12 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
       return (
         <div className="w-full max-w-xl rounded-md border border-border bg-background">
           <Content className="space-y-3 py-4">
-            <Content.Subheading>Overview</Content.Subheading>
-            <Content.Body>
+            <ContentSubheading>Overview</ContentSubheading>
+            <ContentBody>
               <P className={docsTypography.sectionBody}>
                 Structured typography and spacing for docs content.
               </P>
-            </Content.Body>
+            </ContentBody>
           </Content>
         </div>
       );
