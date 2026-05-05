@@ -1,10 +1,10 @@
-import { H1 } from "../../../../lib/components/foundations/typography";
+import FoundationsOverviewGrid from "../../../components/docs/FoundationsOverviewGrid";
+import { buildDocsNavStructure } from "../../../lib/docs-nav";
 
 export default function FoundationsPage() {
-  return (
-    <>
-      <H1>Foundations</H1>
-      <p> TBD - overview of the foundations </p>
-    </>
+  const foundationsSection = buildDocsNavStructure().find(
+    (section) => section.slug === "foundations"
   );
+
+  return <FoundationsOverviewGrid items={foundationsSection?.items ?? []} />;
 }

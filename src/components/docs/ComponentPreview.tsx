@@ -27,7 +27,7 @@ export function ComponentPreview({
       </div>
 
       <div
-        className="min-h-50 p-8 flex items-center justify-center bg-background rounded-none"
+        className="min-h-50 p-8 flex items-center justify-center bg-background rounded-b-xl"
         style={{
           backgroundImage:
             "radial-gradient(circle, var(--color-border) 1px, transparent 1px)",
