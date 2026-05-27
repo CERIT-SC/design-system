@@ -615,7 +615,8 @@ export function ComponentsOverviewGrid({
                 {section.title}
               </H2>
               <Small className={docsTypography.sectionBody}>
-                {SECTION_COPY[section.slug] ?? "Component documentation section."}
+                {SECTION_COPY[section.slug] ??
+                  "Component documentation section."}
               </Small>
             </div>
 
