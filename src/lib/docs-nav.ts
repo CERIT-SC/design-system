@@ -27,6 +27,7 @@ const DOCS_DIR = join(process.cwd(), "docs");
  * alphabetically at the end.
  */
 const SECTION_ORDER: Record<string, number> = {
+  "getting-started": -1,
   foundations: 0,
   primitives: 1,
   compounds: 2,

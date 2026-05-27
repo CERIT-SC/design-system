@@ -50,6 +50,7 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\" \"lib/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\" \"lib/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "type:check": "bun run typecheck:lib && bun run typecheck:showcase",
     "typecheck:lib": "tsc --noEmit --project tsconfig.lib.json",
     "typecheck:showcase": "tsc --noEmit --project tsconfig.next.json",
     "tsc": "tsc --noEmit --watch",

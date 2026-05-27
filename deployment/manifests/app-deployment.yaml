@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prod-app
+  template:
+    metadata:
+      labels:
+        app: prod-app
+    spec:
+      imagePullSecrets:
+        - name: cerit-io-harbor-accesstoken
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: prod-app
+          image: cerit.io/design-system/app:prod
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          ports:
+            - name: probe-port
+              containerPort: 80
+          resources:
+            limits:
+              memory: "6Gi"
+              cpu: "2"
+            requests:
+              memory: "3Gi"
+              cpu: "2"

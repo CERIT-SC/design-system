@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: designsystem-app-prod
+  name: prod-ingress
   annotations:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -16,9 +16,66 @@ spec:
     - host: "design-system.e-infra.cz"
       http:
         paths:
-          - backend:
+          - path: /storybook
+            pathType: Prefix
+            backend:
               service:
-                name: designsystem-app-prod
+                name: prod-storybook
                 port:
                   number: 80
-            pathType: ImplementationSpecific
+          - path: /sb-addons
+            pathType: Prefix
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /sb-manager
+            pathType: Prefix
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /sb-preview
+            pathType: Prefix
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /assets
+            pathType: Prefix
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /iframe.html
+            pathType: Exact
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /index.json
+            pathType: Exact
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /project.json
+            pathType: Exact
+            backend:
+              service:
+                name: prod-storybook
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prod-app
+                port:
+                  number: 80

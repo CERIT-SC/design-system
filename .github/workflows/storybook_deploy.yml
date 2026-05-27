@@ -1,4 +1,4 @@
-name: Build and Deploy Showcase App
+name: Build and Deploy Storybook
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
         run: bun run format:check
 
       - name: Run Type Check
-        run: bun run typecheck:showcase
+        run: bun run typecheck:lib
 
   Build_and_Push:
     runs-on: ubuntu-24.04
@@ -70,11 +70,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./deployment/containers/prod/Dockerfile.app.bun
+          file: ./deployment/containers/prod/Dockerfile.storybook.bun
           push: true
           tags: |
-            ${{ vars.DOCKER_REGISTRY }}/design-system/app:prod
-          cache-from: type=gha
+            ${{ vars.DOCKER_REGISTRY }}/design-system/storybook:prod
+          cache-from: type:gha
           cache-to: type=gha,mode=max
 
   Deploy:
@@ -123,8 +123,8 @@ jobs:
 
       - name: Apply Kubernetes Manifests
         run: |
-          kubectl apply -f deployment/manifests/app-deployment.yaml --namespace=$KUBE_NAMESPACE
-          kubectl apply -f deployment/manifests/app-service.yaml --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/storybook-deployment.yaml --namespace=$KUBE_NAMESPACE
+          kubectl apply -f deployment/manifests/storybook-service.yaml --namespace=$KUBE_NAMESPACE
           kubectl apply -f deployment/manifests/ingress.yaml --namespace=$KUBE_NAMESPACE
 
       - name: Cleanup kubeconfig

@@ -1,6 +1,5 @@
 import { HeroSection } from "../components/landing/HeroSection";
-import { AboutSection } from "../components/landing/AboutSection";
-import { ComponentsShowcase } from "../components/landing/ComponentsShowcase";
+import { Overview } from "../components/landing/Overview";
 import { UseCasesSection } from "../components/landing/UseCasesSection";
 import { CTASection } from "../components/landing/CTASection";
 
@@ -9,8 +8,7 @@ export default function HomePage() {
     <div className="bg-background text-text antialiased overflow-x-hidden">
       <main>
         <HeroSection />
-        <AboutSection />
-        <ComponentsShowcase />
+        <Overview />
         <UseCasesSection />
         <CTASection />
       </main>

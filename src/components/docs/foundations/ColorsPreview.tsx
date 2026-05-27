@@ -2,8 +2,15 @@
 
 import { useState, type CSSProperties } from "react";
 import { Check, Copy } from "lucide-react";
-import { H2 } from "../../../../lib/components/foundations/typography";
+import {
+  Code,
+  H2,
+  H3,
+  P,
+  Small,
+} from "../../../../lib/components/foundations/typography";
 import { Badge } from "../../../../lib/components/primitives/badge";
+import { docsTypography } from "../docs-typography";
 
 interface ColorToken {
   name: string;
@@ -431,12 +438,12 @@ function ModeCard({ colors, mode }: { colors: ColorToken[]; mode: Mode }) {
       style={{ ...modeTokenStyles[mode], backgroundColor: "var(--background)" }}
     >
       <div className="mb-4">
-        <p
+        <Small
           className="text-xs uppercase tracking-[0.08em]"
           style={{ color: "var(--text)" }}
         >
           {modeLabel}
-        </p>
+        </Small>
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
         {colors.map((color) => {
@@ -453,10 +460,12 @@ function ModeCard({ colors, mode }: { colors: ColorToken[]; mode: Mode }) {
                 className="leading-tight flex flex-col gap-1"
                 style={{ color: `var(${foregroundVar})` }}
               >
-                <p className="text-lg font-semibold">{color.name}</p>
-                <p className="text-md">
+                <P className="text-lg leading-tight font-semibold">
+                  {color.name}
+                </P>
+                <P className="text-md leading-tight">
                   <CopyableHex value={hex.toLowerCase()} />
-                </p>
+                </P>
               </div>
             </div>
           );
@@ -485,30 +494,35 @@ function SurfaceStoryCard({ mode }: { mode: Mode }) {
       className="rounded-2xl border border-border p-5 md:p-6"
       style={{ ...modeTokenStyles[mode], backgroundColor: "var(--background)" }}
     >
-      <p
+      <Small
         className="text-xs uppercase tracking-[0.08em] mb-4"
         style={{ color: "var(--text)" }}
       >
         {mode === "light" ? "Light" : "Dark"}
-      </p>
+      </Small>
       <div
         className="relative rounded-2xl p-4 min-h-36"
         style={{ backgroundColor: "var(--surface)" }}
       >
         <div className="text-sm" style={{ color: textColor }}>
-          <p className="text-xl font-medium">surface</p>
-          <p className="text-[15px] opacity-90">Card / Sidebar / Input</p>
+          <P className="text-xl font-medium leading-tight">surface</P>
+          <P className="text-[15px] leading-tight opacity-90">
+            Card / Sidebar / Input
+          </P>
         </div>
         <div
           className="absolute right-4 bottom-4 rounded-xl p-3 w-44"
           style={{ backgroundColor: "var(--surface-raised)" }}
         >
-          <p className="text-lg" style={{ color: textColor }}>
+          <P className="text-lg leading-tight" style={{ color: textColor }}>
             surface-raised
-          </p>
-          <p className="text-[15px] opacity-90" style={{ color: textColor }}>
+          </P>
+          <P
+            className="text-[15px] leading-tight opacity-90"
+            style={{ color: textColor }}
+          >
             Popover / Modal
-          </p>
+          </P>
         </div>
       </div>
     </div>
@@ -522,10 +536,10 @@ function SurfaceStory() {
         <H2 className="text-text-heading">Surface elevation story</H2>
         <Badge variant="outline">3 layers</Badge>
       </div>
-      <p className="text-sm text-text">
+      <Small className={docsTypography.sectionBody}>
         Use background for page canvas, surface for standard containers, and
         surface-raised for overlays that need stronger separation.
-      </p>
+      </Small>
       <div className="grid gap-4 lg:grid-cols-2">
         <SurfaceStoryCard mode="light" />
         <SurfaceStoryCard mode="dark" />
@@ -539,17 +553,17 @@ function ShadeFamilyCard({ family }: { family: ShadeFamily }) {
     <section className="rounded-2xl border border-border bg-surface p-4 space-y-4">
       <div className="space-y-1">
         <div className="flex items-center justify-between gap-2 flex-wrap">
-          <h3 className="text-base font-semibold text-text">{family.name}</h3>
-          <code className="text-[11px] font-mono text-text-muted">
+          <H3 className="text-base text-text">{family.name}</H3>
+          <Code className={docsTypography.tokenCode}>
             {family.tokenPrefix}-[50-950]
-          </code>
+          </Code>
         </div>
-        <p className="text-xs text-text-muted">{family.description}</p>
+        <Small className={docsTypography.caption}>{family.description}</Small>
       </div>
 
       <div className="space-y-3">
         <div>
-          <p className="mb-2 text-xs font-medium text-text">Light</p>
+          <Small className="mb-2 text-xs font-medium text-text">Light</Small>
           <div className="grid grid-cols-11 gap-2">
             {family.stops.map((stop) => (
               <div
@@ -560,14 +574,14 @@ function ShadeFamilyCard({ family }: { family: ShadeFamily }) {
                   className="h-10 rounded-md border border-border"
                   style={{ backgroundColor: stop.lightHex }}
                 />
-                <p className="text-[10px] text-text-muted">{stop.step}</p>
+                <Small className={docsTypography.labelMicro}>{stop.step}</Small>
               </div>
             ))}
           </div>
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-medium text-text">Dark</p>
+          <Small className="mb-2 text-xs font-medium text-text">Dark</Small>
           <div className="grid grid-cols-11 gap-2">
             {family.stops.map((stop) => (
               <div
@@ -578,7 +592,7 @@ function ShadeFamilyCard({ family }: { family: ShadeFamily }) {
                   className="h-10 rounded-md border border-border"
                   style={{ backgroundColor: stop.darkHex }}
                 />
-                <p className="text-[10px] text-text-muted">{stop.step}</p>
+                <Small className={docsTypography.labelMicro}>{stop.step}</Small>
               </div>
             ))}
           </div>
@@ -599,7 +613,9 @@ export default function ColorsPreview() {
             <H2 className="text-text-heading">{group.label}</H2>
             <Badge variant={group.badge}>{group.colors.length} tokens</Badge>
           </div>
-          <p className="text-sm text-text">{group.description}</p>
+          <Small className={docsTypography.sectionBody}>
+            {group.description}
+          </Small>
           {["Brand", "Surface", "Semantic", "Data Visualization"].includes(
             group.label
           ) && <ColorGroupStory colors={group.colors} />}
@@ -611,10 +627,10 @@ export default function ColorsPreview() {
           <H2 className="text-text-heading">Shade ramps</H2>
           <Badge variant="secondary">50-950</Badge>
         </div>
-        <p className="text-sm text-text">
+        <Small className={docsTypography.sectionBody}>
           Full ramps are provided for foundational color families so you can
           pick consistent hover, active, and tinted background states.
-        </p>
+        </Small>
         <div className="space-y-4">
           {shadeFamilies.map((family) => (
             <ShadeFamilyCard key={family.tokenPrefix} family={family} />
