@@ -2,6 +2,7 @@ name: Build and Deploy Storybook
 
 on:
   push:
+    branches: [main]
     tags: ["v*"]
 
 jobs:
