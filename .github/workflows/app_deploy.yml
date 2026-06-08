@@ -2,6 +2,7 @@ name: Build and Deploy Showcase App
 
 on:
   push:
+    branches: [main]
     tags: ["v*"]
 
 jobs:

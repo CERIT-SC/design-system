@@ -4,6 +4,10 @@ on:
   push:
     tags: ["v*"] # Trigger on version tags like v1.0.0
 
+permissions:
+  contents: read # For checkout
+  id-token: write # For authentication with npm
+
 jobs:
   Quality_Checks:
     runs-on: ubuntu-24.04
