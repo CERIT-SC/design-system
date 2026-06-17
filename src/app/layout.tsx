@@ -21,6 +21,7 @@ import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "../components/ModeToggle";
 import { ThemeProvider } from "../components/ThemeProvider";
+import { ThemeSelector } from "../components/ThemeSelector";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
 
@@ -110,6 +111,7 @@ export default function RootLayout({
                     NPM package
                   </Button>
                 </Link>
+                <ThemeSelector />
                 <ModeToggle />
               </HeaderRight>
             </HeaderContent>

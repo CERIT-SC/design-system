@@ -1,0 +1,195 @@
+# Themes
+
+The design system supports multiple branding themes that can be switched at runtime. This includes the default theme family and the EOSC (European Open Science Cloud) branding theme.
+
+## Available Themes
+
+### Default Theme
+The standard e-INFRA CZ branding with light and dark variants.
+
+- **Default Light** - Clean, neutral surfaces with violet-tinted primary colors
+- **Default Dark** - Near-black surfaces with inverted color scheme
+
+### EOSC Branding Theme
+European Open Science Cloud visual identity based on the official EOSC design guidelines.
+
+- **EOSC Light** - White backgrounds with EOSC Dark Green (`#025960`) as primary
+- **EOSC Dark** - Dark teal-tinted backgrounds with bright EOSC accents
+
+## Usage
+
+### Basic Setup
+
+Import both theme CSS files in your entry point:
+
+```tsx
+// app/globals.css or index.tsx
+import '@e-infra/design-system/setup.css';       // Default theme
+import '@e-infra/design-system/eosc_setup.css';   // EOSC theme
+```
+
+### Using the ThemeSelector Component
+
+The `ThemeSelector` component provides a dropdown for users to switch between all available themes:
+
+```tsx
+"use client";
+
+import { ThemeSelector } from "@/components/ThemeSelector";
+
+export function Header() {
+  return (
+    <header className="flex items-center justify-between p-4">
+      <h1>My App</h1>
+      <ThemeSelector />
+    </header>
+  );
+}
+```
+
+### Programmatic Theme Control
+
+For custom theme switching logic, use the `useThemeSwitcher` hook:
+
+```tsx
+"use client";
+
+import { useThemeSwitcher } from "@/hooks/use-theme-switcher";
+
+export function MyComponent() {
+  const {
+    brandingTheme,     // "default" | "eosc"
+    colorMode,         // "light" | "dark" | "system"
+    setEOSCTheme,
+    setDefaultTheme,
+    toggleColorMode,
+  } = useThemeSwitcher();
+
+  return (
+    <div>
+      <button onClick={() => setEOSCTheme("light")}>
+        Switch to EOSC Light
+      </button>
+      <button onClick={() => setDefaultTheme("dark")}>
+        Switch to Default Dark
+      </button>
+      <button onClick={toggleColorMode}>
+        Toggle Light/Dark
+      </button>
+    </div>
+  );
+}
+```
+
+### Manual DOM Manipulation
+
+You can also control themes directly via CSS classes and attributes:
+
+```tsx
+// Enable EOSC light theme
+document.documentElement.setAttribute("data-theme", "eosc");
+document.documentElement.classList.remove("dark");
+
+// Enable EOSC dark theme
+document.documentElement.setAttribute("data-theme", "eosc");
+document.documentElement.classList.add("dark");
+
+// Revert to default theme
+document.documentElement.removeAttribute("data-theme");
+document.documentElement.classList.add("dark"); // or remove for light
+```
+
+## Theme Persistence
+
+Theme preferences are automatically persisted in `localStorage`:
+
+- `theme-branding`: `"default"` or `"eosc"`
+- `theme-color-mode`: `"light"`, `"dark"`, or `"system"`
+
+The theme is restored on page reload without additional configuration.
+
+## Color Tokens
+
+Both themes use the same CSS variable token names, making it easy to write theme-agnostic code:
+
+```tsx
+// Works in any theme
+<div className="bg-primary text-primary-foreground">
+  Primary button style
+</div>
+
+<div className="bg-surface border border-border">
+  Card content
+</div>
+
+<div className="text-text-muted">
+  Muted text
+</div>
+```
+
+### EOSC Color Palette
+
+The EOSC theme uses these brand colors:
+
+| Token | Light Mode | Dark Mode |
+|-------|------------|-----------|
+| Primary | `#025960` (Dark Green) | `#baf3f6` |
+| Secondary | `#F5F7F7` (Green Grey) | `#1a3636` |
+| Tertiary | `#C52876` (Pink) | `#e7569d` |
+
+### Shade Ramps
+
+Each color family includes a 50-950 shade ramp for nuanced styling:
+
+```tsx
+// Subtle background
+<div className="bg-primary-50">Light tint</div>
+
+// Hover state
+<div className="bg-primary-600">Darker shade</div>
+
+// Text on light background
+<div className="text-primary-900">Near-black</div>
+```
+
+## Accessibility
+
+All theme variants are designed to meet WCAG AA contrast requirements:
+
+- Normal text: 4.5:1 minimum contrast
+- Large text: 3:1 minimum contrast
+- UI components: 3:1 minimum contrast
+
+When creating custom components, verify contrast ratios using tools like:
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- Chrome DevTools Accessibility panel
+
+## Adding Custom Themes
+
+To add a new branding theme:
+
+1. Create a new CSS file (e.g., `custom_setup.css`)
+2. Define `[data-theme="custom"]` selector with your color tokens
+3. Import the CSS file in your entry point
+4. Add theme switching logic to `useThemeSwitcher`
+
+Example:
+
+```css
+/* lib_public/custom_setup.css */
+[data-theme="custom"] {
+  --primary: #your-color;
+  --secondary: #your-color;
+  /* ... all required tokens */
+}
+
+[data-theme="custom"].dark {
+  --primary: #your-dark-color;
+  /* ... dark mode overrides */
+}
+```
+
+## Related Documentation
+
+- [Colors](/docs/foundations/colors) - Detailed color system documentation
+- [Styling](/docs/getting-started/styling) - How to style components
