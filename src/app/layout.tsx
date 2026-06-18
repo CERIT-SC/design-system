@@ -22,6 +22,7 @@ import Link from "next/link";
 import { ModeToggle } from "../components/ModeToggle";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { ThemeSelector } from "../components/ThemeSelector";
+import { ThemeInitializer } from "../components/ThemeInitializer";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
 
@@ -39,11 +40,35 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var branding = localStorage.getItem('theme-branding');
+                var colorMode = localStorage.getItem('theme-color-mode');
+
+                if (branding === 'eosc') {
+                  document.documentElement.setAttribute('data-theme', 'eosc');
+                } else {
+                  document.documentElement.removeAttribute('data-theme');
+                }
+
+                if (colorMode === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else if (colorMode === 'light') {
+                  document.documentElement.classList.remove('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>
+        <ThemeInitializer />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <Header>

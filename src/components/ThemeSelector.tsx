@@ -9,6 +9,7 @@ import {
 import { Button } from "../../lib/components/primitives/button";
 import { Sun, Moon, Palette } from "lucide-react";
 import { useThemeSwitcher } from "../hooks/use-theme-switcher";
+import { useTheme } from "next-themes";
 
 /**
  * ThemeSelector Component
@@ -24,8 +25,19 @@ import { useThemeSwitcher } from "../hooks/use-theme-switcher";
 export function ThemeSelector() {
   const { brandingTheme, colorMode, setEOSCTheme, setDefaultTheme } =
     useThemeSwitcher();
+  const { setTheme } = useTheme();
 
   const isEOSC = brandingTheme === "eosc";
+
+  const handleSetDefaultTheme = (mode: "light" | "dark") => {
+    setDefaultTheme(mode);
+    setTheme(mode); // Sync with next-themes
+  };
+
+  const handleSetEOSCTheme = (mode: "light" | "dark") => {
+    setEOSCTheme(mode);
+    setTheme(mode === "dark" ? "eosc-dark" : "eosc"); // Sync with next-themes
+  };
 
   return (
     <DropdownMenu>
@@ -42,7 +54,7 @@ export function ThemeSelector() {
         </div>
         <DropdownMenuItem
           onClick={() => {
-            setDefaultTheme("light");
+            handleSetDefaultTheme("light");
           }}
           className={colorMode === "light" && !isEOSC ? "bg-accent" : ""}
         >
@@ -51,7 +63,7 @@ export function ThemeSelector() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            setDefaultTheme("dark");
+            handleSetDefaultTheme("dark");
           }}
           className={colorMode === "dark" && !isEOSC ? "bg-accent" : ""}
         >
@@ -65,7 +77,7 @@ export function ThemeSelector() {
         </div>
         <DropdownMenuItem
           onClick={() => {
-            setEOSCTheme("light");
+            handleSetEOSCTheme("light");
           }}
           className={colorMode === "light" && isEOSC ? "bg-accent" : ""}
         >
@@ -74,7 +86,7 @@ export function ThemeSelector() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            setEOSCTheme("dark");
+            handleSetEOSCTheme("dark");
           }}
           className={colorMode === "dark" && isEOSC ? "bg-accent" : ""}
         >
@@ -94,12 +106,18 @@ export function ThemeSelector() {
  */
 export function QuickThemeToggle() {
   const { colorMode, toggleColorMode } = useThemeSwitcher();
+  const { setTheme } = useTheme();
+
+  const handleClick = () => {
+    toggleColorMode();
+    setTheme(colorMode === "dark" ? "light" : "dark");
+  };
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={toggleColorMode}
+      onClick={handleClick}
       aria-label={`Switch to ${colorMode === "dark" ? "light" : "dark"} mode`}
     >
       {colorMode === "dark" ? (

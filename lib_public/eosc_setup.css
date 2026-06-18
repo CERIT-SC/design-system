@@ -33,48 +33,48 @@
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Surfaces — clean white to grey progression */
-  --background:     #ffffff;
-  --surface:        #F5F7F7;
+  --background: #ffffff;
+  --surface: #f5f7f7;
   --surface-raised: #eaebf1;
 
   /* Text — high contrast on light backgrounds */
-  --text:         #1a1a1a;
-  --text-muted:   #6b7280;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
   --text-heading: #025960;
 
   /* Brand — EOSC primary colors */
-  --primary:            #025960;
+  --primary: #025960;
   --primary-foreground: #ffffff;
 
-  --secondary:            #F5F7F7;
+  --secondary: #f5f7f7;
   --secondary-foreground: #025960;
 
-  --tertiary:            #C52876;
+  --tertiary: #9f0d54;
   --tertiary-foreground: #ffffff;
 
   /* Borders */
-  --border:       #d4d4d4;
+  --border: #d4d4d4;
   --border-focus: #025960;
 
   /* Semantic — derived from Figma state colours */
-  --info:               #0ea5e9;
-  --info-foreground:    #ffffff;
-  --success:            #2FAA34;
+  --info: #0ea5e9;
+  --info-foreground: #ffffff;
+  --success: #2faa34;
   --success-foreground: #ffffff;
-  --warning:            #C7911C;
+  --warning: #c7911c;
   --warning-foreground: #ffffff;
-  --error:              #C92B16;
-  --error-foreground:   #ffffff;
+  --error: #c92b16;
+  --error-foreground: #ffffff;
 
   /* Charts — EOSC palette */
   --chart-1: #025960;
-  --chart-2: #C52876;
+  --chart-2: #c52876;
   --chart-3: #0ea5e9;
-  --chart-4: #2FAA34;
-  --chart-5: #C7911C;
+  --chart-4: #2faa34;
+  --chart-5: #c7911c;
 
   /* ── Primary Ramp (Dark Green base: #025960) ── */
-  --color-primary-50:  #e6fbfc;
+  --color-primary-50: #e6fbfc;
   --color-primary-100: #baf3f6;
   --color-primary-200: #7ee6eb;
   --color-primary-300: #47d4de;
@@ -87,7 +87,7 @@
   --color-primary-950: #010d10;
 
   /* ── Secondary Ramp (Green Grey base: #F5F7F7) ── */
-  --color-secondary-50:  #fafbfb;
+  --color-secondary-50: #fafbfb;
   --color-secondary-100: #f5f7f7;
   --color-secondary-200: #eaedef;
   --color-secondary-300: #dbe1e3;
@@ -100,7 +100,7 @@
   --color-secondary-950: #1d2123;
 
   /* ── Tertiary Ramp (Pink base: #C52876) ── */
-  --color-tertiary-50:  #fdf2f7;
+  --color-tertiary-50: #fdf2f7;
   --color-tertiary-100: #f9dceb;
   --color-tertiary-200: #f4b8d6;
   --color-tertiary-300: #ec8bb9;
@@ -113,7 +113,7 @@
   --color-tertiary-950: #2d0a1d;
 
   /* ── Pink Variant Ramp (Dark Pink base: #9F0D54) ── */
-  --color-pink-50:  #fdf0f6;
+  --color-pink-50: #fdf0f6;
   --color-pink-100: #fadce9;
   --color-pink-200: #f5b8d6;
   --color-pink-300: #ef8db9;
@@ -126,7 +126,7 @@
   --color-pink-950: #260315;
 
   /* ── Error Ramp (based on Figma Error/Delete) ── */
-  --color-error-50:  #fef2f1;
+  --color-error-50: #fef2f1;
   --color-error-100: #fdd6d3;
   --color-error-200: #fab5ad;
   --color-error-300: #f78e82;
@@ -139,7 +139,7 @@
   --color-error-950: #2f0a05;
 
   /* ── Warning Ramp (based on Figma Alert) ── */
-  --color-warning-50:  #fefce8;
+  --color-warning-50: #fefce8;
   --color-warning-100: #fef9c3;
   --color-warning-200: #fef08a;
   --color-warning-300: #fde047;
@@ -152,7 +152,7 @@
   --color-warning-950: #2f1f06;
 
   /* ── Success Ramp (based on Figma Confirm/Success) ── */
-  --color-success-50:  #f0fdf4;
+  --color-success-50: #f0fdf4;
   --color-success-100: #dcfce7;
   --color-success-200: #bbf7d0;
   --color-success-300: #86efac;
@@ -165,7 +165,7 @@
   --color-success-950: #0a260d;
 
   /* ── Info Ramp (complementary cyan) ── */
-  --color-info-50:  #f0f9ff;
+  --color-info-50: #f0f9ff;
   --color-info-100: #e0f2fe;
   --color-info-200: #bae6fd;
   --color-info-300: #7dd3fc;
@@ -178,7 +178,7 @@
   --color-info-950: #082f49;
 
   /* ── Base/Neutral Ramp ── */
-  --color-base-50:  #fafafa;
+  --color-base-50: #fafafa;
   --color-base-100: #f5f5f5;
   --color-base-200: #e5e5e5;
   --color-base-300: #d4d4d4;
@@ -194,38 +194,38 @@
 /* ─── EOSC Dark Theme ───────────────────────────────────────────── */
 [data-theme="eosc"].dark {
   /* Surfaces — dark teal-tinted greys */
-  --background:     #0a1a1a;
-  --surface:        #122626;
+  --background: #0a1a1a;
+  --surface: #122626;
   --surface-raised: #1a3636;
 
   /* Text — light on dark */
-  --text:         #f5f7f7;
-  --text-muted:   #9ca3af;
+  --text: #f5f7f7;
+  --text-muted: #9ca3af;
   --text-heading: #baf3f6;
 
   /* Brand — inverted for dark mode */
-  --primary:            #baf3f6;
+  --primary: #baf3f6;
   --primary-foreground: #0a1a1a;
 
-  --secondary:            #1a3636;
+  --secondary: #1a3636;
   --secondary-foreground: #baf3f6;
 
-  --tertiary:            #e7569d;
+  --tertiary: #e7569d;
   --tertiary-foreground: #0a1a1a;
 
   /* Borders */
-  --border:       #2d3d3d;
+  --border: #2d3d3d;
   --border-focus: #baf3f6;
 
   /* Semantic — adjusted for dark backgrounds */
-  --info:               #38bdf8;
-  --info-foreground:    #0a1a1a;
-  --success:            #4ade80;
+  --info: #38bdf8;
+  --info-foreground: #0a1a1a;
+  --success: #4ade80;
   --success-foreground: #0a1a1a;
-  --warning:            #facc15;
+  --warning: #facc15;
   --warning-foreground: #0a1a1a;
-  --error:              #f87171;
-  --error-foreground:   #0a1a1a;
+  --error: #f87171;
+  --error-foreground: #0a1a1a;
 
   /* Charts — brighter for dark mode */
   --chart-1: #67e8f9;
@@ -235,7 +235,7 @@
   --chart-5: #fbbf24;
 
   /* ── Primary Ramp (dark mode - lighter values) ── */
-  --color-primary-50:  #fafbfb;
+  --color-primary-50: #fafbfb;
   --color-primary-100: #f5f7f7;
   --color-primary-200: #eaedef;
   --color-primary-300: #dbe1e3;
@@ -248,7 +248,7 @@
   --color-primary-950: #1d2123;
 
   /* ── Secondary Ramp (dark mode) ── */
-  --color-secondary-50:  #e6fbfc;
+  --color-secondary-50: #e6fbfc;
   --color-secondary-100: #baf3f6;
   --color-secondary-200: #7ee6eb;
   --color-secondary-300: #47d4de;
@@ -261,7 +261,7 @@
   --color-secondary-950: #010d10;
 
   /* ── Tertiary Ramp (dark mode) ── */
-  --color-tertiary-50:  #fdf2f7;
+  --color-tertiary-50: #fdf2f7;
   --color-tertiary-100: #f9dceb;
   --color-tertiary-200: #f4b8d6;
   --color-tertiary-300: #ec8bb9;
@@ -274,7 +274,7 @@
   --color-tertiary-950: #2d0a1d;
 
   /* ── Error Ramp (dark mode) ── */
-  --color-error-50:  #fef2f1;
+  --color-error-50: #fef2f1;
   --color-error-100: #fdd6d3;
   --color-error-200: #fab5ad;
   --color-error-300: #f78e82;
@@ -287,7 +287,7 @@
   --color-error-950: #2f0a05;
 
   /* ── Warning Ramp (dark mode) ── */
-  --color-warning-50:  #fefce8;
+  --color-warning-50: #fefce8;
   --color-warning-100: #fef9c3;
   --color-warning-200: #fef08a;
   --color-warning-300: #fde047;
@@ -300,7 +300,7 @@
   --color-warning-950: #2f1f06;
 
   /* ── Success Ramp (dark mode) ── */
-  --color-success-50:  #f0fdf4;
+  --color-success-50: #f0fdf4;
   --color-success-100: #dcfce7;
   --color-success-200: #bbf7d0;
   --color-success-300: #86efac;
@@ -313,7 +313,7 @@
   --color-success-950: #0a260d;
 
   /* ── Info Ramp (dark mode) ── */
-  --color-info-50:  #f0f9ff;
+  --color-info-50: #f0f9ff;
   --color-info-100: #e0f2fe;
   --color-info-200: #bae6fd;
   --color-info-300: #7dd3fc;
@@ -326,7 +326,7 @@
   --color-info-950: #082f49;
 
   /* ── Base/Neutral Ramp (dark mode) ── */
-  --color-base-50:  #fafafa;
+  --color-base-50: #fafafa;
   --color-base-100: #f5f5f5;
   --color-base-200: #e5e5e5;
   --color-base-300: #d4d4d4;
@@ -349,17 +349,31 @@
 }
 
 @layer utilities {
-  .eosc-slide-in-from-bottom { animation: eoscSlideInFromBottom 0.3s ease-out; }
-  .eosc-slide-out-to-bottom  { animation: eoscSlideOutToBottom 0.3s ease-in; }
-  .eosc-animate-slideUp      { animation: eoscSlideInFromBottom 0.3s ease-out; }
+  .eosc-slide-in-from-bottom {
+    animation: eoscSlideInFromBottom 0.3s ease-out;
+  }
+  .eosc-slide-out-to-bottom {
+    animation: eoscSlideOutToBottom 0.3s ease-in;
+  }
+  .eosc-animate-slideUp {
+    animation: eoscSlideInFromBottom 0.3s ease-out;
+  }
 
   @keyframes eoscSlideInFromBottom {
-    from { transform: translateY(100%); }
-    to   { transform: translateY(0); }
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
   @keyframes eoscSlideOutToBottom {
-    from { transform: translateY(0); }
-    to   { transform: translateY(100%); }
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
   }
 
   /* EOSC Transition defaults */
@@ -369,7 +383,8 @@
     transition-timing-function: var(--transition-timing);
   }
   .eosc-transition-default-colors {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-property:
+      color, background-color, border-color, text-decoration-color, fill, stroke;
     transition-duration: var(--transition-duration);
     transition-timing-function: var(--transition-timing);
   }

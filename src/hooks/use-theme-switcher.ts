@@ -15,6 +15,24 @@ export type ExtendedTheme =
   | "eosc-dark"; // EOSC dark
 
 /**
+ * Get saved branding theme from localStorage (lazy initializer)
+ */
+function getInitialBrandingTheme(): BrandingTheme {
+  if (typeof window === "undefined") return "default";
+  const saved = localStorage.getItem("theme-branding");
+  return saved === "default" || saved === "eosc" ? saved : "default";
+}
+
+/**
+ * Get saved color mode from localStorage (lazy initializer)
+ */
+function getInitialColorMode(): ColorMode {
+  if (typeof window === "undefined") return "light";
+  const saved = localStorage.getItem("theme-color-mode");
+  return saved === "light" || saved === "dark" ? saved : "light";
+}
+
+/**
  * Custom hook for managing extended themes (including EOSC branding)
  *
  * This provides theme switching independent of next-themes, using:
@@ -26,8 +44,10 @@ export type ExtendedTheme =
  * - "theme-color-mode": "light" | "dark"
  */
 export function useThemeSwitcher() {
-  const [brandingTheme, setBrandingTheme] = useState<BrandingTheme>("default");
-  const [colorMode, setColorMode] = useState<ColorMode>("light");
+  const [brandingTheme, setBrandingTheme] = useState<BrandingTheme>(
+    getInitialBrandingTheme
+  );
+  const [colorMode, setColorMode] = useState<ColorMode>(getInitialColorMode);
 
   // Apply theme to DOM whenever it changes
   useEffect(() => {

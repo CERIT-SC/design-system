@@ -4,12 +4,16 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "../../lib/components/primitives/button";
+import { useThemeSwitcher } from "../hooks/use-theme-switcher";
 
 export function ModeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
+  const { colorMode, toggleColorMode } = useThemeSwitcher();
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    toggleColorMode();
+    // Sync with next-themes
+    setTheme(colorMode === "dark" ? "light" : "dark");
   };
 
   return (
