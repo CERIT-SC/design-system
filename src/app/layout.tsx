@@ -19,8 +19,9 @@ import EinfraLogoLight from "../../public/einfra-logo.svg";
 import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
-import { ModeToggle } from "../components/ModeToggle";
 import { ThemeProvider } from "../components/ThemeProvider";
+import { ThemeSelector } from "../components/ThemeSelector";
+import { ThemeInitializer } from "../components/ThemeInitializer";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
 
@@ -38,11 +39,35 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var branding = localStorage.getItem('theme-branding');
+                var colorMode = localStorage.getItem('theme-color-mode');
+
+                if (branding === 'eosc') {
+                  document.documentElement.setAttribute('data-theme', 'eosc');
+                } else {
+                  document.documentElement.removeAttribute('data-theme');
+                }
+
+                if (colorMode === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else if (colorMode === 'light') {
+                  document.documentElement.classList.remove('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>
+        <ThemeInitializer />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <Header>
@@ -110,7 +135,7 @@ export default function RootLayout({
                     NPM package
                   </Button>
                 </Link>
-                <ModeToggle />
+                <ThemeSelector />
               </HeaderRight>
             </HeaderContent>
           </Header>

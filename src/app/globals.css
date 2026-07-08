@@ -1,3 +1,7 @@
 @import "tailwindcss";
 
+/* Default theme setup */
 @import "../../lib_public/setup.css";
+
+/* EOSC branding theme setup */
+@import "../../lib_public/eosc_setup.css";
