@@ -1,0 +1,108 @@
+# Themes
+
+The design system supports multiple branding themes that can be switched at runtime.
+
+## Available Themes
+
+<ThemeColorsPreview />
+
+## Usage
+
+Import setup CSS file for desired themes in your entry point CSS file or main component. If you want to use multiple themes, import all of them:
+
+```tsx
+// app/globals.css or index.tsx
+import '@e-infra/design-system/setup.css';       // Default theme
+import '@e-infra/design-system/eosc_setup.css';   // EOSC theme
+```
+
+## Theme Persistence
+
+Theme preferences are automatically persisted in `localStorage`:
+
+- `theme-branding`: `"default"` or `"eosc"`
+- `theme-color-mode`: `"light"`, `"dark"`, or `"system"`
+
+The theme is restored on page reload without additional configuration.
+
+### Shade Ramps
+
+Each color family includes a 50-950 shade ramp for styling:
+
+```tsx
+// Subtle background
+<div className="bg-primary-50">Light tint</div>
+
+// Hover state
+<div className="bg-primary-600">Darker shade</div>
+
+// Text on light background
+<div className="text-primary-900">Near-black</div>
+```
+
+## Custom Themes from 3 Colors
+
+You don't need to fork `setup.css` to brand the system. Import the **custom theme
+generator** and define just three colors — primary, secondary, and tertiary. It
+derives the full 50–950 shade ramps, readable foregrounds, and a sensible dark
+mode for you. Nothing else (radius, spacing, transitions, animations) is exposed
+or overridable, so consumers can't accidentally break layout or motion.
+
+### 1. Import the generator
+
+```tsx
+// app/globals.css or index.tsx
+import '@e-infra/design-system/setup.css';         // required base
+import '@e-infra/design-system/custom_setup.css';   // 3-color generator
+```
+
+### 2. Define your three brand colors
+
+Set them on the `[data-theme="custom"]` selector anywhere in your own CSS:
+
+```css
+/* your-theme.css */
+[data-theme="custom"] {
+  --brand-primary:   #6d28d9;
+  --brand-secondary: #db2777;
+  --brand-tertiary:  #0d9488;
+}
+```
+
+### 3. Activate the theme
+
+```tsx
+<html data-theme="custom">              {/* light */}
+<html data-theme="custom" class="dark"> {/* dark  */}
+```
+
+That's it. `bg-primary`, `text-tertiary-foreground`, `bg-primary-100`, and every
+other token-based utility now reflect your colors in both light and dark mode.
+
+### How it works
+
+The library is built with Tailwind v4 `@theme inline`, so utilities compile to
+`var(--primary)` and read their value **at runtime**. The generator scopes a set
+of `color-mix()`-derived ramps and auto-contrast foregrounds to
+`[data-theme="custom"]`, seeded from your three `--brand-*` inputs — no rebuild,
+no JavaScript, and the internal hand-tuned themes (default, EOSC) are untouched.
+
+### Optional fine-tuning
+
+All of these have automatic fallbacks; set them only if you want more control:
+
+| Token | Purpose |
+|-------|---------|
+| `--brand-primary-dark` / `--brand-secondary-dark` / `--brand-tertiary-dark` | Pin explicit dark-mode seeds (otherwise the light seeds are auto-lightened). |
+| `--brand-fg-threshold` | Lightness cutoff (default `0.62`) for flipping foreground text between black and white. |
+
+> Requires evergreen browsers for `color-mix()` and relative color syntax —
+> Chrome 119+, Safari 16.4+, Firefox 128+.
+
+### Need full control?
+
+For a completely bespoke theme (custom surfaces, semantic colors, charts, or
+hand-tuned ramps), define a `[data-theme="yourtheme"]` block that overrides the
+raw tokens directly — see the shipped [setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/setup.css)
+and [eosc_setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/eosc_setup.css)
+as references for the complete token list.

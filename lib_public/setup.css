@@ -1,12 +1,5 @@
 /**
- * Design System — Simplified Token Structure
- *
- * Surface hierarchy (light):  background → surface → surface-raised
- * Surface hierarchy (dark):   background → surface → surface-raised
- *
- * Neutrals use a cool grey with a ~3% violet tint to stay cohesive
- * with the primary purple brand without reading as a colour.
- * Elevation steps are 10–12 lightness units apart for clear hierarchy.
+ * e-INFRA CZ Design System Setup CSS
  */
 
 @custom-variant dark (&:is(.dark *));

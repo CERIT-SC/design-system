@@ -1,0 +1,124 @@
+/**
+ * e-INFRA CZ Design System — Custom Theme Generator
+ * ────────────────────────────────────────────────────────────────────────────
+ * Opt-in theme that lets consumers brand the system with just THREE colors.
+ *
+ * Usage (no code changes — CSS only):
+ *
+ *   import '@e-infra/design-system/setup.css';        // required base
+ *   import '@e-infra/design-system/custom_setup.css';  // this generator
+ *
+ *   // your-theme.css (loaded anywhere)
+ *   [data-theme="custom"] {
+ *     --brand-primary:   #6d28d9;
+ *     --brand-secondary: #db2777;
+ *     --brand-tertiary:  #0d9488;
+ *   }
+ *
+ *   <html data-theme="custom">            <!-- light -->
+ *   <html data-theme="custom" class="dark">  <!-- dark  -->
+ *
+ * Everything else — the 50–950 ramps, readable foregrounds, brand heading
+ * colour, and a sensible auto-derived dark mode — is generated from those
+ * three seeds. The internal hand-tuned themes (default, eosc, …) are NOT
+ * affected; this only applies under [data-theme="custom"].
+ *
+ * Optional fine-tuning (all have sensible auto fallbacks):
+ *   --brand-primary-dark / --brand-secondary-dark / --brand-tertiary-dark
+ *       Explicit dark-mode seeds (otherwise the light seeds are auto-lightened).
+ *   --brand-fg-threshold  (default 0.62)
+ *       Lightness cutoff for switching foreground text between black and white.
+ *
+ * Requires evergreen browsers (relative color syntax + color-mix):
+ * Chrome 119+, Safari 16.4+, Firefox 128+.
+ */
+
+@layer base {
+  [data-theme="custom"] {
+    --brand-fg-threshold: 0.62;
+
+    /* Resolved seeds for the current mode. Ramps/foregrounds below read these,
+       so dark mode only needs to re-point the three seeds (see .dark block). */
+    --_p: var(--brand-primary, #2f2557);
+    --_s: var(--brand-secondary, #d9d6e6);
+    --_t: var(--brand-tertiary, #d3eef3);
+
+    /* Base brand tokens consumed by bg-primary / text-primary / … */
+    --primary: var(--_p);
+    --secondary: var(--_s);
+    --tertiary: var(--_t);
+
+    /* Readable foregrounds: white text on dark seeds, near-black on light ones.
+       clamp() turns "lightness below threshold?" into a binary 0/1 used as the
+       lightness of a neutral oklch() colour. */
+    --primary-foreground: oklch(
+      from var(--_p) clamp(0, (var(--brand-fg-threshold) - l) * 1000, 1) 0 0
+    );
+    --secondary-foreground: oklch(
+      from var(--_s) clamp(0, (var(--brand-fg-threshold) - l) * 1000, 1) 0 0
+    );
+    --tertiary-foreground: oklch(
+      from var(--_t) clamp(0, (var(--brand-fg-threshold) - l) * 1000, 1) 0 0
+    );
+
+    /* Tie headings to the brand primary. */
+    --text-heading: var(--_p);
+
+    /* ── Generated ramps (oklab keeps the steps perceptually even) ──────────
+       Defined once; they re-derive automatically when --_p/--_s/--_t change. */
+    --color-primary-50: color-mix(in oklab, var(--_p), white 95%);
+    --color-primary-100: color-mix(in oklab, var(--_p), white 88%);
+    --color-primary-200: color-mix(in oklab, var(--_p), white 74%);
+    --color-primary-300: color-mix(in oklab, var(--_p), white 58%);
+    --color-primary-400: color-mix(in oklab, var(--_p), white 33%);
+    --color-primary-500: var(--_p);
+    --color-primary-600: color-mix(in oklab, var(--_p), black 16%);
+    --color-primary-700: color-mix(in oklab, var(--_p), black 33%);
+    --color-primary-800: color-mix(in oklab, var(--_p), black 50%);
+    --color-primary-900: color-mix(in oklab, var(--_p), black 66%);
+    --color-primary-950: color-mix(in oklab, var(--_p), black 80%);
+
+    --color-secondary-50: color-mix(in oklab, var(--_s), white 95%);
+    --color-secondary-100: color-mix(in oklab, var(--_s), white 88%);
+    --color-secondary-200: color-mix(in oklab, var(--_s), white 74%);
+    --color-secondary-300: color-mix(in oklab, var(--_s), white 58%);
+    --color-secondary-400: color-mix(in oklab, var(--_s), white 33%);
+    --color-secondary-500: var(--_s);
+    --color-secondary-600: color-mix(in oklab, var(--_s), black 16%);
+    --color-secondary-700: color-mix(in oklab, var(--_s), black 33%);
+    --color-secondary-800: color-mix(in oklab, var(--_s), black 50%);
+    --color-secondary-900: color-mix(in oklab, var(--_s), black 66%);
+    --color-secondary-950: color-mix(in oklab, var(--_s), black 80%);
+
+    --color-tertiary-50: color-mix(in oklab, var(--_t), white 95%);
+    --color-tertiary-100: color-mix(in oklab, var(--_t), white 88%);
+    --color-tertiary-200: color-mix(in oklab, var(--_t), white 74%);
+    --color-tertiary-300: color-mix(in oklab, var(--_t), white 58%);
+    --color-tertiary-400: color-mix(in oklab, var(--_t), white 33%);
+    --color-tertiary-500: var(--_t);
+    --color-tertiary-600: color-mix(in oklab, var(--_t), black 16%);
+    --color-tertiary-700: color-mix(in oklab, var(--_t), black 33%);
+    --color-tertiary-800: color-mix(in oklab, var(--_t), black 50%);
+    --color-tertiary-900: color-mix(in oklab, var(--_t), black 66%);
+    --color-tertiary-950: color-mix(in oklab, var(--_t), black 80%);
+  }
+
+  /* Dark mode: re-point the three seeds only — every ramp, foreground, and the
+     base brand tokens above follow automatically. Consumers can pin explicit
+     dark seeds via --brand-*-dark; otherwise the light seeds are lightened so
+     the brand reads against dark surfaces. */
+  [data-theme="custom"].dark {
+    --_p: var(
+      --brand-primary-dark,
+      color-mix(in oklab, var(--brand-primary, #2f2557), white 72%)
+    );
+    --_s: var(
+      --brand-secondary-dark,
+      color-mix(in oklab, var(--brand-secondary, #d9d6e6), white 60%)
+    );
+    --_t: var(
+      --brand-tertiary-dark,
+      color-mix(in oklab, var(--brand-tertiary, #d3eef3), white 55%)
+    );
+  }
+}
