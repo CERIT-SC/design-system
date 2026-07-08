@@ -25,11 +25,11 @@ import { useTheme } from "next-themes";
  *
  * Add a mode here only once the matching CSS exists in `lib_public`.
  */
-const AVAILABLE_THEMES: Array<{
+const AVAILABLE_THEMES: {
   branding: BrandingTheme;
   label: string;
   modes: ColorMode[];
-}> = [
+}[] = [
   { branding: "default", label: "Default Theme", modes: ["light", "dark"] },
   { branding: "eosc", label: "EOSC Branding", modes: ["light"] },
 ];
