@@ -34,6 +34,7 @@ import { componentRegistry } from "../../lib/component-registry";
 // next-mdx-remote does NOT process ES import statements written inside .mdx
 // files. Every component used in MDX must be registered here instead.
 import ColorsPreview from "./foundations/ColorsPreview";
+import ThemeColorsPreview from "./foundations/ThemeColorsPreview";
 import Image from "next/image";
 import { Children } from "react";
 
@@ -202,6 +203,7 @@ export const mdxComponents: MDXComponents = {
   ComponentPreview,
   CodeBlock,
   ColorsPreview,
+  ThemeColorsPreview,
   ...libraryComponents,
 };
 

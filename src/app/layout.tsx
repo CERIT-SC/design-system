@@ -19,7 +19,6 @@ import EinfraLogoLight from "../../public/einfra-logo.svg";
 import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
-import { ModeToggle } from "../components/ModeToggle";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { ThemeSelector } from "../components/ThemeSelector";
 import { ThemeInitializer } from "../components/ThemeInitializer";
@@ -137,7 +136,6 @@ export default function RootLayout({
                   </Button>
                 </Link>
                 <ThemeSelector />
-                <ModeToggle />
               </HeaderRight>
             </HeaderContent>
           </Header>
