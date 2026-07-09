@@ -559,7 +559,7 @@ export default function LiveColorsShowcase() {
           defined in <InlineCode>setup.css</InlineCode> and exposed as Tailwind
           utility colors.
         </Lead>
-        <P className={`${docsTypography.body}`}>
+        <P className={docsTypography.body}>
           Every swatch below is painted with a live design token and reflects
           the currently active theme. Switch the theme and watch the palette
           update in place.
