@@ -115,6 +115,7 @@ export default async function DocsPage({
     components: mdxComponents,
     options: {
       parseFrontmatter: true,
+      blockJS: false,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [],
