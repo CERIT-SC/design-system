@@ -88,7 +88,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${slugToTitle(slug).toUpperCase()} | e-INFRA CZ Design System`,
+    title: `${slugToTitle(slug)} | e-INFRA CZ Design System`,
     description: "Documentation page for the e-INFRA CZ Design System.",
   };
 }
