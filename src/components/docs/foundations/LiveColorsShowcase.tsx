@@ -22,23 +22,6 @@ import {
 import { CodeBlock } from "../CodeBlock";
 import { docsTypography } from "../docs-typography";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Live color showcase.
-//
-// Unlike a static swatch table, every swatch here paints itself with the *live*
-// design token (`background: var(--token)`) and reads back the resolved value
-// with `getComputedStyle`. When the user switches theme (light / dark / EOSC)
-// the CSS variables change, a MutationObserver on <html> fires, and every
-// swatch re-reads its color and hex.
-//
-// Because some tokens are very dark (e.g. `--primary` in light mode) and some
-// very light (e.g. `--secondary`), the on-swatch label color is NOT hardcoded:
-// `readableTextColor` picks pure black or white per swatch by maximizing WCAG
-// contrast, so a dark token never ends up with unreadable dark text.
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ─── Color utilities ────────────────────────────────────────────────────────
-
 type Rgb = [number, number, number];
 
 function parseRgb(color: string): Rgb | null {
@@ -74,26 +57,14 @@ function contrastRatio(a: Rgb, b: Rgb): number {
   return (light + 0.05) / (dark + 0.05);
 }
 
-/**
- * Pick the on-swatch text color that has the highest contrast against the
- * swatch background. This guarantees legibility even for very dark tokens,
- * where a themed "foreground" token could otherwise be too dark.
- */
 function readableTextColor(bg: Rgb): string {
   const white: Rgb = [255, 255, 255];
-  const black: Rgb = [15, 14, 20]; // matches --background dark, softer than pure black
+  const black: Rgb = [15, 14, 20];
   return contrastRatio(bg, black) >= contrastRatio(bg, white)
     ? "#0f0e14"
     : "#ffffff";
 }
 
-// ─── Theme-change subscription ──────────────────────────────────────────────
-
-/**
- * Returns a counter that increments whenever the active theme changes
- * (the `.dark` class or `data-theme` attribute on <html>). Swatches depend on
- * it to re-read their resolved token values.
- */
 function useThemeVersion(): number {
   const [version, setVersion] = useState(0);
   useEffect(() => {
@@ -106,8 +77,6 @@ function useThemeVersion(): number {
       attributes: true,
       attributeFilter: ["class", "data-theme", "style"],
     });
-    // Re-read once after hydration, when next-themes has applied the persisted
-    // theme class to <html> (which may land after our first paint).
     const settle = setTimeout(bump, 60);
     return () => {
       observer.disconnect();
@@ -122,10 +91,6 @@ interface ResolvedToken {
   text: string;
 }
 
-/**
- * Reads the live resolved color of an element painted with a CSS variable.
- * Re-runs on mount and on every theme change.
- */
 function useResolvedColor<T extends HTMLElement = HTMLDivElement>(
   version: number
 ) {
@@ -143,7 +108,7 @@ function useResolvedColor<T extends HTMLElement = HTMLDivElement>(
       if (!rgb) return;
       setResolved({ hex: rgbToHex(rgb), text: readableTextColor(rgb) });
     };
-    // Read after the browser has applied the new theme's variables.
+
     const raf = requestAnimationFrame(read);
     return () => {
       cancelAnimationFrame(raf);
@@ -396,14 +361,13 @@ const rampFamilies: RampFamily[] = [
 
 // ─── Swatch primitives ──────────────────────────────────────────────────────
 
-/** Large token card: live fill, contrast-safe label, copyable resolved hex. */
 function TokenCard({ token, version }: { token: Token; version: number }) {
   const { ref, hex, text } = useResolvedColor(version);
 
   return (
     <div
       ref={ref}
-      className="relative flex min-h-36 flex-col justify-end rounded-2xl border border-border/60 p-4"
+      className="relative flex min-h-36 w-full flex-col justify-end rounded-2xl border border-border/60 p-4"
       style={{ backgroundColor: `var(${token.cssVar})` }}
     >
       <div className="flex flex-col gap-1" style={{ color: text }}>
@@ -422,7 +386,6 @@ function TokenCard({ token, version }: { token: Token; version: number }) {
   );
 }
 
-/** One step in a ramp: square fill with contrast-safe step label. */
 function RampSwatch({
   cssVar,
   step,
@@ -573,8 +536,6 @@ function SurfaceStory() {
 export default function LiveColorsShowcase() {
   const version = useThemeVersion();
 
-  // Also nudge a re-read shortly after mount, once next-themes has applied the
-  // persisted theme class post-hydration.
   const [, forceRead] = useState(0);
   const scheduleRead = useCallback(() => {
     forceRead((n) => n + 1);
@@ -592,17 +553,16 @@ export default function LiveColorsShowcase() {
         <div className="flex flex-wrap items-center gap-3">
           <h1 className={docsTypography.h1}>Colors</h1>
         </div>
-        <Lead className="max-w-3xl">
+        <Lead>
           The design system uses a cohesive, token-based palette with dedicated
           light and dark mode values. Core tokens and full shade ramps are
           defined in <InlineCode>setup.css</InlineCode> and exposed as Tailwind
           utility colors.
         </Lead>
-        <P className={`${docsTypography.body} max-w-3xl`}>
+        <P className={`${docsTypography.body}`}>
           Every swatch below is painted with a live design token and reflects
           the currently active theme. Switch the theme and watch the palette
-          update in place — on-swatch labels always pick black or white for
-          maximum contrast, so dark tokens stay readable.
+          update in place.
         </P>
         <div className="flex items-center gap-2">
           <ThemeSelector />
