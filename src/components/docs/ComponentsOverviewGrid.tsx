@@ -386,7 +386,7 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
         </div>
       );
     case "progress":
-      return <Progress value={66} className="max-w-sm" />;
+      return <Progress value={66} className="w-64" />;
     case "radio-group":
       return (
         <RadioGroup defaultValue="comfortable" className="space-y-2">
