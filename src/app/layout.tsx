@@ -28,8 +28,8 @@ import { Package } from "lucide-react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "e-INFRA CZ Design System - Components",
-  description: "Design system components for e-INFRA CZ",
+  title: "Design System e-INFRA CZ",
+  description: "Design system showcase web for e-INFRA CZ",
 };
 
 export default function RootLayout({
