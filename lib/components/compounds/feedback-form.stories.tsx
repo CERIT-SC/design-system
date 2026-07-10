@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { FeedbackForm } from "./feedback-form";
 
 const meta = {
-  title: "Mid-level/FeedbackForm",
+  title: "Compounds/Feedback Form",
   component: FeedbackForm,
   parameters: {
     layout: "fullscreen",

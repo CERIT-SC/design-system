@@ -17,7 +17,7 @@ import {
 } from "./typography";
 
 const meta = {
-  title: "Typography/All Components",
+  title: "Foundations/Typography",
   parameters: {
     layout: "padded",
   },

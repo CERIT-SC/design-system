@@ -15,7 +15,7 @@ import { P } from "../foundations/typography";
 import { Info, Shield } from "lucide-react";
 
 const meta = {
-  title: "Components/Card",
+  title: "Primitives/Card",
   component: Card,
   parameters: {
     layout: "centered",

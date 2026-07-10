@@ -8,7 +8,7 @@ import {
 import { Button } from "./button";
 
 const meta = {
-  title: "Components/Tooltip",
+  title: "Primitives/Tooltip",
   component: Tooltip,
   parameters: {
     layout: "centered",

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Searchbar, SearchbarTrigger } from "./searchbar";
 
 const meta = {
-  title: "Mid-level/Searchbar",
+  title: "Compounds/Searchbar",
   component: Searchbar,
   parameters: {
     layout: "centered",
