@@ -7,7 +7,14 @@ import {
   DropdownMenuTrigger,
 } from "../../lib/components/primitives/dropdown-menu";
 import { Button } from "../../lib/components/primitives/button";
-import { Sun, Moon, Palette } from "lucide-react";
+import {
+  Sun,
+  Moon,
+  Palette,
+  ArrowBigDown,
+  ArrowDown,
+  ChevronDown,
+} from "lucide-react";
 import {
   useThemeSwitcher,
   type BrandingTheme,
@@ -67,7 +74,8 @@ export function ThemeSelector() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <Palette className="h-4 w-4 mr-2" />
-          {isEOSC ? "EOSC" : "Default"}
+          {isEOSC ? "EOSC" : "e-INFRA CZ"}
+          <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
@@ -101,37 +109,5 @@ export function ThemeSelector() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-}
-
-/**
- * QuickThemeToggle Component
- *
- * A simpler toggle that switches between light and dark within the current branding theme.
- * Can be used alongside ThemeSelector for quick access.
- */
-export function QuickThemeToggle() {
-  const { colorMode, toggleColorMode } = useThemeSwitcher();
-  const { setTheme } = useTheme();
-
-  const handleClick = () => {
-    toggleColorMode();
-    setTheme(colorMode === "dark" ? "light" : "dark");
-  };
-
-  return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={handleClick}
-      aria-label={`Switch to ${colorMode === "dark" ? "light" : "dark"} mode`}
-    >
-      {colorMode === "dark" ? (
-        <Sun className="h-4 w-4 rotate-90 transition-all dark:scale-0" />
-      ) : (
-        <Moon className="h-4 w-4 scale-100 transition-all dark:rotate-90 dark:scale-0" />
-      )}
-      <span className="sr-only">Toggle theme</span>
-    </Button>
   );
 }

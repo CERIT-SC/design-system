@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, CopyCheck } from "lucide-react";
 import {
   H2,
   H3,
@@ -15,10 +15,7 @@ import {
   P,
   Small,
 } from "../../../../lib/components/foundations/typography";
-import {
-  ThemeSelector,
-  QuickThemeToggle,
-} from "../../../components/ThemeSelector";
+import { ThemeSelector } from "../../../components/ThemeSelector";
 import { CodeBlock } from "../CodeBlock";
 import { docsTypography } from "../docs-typography";
 
@@ -396,10 +393,25 @@ function RampSwatch({
   version: number;
 }) {
   const { ref, hex, text } = useResolvedColor<HTMLButtonElement>(version);
+  const [copied, setCopied] = useState(false);
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (resetTimer.current) clearTimeout(resetTimer.current);
+    },
+    []
+  );
 
   const copy = () => {
     if (!hex) return;
-    void navigator.clipboard.writeText(hex);
+    void navigator.clipboard.writeText(hex).then(() => {
+      setCopied(true);
+      if (resetTimer.current) clearTimeout(resetTimer.current);
+      resetTimer.current = setTimeout(() => {
+        setCopied(false);
+      }, 1500);
+    });
   };
 
   return (
@@ -408,15 +420,26 @@ function RampSwatch({
         type="button"
         ref={ref}
         onClick={copy}
+        aria-label={
+          hex ? `Copy ${cssVar}-${step} (${hex})` : `${cssVar}-${step}`
+        }
         title={hex ? `${cssVar}-${step} · ${hex} (click to copy)` : cssVar}
         className="flex h-12 w-full items-center justify-center rounded-md border border-border/50 transition-transform hover:scale-105 cursor-pointer"
         style={{ backgroundColor: `var(${cssVar}-${step})` }}
       >
         <span
-          className="font-mono text-[10px] font-medium"
+          aria-live="polite"
+          className="flex items-center gap-1 font-mono text-[10px] font-medium"
           style={{ color: text }}
         >
-          {step}
+          {copied ? (
+            <>
+              <CopyCheck className="size-3" />
+              <span>{hex}</span>
+            </>
+          ) : (
+            step
+          )}
         </span>
       </button>
     </div>
@@ -566,7 +589,6 @@ export default function LiveColorsShowcase() {
         </P>
         <div className="flex items-center gap-2">
           <ThemeSelector />
-          <QuickThemeToggle />
         </div>
       </header>
 
