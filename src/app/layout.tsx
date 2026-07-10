@@ -22,6 +22,7 @@ import Link from "next/link";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { ThemeSelector } from "../components/ThemeSelector";
 import { ThemeInitializer } from "../components/ThemeInitializer";
+import { SearchTrigger } from "../components/search/SearchTrigger";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
 
@@ -135,6 +136,7 @@ export default function RootLayout({
                     NPM package
                   </Button>
                 </Link>
+                <SearchTrigger />
                 <ThemeSelector />
               </HeaderRight>
             </HeaderContent>
