@@ -116,7 +116,10 @@ export function CodeBlock({
       )}
     >
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-[#161622] border-b border-white/6">
+      <div
+        data-pagefind-ignore
+        className="flex items-center justify-between px-4 py-2 bg-[#161622] border-b border-white/6"
+      >
         <span className="text-[11px] font-mono font-medium text-white/30 uppercase tracking-widest select-none">
           {language}
         </span>
@@ -143,6 +146,7 @@ export function CodeBlock({
               {/* Line numbers */}
               <div
                 aria-hidden="true"
+                data-pagefind-ignore
                 className="select-none text-right text-white/20 shrink-0 w-6"
               >
                 {lines.map((_, i) => (

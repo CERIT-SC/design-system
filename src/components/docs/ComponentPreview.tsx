@@ -14,6 +14,7 @@ export function ComponentPreview({
 }: ComponentPreviewProps) {
   return (
     <div
+      data-pagefind-ignore
       className={cn(
         "my-6 rounded-xl border border-border overflow-hidden",
         className

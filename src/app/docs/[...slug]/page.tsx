@@ -2,8 +2,10 @@ import { readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 
 import { mdxComponents } from "../../../components/docs/MDXComponents";
+import { pagefindBodyAttrs, sectionForSlug } from "../../../lib/docs-search";
 
 import { H1, P } from "../../../../lib/components/foundations/typography";
 
@@ -118,10 +120,17 @@ export default async function DocsPage({
       blockJS: false,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [],
+        // Heading ids give Pagefind anchors for its sub-results.
+        rehypePlugins: [rehypeSlug],
       },
     },
   });
 
-  return <article>{content}</article>;
+  const section = sectionForSlug(slug);
+
+  return (
+    <article {...(section ? pagefindBodyAttrs(section) : {})}>
+      {content}
+    </article>
+  );
 }

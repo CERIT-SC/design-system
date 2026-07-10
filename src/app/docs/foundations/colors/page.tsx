@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import LiveColorsShowcase from "../../../../components/docs/foundations/LiveColorsShowcase";
+import { pagefindBodyAttrs } from "../../../../lib/docs-search";
 
 export const metadata: Metadata = {
   title: "Colors | e-INFRA CZ Design System",
@@ -9,5 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function ColorsPage() {
-  return <LiveColorsShowcase />;
+  return (
+    <article {...pagefindBodyAttrs("Foundations")}>
+      <LiveColorsShowcase />
+    </article>
+  );
 }
