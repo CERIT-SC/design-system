@@ -9,7 +9,7 @@ import {
 } from "./breadcrumb";
 
 const meta = {
-  title: "Components/Breadcrumb",
+  title: "Primitives/Breadcrumb",
   component: Breadcrumb,
   parameters: {
     layout: "centered",

@@ -5,11 +5,12 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 
 import { mdxComponents } from "../../../components/docs/MDXComponents";
+import { StorybookLink } from "../../../components/docs/StorybookLink";
 import { pagefindBodyAttrs, sectionForSlug } from "../../../lib/docs-search";
+import { storybookUrlForSlug } from "../../../lib/storybook";
 
 import { H1, P } from "../../../../lib/components/foundations/typography";
 
-// Base directory for docs (resolved relative to project root)
 const DOCS_DIR = join(process.cwd(), "docs");
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -127,9 +128,11 @@ export default async function DocsPage({
   });
 
   const section = sectionForSlug(slug);
+  const storybookUrl = storybookUrlForSlug(slug);
 
   return (
     <article {...(section ? pagefindBodyAttrs(section) : {})}>
+      {storybookUrl && <StorybookLink href={storybookUrl} />}
       {content}
     </article>
   );
