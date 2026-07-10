@@ -242,6 +242,10 @@ import {
 // ── Mid-level (Compounds) ─────────────────────────────────────────────────────
 import { CookiesBanner } from "../../lib/components/compounds/cookies-banner";
 import { FeedbackForm } from "../../lib/components/compounds/feedback-form";
+import {
+  Searchbar,
+  SearchbarTrigger,
+} from "../../lib/components/compounds/searchbar";
 
 // ── Typography ────────────────────────────────────────────────────────────────
 import {
@@ -492,6 +496,8 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   // Mid-level / Compounds
   CookiesBanner,
   FeedbackForm,
+  Searchbar,
+  SearchbarTrigger,
   // Typography
   Blockquote,
   Code,
