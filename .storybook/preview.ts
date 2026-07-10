@@ -10,8 +10,6 @@ const preview: Preview = {
       },
     },
     options: {
-      // Mirrors SECTION_ORDER in src/lib/docs-nav.ts so the Storybook sidebar
-      // matches the docs site sidebar.
       storySort: {
         order: ["Foundations", "Primitives", "Compounds", "Layout"],
       },

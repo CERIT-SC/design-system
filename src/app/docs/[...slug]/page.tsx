@@ -11,7 +11,6 @@ import { storybookUrlForSlug } from "../../../lib/storybook";
 
 import { H1, P } from "../../../../lib/components/foundations/typography";
 
-// Base directory for docs (resolved relative to project root)
 const DOCS_DIR = join(process.cwd(), "docs");
 
 // ─── Types ────────────────────────────────────────────────────────────────────
