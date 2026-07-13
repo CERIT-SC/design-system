@@ -14,7 +14,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "../../lib/components/primitives/navigation-menu";
-import { Footer } from "../../lib/components/layout/footer";
+import {
+  Footer,
+  FooterContent,
+  FooterLeft,
+  FooterMeta,
+  FooterRight,
+} from "../../lib/components/layout/footer";
 import EinfraLogoLight from "../../public/einfra-logo.svg";
 import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
@@ -142,7 +148,61 @@ export default function RootLayout({
             </HeaderContent>
           </Header>
           {children}
-          <Footer tag={process.env.NEXT_PUBLIC_TAG} />
+          <Footer>
+            <FooterContent>
+              <FooterLeft>
+                <Image
+                  src={EinfraLogoLight as StaticImageData}
+                  alt="e-INFRA Logo (light mode)"
+                  width={120}
+                  height={16}
+                  className="h-12 w-auto dark:hidden"
+                />
+                <Image
+                  src={EinfraLogoDark as StaticImageData}
+                  alt="e-INFRA Logo (dark mode)"
+                  width={120}
+                  height={16}
+                  className="hidden h-12 w-auto dark:block"
+                />
+                <p className="text-sm text-text-muted">
+                  The national e-infrastructure for research and development.
+                </p>
+              </FooterLeft>
+              <FooterRight>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link
+                    href="https://e-infra.cz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    e-INFRA CZ
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link
+                    href="https://github.com/CERIT-SC/design-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link
+                    href="https://www.npmjs.com/package/@e-infra/design-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    NPM package
+                  </Link>
+                </Button>
+              </FooterRight>
+            </FooterContent>
+            <FooterMeta
+              copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ — All rights reserved.`}
+            />
+          </Footer>
         </ThemeProvider>
       </body>
     </html>
