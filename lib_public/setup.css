@@ -149,6 +149,8 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
 }
 
 /* ─── Light mode ──────────────────────────────────────────── */
@@ -199,6 +201,8 @@
   --chart-3: #7ecdf8;
   --chart-4: #1cc16f;
   --chart-5: #f7ce5b;
+  --chart-6: #8278f0;
+  --chart-7: #d7412f;
 
   /* ── Color ramps — use for hover states, tinted badges, disabled fills ── */
 
