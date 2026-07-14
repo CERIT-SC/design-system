@@ -45,7 +45,7 @@ export function SearchTrigger() {
         onClick={() => {
           setOpen(true);
         }}
-        className="w-40 md:w-56 lg:w-64"
+        className="search-trigger-enter w-40 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99] md:w-56 lg:w-64"
       />
 
       <SearchDialog open={open} onOpenChange={setOpen} />

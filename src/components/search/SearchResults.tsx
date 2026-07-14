@@ -37,18 +37,32 @@ export function SearchResults({
   onNavigate,
 }: SearchResultsProps) {
   if (error) {
-    return <div className="py-6 text-center text-sm text-error">{error}</div>;
+    return (
+      <div className="search-state-enter py-6 text-center text-sm text-error">
+        {error}
+      </div>
+    );
   }
 
   if (isLoading && groups.length === 0) {
     return (
-      <div className="py-6 text-center text-sm text-text-muted">Searching…</div>
+      <div className="search-state-enter py-6 text-center text-sm text-text-muted">
+        Searching…
+      </div>
     );
   }
 
+  // Reset on every render so the staggered cascade stays deterministic and
+  // stable across keystrokes (items keep their keys, so they don't remount).
+  let itemIndex = 0;
+  const stagger = (idx: number) =>
+    ({ "--search-idx": idx }) as React.CSSProperties;
+
   return (
     <>
-      <CommandEmpty>No results for “{query}”.</CommandEmpty>
+      <CommandEmpty className="search-state-enter py-6 text-center text-sm">
+        No results for “{query}”.
+      </CommandEmpty>
 
       {groups.map((group) => (
         <CommandGroup key={group.section} heading={group.section}>
@@ -59,7 +73,8 @@ export function SearchResults({
                 onSelect={() => {
                   onNavigate(hit.url);
                 }}
-                className="cursor-pointer items-start gap-2.5 py-2"
+                className="search-item-enter cursor-pointer items-start gap-2.5 py-2"
+                style={stagger(itemIndex++)}
               >
                 <FileText className="mt-0.5 shrink-0 opacity-60" />
                 <span className="flex min-w-0 flex-col gap-0.5">
@@ -80,7 +95,8 @@ export function SearchResults({
                     onSelect={() => {
                       onNavigate(sub.url);
                     }}
-                    className="ml-6 cursor-pointer gap-2.5 py-1.5"
+                    className="search-item-enter ml-6 cursor-pointer gap-2.5 py-1.5"
+                    style={stagger(itemIndex++)}
                   >
                     <Hash className="size-3.5 shrink-0 opacity-50" />
                     <span className="truncate text-xs">{sub.title}</span>

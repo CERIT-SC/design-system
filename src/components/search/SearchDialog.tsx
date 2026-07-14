@@ -38,7 +38,8 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="overflow-hidden gap-0 p-0 sm:max-w-3xl"
+        className="search-dialog-content overflow-hidden gap-0 p-0 top-[20%] translate-x-[-50%] translate-y-0 sm:max-w-3xl"
+        overlayClassName="search-dialog-overlay bg-black/30 backdrop-blur-sm"
         showCloseButton={false}
       >
         <DialogHeader className="sr-only">
@@ -49,7 +50,12 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
         </DialogHeader>
 
         <Command shouldFilter={false} className="bg-surface-raised">
-          <div className={cn("px-4", hasQuery && "border-b border-border")}>
+          <div
+            className={cn(
+              "px-4 transition-[padding,border-color] duration-200",
+              hasQuery && "border-b border-border"
+            )}
+          >
             <Searchbar
               size="lg"
               value={query}
@@ -62,7 +68,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
             />
           </div>
           {hasQuery && (
-            <CommandList className="max-h-[60vh] p-2 md:p-3">
+            <CommandList className="search-results-enter max-h-[60vh] p-2 md:p-3">
               <SearchResults
                 groups={groups}
                 isLoading={isLoading}
