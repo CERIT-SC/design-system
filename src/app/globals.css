@@ -5,3 +5,119 @@
 
 /* EOSC branding theme setup */
 @import "../../lib_public/eosc_setup.css";
+
+/* ─── Search experience animations ────────────────────────────────────────── */
+@layer utilities {
+  /* The trigger fades in on first paint. */
+  .search-trigger-enter {
+    animation: search-fade-in 0.3s ease-out both;
+  }
+
+  /* The results panel slides down beneath the input when a query is entered. */
+  .search-results-enter {
+    animation: search-results-in 0.2s ease-out both;
+  }
+
+  /* Individual results fade and lift in, staggered by their index. */
+  .search-item-enter {
+    animation: search-item-in 0.18s ease-out both;
+    animation-delay: calc(var(--search-idx, 0) * 35ms);
+  }
+
+  /* Shared by the "Searching…" and "No results" states. */
+  .search-state-enter {
+    animation: search-fade-in 0.2s ease-out both;
+  }
+
+  /* Search dialog open/close transitions. */
+  .search-dialog-overlay[data-state="open"] {
+    animation: search-overlay-in 0.2s ease-out both;
+  }
+
+  .search-dialog-overlay[data-state="closed"] {
+    animation: search-overlay-out 0.18s ease-in both;
+  }
+
+  .search-dialog-content[data-state="open"] {
+    animation: search-content-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .search-dialog-content[data-state="closed"] {
+    animation: search-content-out 0.18s ease-in both;
+  }
+
+  @keyframes search-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes search-results-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes search-item-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes search-overlay-in {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(6px);
+    }
+  }
+
+  @keyframes search-overlay-out {
+    from {
+      opacity: 1;
+      backdrop-filter: blur(6px);
+    }
+    to {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+  }
+
+  @keyframes search-content-in {
+    from {
+      opacity: 0;
+      transform: translateY(-16px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes search-content-out {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-16px) scale(0.98);
+    }
+  }
+}

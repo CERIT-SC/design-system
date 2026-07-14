@@ -230,7 +230,17 @@ import {
   ContentSubheading,
   ContentBody,
 } from "../../lib/components/layout/content";
-import { Footer } from "../../lib/components/layout/footer";
+import {
+  Footer,
+  FooterContent,
+  FooterLeft,
+  FooterLogo,
+  FooterLeftText,
+  FooterMeta,
+  FooterRight,
+  FooterNavHeading,
+  FooterNavLink,
+} from "../../lib/components/layout/footer";
 import {
   Header,
   HeaderCenter,
@@ -277,6 +287,10 @@ import {
   HelpCircle,
   Search,
   Users,
+  ArrowUpRight,
+  Clock,
+  Mail,
+  Phone,
 } from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -488,6 +502,14 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   ContentSubheading,
   ContentBody,
   Footer,
+  FooterContent,
+  FooterLeft,
+  FooterLogo,
+  FooterLeftText,
+  FooterRight,
+  FooterNavHeading,
+  FooterNavLink,
+  FooterMeta,
   Header,
   HeaderContent,
   HeaderCenter,
@@ -524,4 +546,8 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   HelpCircle,
   Search,
   Users,
+  ArrowUpRight,
+  Clock,
+  Mail,
+  Phone,
 };

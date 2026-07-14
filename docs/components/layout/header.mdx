@@ -8,9 +8,8 @@ Header is a sticky top navigation bar built as a compound component. It is meant
       <Header>
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -45,9 +44,8 @@ Header is a sticky top navigation bar built as a compound component. It is meant
       <Header>
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -127,9 +125,8 @@ Header is a sticky top navigation bar built as a compound component. It is meant
       <Header>
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -167,10 +164,9 @@ Header is a sticky top navigation bar built as a compound component. It is meant
       <div className="flex">
         <div className="w-52 bg-surface border-r p-4">
           <div className="mb-4 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
-            <span className="font-semibold">Lab Management</span>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
+            
           </div>
           <div className="space-y-2 text-sm text-text">
             <div>Active studies</div>
@@ -203,9 +199,7 @@ Header is a sticky top navigation bar built as a compound component. It is meant
       <Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="h-12 w-auto" />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -241,9 +235,8 @@ Header is a sticky top navigation bar built as a compound component. It is meant
       <Header>
         <HeaderContent container={false}>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -527,5 +520,6 @@ import { Sidebar, SidebarHeader, SidebarContent } from "@e-infra/design-system";
 ## Notes
 
 - `HeaderCenter` is optional, but it is the supported way to place centered content in this layout.
+- The previews above swap the e-INFRA CZ logo by theme with a `dark:hidden` / `hidden dark:block` image pair. Hidden elements are excluded from the accessibility tree, so both images carry the same `alt` and the logo is announced exactly once in either theme. The gradient header is dark in both themes, so it always takes the white logo.
 - `NavigationMenuViewport` is rendered automatically by `NavigationMenu` unless you set `viewport={false}`.
 - The header implementation is intentionally small; prefer composing the existing subcomponents over adding new header-specific props.

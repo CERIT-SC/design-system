@@ -35,13 +35,37 @@ import {
   Home,
   FileText,
   Settings,
-  FlaskConical,
   Search,
   Bell,
   BarChart3,
   Users,
   HelpCircle,
 } from "lucide-react";
+
+/** Served from `public/` via the `staticDirs` entry in `.storybook/main.ts`. */
+const EInfraLogo = () => (
+  <>
+    <img
+      src="/einfra-logo.svg"
+      alt="e-INFRA CZ"
+      className="h-8 w-auto dark:hidden"
+    />
+    <img
+      src="/e-INFRA_logo_RGB_bila.svg"
+      alt="e-INFRA CZ"
+      className="hidden h-8 w-auto dark:block"
+    />
+  </>
+);
+
+/** The gradient header is dark in both themes, so it always takes the white logo. */
+const EInfraLogoOnDark = () => (
+  <img
+    src="/e-INFRA_logo_RGB_bila.svg"
+    alt="e-INFRA CZ"
+    className="h-8 w-auto"
+  />
+);
 
 const meta = {
   title: "Layout/Header",
@@ -61,9 +85,7 @@ export const Default: Story = {
       <Header>
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <EInfraLogo />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -115,9 +137,7 @@ export const WithDropdown: Story = {
       <Header>
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <EInfraLogo />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -218,9 +238,7 @@ export const WithSearch: Story = {
       <Header>
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <EInfraLogo />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -273,9 +291,7 @@ export const WithSidebar: Story = {
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <EInfraLogo />
             <span className="font-semibold">Lab Management</span>
           </div>
         </SidebarHeader>
@@ -333,9 +349,7 @@ export const CustomBackground: Story = {
       <Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
         <HeaderContent>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <EInfraLogoOnDark />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -393,9 +407,7 @@ export const WithoutContainer: Story = {
       <Header>
         <HeaderContent container={false}>
           <HeaderLeft>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FlaskConical className="h-4 w-4" />
-            </div>
+            <EInfraLogo />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
