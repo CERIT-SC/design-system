@@ -1,56 +1,67 @@
 # Footer
 
-Footer is a page footer built as a compound component. It is composed from: `Footer`, `FooterContent`, `FooterLeft`, `FooterRight`, and `FooterMeta`.
+Footer is a page footer built as a compound component. It is composed from: `Footer`, `FooterContent`, `FooterLeft`, `FooterLogo`, `FooterLeftText`, `FooterRight`, `FooterNavHeading`, `FooterNavLink`, and `FooterMeta`.
 
 <ComponentPreview>
   <div className="flex flex-col gap-8 w-full">
     <div className="rounded-lg border border-dashed overflow-hidden">
-      <div className="h-20 bg-surface flex items-center justify-center text-text text-sm">
-        Page content
-      </div>
       <Footer>
         <FooterContent>
           <FooterLeft>
-            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
-            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
-            <p className="text-sm font-medium text-text-muted">Operated by CERIT-SC and ICS MUNI</p>
+            <FooterLogo>
+              <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-20 w-auto dark:hidden" />
+              <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-20 w-auto dark:block" />
+            </FooterLogo>
+            <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
           </FooterLeft>
           <FooterRight>
-            <Button variant="outline" size="sm" asChild>
-              <a href="#">Status</a>
+            <Button variant="ghost" size="sm" asChild>
+              <a href="#">
+                <span>Privacy Policy</span>
+              </a>
             </Button>
-            <Button variant="outline" size="sm" asChild>
-              <a href="#">Documentation</a>
+            <Button variant="ghost" size="sm" asChild>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <span>Documentation</span>
+              </a>
             </Button>
           </FooterRight>
         </FooterContent>
-        <FooterMeta copyright="Copyright © 2026 e-INFRA CZ — All rights reserved." />
+        <FooterMeta
+          copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+        />
       </Footer>
     </div>
 
-    <div className="rounded-lg border border-dashed overflow-hidden">
-      <div className="h-20 bg-surface flex items-center justify-center text-text text-sm">
-        Page content
-      </div>
-      <Footer>
-        <FooterContent>
-          <FooterLeft>
-            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto dark:hidden" />
-            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-12 w-auto dark:block" />
-            <p className="text-sm font-medium text-text-muted">A composed footer body</p>
-          </FooterLeft>
-          <FooterRight>
-            <Button variant="outline" size="sm" asChild>
-              <a href="#">Changelog</a>
-            </Button>
-          </FooterRight>
-        </FooterContent>
-        <FooterMeta>
-          <p className="text-sm text-text-muted">Copyright © {new Date().getFullYear().toString()} e-INFRA CZ</p>
-          <span className="text-sm text-text-muted">v1.0.0</span>
-        </FooterMeta>
-      </Footer>
-    </div>
+   <div className="rounded-lg border border-dashed overflow-hidden">
+   <Footer>
+      <FooterContent>
+        <FooterLeft>
+          <FooterLogo>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-20 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-20 w-auto dark:block" />
+          </FooterLogo>
+          <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
+        </FooterLeft>
+        <FooterRight className="items-start gap-8 md:gap-12">
+          <nav className="flex flex-col gap-2">
+            <FooterNavHeading>Resources</FooterNavHeading>
+            <FooterNavLink href="#">Documentation</FooterNavLink>
+            <FooterNavLink href="#">Status</FooterNavLink>
+            <FooterNavLink href="#">Changelog</FooterNavLink>
+          </nav>
+          <nav className="flex flex-col gap-2">
+            <FooterNavHeading>Legal</FooterNavHeading>
+            <FooterNavLink href="#">Privacy Policy</FooterNavLink>
+            <FooterNavLink href="#">Terms of Service</FooterNavLink>
+          </nav>
+        </FooterRight>
+      </FooterContent>
+      <FooterMeta
+        copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+      />
+    </Footer>
+   </div>
 
   </div>
 </ComponentPreview>
@@ -70,21 +81,65 @@ import {
   FooterMeta,
   Button,
 } from "@e-infra/design-system";
+import { EInfraLogo } from "./einfra-logo";
 
 <Footer>
   <FooterContent>
     <FooterLeft>
-      <Logo />
-      <p className="text-sm text-text-muted">Operated by CERIT-SC and ICS MUNI</p>
+      <FooterLogo>
+        <EInfraLogo />
+      </FooterLogo>
+      <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
     </FooterLeft>
     <FooterRight>
-      <Button variant="outline" size="sm" asChild>
-        <a href="/status">Status</a>
+      <Button variant="ghost" size="sm" asChild>
+        <a href="#">
+          <span>Privacy Policy</span>
+        </a>
+      </Button>
+      <Button variant="ghost" size="sm" asChild>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <span>Documentation</span>
+        </a>
       </Button>
     </FooterRight>
   </FooterContent>
-  <FooterMeta copyright="Copyright © 2026 e-INFRA CZ — All rights reserved." />
+  <FooterMeta
+    copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+  />
 </Footer>;
+```
+
+### Logo and left text
+
+`FooterLogo` and `FooterLeftText` are optional children of `FooterLeft`. `FooterLogo` is a plain container for a custom logo, and `FooterLeftText` renders a muted caption beneath it. Give `FooterLeft` a column layout to stack them.
+
+```tsx
+<FooterLeft className="flex-col items-start gap-2">
+  <FooterLogo>
+    <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto" />
+  </FooterLogo>
+  <FooterLeftText>Operated by CERIT-SC and ICS MUNI</FooterLeftText>
+</FooterLeft>
+```
+
+### Navigation link lists
+
+`FooterRight` can hold grouped navigation. `FooterNavHeading` labels each column with muted uppercase text, and `FooterNavLink` renders links that underline on hover. Wrap each group in a `nav` with a column layout.
+
+```tsx
+<FooterRight className="items-start gap-8 md:gap-12">
+  <nav className="flex flex-col gap-2">
+    <FooterNavHeading>Resources</FooterNavHeading>
+    <FooterNavLink href="/docs">Documentation</FooterNavLink>
+    <FooterNavLink href="/status">Status</FooterNavLink>
+  </nav>
+  <nav className="flex flex-col gap-2">
+    <FooterNavHeading>Legal</FooterNavHeading>
+    <FooterNavLink href="/privacy">Privacy Policy</FooterNavLink>
+    <FooterNavLink href="/terms">Terms of Service</FooterNavLink>
+  </nav>
+</FooterRight>
 ```
 
 ### Copyright
@@ -126,7 +181,11 @@ Omit `copyright` to render children instead. This is the way to put a version st
 | `Footer`        | Root element rendered as `footer`                    |
 | `FooterContent` | Inner flex container with optional width constraint  |
 | `FooterLeft`    | Left-aligned row for branding and descriptive copy   |
+| `FooterLogo`    | Optional container for a custom logo inside `FooterLeft` |
+| `FooterLeftText`| Optional muted caption rendered beneath `FooterLogo` |
 | `FooterRight`   | Right-aligned row for links and actions              |
+| `FooterNavHeading` | Uppercase, muted heading that labels a nav column |
+| `FooterNavLink` | Muted link that underlines on hover                  |
 | `FooterMeta`    | Bottom row for the copyright line and other metadata |
 
 ## Props
@@ -153,12 +212,40 @@ Omit `copyright` to render children instead. This is the way to put a version st
 | className | `string`                               | -       | Additional CSS classes |
 | ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
 
+### FooterLogo
+
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
+
+### FooterLeftText
+
+| Prop      | Type                                         | Default | Description            |
+| --------- | -------------------------------------------- | ------- | ---------------------- |
+| className | `string`                                     | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLParagraphElement>` | -       | Native `p` props       |
+
 ### FooterRight
 
 | Prop      | Type                                   | Default | Description            |
 | --------- | -------------------------------------- | ------- | ---------------------- |
 | className | `string`                               | -       | Additional CSS classes |
 | ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
+
+### FooterNavHeading
+
+| Prop      | Type                                        | Default | Description            |
+| --------- | ------------------------------------------- | ------- | ---------------------- |
+| className | `string`                                    | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLHeadingElement>`  | -       | Native `h3` props      |
+
+### FooterNavLink
+
+| Prop      | Type                                             | Default | Description            |
+| --------- | ------------------------------------------------ | ------- | ---------------------- |
+| className | `string`                                         | -       | Additional CSS classes |
+| ...props  | `React.AnchorHTMLAttributes<HTMLAnchorElement>`  | -       | Native `a` props       |
 
 ### FooterMeta
 

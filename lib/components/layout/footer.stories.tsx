@@ -3,8 +3,12 @@ import {
   Footer,
   FooterContent,
   FooterLeft,
+  FooterLogo,
+  FooterLeftText,
   FooterMeta,
   FooterRight,
+  FooterNavHeading,
+  FooterNavLink,
 } from "./footer";
 import {
   Content,
@@ -13,7 +17,6 @@ import {
   ContentSubheading,
 } from "./content";
 import { Button } from "../primitives/button";
-import { ArrowUpRight } from "lucide-react";
 
 const EInfraLogo = () => (
   <>
@@ -59,102 +62,70 @@ export const Default: Story = {
       <Footer>
         <FooterContent>
           <FooterLeft>
-            <EInfraLogo />
-            <p className="text-sm font-medium text-text-muted">
-              Operated by CERIT-SC and ICS MUNI
-            </p>
+            <FooterLogo>
+              <EInfraLogo />
+            </FooterLogo>
+            <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
           </FooterLeft>
           <FooterRight>
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="ghost" size="sm" asChild>
               <a href="#">
-                <span>Status</span>
+                <span>Privacy Policy</span>
               </a>
             </Button>
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="ghost" size="sm" asChild>
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <span>Documentation</span>
-                <ArrowUpRight className="size-3" />
               </a>
             </Button>
           </FooterRight>
         </FooterContent>
-        <FooterMeta copyright="Copyright © 2026 e-INFRA CZ — All rights reserved." />
+        <FooterMeta
+          copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+        />
       </Footer>
     </div>
   ),
 };
 
-export const WithMetaChildren: Story = {
+export const WithFooterNav: Story = {
   render: () => (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 container mx-auto px-4 py-8">
         <Content>
-          <ContentHeading>Meta with children</ContentHeading>
+          <ContentHeading>Footer with navigation</ContentHeading>
           <ContentSubheading>Usage</ContentSubheading>
           <ContentBody>
-            Omitting the copyright prop lets FooterMeta render arbitrary
-            children, so a version string or build metadata can share the bottom
-            row.
+            FooterRight can hold grouped navigation. FooterNavHeading labels
+            each column in muted uppercase text, and FooterNavLink renders links
+            that underline on hover.
           </ContentBody>
         </Content>
       </main>
       <Footer>
         <FooterContent>
           <FooterLeft>
-            <EInfraLogo />
-            <p className="text-sm font-medium text-text-muted">
-              A composed footer body
-            </p>
+            <FooterLogo>
+              <EInfraLogo />
+            </FooterLogo>
+            <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
           </FooterLeft>
-          <FooterRight>
-            <Button variant="outline" size="sm" asChild>
-              <a href="#">
-                <span>Changelog</span>
-              </a>
-            </Button>
-          </FooterRight>
-        </FooterContent>
-        <FooterMeta>
-          <p className="text-sm text-text-muted">Copyright © 2026 e-INFRA CZ</p>
-          <span className="text-sm text-text-muted">v1.0.0</span>
-        </FooterMeta>
-      </Footer>
-    </div>
-  ),
-};
-
-export const WithoutContainer: Story = {
-  render: () => (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1 container mx-auto px-4 py-8">
-        <Content>
-          <ContentHeading>Without container</ContentHeading>
-          <ContentSubheading>Usage</ContentSubheading>
-          <ContentBody>
-            Setting container to false on FooterContent and FooterMeta drops the
-            max-width constraint, so the footer spans the full viewport.
-          </ContentBody>
-        </Content>
-      </main>
-      <Footer>
-        <FooterContent container={false}>
-          <FooterLeft>
-            <EInfraLogo />
-            <p className="text-sm font-medium text-text-muted">
-              Full-width footer
-            </p>
-          </FooterLeft>
-          <FooterRight>
-            <Button variant="outline" size="sm" asChild>
-              <a href="#">
-                <span>Support</span>
-              </a>
-            </Button>
+          <FooterRight className="items-start gap-8 md:gap-12">
+            <nav className="flex flex-col gap-2">
+              <FooterNavHeading>Resources</FooterNavHeading>
+              <FooterNavLink href="#">Documentation</FooterNavLink>
+              <FooterNavLink href="#">Status</FooterNavLink>
+              <FooterNavLink href="#">Changelog</FooterNavLink>
+            </nav>
+            <nav className="flex flex-col gap-2">
+              <FooterNavHeading>Legal</FooterNavHeading>
+              <FooterNavLink href="#">Privacy Policy</FooterNavLink>
+              <FooterNavLink href="#">Terms of Service</FooterNavLink>
+            </nav>
           </FooterRight>
         </FooterContent>
         <FooterMeta
-          container={false}
-          copyright="Copyright © 2026 e-INFRA CZ — All rights reserved."
+          copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
         />
       </Footer>
     </div>

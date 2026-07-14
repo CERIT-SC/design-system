@@ -15,7 +15,11 @@ export {
   Footer,
   FooterContent,
   FooterLeft,
+  FooterLogo,
+  FooterLeftText,
   FooterRight,
+  FooterNavHeading,
+  FooterNavLink,
   FooterMeta,
 } from "./footer";
 export {
