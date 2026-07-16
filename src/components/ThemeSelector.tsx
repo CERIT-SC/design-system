@@ -21,7 +21,7 @@ import { useTheme } from "next-themes";
  *
  * Only the color modes with a corresponding stylesheet definition are listed:
  * - Default (`setup.css`): `:root` (light) + `.dark` (dark)
- * - EOSC (`eosc_setup.css`): `[data-theme="eosc"]` (light only — no dark theme)
+ * - EOSC (`eosc_setup.css`): `[data-theme="eosc"]` (light) + `[data-theme="eosc"].dark` (dark)
  * - ELTER (`elter_setup.css`): `[data-theme="elter"]` (light only — no dark theme)
  *
  * Add a mode here only once the matching CSS exists in `lib_public`.
@@ -32,7 +32,7 @@ const AVAILABLE_THEMES: {
   modes: ColorMode[];
 }[] = [
   { branding: "default", label: "Default Theme", modes: ["light", "dark"] },
-  { branding: "eosc", label: "EOSC Branding", modes: ["light"] },
+  { branding: "eosc", label: "EOSC Branding", modes: ["light", "dark"] },
   { branding: "elter", label: "ELTER Branding", modes: ["light"] },
 ];
 
@@ -68,14 +68,14 @@ export function ThemeSelector() {
   const applyTheme = (branding: BrandingTheme, mode: ColorMode) => {
     if (branding === "eosc") {
       setEOSCTheme(mode);
-      setTheme(mode === "dark" ? "eosc-dark" : "eosc");
     } else if (branding === "elter") {
       setElterTheme(mode);
-      setTheme(mode === "dark" ? "elter-dark" : "elter");
     } else {
       setDefaultTheme(mode);
-      setTheme(mode);
     }
+    // Keep next-themes in sync using only real CSS class names (light/dark).
+    // Branding is managed separately via data-theme by useThemeSwitcher.
+    setTheme(mode);
   };
 
   return (

@@ -42,8 +42,8 @@
   --primary: #2A7180;
   --primary-foreground: #ffffff;
 
-  --secondary: #228781;
-  --secondary-foreground: #ffffff;
+  --secondary: #CCEAE8;
+  --secondary-foreground: #00363E;
 
   --tertiary: #AC2D68;
   --tertiary-foreground: #ffffff;
@@ -70,6 +70,162 @@
   --chart-5: #15AA56;
   --chart-6: #FFD04D;
   --chart-7: #D7412F;
+
+  /* ── Primary Ramp ── */
+  --color-primary-50: #EEF6F6;
+  --color-primary-100: #E6F0F1;
+  --color-primary-200: #D1E4E7;
+  --color-primary-300: #AECFD5;
+  --color-primary-400: #7FB2BA;
+  --color-primary-500: #7FB2BA;
+  --color-primary-600: #2A7180;
+  --color-primary-700: #005B67;
+  --color-primary-800: #004E59;
+  --color-primary-900: #00363E;
+  --color-primary-950: #001F24;
+
+  /* ── Secondary Ramp -─ */
+  --color-secondary-50: #EDF7F6;
+  --color-secondary-100: #E3F2F1;
+  --color-secondary-200: #CCEAE8;
+  --color-secondary-300: #A6DED9;
+  --color-secondary-400: #70CDC6;
+  --color-secondary-500: #37AEA7;
+  --color-secondary-600: #228781;
+  --color-secondary-700: #0F5A57;
+  --color-secondary-800: #0C4D4B;
+  --color-secondary-900: #093433;
+  --color-secondary-950: #061E1E;
+
+  /* ── Tertiary Ramp ── */
+  --color-tertiary-50: #FFEFF4;
+  --color-tertiary-100: #FFE6EE;
+  --color-tertiary-200: #FFD2E0;
+  --color-tertiary-300: #FFACC9;
+  --color-tertiary-400: #EC80A9;
+  --color-tertiary-500: #C94E7E;
+  --color-tertiary-600: #AC2D68;
+  --color-tertiary-700: #930051;
+  --color-tertiary-800: #7F0046;
+  --color-tertiary-900: #5A0030;
+  --color-tertiary-950: #37001B;
+
+  /* ── Error Ramp ── */
+  --color-error-50: #FAEDEB;
+  --color-error-100: #F8E5E3;
+  --color-error-200: #F2C9C4;
+  --color-error-300: #E9A098;
+  --color-error-400: #D36A63;
+  --color-error-500: #CC4F4B;
+  --color-error-600: #BC3534;
+  --color-error-700: #AA2828;
+  --color-error-800: #931F20;
+  --color-error-900: #6C1819;
+  --color-error-950: #45100C;
+
+  /* ── Warning Ramp ── */
+  --color-warning-50: #FAF5EA;
+  --color-warning-100: #F4EFDF;
+  --color-warning-200: #EDDDB5;
+  --color-warning-300: #EBCF8B;
+  --color-warning-400: #D9AE5C;
+  --color-warning-500: #CA9C40;
+  --color-warning-600: #C48D23;
+  --color-warning-700: #A97821;
+  --color-warning-800: #7B5514;
+  --color-warning-900: #5C3F0E;
+  --color-warning-950: #392705;
+
+  /* ── Success Ramp */
+  --color-success-50: #EEF5EB;
+  --color-success-100: #E5F0E2;
+  --color-success-200: #CFE4C9;
+  --color-success-300: #A9D29D;
+  --color-success-400: #7FC06B;
+  --color-success-500: #5CAD50;
+  --color-success-600: #43A044;
+  --color-success-700: #328739;
+  --color-success-800: #286E31;
+  --color-success-900: #1B5225;
+  --color-success-950: #103617;
+
+  /* ── Info Ramp ── */
+  --color-info-50: #EEF6FD;
+  --color-info-100: #DDEDFB;
+  --color-info-200: #C4DFF7;
+  --color-info-300: #9FC9EF;
+  --color-info-400: #6EADE3;
+  --color-info-500: #3F8ED4;
+  --color-info-600: #196DBC;
+  --color-info-700: #155DA2;
+  --color-info-800: #124D86;
+  --color-info-900: #0D3862;
+  --color-info-950: #08233E;
+
+  /* ── Base/Neutral Ramp ── */
+  --color-base-50: #F1F4F4;
+  --color-base-100: #EEF1F1;
+  --color-base-200: #E0E6E7;
+  --color-base-300: #C7D1D3;
+  --color-base-400: #A7B4B7;
+  --color-base-500: #748387;
+  --color-base-600: #576569;
+  --color-base-700: #424D50;
+  --color-base-800: #323B3E;
+  --color-base-900: #1F2527;
+  --color-base-950: #0C0F10;
+}
+
+/* ─── EOSC Dark Theme ───────────────────────────────────────────── */
+[data-theme="eosc"].dark {
+  --radius: 0.75rem;
+
+  /* Transitions */
+  --transition-duration: 300ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Surfaces — EOSC dark mode surface colours */
+  --background: #0C0F10;
+  --surface: #1F2527;
+  --surface-raised: #323B3E;
+
+  /* Text — EOSC dark mode text colours */
+  --text: #F1F4F4;
+  --text-muted: #A7B4B7; 
+  --text-heading: #7FB2BA;
+
+  /* Brand — EOSC dark mode brand colours */
+  --primary: #2A7180; /* --color-primary-500 */
+  --primary-foreground: #EEF6F6; /* --color-primary-50 */
+
+  --secondary: #70CDC6; /* --color-secondary-800 */
+  --secondary-foreground: #061E1E; /* --color-secondary-200 */
+
+  --tertiary: #AC2D68; /* --color-tertiary-400 */
+  --tertiary-foreground: #ffffff;
+
+  /* Borders — EOSC dark mode border colours */
+  --border: #424D50;
+  --border-focus: #748387;
+
+  /* Semantic — TODO: EOSC dark mode semantic colours */
+  --info: #6EADE3; /* --color-info-400 */
+  --info-foreground: #ffffff; /* TODO: fill */
+  --success: #7FC06B; /* --color-success-400 */
+  --success-foreground: #ffffff; /* TODO: fill */
+  --warning: #D9AE5C; /* --color-warning-400 */
+  --warning-foreground: #ffffff; /* TODO: fill */
+  --error: #D36A63; /* --color-error-400 */
+  --error-foreground: #ffffff; /* TODO: fill */
+
+  /* Charts — EOSC dark mode chart palette */
+  --chart-1: #1A8A9D;
+  --chart-2: #E5246D;
+  --chart-3: #6730D9;
+  --chart-4: #73400D;
+  --chart-5: #1D9B54;
+  --chart-6: #E7B323;
+  --chart-7: #933125;
 
   /* ── Primary Ramp ── */
   --color-primary-50: #EEF6F6;
