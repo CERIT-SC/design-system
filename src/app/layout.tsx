@@ -60,6 +60,8 @@ export default function RootLayout({
 
                 if (branding === 'eosc') {
                   document.documentElement.setAttribute('data-theme', 'eosc');
+                } else if (branding === 'elter') {
+                  document.documentElement.setAttribute('data-theme', 'elter');
                 } else {
                   document.documentElement.removeAttribute('data-theme');
                 }

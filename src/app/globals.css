@@ -6,6 +6,9 @@
 /* EOSC branding theme setup */
 @import "../../lib_public/eosc_setup.css";
 
+/* ELTER branding theme setup */
+@import "../../lib_public/elter_setup.css";
+
 /* ─── Search experience animations ────────────────────────────────────────── */
 @layer utilities {
   /* The trigger fades in on first paint. */

@@ -22,6 +22,7 @@ import { useTheme } from "next-themes";
  * Only the color modes with a corresponding stylesheet definition are listed:
  * - Default (`setup.css`): `:root` (light) + `.dark` (dark)
  * - EOSC (`eosc_setup.css`): `[data-theme="eosc"]` (light only — no dark theme)
+ * - ELTER (`elter_setup.css`): `[data-theme="elter"]` (light only — no dark theme)
  *
  * Add a mode here only once the matching CSS exists in `lib_public`.
  */
@@ -32,6 +33,7 @@ const AVAILABLE_THEMES: {
 }[] = [
   { branding: "default", label: "Default Theme", modes: ["light", "dark"] },
   { branding: "eosc", label: "EOSC Branding", modes: ["light"] },
+  { branding: "elter", label: "ELTER Branding", modes: ["light"] },
 ];
 
 /**
@@ -39,26 +41,40 @@ const AVAILABLE_THEMES: {
  *
  * Lists only the branding/color-mode combinations that have a stylesheet
  * defined in `lib_public` (see {@link AVAILABLE_THEMES}). For example, EOSC
- * has no dark theme, so "EOSC Dark" is intentionally not offered.
+ * and ELTER have no dark theme, so their dark modes are intentionally not
+ * offered.
  *
  * Usage:
  *   import { ThemeSelector } from "@/components/ThemeSelector";
  *   <ThemeSelector />
  */
 export function ThemeSelector() {
-  const { brandingTheme, colorMode, setEOSCTheme, setDefaultTheme } =
-    useThemeSwitcher();
+  const {
+    brandingTheme,
+    colorMode,
+    setEOSCTheme,
+    setElterTheme,
+    setDefaultTheme,
+  } = useThemeSwitcher();
   const { setTheme } = useTheme();
 
-  const isEOSC = brandingTheme === "eosc";
+  const currentBrandingLabel =
+    brandingTheme === "eosc"
+      ? "EOSC"
+      : brandingTheme === "elter"
+        ? "ELTER"
+        : "e-INFRA CZ";
 
   const applyTheme = (branding: BrandingTheme, mode: ColorMode) => {
     if (branding === "eosc") {
       setEOSCTheme(mode);
-      setTheme(mode === "dark" ? "eosc-dark" : "eosc"); // Sync with next-themes
+      setTheme(mode === "dark" ? "eosc-dark" : "eosc");
+    } else if (branding === "elter") {
+      setElterTheme(mode);
+      setTheme(mode === "dark" ? "elter-dark" : "elter");
     } else {
       setDefaultTheme(mode);
-      setTheme(mode); // Sync with next-themes
+      setTheme(mode);
     }
   };
 
@@ -67,7 +83,7 @@ export function ThemeSelector() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           <Palette className="h-4 w-4 mr-2" />
-          {isEOSC ? "EOSC" : "e-INFRA CZ"}
+          {currentBrandingLabel}
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
@@ -83,7 +99,7 @@ export function ThemeSelector() {
             </div>
             {theme.modes.map((mode) => {
               const isActive =
-                colorMode === mode && isEOSC === (theme.branding === "eosc");
+                colorMode === mode && brandingTheme === theme.branding;
               const Icon = mode === "dark" ? Moon : Sun;
               return (
                 <DropdownMenuItem
