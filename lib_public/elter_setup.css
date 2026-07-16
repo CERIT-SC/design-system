@@ -66,9 +66,9 @@
   --chart-1: #40907A;
   --chart-2: #96CE58;
   --chart-3: #003972;
-  --chart-4: #B85C00;
-  --chart-5: #15AA56;
-  --chart-6: #FFD04D;
+  --chart-4: #BADFFD;
+  --chart-5: #0879C0;
+  --chart-6: #ED9632;
   --chart-7: #D7412F;
 
   /* ── Primary Ramp ── */
@@ -174,6 +174,161 @@
   --color-base-800: #333333;
   --color-base-900: #1a1a1a;
   --color-base-950: #0d0d0d;
+}
+
+[data-theme="elter"].dark {
+  --radius: 0.75rem;
+
+  /* Transitions */
+  --transition-duration: 300ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Surfaces */
+  --background: #0a2033; /* --base-950 */
+  --surface: #15293d; /* --base-900 */
+  --surface-raised: #253d56; /* --base-800 */
+
+  /* Text */
+  --text: #f1f1f1;; /* --base-50 */
+  --text-muted: #516a88; /* --base-600 */
+  --text-heading: #4fb6f8; /* --primary-300 */
+
+  /* Brand — eLTER primary colors */
+  --primary: #ED9632;
+  --primary-foreground: #ffffff;
+
+  --secondary: #BADFFD;
+  --secondary-foreground: #0a2033;
+
+  --tertiary: #0879C0;
+  --tertiary-foreground: #ffffff;
+
+  /* Borders */
+  --border: #3b5471; /* --base-700 */
+  --border-focus: #6b809c; /* --base-500 */
+
+  /* Semantic */
+  --info: #3F8ED4;
+  --info-foreground: #ffffff;
+  --success: #96CE58;
+  --success-foreground: #ffffff;
+  --warning: #d37e1e;
+  --warning-foreground: #ffffff;
+  --error: #BC3534;
+  --error-foreground: #ffffff;
+
+  /* Charts — ELTER palette */
+  --chart-1: #40907A;
+  --chart-2: #96CE58;
+  --chart-3: #003972;
+  --chart-4: #BADFFD;
+  --chart-5: #0879C0;
+  --chart-6: #ED9632;
+  --chart-7: #D7412F;
+
+  /* ── Primary Ramp ── */
+  --color-primary-50: #e2f3fe;
+  --color-primary-100: #c4e7fd;
+  --color-primary-200: #89cffa;
+  --color-primary-300: #4fb6f8;
+  --color-primary-400: #0f9cf5;
+  --color-primary-500: #0879c0;
+  --color-primary-600: #066098;
+  --color-primary-700: #054a76;
+  --color-primary-800: #03314e;
+  --color-primary-900: #021927;
+  --color-primary-950: #010c14;
+
+  /* ── Secondary Ramp -─ */
+  --color-secondary-50: #f5faff;
+  --color-secondary-100: #e6f4fe;
+  --color-secondary-200: #d2eafe;
+  --color-secondary-300: #badffd;
+  --color-secondary-400: #7ec3fb;
+  --color-secondary-500: #3ea5f9;
+  --color-secondary-600: #0789f3;
+  --color-secondary-700: #0568b7;
+  --color-secondary-800: #04467c;
+  --color-secondary-900: #02223b;
+  --color-secondary-950: #01111e;
+
+  /* ── Tertiary Ramp ── */
+  --color-tertiary-50: #fdf5ec;
+  --color-tertiary-100: #fbe9d5;
+  --color-tertiary-200: #f8d6af;
+  --color-tertiary-300: #f4c185;
+  --color-tertiary-400: #f1ab5b;
+  --color-tertiary-500: #ed9632;
+  --color-tertiary-600: #d37913;
+  --color-tertiary-700: #9f5c0e;
+  --color-tertiary-800: #6c3e09;
+  --color-tertiary-900: #341e05;
+  --color-tertiary-950: #1c1002;
+
+  /* ── Error Ramp ── */
+  --color-error-50: #FAEDEB;
+  --color-error-100: #F8E5E3;
+  --color-error-200: #F2C9C4;
+  --color-error-300: #E9A098;
+  --color-error-400: #D36A63;
+  --color-error-500: #CC4F4B;
+  --color-error-600: #BC3534;
+  --color-error-700: #AA2828;
+  --color-error-800: #931F20;
+  --color-error-900: #6C1819;
+  --color-error-950: #45100C;
+
+  /* ── Warning Ramp ── */
+  --color-warning-50: #FAF5EA;
+  --color-warning-100: #F4EFDF;
+  --color-warning-200: #EDDDB5;
+  --color-warning-300: #EBCF8B;
+  --color-warning-400: #D9AE5C;
+  --color-warning-500: #CA9C40;
+  --color-warning-600: #C48D23;
+  --color-warning-700: #A97821;
+  --color-warning-800: #7B5514;
+  --color-warning-900: #5C3F0E;
+  --color-warning-950: #392705;
+
+  /* ── Success Ramp */
+  --color-success-50: #EEF5EB;
+  --color-success-100: #E5F0E2;
+  --color-success-200: #CFE4C9;
+  --color-success-300: #A9D29D;
+  --color-success-400: #7FC06B;
+  --color-success-500: #5CAD50;
+  --color-success-600: #43A044;
+  --color-success-700: #328739;
+  --color-success-800: #286E31;
+  --color-success-900: #1B5225;
+  --color-success-950: #103617;
+
+  /* ── Info Ramp ── */
+  --color-info-50: #EEF6FD;
+  --color-info-100: #DDEDFB;
+  --color-info-200: #C4DFF7;
+  --color-info-300: #9FC9EF;
+  --color-info-400: #6EADE3;
+  --color-info-500: #3F8ED4;
+  --color-info-600: #196DBC;
+  --color-info-700: #155DA2;
+  --color-info-800: #124D86;
+  --color-info-900: #0D3862;
+  --color-info-950: #08233E;
+
+  /* ── Base/Neutral Ramp ── */
+  --color-base-50: #f1f1f1;
+  --color-base-100: #e5e5e5;
+  --color-base-200: #c9c9c9;
+  --color-base-300: #aab1bc;
+  --color-base-400: #899ab1;
+  --color-base-500: #6b809c;
+  --color-base-600: #516a88;
+  --color-base-700: #3b5471;
+  --color-base-800: #253d56;
+  --color-base-900: #15293d;
+  --color-base-950: #0a2033;
 }
 
 @layer base {

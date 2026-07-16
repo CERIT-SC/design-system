@@ -22,7 +22,7 @@ import { useTheme } from "next-themes";
  * Only the color modes with a corresponding stylesheet definition are listed:
  * - Default (`setup.css`): `:root` (light) + `.dark` (dark)
  * - EOSC (`eosc_setup.css`): `[data-theme="eosc"]` (light) + `[data-theme="eosc"].dark` (dark)
- * - ELTER (`elter_setup.css`): `[data-theme="elter"]` (light only — no dark theme)
+ * - ELTER (`elter_setup.css`): `[data-theme="elter"]` (light) + `[data-theme="elter"].dark` (dark)
  *
  * Add a mode here only once the matching CSS exists in `lib_public`.
  */
@@ -33,7 +33,7 @@ const AVAILABLE_THEMES: {
 }[] = [
   { branding: "default", label: "Default Theme", modes: ["light", "dark"] },
   { branding: "eosc", label: "EOSC Branding", modes: ["light", "dark"] },
-  { branding: "elter", label: "ELTER Branding", modes: ["light"] },
+  { branding: "elter", label: "ELTER Branding", modes: ["light", "dark"] },
 ];
 
 /**
