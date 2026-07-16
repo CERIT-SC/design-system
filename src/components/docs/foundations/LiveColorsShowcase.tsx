@@ -288,6 +288,16 @@ const tokenGroups: TokenGroup[] = [
         cssVar: "--chart-5",
         usage: "Fifth series and cool-hue contrast.",
       },
+      {
+        name: "Chart 6",
+        cssVar: "--chart-6",
+        usage: "Sixth series and warm-hue contrast.",
+      },
+      {
+        name: "Chart 7",
+        cssVar: "--chart-7",
+        usage: "Seventh series and strong emphasis.",
+      },
     ],
   },
 ];

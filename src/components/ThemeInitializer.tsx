@@ -21,6 +21,8 @@ export function ThemeInitializer() {
     // Apply branding theme
     if (savedBranding === "eosc") {
       html.dataset.theme = "eosc";
+    } else if (savedBranding === "elter") {
+      html.dataset.theme = "elter";
     } else {
       delete html.dataset.theme;
     }

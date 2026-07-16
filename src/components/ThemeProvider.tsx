@@ -3,7 +3,13 @@
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-export type Theme = "light" | "dark" | "eosc" | "eosc-dark";
+export type Theme =
+  | "light"
+  | "dark"
+  | "eosc"
+  | "eosc-dark"
+  | "elter"
+  | "elter-dark";
 
 type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
 
