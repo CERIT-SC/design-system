@@ -1,99 +1,277 @@
 # Footer
 
-Footer is a presentational layout component that renders fixed e-INFRA CZ content, support information, external links, and a configurable logo.
+Footer is a page footer built as a compound component. It is composed from: `Footer`, `FooterContent`, `FooterLeft`, `FooterLogo`, `FooterLeftText`, `FooterRight`, `FooterNavHeading`, `FooterNavLink`, and `FooterMeta`.
 
 <ComponentPreview>
-  <Footer />
+  <div className="flex flex-col gap-8 w-full">
+    <div className="rounded-lg border border-dashed overflow-hidden">
+      <Footer>
+        <FooterContent>
+          <FooterLeft>
+            <FooterLogo>
+              <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-20 w-auto dark:hidden" />
+              <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-20 w-auto dark:block" />
+            </FooterLogo>
+            <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
+          </FooterLeft>
+          <FooterRight>
+            <Button variant="ghost" size="sm" asChild>
+              <a href="#">
+                <span>Privacy Policy</span>
+              </a>
+            </Button>
+            <Button variant="ghost" size="sm" asChild>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <span>Documentation</span>
+              </a>
+            </Button>
+          </FooterRight>
+        </FooterContent>
+        <FooterMeta
+          copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+        />
+      </Footer>
+    </div>
+
+   <div className="rounded-lg border border-dashed overflow-hidden">
+   <Footer>
+      <FooterContent>
+        <FooterLeft>
+          <FooterLogo>
+            <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-20 w-auto dark:hidden" />
+            <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="hidden h-20 w-auto dark:block" />
+          </FooterLogo>
+          <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
+        </FooterLeft>
+        <FooterRight className="items-start gap-8 md:gap-12">
+          <nav className="flex flex-col gap-2">
+            <FooterNavHeading>Resources</FooterNavHeading>
+            <FooterNavLink href="#">Documentation</FooterNavLink>
+            <FooterNavLink href="#">Status</FooterNavLink>
+            <FooterNavLink href="#">Changelog</FooterNavLink>
+          </nav>
+          <nav className="flex flex-col gap-2">
+            <FooterNavHeading>Legal</FooterNavHeading>
+            <FooterNavLink href="#">Privacy Policy</FooterNavLink>
+            <FooterNavLink href="#">Terms of Service</FooterNavLink>
+          </nav>
+        </FooterRight>
+      </FooterContent>
+      <FooterMeta
+        copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+      />
+    </Footer>
+   </div>
+
+  </div>
 </ComponentPreview>
 
 ## Usage
 
-```tsx
-import { Footer } from '@e-infra/design-system'
+### Basic footer
 
-<Footer />
+Arrange branding in `FooterLeft`, links in `FooterRight`, and the copyright line in `FooterMeta`. `FooterMeta` is a sibling of `FooterContent`, not a child. It renders as the bottom row of the footer, beneath the content row.
+
+```tsx
+import {
+  Footer,
+  FooterContent,
+  FooterLeft,
+  FooterRight,
+  FooterMeta,
+  Button,
+} from "@e-infra/design-system";
+import { EInfraLogo } from "./einfra-logo";
+
+<Footer>
+  <FooterContent>
+    <FooterLeft>
+      <FooterLogo>
+        <EInfraLogo />
+      </FooterLogo>
+      <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
+    </FooterLeft>
+    <FooterRight>
+      <Button variant="ghost" size="sm" asChild>
+        <a href="#">
+          <span>Privacy Policy</span>
+        </a>
+      </Button>
+      <Button variant="ghost" size="sm" asChild>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <span>Documentation</span>
+        </a>
+      </Button>
+    </FooterRight>
+  </FooterContent>
+  <FooterMeta
+    copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+  />
+</Footer>;
 ```
 
-### Custom Logo
+### Logo and left text
+
+`FooterLogo` and `FooterLeftText` are optional children of `FooterLeft`. `FooterLogo` is a plain container for a custom logo, and `FooterLeftText` renders a muted caption beneath it. Give `FooterLeft` a column layout to stack them.
 
 ```tsx
-import customLogo from './my-logo.png'
+<FooterLeft className="flex-col items-start gap-2">
+  <FooterLogo>
+    <img src="/einfra-logo.svg" alt="e-INFRA CZ" className="h-12 w-auto" />
+  </FooterLogo>
+  <FooterLeftText>Operated by CERIT-SC and ICS MUNI</FooterLeftText>
+</FooterLeft>
+```
 
-<Footer
-  logo={customLogo}
-  logoAlt="My organization logo"
+### Navigation link lists
+
+`FooterRight` can hold grouped navigation. `FooterNavHeading` labels each column with muted uppercase text, and `FooterNavLink` renders links that underline on hover. Wrap each group in a `nav` with a column layout.
+
+```tsx
+<FooterRight className="items-start gap-8 md:gap-12">
+  <nav className="flex flex-col gap-2">
+    <FooterNavHeading>Resources</FooterNavHeading>
+    <FooterNavLink href="/docs">Documentation</FooterNavLink>
+    <FooterNavLink href="/status">Status</FooterNavLink>
+  </nav>
+  <nav className="flex flex-col gap-2">
+    <FooterNavHeading>Legal</FooterNavHeading>
+    <FooterNavLink href="/privacy">Privacy Policy</FooterNavLink>
+    <FooterNavLink href="/terms">Terms of Service</FooterNavLink>
+  </nav>
+</FooterRight>
+```
+
+### Copyright
+
+`FooterMeta` takes an optional `copyright` node and wraps it in a paragraph. There is no default owner and no automatic year, so pass the full string you want rendered.
+
+```tsx
+<FooterMeta
+  copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ — All rights reserved.`}
 />
 ```
 
-### Optional Tag
+Omit `copyright` to render children instead. This is the way to put a version string, build metadata, or extra links in the bottom row. The row is a `justify-between` flex container, so two children sit at opposite ends.
 
 ```tsx
-<Footer tag="build-2026-04-13" />
+<FooterMeta>
+  <p className="text-sm text-text-muted">Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ</p>
+  <span className="text-sm text-text-muted">v1.0.0</span>
+</FooterMeta>
 ```
+
+`copyright` wins when both are supplied — children are ignored.
+
+### Full-width footer
+
+`FooterContent` and `FooterMeta` each constrain their width to the container max-width. Opt out of both to span the viewport.
+
+```tsx
+<Footer>
+  <FooterContent container={false}>{/* ... */}</FooterContent>
+  <FooterMeta container={false} copyright="Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ" />
+</Footer>
+```
+
+## Components
+
+| Component       | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| `Footer`        | Root element rendered as `footer`                    |
+| `FooterContent` | Inner flex container with optional width constraint  |
+| `FooterLeft`    | Left-aligned row for branding and descriptive copy   |
+| `FooterLogo`    | Optional container for a custom logo inside `FooterLeft` |
+| `FooterLeftText`| Optional muted caption rendered beneath `FooterLogo` |
+| `FooterRight`   | Right-aligned row for links and actions              |
+| `FooterNavHeading` | Uppercase, muted heading that labels a nav column |
+| `FooterNavLink` | Muted link that underlines on hover                  |
+| `FooterMeta`    | Bottom row for the copyright line and other metadata |
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| logo | `string \| { src: string; width?: number; height?: number }` | bundled e-INFRA logo asset | Logo source for the centered image near the bottom |
-| logoAlt | `string` | `e-INFRA CZ Logo` | Alt text for the logo image |
-| tag | `string` | `undefined` | Optional small text rendered at the right side of the bottom row on desktop (below on mobile) |
+### Footer
+
+| Prop      | Type                                | Default | Description            |
+| --------- | ----------------------------------- | ------- | ---------------------- |
+| className | `string`                            | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLElement>` | -       | Native `footer` props  |
+
+### FooterContent
+
+| Prop      | Type                                   | Default | Description                                           |
+| --------- | -------------------------------------- | ------- | ----------------------------------------------------- |
+| container | `boolean`                              | `true`  | Whether to constrain width to the container max-width |
+| className | `string`                               | -       | Additional CSS classes                                |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props                                    |
+
+### FooterLeft
+
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
+
+### FooterLogo
+
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
+
+### FooterLeftText
+
+| Prop      | Type                                         | Default | Description            |
+| --------- | -------------------------------------------- | ------- | ---------------------- |
+| className | `string`                                     | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLParagraphElement>` | -       | Native `p` props       |
+
+### FooterRight
+
+| Prop      | Type                                   | Default | Description            |
+| --------- | -------------------------------------- | ------- | ---------------------- |
+| className | `string`                               | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props     |
+
+### FooterNavHeading
+
+| Prop      | Type                                        | Default | Description            |
+| --------- | ------------------------------------------- | ------- | ---------------------- |
+| className | `string`                                    | -       | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLHeadingElement>`  | -       | Native `h3` props      |
+
+### FooterNavLink
+
+| Prop      | Type                                             | Default | Description            |
+| --------- | ------------------------------------------------ | ------- | ---------------------- |
+| className | `string`                                         | -       | Additional CSS classes |
+| ...props  | `React.AnchorHTMLAttributes<HTMLAnchorElement>`  | -       | Native `a` props       |
+
+### FooterMeta
+
+| Prop      | Type                                   | Default | Description                                             |
+| --------- | -------------------------------------- | ------- | ------------------------------------------------------- |
+| copyright | `React.ReactNode`                      | -       | Copyright node, rendered in a muted `p` instead of children |
+| container | `boolean`                              | `true`  | Whether to constrain width to the container max-width   |
+| className | `string`                               | -       | Additional CSS classes                                  |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` | -       | Native `div` props                                      |
 
 ## Structure
 
-| Section | Details |
-|---------|---------|
-| Outer footer | `footer` with `mt-0 flex flex-col items-center border-t border-border bg-background px-5 pb-5` |
-| Main content row | Three-column responsive layout inside `mx-auto flex w-full max-w-275 flex-col items-center justify-between md:flex-row md:items-start` |
-| Dividers | Vertical separators shown from `md:` upward |
-| Logo row | `mx-auto mt-4 flex w-full max-w-275 items-center justify-center` with `img` class `h-22 w-auto` |
-| Bottom meta row | `mx-auto flex w-full max-w-275 flex-col items-center justify-center md:flex-row md:justify-between` with copyright, privacy link, and optional `tag` |
-
-## Built-in Content
-
-### e-INFRA CZ Section
-
-Displays a fixed description of the e-INFRA CZ research infrastructure, including CERIT-SC, CESNET, and IT4Innovations.
-
-### General Information
-
-Renders two fixed links:
-
-1. `https://blog.e-infra.cz/`
-2. `https://e-infra.cz/`
-
-Each link is rendered through an internal `RedirectListItem` helper using:
-
-- icon `MoveRight`
-- anchor class `text-primary hover:text-primary/80 flex items-center gap-2 transition-colors`
-
-### Support
-
-Renders the following fixed support items with icons:
-
-1. `Available non-stop`
-2. `support@e-infra.cz`
-3. `+420 234 680 222`
-
-### Footer Meta
-
-The bottom row contains:
-
-1. `Copyright © 2025 e-INFRA CZ`
-2. Privacy policy link to `https://www.e-infra.cz/en/personal-data-processing`
-3. Optional `tag` text when provided
+| Part          | Details                                                                                     |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| Outer wrapper | `footer` with `w-full border-t border-border bg-background`                                 |
+| Content row   | `flex flex-col gap-4 px-4 py-6 md:flex-row md:items-center md:gap-6`                        |
+| Left section  | `flex items-center gap-4 md:gap-6` for branding and copy                                    |
+| Right section | `flex items-center gap-2 md:ml-auto` for links and actions                                  |
+| Meta row      | `flex flex-col items-center justify-between gap-2 px-4 pb-6 sm:flex-row`                    |
 
 ## Behavior
 
-| Behavior | Details |
-|----------|---------|
-| Responsiveness | Stacks content vertically on small screens and switches to a horizontal three-column layout on `md:` |
-| Alignment | Content is centered on mobile and left-aligned within each section on larger screens |
-| Logo handling | Accepts either a plain string URL or an object with a `src` field |
-| Logo resolution | Internally resolves both string and static-import object formats via `resolveLogoSrc` |
-| Conditional tag | `tag` is rendered only when provided |
-| External links | Blog, website, email, and privacy policy are built into the component |
-
-## Notes
-
-This component is intentionally opinionated. Most visible content is fixed in the implementation. Public customization is limited to `logo`, `logoAlt`, and optional `tag`. If you need custom footer sections or different links, the component implementation needs to be extended.
+| Behavior              | Details                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| Composition-first API | Layout is built by arranging the subcomponents rather than selecting from variants          |
+| Width control         | `FooterContent` and `FooterMeta` each constrain width and opt out with `container={false}`  |
+| Copyright shorthand   | `FooterMeta` renders `copyright` when given, and falls back to children when it is omitted  |
+| Responsiveness        | The content row stacks at `md:` and the meta row at `sm:`, centering their content          |
+| Custom styling        | Native `className` props allow local overrides without changing the implementation          |

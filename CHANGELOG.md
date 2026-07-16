@@ -1,6 +1,21 @@
 # Changelog
 
+## v0.1.8
+
+- Added new color palette for eLTER design system
+- Updated EOSC CZ color palette, added dark mode support
+- Update base e-infra CZ color palette, fixed dark mode saturation and contrast issues
+- added search for docs in the showcase app
+- added searchbar component to the component library
+- added new footer component with API matching header
+- added storybook button for redirect in each component docs page
+
+## v0.1.7
+
+- custom color palette available in beta
+
 ## v0.1.6
+
 - Added stepper component
 - Fixed shade ramp colors
 - Fixed issues with Content component compounds

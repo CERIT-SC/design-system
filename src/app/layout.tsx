@@ -14,7 +14,17 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "../../lib/components/primitives/navigation-menu";
-import { Footer } from "../../lib/components/layout/footer";
+import {
+  Footer,
+  FooterContent,
+  FooterLeft,
+  FooterLeftText,
+  FooterLogo,
+  FooterMeta,
+  FooterNavHeading,
+  FooterNavLink,
+  FooterRight,
+} from "../../lib/components/layout/footer";
 import EinfraLogoLight from "../../public/einfra-logo.svg";
 import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
@@ -22,14 +32,15 @@ import Link from "next/link";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { ThemeSelector } from "../components/ThemeSelector";
 import { ThemeInitializer } from "../components/ThemeInitializer";
+import { SearchTrigger } from "../components/search/SearchTrigger";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "e-INFRA CZ Design System - Components",
-  description: "Design system components for e-INFRA CZ",
+  title: "Design System e-INFRA CZ",
+  description: "Design system showcase web for e-INFRA CZ",
 };
 
 export default function RootLayout({
@@ -49,6 +60,8 @@ export default function RootLayout({
 
                 if (branding === 'eosc') {
                   document.documentElement.setAttribute('data-theme', 'eosc');
+                } else if (branding === 'elter') {
+                  document.documentElement.setAttribute('data-theme', 'elter');
                 } else {
                   document.documentElement.removeAttribute('data-theme');
                 }
@@ -79,7 +92,7 @@ export default function RootLayout({
                     alt="e-INFRA Logo (light mode)"
                     width={120}
                     height={16}
-                    className="h-20 w-auto dark:hidden"
+                    className="h-12 w-auto dark:hidden"
                   />
                   <Image
                     src={EinfraLogoDark as StaticImageData}
@@ -135,12 +148,72 @@ export default function RootLayout({
                     NPM package
                   </Button>
                 </Link>
+                <SearchTrigger />
                 <ThemeSelector />
               </HeaderRight>
             </HeaderContent>
           </Header>
           {children}
-          <Footer tag={process.env.NEXT_PUBLIC_TAG} />
+          <Footer>
+            <FooterContent>
+              <FooterLeft>
+                <FooterLogo>
+                  <Image
+                    src={EinfraLogoLight as StaticImageData}
+                    alt="e-INFRA Logo (light mode)"
+                    width={120}
+                    height={16}
+                    className="h-16 w-auto dark:hidden"
+                  />
+                  <Image
+                    src={EinfraLogoDark as StaticImageData}
+                    alt="e-INFRA Logo (dark mode)"
+                    width={120}
+                    height={16}
+                    className="hidden h-16 w-auto dark:block"
+                  />
+                </FooterLogo>
+
+                <FooterLeftText className="text-sm text-text-muted">
+                  The national Czech e-infrastructure for research and
+                  development. <br></br>Design system operated by CERIT-SC, ICS
+                  MUNI.
+                </FooterLeftText>
+              </FooterLeft>
+              <FooterRight>
+                <nav className="flex flex-col gap-2">
+                  <FooterNavHeading>Resources</FooterNavHeading>
+                  <FooterNavLink
+                    href="https://docs.e-infra.cz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    e-INFRA Docs
+                  </FooterNavLink>
+                  <FooterNavLink
+                    href="https://blog.e-infra.cz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    e-INFRA Blog
+                  </FooterNavLink>
+                </nav>
+                <nav className="flex flex-col gap-2">
+                  <FooterNavHeading>Legal</FooterNavHeading>
+                  <FooterNavLink
+                    href="https://www.e-infra.cz/en/personal-data-processing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Privacy Policy
+                  </FooterNavLink>
+                </nav>
+              </FooterRight>
+            </FooterContent>
+            <FooterMeta
+              copyright={`Copyright © ${new Date().getFullYear().toString()} e-INFRA CZ`}
+            />
+          </Footer>
         </ThemeProvider>
       </body>
     </html>

@@ -1,0 +1,151 @@
+# Searchbar
+
+Searchbar is a search input with a leading magnifier icon, a clear button that appears once the field is non-empty, an optional loading spinner, and an optional keyboard hint. It is purely presentational — it holds no search logic, so you can wire it to any search backend.
+
+`SearchbarTrigger` is a companion button that looks like a Searchbar but opens a search surface (typically a dialog) instead of accepting text.
+
+<ComponentPreview>
+  <Searchbar placeholder="Search documentation…" shortcut="⌘ K" />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Searchbar } from "@e-infra/design-system"
+
+const [query, setQuery] = useState("")
+
+<Searchbar
+  value={query}
+  onValueChange={setQuery}
+  placeholder="Search documentation…"
+/>
+```
+
+### Uncontrolled
+
+Leave `value` out and the component manages its own text. Use `onValueChange` to observe it.
+
+```tsx
+<Searchbar defaultValue="button" onValueChange={(v) => console.log(v)} />
+```
+
+### Loading State
+
+While a query is in flight, `loading` replaces the clear button with a spinner.
+
+<ComponentPreview>
+  <Searchbar defaultValue="button" loading />
+</ComponentPreview>
+
+```tsx
+const { query, setQuery, isLoading } = useSearch()
+
+<Searchbar value={query} onValueChange={setQuery} loading={isLoading} />
+```
+
+### Keyboard Hint
+
+`shortcut` renders a `<kbd>` on the right while the field is empty. It is hidden below the `sm:` breakpoint. The component does not bind the key itself — register the listener where the search surface lives.
+
+```tsx
+<Searchbar shortcut="⌘ K" />
+```
+
+### Sizes
+
+<ComponentPreview>
+  <div className="flex w-full flex-col gap-4">
+    <Searchbar size="sm" placeholder="Small" />
+    <Searchbar size="md" placeholder="Medium" />
+    <Searchbar size="lg" placeholder="Large" />
+  </div>
+</ComponentPreview>
+
+```tsx
+<Searchbar size="sm" />
+<Searchbar size="md" />
+<Searchbar size="lg" />
+```
+
+### Trigger Variant
+
+Use `SearchbarTrigger` where a live input would mislead — a site header whose results open in a command palette, for example. It matches the Searchbar shell exactly, so the two read as one control across the transition.
+
+<ComponentPreview>
+  <SearchbarTrigger placeholder="Search documentation…" shortcut="⌘ K" />
+</ComponentPreview>
+
+```tsx
+import { SearchbarTrigger } from "@e-infra/design-system"
+
+<SearchbarTrigger
+  placeholder="Search documentation…"
+  shortcut="⌘ K"
+  onClick={() => setOpen(true)}
+/>
+```
+
+### Inside a Dialog
+
+Drop the border and rounding to seat the field flush against the top of a command palette.
+
+```tsx
+<Command shouldFilter={false}>
+  <Searchbar
+    value={query}
+    onValueChange={setQuery}
+    className="rounded-none border-0 border-b shadow-none focus-within:ring-0"
+  />
+  <CommandList>{/* results */}</CommandList>
+</Command>
+```
+
+## Searchbar Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string` | - | Controlled text. Omit for uncontrolled mode |
+| defaultValue | `string` | `""` | Initial text in uncontrolled mode |
+| onValueChange | `(value: string) => void` | `undefined` | Called with the new text on type and on clear |
+| onClear | `() => void` | `undefined` | Called after the clear button fires `onValueChange("")` |
+| clearable | `boolean` | `true` | Show the clear button once the field is non-empty |
+| loading | `boolean` | `false` | Replace the clear button with a spinner |
+| shortcut | `React.ReactNode` | `undefined` | Keyboard hint shown while the field is empty |
+| size | `"sm" \| "md" \| "lg"` | `"md"` | Height and typography scale |
+| placeholder | `string` | `"Search…"` | Placeholder text |
+| disabled | `boolean` | `false` | Disable the input and dim the shell |
+| aria-label | `string` | `"Search"` | Accessible label for the input |
+| className | `string` | - | Additional classes merged onto the outer shell |
+| ...props | `React.ComponentProps<"input">` | - | Native `input` props applied to the input element |
+
+## SearchbarTrigger Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| placeholder | `string` | `"Search…"` | Muted text shown in place of an input value |
+| shortcut | `React.ReactNode` | `undefined` | Keyboard hint rendered on the right |
+| size | `"sm" \| "md" \| "lg"` | `"md"` | Height and typography scale |
+| className | `string` | - | Additional classes merged onto the outer shell |
+| ...props | `React.ComponentProps<"button">` | - | Native `button` props, including `onClick` |
+
+## Structure
+
+| Part | Details |
+|------|---------|
+| Shell | `flex w-full items-center rounded-md border border-border bg-transparent shadow-xs dark:bg-surface` |
+| Focus | `focus-within:border-border-focus focus-within:ring-2` on the shell, so the whole control lights up |
+| Leading icon | `Search` from `lucide-react`, `text-text-muted`, `aria-hidden` |
+| Input | Transparent, borderless, fills remaining width; native search clear button suppressed |
+| Trailing slot | Spinner when `loading`, else clear button when non-empty, else `shortcut` |
+
+## Behavior
+
+| Behavior | Details |
+|----------|---------|
+| Controlled vs uncontrolled | Passing `value` switches to controlled mode; otherwise internal state tracks `defaultValue` |
+| Clearing | The clear button empties the field, fires `onValueChange("")` then `onClear`, and returns focus to the input |
+| Trailing precedence | `loading` wins over the clear button, which wins over `shortcut` |
+| Shortcut binding | Purely visual — the consuming app registers the actual key listener |
+| Responsiveness | The `shortcut` hint is hidden below `sm:`; the shell fills its container width |
+| Escape key | Not intercepted, so the field never swallows a dialog's close |

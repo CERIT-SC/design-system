@@ -33,8 +33,14 @@ import { componentRegistry } from "../../lib/component-registry";
 // ─── Foundation preview components ───────────────────────────────────────────
 // next-mdx-remote does NOT process ES import statements written inside .mdx
 // files. Every component used in MDX must be registered here instead.
-import ColorsPreview from "./foundations/ColorsPreview";
 import ThemeColorsPreview from "./foundations/ThemeColorsPreview";
+
+// ─── Interactive preview components ──────────────────────────────────────────
+// MDX is compiled in a Server Component, so event handlers cannot be written
+// inline in .mdx. Previews that need callbacks live in a "use client" wrapper
+// here and are used as a single self-contained tag inside <ComponentPreview>.
+import CookiesBannerPreview from "./previews/CookiesBannerPreview";
+import FeedbackFormPreview from "./previews/FeedbackFormPreview";
 import Image from "next/image";
 import { Children } from "react";
 
@@ -202,9 +208,10 @@ export const mdxComponents: MDXComponents = {
   ),
   ComponentPreview,
   CodeBlock,
-  ColorsPreview,
   ThemeColorsPreview,
   ...libraryComponents,
+  CookiesBannerPreview,
+  FeedbackFormPreview,
 };
 
 export default mdxComponents;

@@ -45,6 +45,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Footer,
+  FooterContent,
+  FooterLeft,
+  FooterMeta,
+  FooterRight,
   Header,
   HeaderCenter,
   HeaderContent,
@@ -386,7 +390,7 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
         </div>
       );
     case "progress":
-      return <Progress value={66} className="max-w-sm" />;
+      return <Progress value={66} className="w-64" />;
     case "radio-group":
       return (
         <RadioGroup defaultValue="comfortable" className="space-y-2">
@@ -538,11 +542,21 @@ function renderPreviewBySlug(slug: string): React.ReactNode {
       );
     case "footer":
       return (
-        <div
-          className="overflow-hidden rounded-md border border-border bg-background"
-          style={{ width: "1120px" }}
-        >
-          <Footer tag="preview" />
+        <div className="w-full overflow-hidden rounded-md border border-border bg-background">
+          <Footer className="border-t-0">
+            <FooterContent container={false} className="px-3 py-3">
+              <FooterLeft className="text-sm font-semibold">Brand</FooterLeft>
+              <FooterRight>
+                <Button size="sm" variant="outline">
+                  Status
+                </Button>
+              </FooterRight>
+            </FooterContent>
+            <FooterMeta
+              container={false}
+              copyright="Copyright © 2026 e-INFRA CZ"
+            />
+          </Footer>
         </div>
       );
     case "header":

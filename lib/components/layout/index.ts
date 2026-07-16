@@ -11,7 +11,17 @@ export {
   HeaderRight,
   HeaderCenter,
 } from "./header";
-export { Footer } from "./footer";
+export {
+  Footer,
+  FooterContent,
+  FooterLeft,
+  FooterLogo,
+  FooterLeftText,
+  FooterRight,
+  FooterNavHeading,
+  FooterNavLink,
+  FooterMeta,
+} from "./footer";
 export {
   Sidebar,
   SidebarHeader,

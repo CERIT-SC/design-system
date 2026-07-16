@@ -18,7 +18,6 @@ const Header = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
 Header.displayName = "Header";
 
 interface HeaderContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Whether to constrain width to container max-width. Default: true */
   container?: boolean;
 }
 
@@ -27,7 +26,7 @@ const HeaderContent = React.forwardRef<HTMLDivElement, HeaderContentProps>(
     <div
       ref={ref}
       className={cn(
-        "flex h-14 items-center gap-4 px-4 md:gap-6", // h-14 = 56px
+        "flex h-14 items-center gap-4 px-4 md:gap-6",
         container && "container mx-auto",
         className
       )}

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { CookiesBanner } from "./cookies-banner";
 
 const meta = {
-  title: "Mid-level/CookiesBanner",
+  title: "Compounds/Cookies Banner",
   component: CookiesBanner,
   parameters: {
     layout: "fullscreen",

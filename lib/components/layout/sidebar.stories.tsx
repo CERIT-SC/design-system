@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 const meta = {
-  title: "Components/Sidebar",
+  title: "Layout/Sidebar",
   component: Sidebar,
   parameters: {
     layout: "fullscreen",

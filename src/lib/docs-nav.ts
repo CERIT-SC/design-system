@@ -34,6 +34,20 @@ const SECTION_ORDER: Record<string, number> = {
   layout: 3,
 };
 
+/**
+ * Hand-authored doc pages that are real Next.js routes (`page.tsx`) rather than
+ * generated from an `.mdx` file, but should still appear in the sidebar/overview
+ * navigation. Keyed by the section slug they belong to.
+ */
+const STATIC_PAGES: (NavItem & { section: string })[] = [
+  {
+    section: "foundations",
+    title: "Colors",
+    slug: "colors",
+    path: "/docs/foundations/colors",
+  },
+];
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function toTitleCase(str: string): string {
@@ -112,6 +126,15 @@ export function buildDocsNavStructure(): NavSection[] {
       slug: filename,
       path: `/docs/${relative}`,
     });
+  }
+
+  // Merge in hand-authored (non-MDX) pages so they show up in the nav too.
+  for (const { section, ...item } of STATIC_PAGES) {
+    const items = sectionsMap.get(section) ?? [];
+    if (!items.some((existing) => existing.path === item.path)) {
+      items.push(item);
+    }
+    sectionsMap.set(section, items);
   }
 
   const sections: NavSection[] = Array.from(sectionsMap.entries()).map(

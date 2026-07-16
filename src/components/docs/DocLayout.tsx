@@ -20,6 +20,7 @@ import {
 } from "../../../lib/components/layout/sidebar";
 import { Content } from "../../../lib/components/layout/content";
 import type { NavSection } from "../../lib/docs-nav";
+import { SidebarSearch } from "../search/SidebarSearch";
 
 interface DocLayoutProps {
   children: React.ReactNode;
@@ -56,62 +57,64 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
   return (
     <div className="flex min-h-svh w-full">
       <Sidebar>
-        <SidebarContent>
-          {gettingStartedSection && (
-            <CollapsibleGroup
-              title={gettingStartedSection.title}
-              defaultOpen={gettingStartedSection.slug === activeCategory}
-            >
-              {gettingStartedSection.items.map((item) => (
-                <NavItem
-                  key={item.slug}
-                  asChild
-                  isActive={isActivePath(item.path)}
-                  className={cn(
-                    isActivePath(item.path) &&
-                      "bg-primary/10 text-primary font-medium"
-                  )}
-                >
-                  <Link href={item.path}>{item.title}</Link>
-                </NavItem>
-              ))}
+        <SidebarContent className="pt-2">
+          <SidebarSearch>
+            {gettingStartedSection && (
+              <CollapsibleGroup
+                title={gettingStartedSection.title}
+                defaultOpen={gettingStartedSection.slug === activeCategory}
+              >
+                {gettingStartedSection.items.map((item) => (
+                  <NavItem
+                    key={item.slug}
+                    asChild
+                    isActive={isActivePath(item.path)}
+                    className={cn(
+                      isActivePath(item.path) &&
+                        "bg-primary/10 text-primary font-medium"
+                    )}
+                  >
+                    <Link href={item.path}>{item.title}</Link>
+                  </NavItem>
+                ))}
+              </CollapsibleGroup>
+            )}
+            <CollapsibleGroup title="Overview" defaultOpen={true}>
+              <NavItem
+                href="/docs/foundations"
+                isActive={isActivePath("/docs/foundations")}
+              >
+                Foundations
+              </NavItem>
+              <NavItem
+                href="/docs/components"
+                isActive={isActivePath("/docs/components")}
+              >
+                Components
+              </NavItem>
             </CollapsibleGroup>
-          )}
-          <CollapsibleGroup title="Overview" defaultOpen={true}>
-            <NavItem
-              href="/docs/foundations"
-              isActive={isActivePath("/docs/foundations")}
-            >
-              Foundations
-            </NavItem>
-            <NavItem
-              href="/docs/components"
-              isActive={isActivePath("/docs/components")}
-            >
-              Components
-            </NavItem>
-          </CollapsibleGroup>
-          {mainSections.map((section) => (
-            <CollapsibleGroup
-              key={section.slug}
-              title={section.title}
-              defaultOpen={section.slug === activeCategory}
-            >
-              {section.items.map((item) => (
-                <NavItem
-                  key={item.slug}
-                  asChild
-                  isActive={isActivePath(item.path)}
-                  className={cn(
-                    isActivePath(item.path) &&
-                      "bg-primary/10 text-primary font-medium"
-                  )}
-                >
-                  <Link href={item.path}>{item.title}</Link>
-                </NavItem>
-              ))}
-            </CollapsibleGroup>
-          ))}
+            {mainSections.map((section) => (
+              <CollapsibleGroup
+                key={section.slug}
+                title={section.title}
+                defaultOpen={section.slug === activeCategory}
+              >
+                {section.items.map((item) => (
+                  <NavItem
+                    key={item.slug}
+                    asChild
+                    isActive={isActivePath(item.path)}
+                    className={cn(
+                      isActivePath(item.path) &&
+                        "bg-primary/10 text-primary font-medium"
+                    )}
+                  >
+                    <Link href={item.path}>{item.title}</Link>
+                  </NavItem>
+                ))}
+              </CollapsibleGroup>
+            ))}
+          </SidebarSearch>
         </SidebarContent>
       </Sidebar>
 

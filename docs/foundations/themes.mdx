@@ -14,13 +14,14 @@ Import setup CSS file for desired themes in your entry point CSS file or main co
 // app/globals.css or index.tsx
 import '@e-infra/design-system/setup.css';       // Default theme
 import '@e-infra/design-system/eosc_setup.css';   // EOSC theme
+import '@e-infra/design-system/elter_setup.css';  // ELTER theme
 ```
 
 ## Theme Persistence
 
 Theme preferences are automatically persisted in `localStorage`:
 
-- `theme-branding`: `"default"` or `"eosc"`
+- `theme-branding`: `"default"`, `"eosc"` or `"elter"`
 - `theme-color-mode`: `"light"`, `"dark"`, or `"system"`
 
 The theme is restored on page reload without additional configuration.
@@ -103,6 +104,7 @@ All of these have automatic fallbacks; set them only if you want more control:
 
 For a completely bespoke theme (custom surfaces, semantic colors, charts, or
 hand-tuned ramps), define a `[data-theme="yourtheme"]` block that overrides the
-raw tokens directly — see the shipped [setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/setup.css)
-and [eosc_setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/eosc_setup.css)
+raw tokens directly — see the shipped [setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/setup.css),
+[eosc_setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/eosc_setup.css),
+and [elter_setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/elter_setup.css)
 as references for the complete token list.

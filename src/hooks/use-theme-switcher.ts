@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-export type BrandingTheme = "default" | "eosc";
+export type BrandingTheme = "default" | "eosc" | "elter";
 export type ColorMode = "light" | "dark";
 
 /**
@@ -12,7 +12,9 @@ export type ExtendedTheme =
   | "light" // Default light
   | "dark" // Default dark
   | "eosc" // EOSC light
-  | "eosc-dark"; // EOSC dark
+  | "eosc-dark" // EOSC dark
+  | "elter" // ELTER light
+  | "elter-dark"; // ELTER dark
 
 /**
  * Get saved branding theme from localStorage (lazy initializer)
@@ -20,7 +22,9 @@ export type ExtendedTheme =
 function getInitialBrandingTheme(): BrandingTheme {
   if (typeof window === "undefined") return "default";
   const saved = localStorage.getItem("theme-branding");
-  return saved === "default" || saved === "eosc" ? saved : "default";
+  return saved === "default" || saved === "eosc" || saved === "elter"
+    ? saved
+    : "default";
 }
 
 /**
@@ -37,10 +41,11 @@ function getInitialColorMode(): ColorMode {
  *
  * This provides theme switching independent of next-themes, using:
  * - `data-theme="eosc"` attribute for EOSC branding
+ * - `data-theme="elter"` attribute for ELTER branding
  * - `.dark` class for dark mode
  *
  * Theme preferences are stored in localStorage:
- * - "theme-branding": "default" | "eosc"
+ * - "theme-branding": "default" | "eosc" | "elter"
  * - "theme-color-mode": "light" | "dark"
  */
 export function useThemeSwitcher() {
@@ -56,6 +61,8 @@ export function useThemeSwitcher() {
     const html = document.documentElement;
     if (brandingTheme === "eosc") {
       html.dataset.theme = "eosc";
+    } else if (brandingTheme === "elter") {
+      html.dataset.theme = "elter";
     } else {
       delete html.dataset.theme;
     }
@@ -71,6 +78,7 @@ export function useThemeSwitcher() {
    * Apply theme changes to both data-theme attribute and class
    *
    * For EOSC themes: sets data-theme="eosc" and applies .dark class if needed
+   * For ELTER themes: sets data-theme="elter" and applies .dark class if needed
    * For default themes: removes data-theme and applies dark class if needed
    */
   const applyTheme = useCallback((branding: BrandingTheme, mode: ColorMode) => {
@@ -81,6 +89,8 @@ export function useThemeSwitcher() {
     // Handle branding theme
     if (branding === "eosc") {
       html.dataset.theme = "eosc";
+    } else if (branding === "elter") {
+      html.dataset.theme = "elter";
     } else {
       delete html.dataset.theme;
     }
@@ -103,6 +113,20 @@ export function useThemeSwitcher() {
       localStorage.setItem("theme-branding", "eosc");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("eosc", mode);
+    },
+    [applyTheme]
+  );
+
+  /**
+   * Set ELTER branding theme
+   */
+  const setElterTheme = useCallback(
+    (mode: ColorMode = "light") => {
+      setBrandingTheme("elter");
+      setColorMode(mode);
+      localStorage.setItem("theme-branding", "elter");
+      localStorage.setItem("theme-color-mode", mode);
+      applyTheme("elter", mode);
     },
     [applyTheme]
   );
@@ -145,6 +169,7 @@ export function useThemeSwitcher() {
     brandingTheme,
     colorMode,
     setEOSCTheme,
+    setElterTheme,
     setDefaultTheme,
     toggleBrandingTheme,
     toggleColorMode,

@@ -3,14 +3,7 @@
 Cookies Banner is a fixed consent banner displayed at the bottom of the viewport. It renders a default cookie message, an optional learn-more link, and three actions for rejecting cookies, allowing only functional cookies, or accepting all cookies.
 
 <ComponentPreview>
-  <div className="rounded-lg border border-dashed p-6">
-    <CookiesBanner
-      className="static rounded-lg border shadow-none"
-      onReject={() => console.log("Reject clicked")}
-      onFunctional={() => console.log("Only Functional clicked")}
-      onAccept={() => console.log("Accept All clicked")}
-    />
-  </div>
+  <CookiesBannerPreview />
 </ComponentPreview>
 
 ## Usage

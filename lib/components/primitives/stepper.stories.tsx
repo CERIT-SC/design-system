@@ -19,7 +19,7 @@ import { Textarea } from "./textarea";
 import { Button } from "./button";
 
 const meta = {
-  title: "Components/Stepper",
+  title: "Primitives/Stepper",
   component: Stepper,
   parameters: {
     layout: "centered",

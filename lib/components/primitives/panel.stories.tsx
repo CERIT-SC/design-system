@@ -24,7 +24,7 @@ import { Switch } from "./switch";
 import { Slider } from "./slider";
 
 const meta = {
-  title: "Components/Panel",
+  title: "Primitives/Panel",
   component: Panel,
   parameters: {
     layout: "centered",

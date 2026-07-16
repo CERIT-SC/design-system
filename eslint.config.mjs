@@ -14,13 +14,14 @@ export default defineConfig([
     ".build/**",
     "index.cjs.js",
     "index.es.js",
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
     "lib/**/*.stories.{js,cjs,mjs,ts,tsx}",
     "eslint.config.mjs",
+    "scripts/**",
+    "public/pagefind/**",
   ]),
 
   eslint.configs.recommended,

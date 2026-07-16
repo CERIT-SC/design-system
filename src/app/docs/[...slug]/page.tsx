@@ -2,12 +2,15 @@ import { readFileSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 
 import { mdxComponents } from "../../../components/docs/MDXComponents";
+import { StorybookLink } from "../../../components/docs/StorybookLink";
+import { pagefindBodyAttrs, sectionForSlug } from "../../../lib/docs-search";
+import { storybookUrlForSlug } from "../../../lib/storybook";
 
 import { H1, P } from "../../../../lib/components/foundations/typography";
 
-// Base directory for docs (resolved relative to project root)
 const DOCS_DIR = join(process.cwd(), "docs");
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -88,7 +91,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${slugToTitle(slug).toUpperCase()} | e-INFRA CZ Design System`,
+    title: `${slugToTitle(slug)} | e-INFRA CZ Design System`,
     description: "Documentation page for the e-INFRA CZ Design System.",
   };
 }
@@ -115,12 +118,22 @@ export default async function DocsPage({
     components: mdxComponents,
     options: {
       parseFrontmatter: true,
+      blockJS: false,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [],
+        // Heading ids give Pagefind anchors for its sub-results.
+        rehypePlugins: [rehypeSlug],
       },
     },
   });
 
-  return <article>{content}</article>;
+  const section = sectionForSlug(slug);
+  const storybookUrl = storybookUrlForSlug(slug);
+
+  return (
+    <article {...(section ? pagefindBodyAttrs(section) : {})}>
+      {storybookUrl && <StorybookLink href={storybookUrl} />}
+      {content}
+    </article>
+  );
 }
