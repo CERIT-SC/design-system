@@ -25,17 +25,6 @@ import {
   FooterNavLink,
   FooterRight,
 } from "../../lib/components/layout/footer";
-import {
-  Footer,
-  FooterContent,
-  FooterLeft,
-  FooterLeftText,
-  FooterLogo,
-  FooterMeta,
-  FooterNavHeading,
-  FooterNavLink,
-  FooterRight,
-} from "../../lib/components/layout/footer";
 import EinfraLogoLight from "../../public/einfra-logo.svg";
 import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
@@ -68,8 +57,6 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Design System e-INFRA CZ",
-  description: "Design system showcase web for e-INFRA CZ",
   title: "Design System e-INFRA CZ",
   description: "Design system showcase web for e-INFRA CZ",
 };
@@ -126,8 +113,6 @@ export default function RootLayout({
                   document.documentElement.setAttribute('data-theme', 'eosc');
                 } else if (branding === 'elter') {
                   document.documentElement.setAttribute('data-theme', 'elter');
-                } else if (branding === 'elter') {
-                  document.documentElement.setAttribute('data-theme', 'elter');
                 } else {
                   document.documentElement.removeAttribute('data-theme');
                 }
@@ -158,6 +143,7 @@ export default function RootLayout({
                     alt="e-INFRA Logo (light mode)"
                     width={120}
                     height={16}
+                    className="h-12 w-auto dark:hidden"
                     className="h-12 w-auto dark:hidden"
                   />
                   <Image

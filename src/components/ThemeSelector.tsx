@@ -9,6 +9,7 @@ import {
 } from "../../lib/components/primitives/dropdown-menu";
 import { Button } from "../../lib/components/primitives/button";
 import { Sun, Moon, Palette, ChevronDown } from "lucide-react";
+import { Sun, Moon, Palette, ChevronDown } from "lucide-react";
 import {
   useThemeSwitcher,
   type BrandingTheme,
