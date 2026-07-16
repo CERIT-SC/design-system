@@ -161,15 +161,14 @@
   --transition-duration: 300ms;
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Surfaces — cool neutral grey, ~3% violet tint, 10–12 lightness units per step */
-  --background:     #f4f5f9; /* page canvas — near-neutral, barely-there cool tint */
-  --surface:        #eaebf1; /* cards, sidebar, inputs — clear step from background */
-  --surface-raised: #dddee6; /* popovers, dropdowns, modals — clearly above surface */
+  --background:     #f4f5f9; 
+  --surface:        #eaebf1; 
+  --surface-raised: #dddee6;
 
   /* Text */
-  --text:         #130f23; /* near-black, matches primary family */
-  --text-muted:   #6e6a82; /* violet-grey muted                  */
-  --text-heading: #2f2557; /* primary brand purple               */
+  --text:         #130f23;
+  --text-muted:   #6e6a82; 
+  --text-heading: #2f2557; 
 
   /* Brand */
   --primary:            #2f2557;
@@ -182,10 +181,9 @@
   --tertiary-foreground: #0e444e;
 
   /* Borders */
-  --border:       #c9cad4; /* cool neutral, consistent with surfaces */
-  --border-focus: #2f2557; /* primary, used for focus rings          */
+  --border:       #c9cad4;
+  --border-focus: #2f2557;
 
-  /* Semantic — unchanged, well-calibrated for both modes */
   --info:               #7ecdf8;
   --info-foreground:    #192932;
   --success:            #1cc16f;
@@ -204,43 +202,42 @@
   --chart-6: #8278f0;
   --chart-7: #d7412f;
 
-  /* ── Color ramps — use for hover states, tinted badges, disabled fills ── */
-
-  --color-primary-50:  #e8e7f4;
-  --color-primary-100: #d2cfe9;
-  --color-primary-200: #a59dd2;
-  --color-primary-300: #7c6fbb;
-  --color-primary-400: #564597;
-  --color-primary-500: #2f2557;
-  --color-primary-600: #271f4b;
-  --color-primary-700: #1f183d;
-  --color-primary-800: #17112f;
-  --color-primary-900: #0f0a22;
+  /* ── Color ramps ── */
+  --color-primary-50: #ebeaf5;
+  --color-primary-100: #d8d5eb;
+  --color-primary-200: #b5aeda;
+  --color-primary-300: #9086c7;
+  --color-primary-400: #7061b2;
+  --color-primary-500: #4e3f8b;
+  --color-primary-600: #2f2557; /* primary */
+  --color-primary-700: #251d47;
+  --color-primary-800: #1b1436;
+  --color-primary-900: #120d27;
   --color-primary-950: #080516;
 
-  --color-secondary-50:  #fcfcfd;
-  --color-secondary-100: #f7f6f9;
-  --color-secondary-200: #f1f0f6;
-  --color-secondary-300: #e9e7f0;
-  --color-secondary-400: #e1deeb;
-  --color-secondary-500: #d9d6e6;
-  --color-secondary-600: #aca4c8;
-  --color-secondary-700: #8374aa;
-  --color-secondary-800: #5a497e;
-  --color-secondary-900: #2f2543;
-  --color-secondary-950: #1d162b;
+  --color-secondary-50: #f7f6f9;
+  --color-secondary-100: #ebeaf2;
+  --color-secondary-200: #d9d6e6; /* secondary */
+  --color-secondary-300: #bbb5d2;
+  --color-secondary-400: #a199c1;
+  --color-secondary-500: #857aae;
+  --color-secondary-600: #6b5d98;
+  --color-secondary-700: #504476;
+  --color-secondary-800: #382f55;
+  --color-secondary-900: #201a32;
+  --color-secondary-950: #120e20;
 
-  --color-tertiary-50:  #f9fdfd;
-  --color-tertiary-100: #f4fbfc;
-  --color-tertiary-200: #eef8fa;
-  --color-tertiary-300: #e3f4f7;
-  --color-tertiary-400: #ddf2f6;
-  --color-tertiary-500: #d3eef3;
-  --color-tertiary-600: #8dbec6;
-  --color-tertiary-700: #658a90;
-  --color-tertiary-800: #425b60;
-  --color-tertiary-900: #202e31;
-  --color-tertiary-950: #111b1d;
+  --color-tertiary-50: #f4fbfc;
+  --color-tertiary-100: #e9f6f9;
+  --color-tertiary-200: #d3eef3; /* tertiary */
+  --color-tertiary-300: #9cd2db;
+  --color-tertiary-400: #82b0b8;
+  --color-tertiary-500: #6b9298;
+  --color-tertiary-600: #537277;
+  --color-tertiary-700: #3e565a;
+  --color-tertiary-800: #283a3d;
+  --color-tertiary-900: #162123;
+  --color-tertiary-950: #0c1516;
 
   --color-info-50:  #f5fafe;
   --color-info-100: #ebf5fe;
@@ -290,10 +287,6 @@
   --color-error-900: #3e1005;
   --color-error-950: #290902;
 
-  /* Base ramp — cool neutral grey, shared by both modes.
-     Light uses low stops (50–300) for surfaces, high (700–950) for text.
-     Dark uses high stops (700–950) for surfaces, low (50–200) for text.
-     Stops 50–300 mirror the surface tokens exactly for consistency. */
   --color-base-50:  #f4f5f9;
   --color-base-100: #eaebf1;
   --color-base-200: #dddee6;
@@ -309,25 +302,24 @@
 
 /* ─── Dark mode ───────────────────────────────────────────── */
 .dark {
-  /* Surfaces — near-black with faint violet warmth, ~10 lightness units per step */
-  --background:     #0f0e14; /* page canvas                      */
-  --surface:        #191820; /* cards, sidebar, inputs           */
-  --surface-raised: #242330; /* popovers, dropdowns, modals      */
+  --background:     #0f0e14;
+  --surface:        #191820; 
+  --surface-raised: #242330;
 
   /* Text */
-  --text:         #f3f0f4;
-  --text-muted:   #908da8;
-  --text-heading: #d9d6e6;
+  --text:         #ffffff;
+  --text-muted:   #dddee6;
+  --text-heading: #b5aeda;
 
-  /* Brand — inverted for dark mode */
-  --primary:            #d9d6e6;
-  --primary-foreground: #0f0e14;
+  /* Brand */
+  --primary:            #564597;
+  --primary-foreground: #fcfcfd;
 
-  --secondary:            #d3eef3;
+  --secondary:            #aca4c8;
   --secondary-foreground: #0f0e14;
 
-  --tertiary:            #2f2557;
-  --tertiary-foreground: #f3f0f4;
+  --tertiary:            #9cd2db;
+  --tertiary-foreground: #0c1516;
 
   /* Borders */
   --border:       #2e2c3c;
@@ -350,45 +342,43 @@
   --chart-4: #c084fc;
   --chart-5: #f87171;
 
-  /* ── Color ramps (dark mode overrides) ── */
+  /* ── Color ramps ── */
 
-  --color-primary-50:  #fcfcfd;
-  --color-primary-100: #f7f6f9;
-  --color-primary-200: #f1f0f6;
-  --color-primary-300: #e9e7f0;
-  --color-primary-400: #e1deeb;
-  --color-primary-500: #d9d6e6;
-  --color-primary-600: #aca4c8;
-  --color-primary-700: #8374aa;
-  --color-primary-800: #5a497e;
-  --color-primary-900: #2f2543;
-  --color-primary-950: #1d162b;
+  --color-primary-50: #ebeaf5;
+  --color-primary-100: #d8d5eb;
+  --color-primary-200: #b5aeda;
+  --color-primary-300: #9086c7;
+  --color-primary-400: #7061b2;
+  --color-primary-500: #4e3f8b;
+  --color-primary-600: #2f2557; /* primary */
+  --color-primary-700: #251d47;
+  --color-primary-800: #1b1436;
+  --color-primary-900: #120d27;
+  --color-primary-950: #080516;
 
-  --color-secondary-50:  #f9fdfd;
-  --color-secondary-100: #f4fbfc;
-  --color-secondary-200: #eef8fa;
-  --color-secondary-300: #e3f4f7;
-  --color-secondary-400: #ddf2f6;
-  --color-secondary-500: #d3eef3;
-  --color-secondary-600: #8dbec6;
-  --color-secondary-700: #658a90;
-  --color-secondary-800: #425b60;
-  --color-secondary-900: #202e31;
-  --color-secondary-950: #111b1d;
+  --color-secondary-50: #f7f6f9;
+  --color-secondary-100: #ebeaf2;
+  --color-secondary-200: #d9d6e6; /* secondary */
+  --color-secondary-300: #bbb5d2;
+  --color-secondary-400: #a199c1;
+  --color-secondary-500: #857aae;
+  --color-secondary-600: #6b5d98;
+  --color-secondary-700: #504476;
+  --color-secondary-800: #382f55;
+  --color-secondary-900: #201a32;
+  --color-secondary-950: #120e20;
 
-  --color-tertiary-50:  #e8e7f4;
-  --color-tertiary-100: #d2cfe9;
-  --color-tertiary-200: #a59dd2;
-  --color-tertiary-300: #7c6fbb;
-  --color-tertiary-400: #564597;
-  --color-tertiary-500: #2f2557;
-  --color-tertiary-600: #271f4b;
-  --color-tertiary-700: #1f183d;
-  --color-tertiary-800: #17112f;
-  --color-tertiary-900: #0f0a22;
-  --color-tertiary-950: #080516;
-
-  /* --color-base-* ramp is theme-independent — defined once in :root above */
+  --color-tertiary-50: #f4fbfc;
+  --color-tertiary-100: #e9f6f9;
+  --color-tertiary-200: #d3eef3; /* tertiary */
+  --color-tertiary-300: #9cd2db;
+  --color-tertiary-400: #82b0b8;
+  --color-tertiary-500: #6b9298;
+  --color-tertiary-600: #537277;
+  --color-tertiary-700: #3e565a;
+  --color-tertiary-800: #283a3d;
+  --color-tertiary-900: #162123;
+  --color-tertiary-950: #0c1516;
 }
 
 @layer base {
