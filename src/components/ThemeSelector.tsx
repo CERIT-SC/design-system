@@ -49,6 +49,9 @@ function ThemeSelectorInner() {
     } else {
       setDefaultTheme(mode);
     }
+    // Keep next-themes in sync using only real CSS class names (light/dark).
+    // Branding is managed separately via data-theme by useThemeSwitcher.
+    setTheme(mode);
   };
 
   return (
