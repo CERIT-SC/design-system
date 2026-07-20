@@ -7,8 +7,7 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-tertiary/50 border-tertiary supports-backdrop-filter:bg-tertiary/60",
+        default: "bg-info/50 border-info supports-backdrop-filter:bg-info/60",
         success:
           "bg-success/50 border-success supports-backdrop-filter:bg-success/60",
         warning:

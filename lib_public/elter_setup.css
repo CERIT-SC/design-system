@@ -1,12 +1,6 @@
 /**
  * ELTER Branding Theme
  *
- * European Open Science Cloud (ELTER) visual identity theme.
- * Based on Figma design: https://www.figma.com/design/0s6TkXB4AY6ttzzif7MxsE/Vizualni-identita-v%C3%BDstup%C5%AF-ELTER-cz?node-id=6-13&m=dev
- *
- * Usage:
- *   <html data-theme="elter">       <!-- ELTER Light -->
- *
  * Primary colours:
  *   - Dark Green: #025960 (brand primary)
  *   - Green Grey: #F5F7F7 (secondary/surface)
@@ -14,7 +8,6 @@
  */
 
 @theme inline {
-  /* ELTER-specific token mappings */
   --color-elter-primary: var(--primary);
   --color-elter-secondary: var(--secondary);
   --color-elter-tertiary: var(--tertiary);
@@ -23,6 +16,13 @@
 /* ─── ELTER Light Theme ──────────────────────────────────────────── */
 [data-theme="elter"] {
   --radius: 0.75rem;
+
+  --font-sans:
+    "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading:
+    var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Transitions */
   --transition-duration: 300ms;
@@ -72,17 +72,17 @@
   --chart-7: #D7412F;
 
   /* ── Primary Ramp ── */
-  --color-primary-50: #e2f3fe;
-  --color-primary-100: #c4e7fd;
-  --color-primary-200: #89cffa;
-  --color-primary-300: #4fb6f8;
-  --color-primary-400: #0f9cf5;
-  --color-primary-500: #0879c0;
-  --color-primary-600: #066098;
-  --color-primary-700: #054a76;
-  --color-primary-800: #03314e;
-  --color-primary-900: #021927;
-  --color-primary-950: #010c14;
+  --color-primary-50: #fdf5ec;
+  --color-primary-100: #fbe9d5;
+  --color-primary-200: #f8d6af;
+  --color-primary-300: #f4c185;
+  --color-primary-400: #f1ab5b;
+  --color-primary-500: #ed9632;
+  --color-primary-600: #d37913;
+  --color-primary-700: #9f5c0e;
+  --color-primary-800: #6c3e09;
+  --color-primary-900: #341e05;
+  --color-primary-950: #1c1002;
 
   /* ── Secondary Ramp -─ */
   --color-secondary-50: #f5faff;
@@ -98,17 +98,17 @@
   --color-secondary-950: #01111e;
 
   /* ── Tertiary Ramp ── */
-  --color-tertiary-50: #fdf5ec;
-  --color-tertiary-100: #fbe9d5;
-  --color-tertiary-200: #f8d6af;
-  --color-tertiary-300: #f4c185;
-  --color-tertiary-400: #f1ab5b;
-  --color-tertiary-500: #ed9632;
-  --color-tertiary-600: #d37913;
-  --color-tertiary-700: #9f5c0e;
-  --color-tertiary-800: #6c3e09;
-  --color-tertiary-900: #341e05;
-  --color-tertiary-950: #1c1002;
+  --color-tertiary-50: #e2f3fe;
+  --color-tertiary-100: #c4e7fd;
+  --color-tertiary-200: #89cffa;
+  --color-tertiary-300: #4fb6f8;
+  --color-tertiary-400: #0f9cf5;
+  --color-tertiary-500: #0879c0;
+  --color-tertiary-600: #066098;
+  --color-tertiary-700: #054a76;
+  --color-tertiary-800: #03314e;
+  --color-tertiary-900: #021927;
+  --color-tertiary-950: #010c14;
 
   /* ── Error Ramp ── */
   --color-error-50: #FAEDEB;
@@ -329,6 +329,20 @@
   --color-base-800: #253d56;
   --color-base-900: #15293d;
   --color-base-950: #0a2033;
+}
+
+[data-theme="elter"],
+[data-theme="elter"] body {
+  font-family: var(--font-sans);
+}
+[data-theme="elter"] h1,
+[data-theme="elter"] h2,
+[data-theme="elter"] h3,
+[data-theme="elter"] h4,
+[data-theme="elter"] h5,
+[data-theme="elter"] h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 @layer base {

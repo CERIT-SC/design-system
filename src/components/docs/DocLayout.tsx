@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "../../../lib/lib/utils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -69,10 +68,6 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
                     key={item.slug}
                     asChild
                     isActive={isActivePath(item.path)}
-                    className={cn(
-                      isActivePath(item.path) &&
-                        "bg-primary/10 text-primary font-medium"
-                    )}
                   >
                     <Link href={item.path}>{item.title}</Link>
                   </NavItem>
@@ -104,10 +99,6 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
                     key={item.slug}
                     asChild
                     isActive={isActivePath(item.path)}
-                    className={cn(
-                      isActivePath(item.path) &&
-                        "bg-primary/10 text-primary font-medium"
-                    )}
                   >
                     <Link href={item.path}>{item.title}</Link>
                   </NavItem>

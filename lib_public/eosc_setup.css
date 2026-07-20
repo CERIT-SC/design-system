@@ -1,20 +1,4 @@
-/**
- * EOSC Branding Theme
- *
- * European Open Science Cloud (EOSC) visual identity theme.
- * Based on Figma design: https://www.figma.com/design/0s6TkXB4AY6ttzzif7MxsE/Vizualni-identita-v%C3%BDstup%C5%AF-EOSC-cz?node-id=6-13&m=dev
- *
- * Usage:
- *   <html data-theme="eosc">       <!-- EOSC Light -->
- *
- * Primary colours:
- *   - Dark Green: #025960 (brand primary)
- *   - Green Grey: #F5F7F7 (secondary/surface)
- *   - Pink: #C52876 (tertiary/accent)
- */
-
 @theme inline {
-  /* EOSC-specific token mappings */
   --color-eosc-primary: var(--primary);
   --color-eosc-secondary: var(--secondary);
   --color-eosc-tertiary: var(--tertiary);
@@ -24,18 +8,25 @@
 [data-theme="eosc"] {
   --radius: 0.75rem;
 
+  /* Typography — EOSC uses Roboto.
+     The Roboto font files are loaded via next/font in the app and exposed as
+     the --font-roboto CSS variable (see src/app/layout.tsx). */
+  --font-sans:
+    var(--font-roboto), "Roboto", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   /* Transitions */
   --transition-duration: 300ms;
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Surfaces */
-  --background: #F1F4F4; /* --base-50 */
-  --surface: #EEF1F1; /* --base-100 */
-  --surface-raised: #E0E6E7; /* --base-200 */
+  --background: #F1F6F6; /* --base-50 */
+  --surface: #E6EDED; /* --base-100 */
+  --surface-raised: #D7E1E2; /* --base-200 */
 
   /* Text */
   --text: #0C0F10; /* --base-950 */
-  --text-muted: #748387; /* --base-500 */
+  --text-muted: 55747B; /* --base-500 */
   --text-heading: #005B67; /* --primary-700 */
 
   /* Brand — EOSC primary colors */
@@ -77,7 +68,7 @@
   --color-primary-200: #D1E4E7;
   --color-primary-300: #AECFD5;
   --color-primary-400: #7FB2BA;
-  --color-primary-500: #7FB2BA;
+  --color-primary-500: #4D8C99;
   --color-primary-600: #2A7180;
   --color-primary-700: #005B67;
   --color-primary-800: #004E59;
@@ -111,69 +102,69 @@
   --color-tertiary-950: #37001B;
 
   /* ── Error Ramp ── */
-  --color-error-50: #FAEDEB;
-  --color-error-100: #F8E5E3;
-  --color-error-200: #F2C9C4;
-  --color-error-300: #E9A098;
-  --color-error-400: #D36A63;
-  --color-error-500: #CC4F4B;
-  --color-error-600: #BC3534;
-  --color-error-700: #AA2828;
-  --color-error-800: #931F20;
-  --color-error-900: #6C1819;
-  --color-error-950: #45100C;
+  --color-error-50: #FEF1EF;
+  --color-error-100: #FCE2DF;
+  --color-error-200: #FAC5BF;
+  --color-error-300: #F9A69E;
+  --color-error-400: #F7857D;
+  --color-error-500: #F65953;
+  --color-error-600: #D13838;
+  --color-error-700: #9C2C29;
+  --color-error-800: #6A1D1B;
+  --color-error-900: #3E0E0E;
+  --color-error-950: #290806;
 
   /* ── Warning Ramp ── */
-  --color-warning-50: #FAF5EA;
-  --color-warning-100: #F4EFDF;
-  --color-warning-200: #EDDDB5;
-  --color-warning-300: #EBCF8B;
-  --color-warning-400: #D9AE5C;
-  --color-warning-500: #CA9C40;
-  --color-warning-600: #C48D23;
-  --color-warning-700: #A97821;
-  --color-warning-800: #7B5514;
-  --color-warning-900: #5C3F0E;
-  --color-warning-950: #392705;
+  --color-warning-50: #FEF9ED;
+  --color-warning-100: #FCF6E5;
+  --color-warning-200: #FCEDC9;
+  --color-warning-300: #FAE3AC;
+  --color-warning-400: #FFD482;
+  --color-warning-500: #FFCA61;
+  --color-warning-600: #CB9A47;
+  --color-warning-700: #987133;
+  --color-warning-800: #664A20;
+  --color-warning-900: #37260D;
+  --color-warning-950: #1F1505;
 
   /* ── Success Ramp */
-  --color-success-50: #EEF5EB;
-  --color-success-100: #E5F0E2;
-  --color-success-200: #CFE4C9;
-  --color-success-300: #A9D29D;
-  --color-success-400: #7FC06B;
-  --color-success-500: #5CAD50;
-  --color-success-600: #43A044;
-  --color-success-700: #328739;
-  --color-success-800: #286E31;
-  --color-success-900: #1B5225;
-  --color-success-950: #103617;
+  --color-success-50: #E7FDDE;
+  --color-success-100: #D6F4CE;
+  --color-success-200: #B5E5A8;
+  --color-success-300: #96D682;
+  --color-success-400: #81C969;
+  --color-success-500: #5DBC4F;
+  --color-success-600: #429443;
+  --color-success-700: #2E6D32;
+  --color-success-800: #1D4A22;
+  --color-success-900: #0C2911;
+  --color-success-950: #051909;
 
   /* ── Info Ramp ── */
-  --color-info-50: #EEF6FD;
-  --color-info-100: #DDEDFB;
-  --color-info-200: #C4DFF7;
-  --color-info-300: #9FC9EF;
-  --color-info-400: #6EADE3;
-  --color-info-500: #3F8ED4;
-  --color-info-600: #196DBC;
-  --color-info-700: #155DA2;
-  --color-info-800: #124D86;
-  --color-info-900: #0D3862;
-  --color-info-950: #08233E;
+  --color-info-50: #F5FAFE;
+  --color-info-100: #EBF5FE;
+  --color-info-200: #D6EBFC;
+  --color-info-300: #BCDEFD;
+  --color-info-400: #A5D4FC;
+  --color-info-500: #8FC8FF;
+  --color-info-600: #609BDC;
+  --color-info-700: #4471A3;
+  --color-info-800: #2C4C70;
+  --color-info-900: #14293F;
+  --color-info-950: #0A1828;
 
   /* ── Base/Neutral Ramp ── */
-  --color-base-50: #F1F4F4;
-  --color-base-100: #EEF1F1;
-  --color-base-200: #E0E6E7;
-  --color-base-300: #C7D1D3;
-  --color-base-400: #A7B4B7;
-  --color-base-500: #748387;
-  --color-base-600: #576569;
-  --color-base-700: #424D50;
-  --color-base-800: #323B3E;
-  --color-base-900: #1F2527;
-  --color-base-950: #0C0F10;
+  --color-base-50: #F1F6F6;
+  --color-base-100: #E6EDED;
+  --color-base-200: #D7E1E2;
+  --color-base-300: #C1CED0;
+  --color-base-400: #9FB4B9;
+  --color-base-500: #55747B;
+  --color-base-600: #3A5860;
+  --color-base-700: #204149;
+  --color-base-800: #0C2C35;
+  --color-base-900: #001E26;
+  --color-base-950: #091013;
 }
 
 /* ─── EOSC Dark Theme ───────────────────────────────────────────── */
@@ -208,15 +199,15 @@
   --border: #424D50;
   --border-focus: #748387;
 
-  /* Semantic — TODO: EOSC dark mode semantic colours */
+  /* Semantic — EOSC dark mode semantic colours */
   --info: #6EADE3; /* --color-info-400 */
-  --info-foreground: #ffffff; /* TODO: fill */
+  --info-foreground: #ffffff;
   --success: #7FC06B; /* --color-success-400 */
-  --success-foreground: #ffffff; /* TODO: fill */
+  --success-foreground: #ffffff;
   --warning: #D9AE5C; /* --color-warning-400 */
-  --warning-foreground: #ffffff; /* TODO: fill */
+  --warning-foreground: #ffffff;
   --error: #D36A63; /* --color-error-400 */
-  --error-foreground: #ffffff; /* TODO: fill */
+  --error-foreground: #ffffff;
 
   /* Charts — EOSC dark mode chart palette */
   --chart-1: #1A8A9D;
@@ -330,6 +321,13 @@
   --color-base-800: #323B3E;
   --color-base-900: #1F2527;
   --color-base-950: #0C0F10;
+}
+
+/* Apply Roboto to the EOSC theme. Kept unlayered so it overrides the app's
+   default (unlayered) body font class. */
+[data-theme="eosc"],
+[data-theme="eosc"] body {
+  font-family: var(--font-sans);
 }
 
 @layer base {

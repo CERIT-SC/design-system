@@ -111,8 +111,6 @@ export function useThemeSwitcher() {
 
   const setEOSCTheme = useCallback(
     (mode: ColorMode = "light") => {
-      setBrandingTheme("eosc");
-      setColorMode(mode);
       localStorage.setItem("theme-branding", "eosc");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("eosc", mode);
@@ -123,8 +121,6 @@ export function useThemeSwitcher() {
 
   const setElterTheme = useCallback(
     (mode: ColorMode = "light") => {
-      setBrandingTheme("elter");
-      setColorMode(mode);
       localStorage.setItem("theme-branding", "elter");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("elter", mode);
@@ -135,8 +131,6 @@ export function useThemeSwitcher() {
 
   const setDefaultTheme = useCallback(
     (mode: ColorMode = "light") => {
-      setBrandingTheme("default");
-      setColorMode(mode);
       localStorage.setItem("theme-branding", "default");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("default", mode);
