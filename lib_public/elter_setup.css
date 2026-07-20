@@ -30,8 +30,8 @@
 
   /* Surfaces */
   --background: #f0f0f5; /* --base-50 */
-  --surface: #e3e3e8 ; /* --base-100 */
-  --surface-raised: #c9c9cf; /* --base-200 */
+  --surface: #e8e8ed ; /* --base-100 */
+  --surface-raised: #dbdbe1; /* --base-200 */
 
   /* Text */
   --text: #0a2033; /* --base-950 */
