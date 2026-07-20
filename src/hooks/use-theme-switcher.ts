@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
 
 export type BrandingTheme = "default" | "eosc" | "elter";
 export type ColorMode = "light" | "dark";
@@ -16,10 +16,9 @@ export type ExtendedTheme =
   | "elter" // ELTER light
   | "elter-dark"; // ELTER dark
 
-/**
- * Get saved branding theme from localStorage (lazy initializer)
- */
-function getInitialBrandingTheme(): BrandingTheme {
+const THEME_CHANGE_EVENT = "theme-switcher-change";
+
+function readSavedBrandingTheme(): BrandingTheme {
   if (typeof window === "undefined") return "default";
   const saved = localStorage.getItem("theme-branding");
   return saved === "default" || saved === "eosc" || saved === "elter"
@@ -27,13 +26,29 @@ function getInitialBrandingTheme(): BrandingTheme {
     : "default";
 }
 
-/**
- * Get saved color mode from localStorage (lazy initializer)
- */
-function getInitialColorMode(): ColorMode {
+function readSavedColorMode(): ColorMode {
   if (typeof window === "undefined") return "light";
   const saved = localStorage.getItem("theme-color-mode");
   return saved === "light" || saved === "dark" ? saved : "light";
+}
+
+function noop() {
+  /* no-op: nothing to unsubscribe on the server */
+}
+
+function subscribe(callback: () => void) {
+  if (typeof window === "undefined") return noop;
+  window.addEventListener("storage", callback);
+  window.addEventListener(THEME_CHANGE_EVENT, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(THEME_CHANGE_EVENT, callback);
+  };
+}
+
+function notify() {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
 }
 
 /**
@@ -49,10 +64,16 @@ function getInitialColorMode(): ColorMode {
  * - "theme-color-mode": "light" | "dark"
  */
 export function useThemeSwitcher() {
-  const [brandingTheme, setBrandingTheme] = useState<BrandingTheme>(
-    getInitialBrandingTheme
+  const brandingTheme = useSyncExternalStore(
+    subscribe,
+    readSavedBrandingTheme,
+    () => "default" as BrandingTheme
   );
-  const [colorMode, setColorMode] = useState<ColorMode>(getInitialColorMode);
+  const colorMode = useSyncExternalStore(
+    subscribe,
+    readSavedColorMode,
+    () => "light" as ColorMode
+  );
 
   // Apply theme to DOM whenever it changes
   useEffect(() => {
@@ -108,11 +129,10 @@ export function useThemeSwitcher() {
    */
   const setEOSCTheme = useCallback(
     (mode: ColorMode = "light") => {
-      setBrandingTheme("eosc");
-      setColorMode(mode);
       localStorage.setItem("theme-branding", "eosc");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("eosc", mode);
+      notify();
     },
     [applyTheme]
   );
@@ -122,11 +142,10 @@ export function useThemeSwitcher() {
    */
   const setElterTheme = useCallback(
     (mode: ColorMode = "light") => {
-      setBrandingTheme("elter");
-      setColorMode(mode);
       localStorage.setItem("theme-branding", "elter");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("elter", mode);
+      notify();
     },
     [applyTheme]
   );
@@ -136,11 +155,10 @@ export function useThemeSwitcher() {
    */
   const setDefaultTheme = useCallback(
     (mode: ColorMode = "light") => {
-      setBrandingTheme("default");
-      setColorMode(mode);
       localStorage.setItem("theme-branding", "default");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("default", mode);
+      notify();
     },
     [applyTheme]
   );
@@ -150,9 +168,9 @@ export function useThemeSwitcher() {
    */
   const toggleBrandingTheme = useCallback(() => {
     const newBranding = brandingTheme === "eosc" ? "default" : "eosc";
-    setBrandingTheme(newBranding);
     localStorage.setItem("theme-branding", newBranding);
     applyTheme(newBranding, colorMode);
+    notify();
   }, [brandingTheme, colorMode, applyTheme]);
 
   /**
@@ -160,9 +178,9 @@ export function useThemeSwitcher() {
    */
   const toggleColorMode = useCallback(() => {
     const newMode = colorMode === "dark" ? "light" : "dark";
-    setColorMode(newMode);
     localStorage.setItem("theme-color-mode", newMode);
     applyTheme(brandingTheme, newMode);
+    notify();
   }, [colorMode, brandingTheme, applyTheme]);
 
   return {
