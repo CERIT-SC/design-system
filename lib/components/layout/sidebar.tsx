@@ -70,8 +70,7 @@ const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
         ref={ref}
         className={cn(
           "flex items-center gap-2 rounded-md px-3 py-2 transition-colors",
-          "hover:bg-tertiary/50 hover:text-tertiary-foreground",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus",
+          "hover:bg-secondary/70 hover:text-secondary-foreground",
           isActive && "bg-secondary text-secondary-foreground",
           className
         )}
