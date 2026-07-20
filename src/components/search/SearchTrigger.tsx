@@ -3,6 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 
 import { SearchbarTrigger } from "../../../lib/components/compounds/searchbar";
+import { cn } from "../../../lib/lib/utils";
 import { SearchDialog } from "./SearchDialog";
 
 const subscribe = () => () => {
@@ -17,7 +18,7 @@ function useIsMac() {
   );
 }
 
-export function SearchTrigger() {
+export function SearchTrigger({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const isMac = useIsMac();
 
@@ -45,7 +46,10 @@ export function SearchTrigger() {
         onClick={() => {
           setOpen(true);
         }}
-        className="search-trigger-enter w-40 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99] md:w-56 lg:w-64"
+        className={cn(
+          "search-trigger-enter w-40 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99] md:w-56 lg:w-64",
+          className
+        )}
       />
 
       <SearchDialog open={open} onOpenChange={setOpen} />
