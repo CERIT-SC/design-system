@@ -1,12 +1,6 @@
 /**
  * ELTER Branding Theme
  *
- * European Open Science Cloud (ELTER) visual identity theme.
- * Based on Figma design: https://www.figma.com/design/0s6TkXB4AY6ttzzif7MxsE/Vizualni-identita-v%C3%BDstup%C5%AF-ELTER-cz?node-id=6-13&m=dev
- *
- * Usage:
- *   <html data-theme="elter">       <!-- ELTER Light -->
- *
  * Primary colours:
  *   - Dark Green: #025960 (brand primary)
  *   - Green Grey: #F5F7F7 (secondary/surface)
@@ -14,7 +8,6 @@
  */
 
 @theme inline {
-  /* ELTER-specific token mappings */
   --color-elter-primary: var(--primary);
   --color-elter-secondary: var(--secondary);
   --color-elter-tertiary: var(--tertiary);
@@ -23,6 +16,13 @@
 /* ─── ELTER Light Theme ──────────────────────────────────────────── */
 [data-theme="elter"] {
   --radius: 0.75rem;
+
+  --font-sans:
+    "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading:
+    var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Transitions */
   --transition-duration: 300ms;
@@ -329,6 +329,20 @@
   --color-base-800: #253d56;
   --color-base-900: #15293d;
   --color-base-950: #0a2033;
+}
+
+[data-theme="elter"],
+[data-theme="elter"] body {
+  font-family: var(--font-sans);
+}
+[data-theme="elter"] h1,
+[data-theme="elter"] h2,
+[data-theme="elter"] h3,
+[data-theme="elter"] h4,
+[data-theme="elter"] h5,
+[data-theme="elter"] h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 @layer base {

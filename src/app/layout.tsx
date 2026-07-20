@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Roboto, Montserrat } from "next/font/google";
 import Image from "next/image";
 import {
   Header,
@@ -38,6 +38,18 @@ import { Package } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Roboto powers the EOSC theme; Montserrat is used for ELTER headings.
+// Exposed as CSS variables consumed by the branding themes in lib_public/*.css.
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--font-roboto",
+});
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
+
 export const metadata: Metadata = {
   title: "Design System e-INFRA CZ",
   description: "Design system showcase web for e-INFRA CZ",
@@ -49,7 +61,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${montserrat.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

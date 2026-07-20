@@ -20,7 +20,7 @@ const buttonVariants = cva(
         warning:
           "bg-warning border border-warning text-warning-foreground hover:bg-warning/90 focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40",
         error:
-          "bg-error border border-error text-error-foreground hover:bg-error/90 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/60",
+          "bg-error border border-error text-error-foreground hover:bg-error/90 focus-visible:ring-error/20 dark:focus-visible:ring-error/40",
         outline:
           "bg-background border border-border hover:bg-surface dark:bg-background dark:border-border dark:hover:bg-surface hover:translate-none",
         ghost:
