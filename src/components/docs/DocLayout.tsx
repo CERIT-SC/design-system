@@ -80,19 +80,15 @@ export function DocLayout({ children, navStructure }: DocLayoutProps) {
         </CollapsibleGroup>
       )}
       <CollapsibleGroup title="Overview" defaultOpen={true}>
-        <NavItem
-          href="/docs/foundations"
-          isActive={isActivePath("/docs/foundations")}
-          onClick={onNavigate}
-        >
-          Foundations
+        <NavItem asChild isActive={isActivePath("/docs/foundations")}>
+          <Link href="/docs/foundations" onClick={onNavigate}>
+            Foundations
+          </Link>
         </NavItem>
-        <NavItem
-          href="/docs/components"
-          isActive={isActivePath("/docs/components")}
-          onClick={onNavigate}
-        >
-          Components
+        <NavItem asChild isActive={isActivePath("/docs/components")}>
+          <Link href="/docs/components" onClick={onNavigate}>
+            Components
+          </Link>
         </NavItem>
       </CollapsibleGroup>
       {mainSections.map((section) => (
