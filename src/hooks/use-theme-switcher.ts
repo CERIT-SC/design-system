@@ -16,10 +16,7 @@ export type ExtendedTheme =
   | "elter" // ELTER light
   | "elter-dark"; // ELTER dark
 
-/**
- * Get saved branding theme from localStorage (lazy initializer)
- */
-function getInitialBrandingTheme(): BrandingTheme {
+function readSavedBrandingTheme(): BrandingTheme {
   if (typeof window === "undefined") return "default";
   const saved = localStorage.getItem("theme-branding");
   return saved === "default" || saved === "eosc" || saved === "elter"
@@ -27,10 +24,7 @@ function getInitialBrandingTheme(): BrandingTheme {
     : "default";
 }
 
-/**
- * Get saved color mode from localStorage (lazy initializer)
- */
-function getInitialColorMode(): ColorMode {
+function readSavedColorMode(): ColorMode {
   if (typeof window === "undefined") return "light";
   const saved = localStorage.getItem("theme-color-mode");
   return saved === "light" || saved === "dark" ? saved : "light";
@@ -49,10 +43,13 @@ function getInitialColorMode(): ColorMode {
  * - "theme-color-mode": "light" | "dark"
  */
 export function useThemeSwitcher() {
-  const [brandingTheme, setBrandingTheme] = useState<BrandingTheme>(
-    getInitialBrandingTheme
-  );
-  const [colorMode, setColorMode] = useState<ColorMode>(getInitialColorMode);
+  const [brandingTheme, setBrandingTheme] = useState<BrandingTheme>("default");
+  const [colorMode, setColorMode] = useState<ColorMode>("light");
+
+  useEffect(() => {
+    setBrandingTheme(readSavedBrandingTheme());
+    setColorMode(readSavedColorMode());
+  }, []);
 
   // Apply theme to DOM whenever it changes
   useEffect(() => {
