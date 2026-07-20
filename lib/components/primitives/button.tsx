@@ -14,18 +14,18 @@ const buttonVariants = cva(
           "bg-secondary border border-secondary text-secondary-foreground hover:bg-secondary/80",
         tertiary:
           "bg-tertiary border border-tertiary text-tertiary-foreground hover:bg-tertiary/80",
-        info: "bg-info border border-info text-info-foreground hover:bg-info/90 focus-visible:ring-info/20 dark:focus-visible:ring-info/40",
+        info: "bg-info border border-info text-info-foreground hover:bg-info/90 focus-visible:ring-info/20",
         success:
-          "bg-success border border-success text-success-foreground hover:bg-success/90 focus-visible:ring-success/20 dark:focus-visible:ring-success/40",
+          "bg-success border border-success text-success-foreground hover:bg-success/90 focus-visible:ring-success/20",
         warning:
-          "bg-warning border border-warning text-warning-foreground hover:bg-warning/90 focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40",
+          "bg-warning border border-warning text-warning-foreground hover:bg-warning/90 focus-visible:ring-warning/20",
         error:
-          "bg-error border border-error text-error-foreground hover:bg-error/90 focus-visible:ring-error/20 dark:focus-visible:ring-error/40",
+          "bg-error border border-error text-error-foreground hover:bg-error/90 focus-visible:ring-error/20",
         outline:
-          "bg-background border border-border hover:bg-surface dark:bg-background dark:border-border dark:hover:bg-surface hover:translate-none",
+          "bg-background border border-border hover:bg-surface hover:translate-none",
         ghost:
-          "hover:bg-secondary/40 hover:text-primary dark:hover:text-tertiary-foreground dark:hover:bg-tertiary/50 hover:translate-none",
-        link: "text-primary underline-offset-4 hover:underline hover:translate-none dark:text-tertiary",
+          "hover:bg-surface-raised hover:translate-none",
+        link: "text-primary underline-offset-4 hover:underline hover:translate-none",
         "animated-underline":
           "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-primary hover:after:w-full hover:translate-none",
       },
