@@ -23,8 +23,7 @@ const buttonVariants = cva(
           "bg-error border border-error text-error-foreground hover:bg-error/90 focus-visible:ring-error/20",
         outline:
           "bg-background border border-border hover:bg-surface hover:translate-none",
-        ghost:
-          "hover:bg-surface-raised hover:translate-none",
+        ghost: "hover:bg-surface-raised hover:translate-none",
         link: "text-primary underline-offset-4 hover:underline hover:translate-none",
         "animated-underline":
           "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-primary hover:after:w-full hover:translate-none",
