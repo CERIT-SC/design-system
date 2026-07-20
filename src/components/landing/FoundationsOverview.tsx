@@ -23,8 +23,8 @@ import Link from "next/link";
 export default function FoundationsOverview() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-col mb-12 gap-4">
+      <div className="flex flex-col gap-6 mb-12 md:flex-row md:items-start md:justify-between md:gap-4">
+        <div className="flex flex-col gap-4">
           <H1 className="text-text-heading">Foundations</H1>
           <P className="max-w-3xl">
             Core design tokens for colors, typography, and spacing. Built with
@@ -32,14 +32,12 @@ export default function FoundationsOverview() {
           </P>
         </div>
 
-        <div className="flex gap-2">
-          <Link href={"/docs/foundations"} className="ml-auto">
-            <Button variant="default" size="sm">
-              <Layers className="w-4 h-4" />
-              Full Foundations Overview
-            </Button>
-          </Link>
-        </div>
+        <Link href={"/docs/foundations"} className="shrink-0">
+          <Button variant="default" size="sm">
+            <Layers className="w-4 h-4" />
+            Full Foundations Overview
+          </Button>
+        </Link>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
