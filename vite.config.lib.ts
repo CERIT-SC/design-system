@@ -70,7 +70,6 @@ export default defineConfig({
         "react-day-picker",
         "embla-carousel-react",
         "input-otp",
-        "next-themes",
         "react-resizable-panels",
         "recharts",
         "sonner",

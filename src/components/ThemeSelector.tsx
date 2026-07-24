@@ -14,7 +14,6 @@ import {
   type BrandingTheme,
   type ColorMode,
 } from "../hooks/use-theme-switcher";
-import { useTheme } from "next-themes";
 
 /**
  * Themes that are actually defined in `lib_public` and loaded by the app
@@ -51,7 +50,6 @@ function ThemeSelectorInner() {
     setElterTheme,
     setDefaultTheme,
   } = useThemeSwitcher();
-  const { setTheme } = useTheme();
 
   const currentBrandingLabel =
     brandingTheme === "eosc"
@@ -68,9 +66,6 @@ function ThemeSelectorInner() {
     } else {
       setDefaultTheme(mode);
     }
-    // Keep next-themes in sync using only real CSS class names (light/dark).
-    // Branding is managed separately via data-theme by useThemeSwitcher.
-    setTheme(mode);
   };
 
   return (
