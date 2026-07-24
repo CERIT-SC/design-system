@@ -1,9 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export type BrandingTheme = "default" | "eosc" | "elter";
 export type ColorMode = "light" | "dark";
+
+const VALID_BRANDING_THEMES = ["default", "eosc", "elter"] as const;
+const VALID_COLOR_MODES = ["light", "dark"] as const;
 
 /**
  * Extended theme type combining branding and color mode
@@ -49,30 +53,14 @@ function getInitialColorMode(): ColorMode {
  * - "theme-color-mode": "light" | "dark"
  */
 export function useThemeSwitcher() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [brandingTheme, setBrandingTheme] = useState<BrandingTheme>(
     getInitialBrandingTheme
   );
   const [colorMode, setColorMode] = useState<ColorMode>(getInitialColorMode);
-
-  // Apply theme to DOM whenever it changes
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-
-    const html = document.documentElement;
-    if (brandingTheme === "eosc") {
-      html.dataset.theme = "eosc";
-    } else if (brandingTheme === "elter") {
-      html.dataset.theme = "elter";
-    } else {
-      delete html.dataset.theme;
-    }
-
-    if (colorMode === "dark") {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-  }, [brandingTheme, colorMode]);
 
   /**
    * Apply theme changes to both data-theme attribute and class
@@ -103,6 +91,64 @@ export function useThemeSwitcher() {
     }
   }, []);
 
+  // Helper: update URL params without causing navigation loops
+  const updateUrlParams = useCallback(
+    (branding: BrandingTheme, mode: ColorMode) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("theme", branding);
+      params.set("mode", mode);
+      const query = params.toString();
+      router.replace(`${pathname}${query ? `?${query}` : ""}`, {
+        scroll: false,
+      });
+    },
+    [searchParams, pathname, router]
+  );
+
+  // Read-only effect: sync state from URL params on mount and browser back/forward
+  useEffect(() => {
+    const urlTheme = searchParams.get("theme");
+    const urlMode = searchParams.get("mode");
+
+    // Validate and apply URL theme param
+    if (urlTheme && VALID_BRANDING_THEMES.includes(urlTheme as BrandingTheme)) {
+      const validatedTheme = urlTheme as BrandingTheme;
+      /* eslint-disable react-hooks/set-state-in-effect */
+      setBrandingTheme(validatedTheme);
+      localStorage.setItem("theme-branding", validatedTheme);
+      applyTheme(validatedTheme, colorMode);
+      /* eslint-enable react-hooks/set-state-in-effect */
+    }
+
+    // Validate and apply URL mode param
+    if (urlMode && VALID_COLOR_MODES.includes(urlMode as ColorMode)) {
+      const validatedMode = urlMode as ColorMode;
+      setColorMode(validatedMode);
+      localStorage.setItem("theme-color-mode", validatedMode);
+      applyTheme(brandingTheme, validatedMode);
+    }
+  }, [searchParams, applyTheme, colorMode, brandingTheme]);
+
+  // Apply theme to DOM whenever it changes
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    const html = document.documentElement;
+    if (brandingTheme === "eosc") {
+      html.dataset.theme = "eosc";
+    } else if (brandingTheme === "elter") {
+      html.dataset.theme = "elter";
+    } else {
+      delete html.dataset.theme;
+    }
+
+    if (colorMode === "dark") {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+  }, [brandingTheme, colorMode]);
+
   /**
    * Set EOSC branding theme
    */
@@ -113,8 +159,9 @@ export function useThemeSwitcher() {
       localStorage.setItem("theme-branding", "eosc");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("eosc", mode);
+      updateUrlParams("eosc", mode);
     },
-    [applyTheme]
+    [applyTheme, updateUrlParams]
   );
 
   /**
@@ -127,8 +174,9 @@ export function useThemeSwitcher() {
       localStorage.setItem("theme-branding", "elter");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("elter", mode);
+      updateUrlParams("elter", mode);
     },
-    [applyTheme]
+    [applyTheme, updateUrlParams]
   );
 
   /**
@@ -141,8 +189,9 @@ export function useThemeSwitcher() {
       localStorage.setItem("theme-branding", "default");
       localStorage.setItem("theme-color-mode", mode);
       applyTheme("default", mode);
+      updateUrlParams("default", mode);
     },
-    [applyTheme]
+    [applyTheme, updateUrlParams]
   );
 
   /**
@@ -153,7 +202,8 @@ export function useThemeSwitcher() {
     setBrandingTheme(newBranding);
     localStorage.setItem("theme-branding", newBranding);
     applyTheme(newBranding, colorMode);
-  }, [brandingTheme, colorMode, applyTheme]);
+    updateUrlParams(newBranding, colorMode);
+  }, [brandingTheme, colorMode, applyTheme, updateUrlParams]);
 
   /**
    * Toggle light/dark within current branding
@@ -163,7 +213,8 @@ export function useThemeSwitcher() {
     setColorMode(newMode);
     localStorage.setItem("theme-color-mode", newMode);
     applyTheme(brandingTheme, newMode);
-  }, [colorMode, brandingTheme, applyTheme]);
+    updateUrlParams(brandingTheme, newMode);
+  }, [colorMode, brandingTheme, applyTheme, updateUrlParams]);
 
   return {
     brandingTheme,

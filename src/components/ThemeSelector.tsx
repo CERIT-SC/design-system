@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,18 +38,12 @@ const AVAILABLE_THEMES: {
 ];
 
 /**
- * ThemeSelector Component
+ * ThemeSelectorInner Component
  *
- * Lists only the branding/color-mode combinations that have a stylesheet
- * defined in `lib_public` (see {@link AVAILABLE_THEMES}). For example, EOSC
- * and ELTER have no dark theme, so their dark modes are intentionally not
- * offered.
- *
- * Usage:
- *   import { ThemeSelector } from "@/components/ThemeSelector";
- *   <ThemeSelector />
+ * Internal component that uses useSearchParams via useThemeSwitcher.
+ * Wrapped by ThemeSelector with Suspense boundary.
  */
-export function ThemeSelector() {
+function ThemeSelectorInner() {
   const {
     brandingTheme,
     colorMode,
@@ -118,5 +113,27 @@ export function ThemeSelector() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+/**
+ * ThemeSelector Component
+ *
+ * Lists only the branding/color-mode combinations that have a stylesheet
+ * defined in `lib_public` (see {@link AVAILABLE_THEMES}). For example, EOSC
+ * and ELTER have no dark theme, so their dark modes are intentionally not
+ * offered.
+ *
+ * Wraps ThemeSelectorInner with Suspense to safely use useSearchParams.
+ *
+ * Usage:
+ *   import { ThemeSelector } from "@/components/ThemeSelector";
+ *   <ThemeSelector />
+ */
+export function ThemeSelector() {
+  return (
+    <Suspense fallback={null}>
+      <ThemeSelectorInner />
+    </Suspense>
   );
 }

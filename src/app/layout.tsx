@@ -55,8 +55,37 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                var branding = localStorage.getItem('theme-branding');
-                var colorMode = localStorage.getItem('theme-color-mode');
+                // Parse URL query params
+                var urlParams = new URLSearchParams(window.location.search);
+                var urlTheme = urlParams.get('theme');
+                var urlMode = urlParams.get('mode');
+
+                var VALID_BRANDING_THEMES = ['default', 'eosc', 'elter'];
+                var VALID_COLOR_MODES = ['light', 'dark'];
+
+                // Resolve branding theme: URL > localStorage > default
+                var branding;
+                if (urlTheme && VALID_BRANDING_THEMES.indexOf(urlTheme) !== -1) {
+                  branding = urlTheme;
+                } else {
+                  branding = localStorage.getItem('theme-branding');
+                  if (!branding || VALID_BRANDING_THEMES.indexOf(branding) === -1) {
+                    branding = 'default';
+                  }
+                }
+                localStorage.setItem('theme-branding', branding);
+
+                // Resolve color mode: URL > localStorage > default
+                var colorMode;
+                if (urlMode && VALID_COLOR_MODES.indexOf(urlMode) !== -1) {
+                  colorMode = urlMode;
+                } else {
+                  colorMode = localStorage.getItem('theme-color-mode');
+                  if (!colorMode || VALID_COLOR_MODES.indexOf(colorMode) === -1) {
+                    colorMode = 'light';
+                  }
+                }
+                localStorage.setItem('theme-color-mode', colorMode);
 
                 if (branding === 'eosc') {
                   document.documentElement.setAttribute('data-theme', 'eosc');
