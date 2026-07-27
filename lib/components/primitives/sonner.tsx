@@ -9,13 +9,6 @@ import {
 } from "lucide-react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
-/**
- * Toaster component wrapping sonner's Toaster.
- *
- * The `theme` prop is optional and defaults to `"system"`. Consumers that
- * manage their own theme (e.g. next-themes or a custom hook) should pass
- * their resolved color mode so toasts match the active theme.
- */
 const Toaster = ({ theme = "system", ...props }: ToasterProps) => {
   return (
     <Sonner
