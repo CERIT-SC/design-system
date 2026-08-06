@@ -2,6 +2,8 @@
 
 The typography foundation exports lightweight React primitives with predefined Tailwind classes for headings, body text, links, code, quotes, and lists. These components inherit the active font family from the application; in this docs site, the base font is Inter. All components also accept `className`, which is merged with the default classes.
 
+Branding themes override that inherited font — EOSC uses Roboto and eLTER uses Montserrat for headings. Those font files are not bundled with the library; see [Theme Fonts](/docs/foundations/themes) for how to load them in your app.
+
 <ComponentPreview>
 <div className="flex flex-col gap-4 w-full">
   <H1>Heading 1</H1>

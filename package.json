@@ -65,6 +65,7 @@
     },
     "./setup.css": "./dist/setup.css",
     "./eosc_setup.css": "./dist/eosc_setup.css",
+    "./elter_setup.css": "./dist/elter_setup.css",
     "./custom_setup.css": "./dist/custom_setup.css"
   },
   "packageManager": "bun@1.3.11",

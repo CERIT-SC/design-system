@@ -21,7 +21,7 @@
     "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-heading:
-    var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif,
+    var(--font-montserrat, "Montserrat"), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Transitions */

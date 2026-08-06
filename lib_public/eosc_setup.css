@@ -7,12 +7,8 @@
 /* ─── EOSC Light Theme ──────────────────────────────────────────── */
 [data-theme="eosc"] {
   --radius: 0.75rem;
-
-  /* Typography — EOSC uses Roboto.
-     The Roboto font files are loaded via next/font in the app and exposed as
-     the --font-roboto CSS variable (see src/app/layout.tsx). */
   --font-sans:
-    var(--font-roboto), "Roboto", ui-sans-serif, system-ui, sans-serif,
+    var(--font-roboto, "Roboto"), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Transitions */
@@ -26,7 +22,7 @@
 
   /* Text */
   --text: #0C0F10; /* --base-950 */
-  --text-muted: 55747B; /* --base-500 */
+  --text-muted: #55747B; /* --base-500 */
   --text-heading: #005B67; /* --primary-700 */
 
   /* Brand — EOSC primary colors */

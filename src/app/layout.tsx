@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat, Roboto } from "next/font/google";
 import Image from "next/image";
 import {
   Header,
@@ -36,6 +36,17 @@ import { Package } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const roboto = Roboto({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+});
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
 export const metadata: Metadata = {
   title: "Design System e-INFRA CZ",
   description: "Design system showcase web for e-INFRA CZ",
@@ -47,7 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${montserrat.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
