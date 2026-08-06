@@ -455,10 +455,12 @@ import { Content, ContentHeading, ContentSubheading, ContentBody } from '@e-infr
 
 | Component | Element | Built-in spacing |
 |---|---|---|
-| `Content` | `div` | `space-y-8 px-10 pb-10 mx-auto max-w-7xl` |
-| `ContentHeading` | wraps `H1` | — |
-| `ContentSubheading` | wraps `H2` | — |
+| `Content` | `div` | `mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-10 md:px-6 lg:px-8 xl:px-10` |
+| `ContentHeading` | wraps `H1` | `mb-6` |
+| `ContentSubheading` | wraps `H2` | `mt-12 mb-4 first:mt-0` |
 | `ContentBody` | `div` | `space-y-4` |
+
+Headings carry their own margins so a section heading sits closer to the body it introduces than to the section above it. These win over the container's `space-y-8` (Tailwind v4 wraps `space-y` in `:where()`), so pass `className` to adjust a single heading.
 
 ```tsx
 <Content>
