@@ -140,14 +140,6 @@ import {
   PaginationNext,
   PaginationEllipsis,
 } from "../../lib/components/primitives/pagination";
-import {
-  Panel,
-  PanelContent,
-  PanelDescription,
-  PanelFooter,
-  PanelHeader,
-  PanelTitle,
-} from "../../lib/components/primitives/panel";
 import { Progress } from "../../lib/components/primitives/progress";
 import {
   RadioGroup,
@@ -416,13 +408,6 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-  // Panel
-  Panel,
-  PanelContent,
-  PanelDescription,
-  PanelFooter,
-  PanelHeader,
-  PanelTitle,
   // Progress
   Progress,
   // RadioGroup
