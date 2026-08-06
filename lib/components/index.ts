@@ -37,7 +37,6 @@ export * from "./primitives/textarea";
 export * from "./primitives/toggle";
 export * from "./primitives/toggle-group";
 export * from "./primitives/tooltip";
-export * from "./primitives/panel";
 
 // Typography Components
 export * from "./foundations";
