@@ -1,8 +1,13 @@
 /**
  * e-INFRA CZ Design System Setup CSS
  */
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --breakpoint-3xl: 120rem;
+}
 
 @theme inline {
   --radius-sm:  calc(var(--radius) - 4px);
@@ -386,17 +391,13 @@
 }
 
 @layer utilities {
-  .slide-in-from-bottom { animation: slideInFromBottom 0.3s ease-out; }
-  .slide-out-to-bottom  { animation: slideOutToBottom 0.3s ease-in; }
-  .animate-slideUp      { animation: slideInFromBottom 0.3s ease-out; }
+  .animate-slideUp {
+    animation: slideInFromBottom 0.3s ease-out;
+  }
 
   @keyframes slideInFromBottom {
     from { transform: translateY(100%); }
     to   { transform: translateY(0); }
-  }
-  @keyframes slideOutToBottom {
-    from { transform: translateY(0); }
-    to   { transform: translateY(100%); }
   }
 
   /* Transition defaults */
