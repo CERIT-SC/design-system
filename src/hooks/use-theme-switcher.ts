@@ -10,19 +10,36 @@ export type BrandingTheme = (typeof VALID_BRANDING_THEMES)[number];
 export type ColorMode = (typeof VALID_COLOR_MODES)[number];
 
 const isBrandingTheme = (value: string | null): value is BrandingTheme =>
-  VALID_BRANDING_THEMES.includes(value as BrandingTheme);
+  value !== null &&
+  (VALID_BRANDING_THEMES as readonly string[]).includes(value);
 const isColorMode = (value: string | null): value is ColorMode =>
-  VALID_COLOR_MODES.includes(value as ColorMode);
+  value !== null && (VALID_COLOR_MODES as readonly string[]).includes(value);
+
+function readStored(key: string): string | null {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStored(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Storage unavailable — the theme still applies for this page.
+  }
+}
 
 function getInitialBrandingTheme(): BrandingTheme {
   if (typeof window === "undefined") return "default";
-  const saved = localStorage.getItem("theme-branding");
+  const saved = readStored("theme-branding");
   return isBrandingTheme(saved) ? saved : "default";
 }
 
 function getInitialColorMode(): ColorMode {
   if (typeof window === "undefined") return "light";
-  const saved = localStorage.getItem("theme-color-mode");
+  const saved = readStored("theme-color-mode");
   return isColorMode(saved) ? saved : "light";
 }
 
@@ -78,13 +95,13 @@ export function useThemeSwitcher() {
     /* eslint-disable react-hooks/set-state-in-effect */
     if (isBrandingTheme(urlTheme)) {
       setBrandingTheme(urlTheme);
-      localStorage.setItem("theme-branding", urlTheme);
+      writeStored("theme-branding", urlTheme);
       applyTheme(urlTheme, colorMode);
     }
 
     if (isColorMode(urlMode)) {
       setColorMode(urlMode);
-      localStorage.setItem("theme-color-mode", urlMode);
+      writeStored("theme-color-mode", urlMode);
       applyTheme(brandingTheme, urlMode);
     }
     /* eslint-enable react-hooks/set-state-in-effect */
@@ -113,8 +130,8 @@ export function useThemeSwitcher() {
     (mode: ColorMode = "light") => {
       setBrandingTheme("eosc");
       setColorMode(mode);
-      localStorage.setItem("theme-branding", "eosc");
-      localStorage.setItem("theme-color-mode", mode);
+      writeStored("theme-branding", "eosc");
+      writeStored("theme-color-mode", mode);
       applyTheme("eosc", mode);
       updateUrlParams("eosc", mode);
     },
@@ -125,8 +142,8 @@ export function useThemeSwitcher() {
     (mode: ColorMode = "light") => {
       setBrandingTheme("elter");
       setColorMode(mode);
-      localStorage.setItem("theme-branding", "elter");
-      localStorage.setItem("theme-color-mode", mode);
+      writeStored("theme-branding", "elter");
+      writeStored("theme-color-mode", mode);
       applyTheme("elter", mode);
       updateUrlParams("elter", mode);
     },
@@ -137,8 +154,8 @@ export function useThemeSwitcher() {
     (mode: ColorMode = "light") => {
       setBrandingTheme("default");
       setColorMode(mode);
-      localStorage.setItem("theme-branding", "default");
-      localStorage.setItem("theme-color-mode", mode);
+      writeStored("theme-branding", "default");
+      writeStored("theme-color-mode", mode);
       applyTheme("default", mode);
       updateUrlParams("default", mode);
     },

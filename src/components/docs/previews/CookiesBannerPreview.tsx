@@ -5,17 +5,12 @@ import { CookiesBanner } from "../../../../lib/components/compounds/cookies-bann
 export function CookiesBannerPreview() {
   return (
     <div className="rounded-lg border border-dashed p-6">
+      {/* Handlers are intentionally no-ops: this is a static docs preview. */}
       <CookiesBanner
         className="static rounded-lg border shadow-none"
-        onReject={() => {
-          console.log("Reject clicked");
-        }}
-        onFunctional={() => {
-          console.log("Only Functional clicked");
-        }}
-        onAccept={() => {
-          console.log("Accept All clicked");
-        }}
+        onReject={() => undefined}
+        onFunctional={() => undefined}
+        onAccept={() => undefined}
       />
     </div>
   );

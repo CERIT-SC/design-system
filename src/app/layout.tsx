@@ -30,6 +30,7 @@ import EinfraLogoDark from "../../public/e-INFRA_logo_RGB_bila.svg";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ThemeSelector } from "../components/ThemeSelector";
+import { MobileNav, type MobileNavItem } from "../components/MobileNav";
 import { SearchTrigger } from "../components/search/SearchTrigger";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
@@ -51,6 +52,13 @@ export const metadata: Metadata = {
   title: "Design System e-INFRA CZ",
   description: "Design system showcase web for e-INFRA CZ",
 };
+
+/** Primary header links, shared by the desktop nav and the mobile sheet. */
+const NAV_ITEMS: MobileNavItem[] = [
+  { href: "/", label: "Home" },
+  { href: "/docs/foundations", label: "Foundations" },
+  { href: "/docs/components", label: "Components" },
+];
 
 export default function RootLayout({
   children,
@@ -76,29 +84,44 @@ export default function RootLayout({
                 var VALID_BRANDING_THEMES = ['default', 'eosc', 'elter'];
                 var VALID_COLOR_MODES = ['light', 'dark'];
 
+                function readStored(key) {
+                  try {
+                    return localStorage.getItem(key);
+                  } catch (e) {
+                    return null;
+                  }
+                }
+                function writeStored(key, value) {
+                  try {
+                    localStorage.setItem(key, value);
+                  } catch (e) {
+                    /* storage unavailable — in-memory for this page only */
+                  }
+                }
+
                 // Resolve branding theme: URL > localStorage > default
                 var branding;
                 if (urlTheme && VALID_BRANDING_THEMES.indexOf(urlTheme) !== -1) {
                   branding = urlTheme;
                 } else {
-                  branding = localStorage.getItem('theme-branding');
+                  branding = readStored('theme-branding');
                   if (!branding || VALID_BRANDING_THEMES.indexOf(branding) === -1) {
                     branding = 'default';
                   }
                 }
-                localStorage.setItem('theme-branding', branding);
+                writeStored('theme-branding', branding);
 
                 // Resolve color mode: URL > localStorage > default
                 var colorMode;
                 if (urlMode && VALID_COLOR_MODES.indexOf(urlMode) !== -1) {
                   colorMode = urlMode;
                 } else {
-                  colorMode = localStorage.getItem('theme-color-mode');
+                  colorMode = readStored('theme-color-mode');
                   if (!colorMode || VALID_COLOR_MODES.indexOf(colorMode) === -1) {
                     colorMode = 'light';
                   }
                 }
-                localStorage.setItem('theme-color-mode', colorMode);
+                writeStored('theme-color-mode', colorMode);
 
                 if (branding === 'eosc') {
                   document.documentElement.setAttribute('data-theme', 'eosc');
@@ -138,54 +161,53 @@ export default function RootLayout({
                   className="hidden h-20 w-auto dark:block"
                 />
               </Link>
-              <NavigationMenu>
+              <NavigationMenu className="hidden lg:flex">
                 <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink href="/">Home</NavigationMenuLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink href="/docs/foundations">
-                      Foundations
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink href="/docs/components">
-                      Components
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
+                  {NAV_ITEMS.map((item) => (
+                    <NavigationMenuItem key={item.href}>
+                      <NavigationMenuLink href={item.href}>
+                        {item.label}
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  ))}
                 </NavigationMenuList>
               </NavigationMenu>
             </HeaderLeft>
             <HeaderRight>
-              <Link
-                href="https://github.com/CERIT-SC/design-system"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="ghost" size="sm" className="gap-2 text-sm">
-                  <svg
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                  </svg>
-                  GitHub
-                </Button>
-              </Link>
-              <Link
-                href="https://www.npmjs.com/package/@e-infra/design-system"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="ghost" size="sm" className="gap-2 text-sm">
-                  <Package className="w-5 h-5" />
-                  NPM package
-                </Button>
-              </Link>
-              <SearchTrigger />
-              <ThemeSelector />
+              {/* Below lg the same links, search and theme selector live
+                  inside the MobileNav sheet at the end of this block. */}
+              <div className="hidden items-center gap-2 lg:flex">
+                <Link
+                  href="https://github.com/CERIT-SC/design-system"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="ghost" size="sm" className="gap-2 text-sm">
+                    <svg
+                      className="w-5 h-5"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </Button>
+                </Link>
+                <Link
+                  href="https://www.npmjs.com/package/@e-infra/design-system"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="ghost" size="sm" className="gap-2 text-sm">
+                    <Package className="w-5 h-5" />
+                    NPM package
+                  </Button>
+                </Link>
+                <SearchTrigger />
+                <ThemeSelector />
+              </div>
+              <MobileNav items={NAV_ITEMS} className="lg:hidden" />
             </HeaderRight>
           </HeaderContent>
         </Header>

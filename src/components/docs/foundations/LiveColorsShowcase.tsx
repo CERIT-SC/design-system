@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Check, Copy, CopyCheck } from "lucide-react";
+import { useCopyToClipboard } from "../../../hooks/use-copy-to-clipboard";
 import {
   H2,
   H3,
@@ -118,22 +113,14 @@ function useResolvedColor<T extends HTMLElement = HTMLDivElement>(
 // ─── Copy-to-clipboard hex label ────────────────────────────────────────────
 
 function CopyableHex({ value, color }: { value: string; color: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = () => {
-    if (!value) return;
-    void navigator.clipboard.writeText(value).then(() => {
-      setCopied(true);
-      setTimeout(() => {
-        setCopied(false);
-      }, 1500);
-    });
-  };
+  const { copied, copy } = useCopyToClipboard();
 
   return (
     <button
       type="button"
-      onClick={copy}
+      onClick={() => {
+        copy(value);
+      }}
       disabled={!value}
       className="group/hex inline-flex items-center gap-1 font-mono text-sm rounded transition-opacity cursor-pointer disabled:opacity-40"
       title={value ? `Copy ${value}` : "Reading…"}
@@ -403,33 +390,16 @@ function RampSwatch({
   version: number;
 }) {
   const { ref, hex, text } = useResolvedColor<HTMLButtonElement>(version);
-  const [copied, setCopied] = useState(false);
-  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(
-    () => () => {
-      if (resetTimer.current) clearTimeout(resetTimer.current);
-    },
-    []
-  );
-
-  const copy = () => {
-    if (!hex) return;
-    void navigator.clipboard.writeText(hex).then(() => {
-      setCopied(true);
-      if (resetTimer.current) clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => {
-        setCopied(false);
-      }, 1500);
-    });
-  };
+  const { copied, copy } = useCopyToClipboard();
 
   return (
     <div className="space-y-1">
       <button
         type="button"
         ref={ref}
-        onClick={copy}
+        onClick={() => {
+          copy(hex);
+        }}
         aria-label={
           hex ? `Copy ${cssVar}-${step} (${hex})` : `${cssVar}-${step}`
         }
@@ -568,17 +538,6 @@ function SurfaceStory() {
 
 export default function LiveColorsShowcase() {
   const version = useThemeVersion();
-
-  const [, forceRead] = useState(0);
-  const scheduleRead = useCallback(() => {
-    forceRead((n) => n + 1);
-  }, []);
-  useEffect(() => {
-    const id = setTimeout(scheduleRead, 50);
-    return () => {
-      clearTimeout(id);
-    };
-  }, [scheduleRead]);
 
   return (
     <div className="space-y-12 py-4">

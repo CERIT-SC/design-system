@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { createLowlight, common } from "lowlight";
+import { useCopyToClipboard } from "../../hooks/use-copy-to-clipboard";
 import { cn } from "../../../lib/lib/utils";
 import { Button } from "../../../lib/components/primitives/button";
 
@@ -87,15 +87,10 @@ export function CodeBlock({
   showLineNumbers = true,
   className,
 }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyToClipboard(2000);
 
   const handleCopy = () => {
-    void navigator.clipboard.writeText(code).then(() => {
-      setCopied(true);
-      setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    });
+    copy(code);
   };
 
   // Highlight — fall back to plain text if language is unregistered

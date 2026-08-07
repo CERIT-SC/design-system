@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import {
   Alert,
   AlertTitle,
@@ -15,7 +16,11 @@ interface ErrorProps {
   reset: () => void;
 }
 
-export default function Error({ reset }: ErrorProps) {
+export default function Error({ error, reset }: ErrorProps) {
+  useEffect(() => {
+    console.error("Unhandled application error", error);
+  }, [error]);
+
   return (
     <div className="relative flex items-center justify-center min-h-[calc(100dvh-4rem)] px-4">
       <div className="absolute top-1/4 left-1/3 bg-error/5 blur-3xl rounded-full w-96 h-96 -z-10" />

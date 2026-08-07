@@ -25,6 +25,9 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  // Stepper requires `children`; satisfying it here keeps render-only stories
+  // below from each having to restate args.
+  args: { children: null },
 } satisfies Meta<typeof Stepper>;
 
 export default meta;

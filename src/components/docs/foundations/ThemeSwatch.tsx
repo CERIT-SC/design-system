@@ -1,26 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import { Check } from "lucide-react";
+import { useCopyToClipboard } from "../../../hooks/use-copy-to-clipboard";
 import type { BrandColor } from "./theme-colors";
 
 export function ThemeSwatch({ color }: { color: BrandColor }) {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyToClipboard(1200);
   const hex = color.hex.toLowerCase();
-
-  const copy = () => {
-    void navigator.clipboard.writeText(hex).then(() => {
-      setCopied(true);
-      setTimeout(() => {
-        setCopied(false);
-      }, 1200);
-    });
-  };
 
   return (
     <button
       type="button"
-      onClick={copy}
+      onClick={() => {
+        copy(hex);
+      }}
       title={`${color.name} · ${hex} (click to copy)`}
       aria-label={`${color.name} ${hex}`}
       className="group/swatch relative flex-1 h-16 transition-transform hover:z-10 hover:scale-105 cursor-pointer"

@@ -7,13 +7,7 @@ import {
   NavItem,
   CollapsibleGroup,
 } from "./sidebar";
-import {
-  Home,
-  FileText,
-  Settings,
-  ChevronDown,
-  ChevronRight,
-} from "lucide-react";
+import { Home, FileText, Settings } from "lucide-react";
 
 const meta = {
   title: "Layout/Sidebar",

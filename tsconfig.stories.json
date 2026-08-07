@@ -1,0 +1,16 @@
+{
+  // Stories are excluded from tsconfig.lib.json so they stay out of the
+  // published build and its .d.ts output. They are still the Storybook build
+  // input and the only executable check in the repo, so they get type-checked
+  // here instead of going entirely unverified.
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.stories.tsbuildinfo",
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "declarationDir": null
+  },
+  "include": ["lib/**/*.stories.ts", "lib/**/*.stories.tsx", ".storybook"],
+  "exclude": []
+}

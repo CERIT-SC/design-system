@@ -67,38 +67,48 @@ function ChartContainer({
     </ChartContext.Provider>
   );
 }
+const SAFE_CSS_VALUE = /^[a-zA-Z0-9\s,.()%#/_-]+$/;
+
+const SAFE_CSS_IDENT = /[^a-zA-Z0-9_-]/g;
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
+  const safeId = id.replace(SAFE_CSS_IDENT, "");
+
   const colorConfig = Object.entries(config).filter(
-    ([, config]) => config.theme ?? config.color
+    ([, itemConfig]) => itemConfig.theme ?? itemConfig.color
   );
 
-  if (!colorConfig.length) {
+  if (!safeId || !colorConfig.length) {
     return null;
   }
 
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-  .map(([key, itemConfig]) => {
-    const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ??
-      itemConfig.color;
-    return color ? `  --color-${key}: ${color};` : null;
-  })
-  .join("\n")}
-}
-`
-          )
-          .join("\n"),
-      }}
-    />
-  );
+  const declarations = Object.entries(THEMES)
+    .map(([theme, prefix]) => {
+      const body = colorConfig
+        .map(([key, itemConfig]) => {
+          const color =
+            itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ??
+            itemConfig.color;
+          if (!color || !SAFE_CSS_VALUE.test(color)) return null;
+
+          const safeKey = key.replace(SAFE_CSS_IDENT, "");
+          if (!safeKey) return null;
+
+          return `  --color-${safeKey}: ${color};`;
+        })
+        .filter((line) => line !== null)
+        .join("\n");
+
+      return body ? `${prefix} [data-chart=${safeId}] {\n${body}\n}` : null;
+    })
+    .filter((block) => block !== null)
+    .join("\n");
+
+  if (!declarations) {
+    return null;
+  }
+
+  return <style dangerouslySetInnerHTML={{ __html: declarations }} />;
 };
 
 const ChartTooltip = RechartsPrimitive.Tooltip;

@@ -7,8 +7,6 @@ on:
 jobs:
   Quality_Checks:
     runs-on: ubuntu-24.04
-    env:
-      BUN_VERSION: "1.1.13"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
@@ -22,13 +20,13 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Install Dependencies
-        run: bun ci
+        run: bun install --frozen-lockfile
 
       - name: Run Linter
         run: bun run lint
 
       - name: Run Type Check
-        run: bun run typecheck:lib && bun run typecheck:showcase
+        run: bun run type:check
 
       - name: Run Formatting Check
         run: bun run format:check

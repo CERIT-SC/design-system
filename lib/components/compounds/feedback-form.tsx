@@ -173,18 +173,21 @@ function FeedbackModal({
           const updateInterval = 50;
           const progressIncrement = 100 / (autoCloseDelay / updateInterval);
 
+          let elapsedProgress = 0;
           progressIntervalRef.current = setInterval(() => {
-            setProgress((prevProgress) => {
-              const newProgress = prevProgress + progressIncrement;
-              if (newProgress >= 100) {
-                clearInterval(progressIntervalRef.current ?? undefined);
-                requestAnimationFrame(() => {
-                  onClose();
-                });
-                return 100;
+            elapsedProgress += progressIncrement;
+
+            if (elapsedProgress >= 100) {
+              if (progressIntervalRef.current) {
+                clearInterval(progressIntervalRef.current);
+                progressIntervalRef.current = null;
               }
-              return newProgress;
-            });
+              setProgress(100);
+              onClose();
+              return;
+            }
+
+            setProgress(elapsedProgress);
           }, updateInterval);
         }
       } else {
