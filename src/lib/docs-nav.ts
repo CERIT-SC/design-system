@@ -1,5 +1,5 @@
 import { readdirSync, statSync } from "fs";
-import { join } from "path";
+import { join, resolve, sep } from "path";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -20,7 +20,7 @@ export interface NavSection {
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const DOCS_DIR = join(process.cwd(), "docs");
+export const DOCS_DIR = resolve(join(process.cwd(), "docs"));
 
 /**
  * Preferred section display order. Any section not listed here is appended
@@ -50,11 +50,40 @@ const STATIC_PAGES: (NavItem & { section: string })[] = [
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function toTitleCase(str: string): string {
+/** Turn a slug or filename into a display title: "getting-started" → "Getting Started". */
+export function toTitleCase(str: string): string {
   return str.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function collectMdxFiles(dir: string): string[] {
+export function resolveWithinDir(
+  baseDir: string,
+  slug: string[],
+  extension: string
+): string | null {
+  if (slug.length === 0) return null;
+
+  for (const segment of slug) {
+    if (
+      segment.length === 0 ||
+      segment === "." ||
+      segment === ".." ||
+      segment.includes("/") ||
+      segment.includes("\\") ||
+      segment.includes("\0")
+    ) {
+      return null;
+    }
+  }
+
+  const candidate = resolve(join(baseDir, `${slug.join("/")}${extension}`));
+  if (candidate !== baseDir && !candidate.startsWith(baseDir + sep)) {
+    return null;
+  }
+
+  return candidate;
+}
+
+export function collectMdxFiles(dir: string): string[] {
   let entries: string[];
   try {
     entries = readdirSync(dir);
@@ -116,12 +145,13 @@ export function buildDocsNavStructure(): NavSection[] {
 
     const title = toTitleCase(filename);
 
-    if (!sectionsMap.has(resolvedSection)) {
-      sectionsMap.set(resolvedSection, []);
+    let sectionItems = sectionsMap.get(resolvedSection);
+    if (!sectionItems) {
+      sectionItems = [];
+      sectionsMap.set(resolvedSection, sectionItems);
     }
 
-    // eslint-disable-next-line --- IGNORE ---
-    sectionsMap.get(resolvedSection)!.push({
+    sectionItems.push({
       title,
       slug: filename,
       path: `/docs/${relative}`,

@@ -13,6 +13,9 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  // Accordion requires `type`; satisfying it here keeps render-only stories
+  // below from each having to restate args.
+  args: { type: "single" },
 } satisfies Meta<typeof Accordion>;
 
 export default meta;

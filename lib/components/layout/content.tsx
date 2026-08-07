@@ -13,7 +13,7 @@ const ContentContainer = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "space-y-8 px-4 pb-10 mx-auto max-w-7xl sm:px-6 lg:px-10",
+        "mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-10 md:px-6 lg:px-8 xl:px-10",
         className
       )}
       {...props}
@@ -30,7 +30,7 @@ export const ContentHeading = forwardRef<
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, children, ...props }, ref) => {
   return (
-    <H1 ref={ref} className={className} {...props}>
+    <H1 ref={ref} className={cn("mb-6", className)} {...props}>
       {children}
     </H1>
   );
@@ -43,7 +43,7 @@ export const ContentSubheading = forwardRef<
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, children, ...props }, ref) => {
   return (
-    <H2 ref={ref} className={className} {...props}>
+    <H2 ref={ref} className={cn("mt-12 mb-4 first:mt-0", className)} {...props}>
       {children}
     </H2>
   );

@@ -7,12 +7,8 @@
 /* ─── EOSC Light Theme ──────────────────────────────────────────── */
 [data-theme="eosc"] {
   --radius: 0.75rem;
-
-  /* Typography — EOSC uses Roboto.
-     The Roboto font files are loaded via next/font in the app and exposed as
-     the --font-roboto CSS variable (see src/app/layout.tsx). */
   --font-sans:
-    var(--font-roboto), "Roboto", ui-sans-serif, system-ui, sans-serif,
+    var(--font-roboto, "Roboto"), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Transitions */
@@ -24,45 +20,45 @@
   --surface: #E6EDED; /* --base-100 */
   --surface-raised: #D7E1E2; /* --base-200 */
 
-  /* Text */
-  --text: #0C0F10; /* --base-950 */
-  --text-muted: 55747B; /* --base-500 */
-  --text-heading: #005B67; /* --primary-700 */
+ /* Text */
+  --text: #091013; /* --base-950 */
+  --text-muted: #3A5860; /* --base-600 */
+  --text-heading: #2A7180; /* --primary-600 */
 
   /* Brand — EOSC primary colors */
-  --primary: #2A7180;
+  --primary: #2A7180; /* --primary-600 */
   --primary-foreground: #ffffff;
 
-  --secondary: #CCEAE8;
-  --secondary-foreground: #00363E;
+  --secondary: #C5E5EB; /* --secondary-200 */
+  --secondary-foreground: #04424C; /* --secondary-800 */
 
-  --tertiary: #AC2D68;
-  --tertiary-foreground: #ffffff;
+  --tertiary: #AC2D68; /* --tertiary-600 */
+  --tertiary-foreground: #ffffff; 
 
   /* Borders */
-  --border: #d4d4d4;
-  --border-focus: #025960;
+  --border: #C1CED0; /* --base-300 */
+  --border-focus: #2A7180; /* --primary-600 */
 
   /* Semantic */
-  --info: #3F8ED4;
-  --info-foreground: #ffffff;
-  --success: #5CAD50;
-  --success-foreground: #ffffff;
-  --warning: #CA9C40;
-  --warning-foreground: #ffffff;
-  --error: #CC4F4B;
-  --error-foreground: #ffffff;
+  --info: #8FC8FF; /* --color-info-500 */
+  --info-foreground: #0A1828; /* --color-info-950 */
+  --success: #5DBC4F; /* --color-success-500 */
+  --success-foreground: #051909; /* --color-success-950 */
+  --warning: #FFCA61; /* --color-warning-500 */
+  --warning-foreground: #1F1505; /* --color-warning-950 */
+  --error: #F65953; /* --color-error-500 */
+  --error-foreground: #290806; /* --color-error-950 */
 
   /* Charts — EOSC palette */
-  --chart-1: #14A6C0;
-  --chart-2: #F65D97;
-  --chart-3: #A07AEF;
-  --chart-4: #B85C00;
-  --chart-5: #15AA56;
-  --chart-6: #FFD04D;
-  --chart-7: #D7412F;
+  --chart-1: #009DB7;
+  --chart-2: #F15893;
+  --chart-3: #7F32FC;
+  --chart-4: #DC7200;
+  --chart-5: #00A52A;
+  --chart-6: #A99300;
+  --chart-7: #B10005;
 
-  /* ── Primary Ramp ── */
+/* ── Primary Ramp ── */
   --color-primary-50: #EEF6F6;
   --color-primary-100: #E6F0F1;
   --color-primary-200: #D1E4E7;
@@ -76,17 +72,17 @@
   --color-primary-950: #001F24;
 
   /* ── Secondary Ramp -─ */
-  --color-secondary-50: #EDF7F6;
-  --color-secondary-100: #E3F2F1;
-  --color-secondary-200: #CCEAE8;
-  --color-secondary-300: #A6DED9;
-  --color-secondary-400: #70CDC6;
-  --color-secondary-500: #37AEA7;
-  --color-secondary-600: #228781;
-  --color-secondary-700: #0F5A57;
-  --color-secondary-800: #0C4D4B;
-  --color-secondary-900: #093433;
-  --color-secondary-950: #061E1E;
+  --color-secondary-50:  #ECF7FA;
+  --color-secondary-100: #DEF1F4;
+  --color-secondary-200: #C5E5EB;
+  --color-secondary-300: #A0D3DD;
+  --color-secondary-400: #76BECC;
+  --color-secondary-500: #44A1B1;
+  --color-secondary-600: #118090;
+  --color-secondary-700: #0A606D;
+  --color-secondary-800: #04424C;
+  --color-secondary-900: #012A30;
+  --color-secondary-950: #001418;
 
   /* ── Tertiary Ramp ── */
   --color-tertiary-50: #FFEFF4;
@@ -175,152 +171,152 @@
   --transition-duration: 300ms;
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Surfaces — EOSC dark mode surface colours */
-  --background: #0C0F10;
-  --surface: #1F2527;
-  --surface-raised: #323B3E;
+/* Surfaces — EOSC dark mode surface colours */
+  --background: #091013; /* --base-950 */
+  --surface: #111B1E; /* --base-900 */
+  --surface-raised: #17282C; /* --base-800 */
 
   /* Text — EOSC dark mode text colours */
-  --text: #F1F4F4;
-  --text-muted: #A7B4B7; 
-  --text-heading: #7FB2BA;
+  --text: #FFFFFF; /* white */
+  --text-muted: #7E9AA0; /* --base-300 */
+  --text-heading: #76BBC8; /* --primary-300 */
 
   /* Brand — EOSC dark mode brand colours */
-  --primary: #2A7180; /* --color-primary-500 */
-  --primary-foreground: #EEF6F6; /* --color-primary-50 */
+  --primary: #267582; /* --color-primary-600 */
+  --primary-foreground: #ffffff;
 
-  --secondary: #70CDC6; /* --color-secondary-800 */
-  --secondary-foreground: #061E1E; /* --color-secondary-200 */
+  --secondary: #012930 ; /* --color-secondary-900 */ 
+  --secondary-foreground: #A0D0DA; /* --color-secondary-200 */
 
-  --tertiary: #AC2D68; /* --color-tertiary-400 */
+  --tertiary: #B83E73; /* --color-tertiary-600 */
   --tertiary-foreground: #ffffff;
 
   /* Borders — EOSC dark mode border colours */
-  --border: #424D50;
-  --border-focus: #748387;
+  --border: #1D3237; /* --base-700 */
+  --border-focus: #267582; /* --color-primary-600 */
 
-  /* Semantic — EOSC dark mode semantic colours */
-  --info: #6EADE3; /* --color-info-400 */
-  --info-foreground: #ffffff;
-  --success: #7FC06B; /* --color-success-400 */
-  --success-foreground: #ffffff;
-  --warning: #D9AE5C; /* --color-warning-400 */
-  --warning-foreground: #ffffff;
-  --error: #D36A63; /* --color-error-400 */
-  --error-foreground: #ffffff;
+  /* Semantic - dark */
+  --info: #609BDC; /* --color-info-600 */
+  --info-foreground: #0A1828; /* --color-info-950 */
+  --success: #429443; /* --color-success-600 */
+  --success-foreground: #051909; /* --color-success-950 */
+  --warning: #CB9A47; /* --color-warning-600 */
+  --warning-foreground: #1F1505; /* --color-warning-950 */
+  --error: #D13838; /* --color-error-600 */
+  --error-foreground: #290806; /* --color-error-950 */
 
   /* Charts — EOSC dark mode chart palette */
-  --chart-1: #1A8A9D;
-  --chart-2: #E5246D;
-  --chart-3: #6730D9;
-  --chart-4: #73400D;
-  --chart-5: #1D9B54;
-  --chart-6: #E7B323;
-  --chart-7: #933125;
+  --chart-1: #14A6C0;
+  --chart-2: #F65D97;
+  --chart-3: #9285FF;
+  --chart-4: #FF8800;
+  --chart-5: #00C739;
+  --chart-6: #F6CA00;
+  --chart-7: #E3000E;
 
-  /* ── Primary Ramp ── */
-  --color-primary-50: #EEF6F6;
-  --color-primary-100: #E6F0F1;
-  --color-primary-200: #D1E4E7;
-  --color-primary-300: #AECFD5;
-  --color-primary-400: #7FB2BA;
-  --color-primary-500: #7FB2BA;
-  --color-primary-600: #2A7180;
-  --color-primary-700: #005B67;
-  --color-primary-800: #004E59;
-  --color-primary-900: #00363E;
-  --color-primary-950: #001F24;
+   /* ── Primary Ramp — dark ── */
+  --color-primary-50:  #F1F4F4;
+  --color-primary-100: #D1E2E6;
+  --color-primary-200: #9ED1DB;
+  --color-primary-300: #76BBC8;
+  --color-primary-400: #52A3B2;
+  --color-primary-500: #378B9A;
+  --color-primary-600: #267582;
+  --color-primary-700: #145B66;
+  --color-primary-800: #09424B;
+  --color-primary-900: #03292F;
+  --color-primary-950: #001317;
 
   /* ── Secondary Ramp -─ */
-  --color-secondary-50: #EDF7F6;
-  --color-secondary-100: #E3F2F1;
-  --color-secondary-200: #CCEAE8;
-  --color-secondary-300: #A6DED9;
-  --color-secondary-400: #70CDC6;
-  --color-secondary-500: #37AEA7;
-  --color-secondary-600: #228781;
-  --color-secondary-700: #0F5A57;
-  --color-secondary-800: #0C4D4B;
-  --color-secondary-900: #093433;
-  --color-secondary-950: #061E1E;
+  --color-secondary-50:  #ECF5F7;
+  --color-secondary-100: #CCE4E8;
+  --color-secondary-200: #A0D0DA;
+  --color-secondary-300: #76BBC8;
+  --color-secondary-400: #50A3B2;
+  --color-secondary-500: #328C9B;
+  --color-secondary-600: #1C7584;
+  --color-secondary-700: #085C68;
+  --color-secondary-800: #04424B;
+  --color-secondary-900: #012930;
+  --color-secondary-950: #001317;
 
   /* ── Tertiary Ramp ── */
-  --color-tertiary-50: #FFEFF4;
-  --color-tertiary-100: #FFE6EE;
-  --color-tertiary-200: #FFD2E0;
-  --color-tertiary-300: #FFACC9;
-  --color-tertiary-400: #EC80A9;
-  --color-tertiary-500: #C94E7E;
-  --color-tertiary-600: #AC2D68;
-  --color-tertiary-700: #930051;
-  --color-tertiary-800: #7F0046;
-  --color-tertiary-900: #5A0030;
-  --color-tertiary-950: #37001B;
+  --color-tertiary-50:  #F9F1F3;
+  --color-tertiary-100: #EFD9E0;
+  --color-tertiary-200: #E8BCCA;
+  --color-tertiary-300: #E39AB3;
+  --color-tertiary-400: #DC769D;
+  --color-tertiary-500: #CE5687;
+  --color-tertiary-600: #B83E73;
+  --color-tertiary-700: #942659;
+  --color-tertiary-800: #6D163F;
+  --color-tertiary-900: #460B26;
+  --color-tertiary-950: #220210;
 
   /* ── Error Ramp ── */
-  --color-error-50: #FAEDEB;
-  --color-error-100: #F8E5E3;
-  --color-error-200: #F2C9C4;
-  --color-error-300: #E9A098;
-  --color-error-400: #D36A63;
-  --color-error-500: #CC4F4B;
-  --color-error-600: #BC3534;
-  --color-error-700: #AA2828;
-  --color-error-800: #931F20;
-  --color-error-900: #6C1819;
-  --color-error-950: #45100C;
+  --color-error-50: #FEF1EF;
+  --color-error-100: #FCE2DF;
+  --color-error-200: #FAC5BF;
+  --color-error-300: #F9A69E;
+  --color-error-400: #F7857D;
+  --color-error-500: #F65953;
+  --color-error-600: #D13838;
+  --color-error-700: #9C2C29;
+  --color-error-800: #6A1D1B;
+  --color-error-900: #3E0E0E;
+  --color-error-950: #290806;
 
   /* ── Warning Ramp ── */
-  --color-warning-50: #FAF5EA;
-  --color-warning-100: #F4EFDF;
-  --color-warning-200: #EDDDB5;
-  --color-warning-300: #EBCF8B;
-  --color-warning-400: #D9AE5C;
-  --color-warning-500: #CA9C40;
-  --color-warning-600: #C48D23;
-  --color-warning-700: #A97821;
-  --color-warning-800: #7B5514;
-  --color-warning-900: #5C3F0E;
-  --color-warning-950: #392705;
+  --color-warning-50: #FEF9ED;
+  --color-warning-100: #FCF6E5;
+  --color-warning-200: #FCEDC9;
+  --color-warning-300: #FAE3AC;
+  --color-warning-400: #FFD482;
+  --color-warning-500: #FFCA61;
+  --color-warning-600: #CB9A47;
+  --color-warning-700: #987133;
+  --color-warning-800: #664A20;
+  --color-warning-900: #37260D;
+  --color-warning-950: #1F1505;
 
   /* ── Success Ramp */
-  --color-success-50: #EEF5EB;
-  --color-success-100: #E5F0E2;
-  --color-success-200: #CFE4C9;
-  --color-success-300: #A9D29D;
-  --color-success-400: #7FC06B;
-  --color-success-500: #5CAD50;
-  --color-success-600: #43A044;
-  --color-success-700: #328739;
-  --color-success-800: #286E31;
-  --color-success-900: #1B5225;
-  --color-success-950: #103617;
+  --color-success-50: #E7FDDE;
+  --color-success-100: #D6F4CE;
+  --color-success-200: #B5E5A8;
+  --color-success-300: #96D682;
+  --color-success-400: #81C969;
+  --color-success-500: #5DBC4F;
+  --color-success-600: #429443;
+  --color-success-700: #2E6D32;
+  --color-success-800: #1D4A22;
+  --color-success-900: #0C2911;
+  --color-success-950: #051909;
 
   /* ── Info Ramp ── */
-  --color-info-50: #EEF6FD;
-  --color-info-100: #DDEDFB;
-  --color-info-200: #C4DFF7;
-  --color-info-300: #9FC9EF;
-  --color-info-400: #6EADE3;
-  --color-info-500: #3F8ED4;
-  --color-info-600: #196DBC;
-  --color-info-700: #155DA2;
-  --color-info-800: #124D86;
-  --color-info-900: #0D3862;
-  --color-info-950: #08233E;
+  --color-info-50: #F5FAFE;
+  --color-info-100: #EBF5FE;
+  --color-info-200: #D6EBFC;
+  --color-info-300: #BCDEFD;
+  --color-info-400: #A5D4FC;
+  --color-info-500: #8FC8FF;
+  --color-info-600: #609BDC;
+  --color-info-700: #4471A3;
+  --color-info-800: #2C4C70;
+  --color-info-900: #14293F;
+  --color-info-950: #0A1828;
 
   /* ── Base/Neutral Ramp ── */
-  --color-base-50: #F1F4F4;
-  --color-base-100: #EEF1F1;
-  --color-base-200: #E0E6E7;
-  --color-base-300: #C7D1D3;
-  --color-base-400: #A7B4B7;
-  --color-base-500: #748387;
-  --color-base-600: #576569;
-  --color-base-700: #424D50;
-  --color-base-800: #323B3E;
-  --color-base-900: #1F2527;
-  --color-base-950: #0C0F10;
+  --color-base-50: #EAF2F3;
+  --color-base-100: #D0DCDF;
+  --color-base-200: #A9BEC3;
+  --color-base-300: #7E9AA0;
+  --color-base-400: #57767D;
+  --color-base-500: #3B585E;
+  --color-base-600: #284147;
+  --color-base-700: #1D3237;
+  --color-base-800: #17282C;
+  --color-base-900: #111B1E;
+  --color-base-950: #091013;
 }
 
 /* Apply Roboto to the EOSC theme. Kept unlayered so it overrides the app's
@@ -340,33 +336,6 @@
 }
 
 @layer utilities {
-  .eosc-slide-in-from-bottom {
-    animation: eoscSlideInFromBottom 0.3s ease-out;
-  }
-  .eosc-slide-out-to-bottom {
-    animation: eoscSlideOutToBottom 0.3s ease-in;
-  }
-  .eosc-animate-slideUp {
-    animation: eoscSlideInFromBottom 0.3s ease-out;
-  }
-
-  @keyframes eoscSlideInFromBottom {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  @keyframes eoscSlideOutToBottom {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
-
   /* EOSC Transition defaults */
   .eosc-transition-default {
     transition-property: all;

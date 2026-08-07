@@ -23,7 +23,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Install Dependencies
-        run: bun ci
+        run: bun install --frozen-lockfile
 
       - name: Run Linter
         run: bun run lint
@@ -75,7 +75,7 @@ jobs:
           push: true
           tags: |
             ${{ vars.DOCKER_REGISTRY }}/design-system/storybook:prod
-          cache-from: type:gha
+          cache-from: type=gha
           cache-to: type=gha,mode=max
 
   Deploy:

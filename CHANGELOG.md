@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.9
+
+- Exported previously missing primitives (chart, command, context-menu, pagination, popover, resizable) from the component library
+- Removed the deprecated Panel component
+- Added animation utilities and an `elter_setup.css` export for the eLTER theme
+- Refined the EOSC color palette
+- Fixed feedback form auto-close/progress timing bug
+- Fixed minor styling issues in Button, Alert, Avatar, Checkbox, Switch, Sidebar and Content components
+
 ## v0.1.8
 
 - Added new color palette for eLTER design system

@@ -140,14 +140,6 @@ import {
   PaginationNext,
   PaginationEllipsis,
 } from "../../lib/components/primitives/pagination";
-import {
-  Panel,
-  PanelContent,
-  PanelDescription,
-  PanelFooter,
-  PanelHeader,
-  PanelTitle,
-} from "../../lib/components/primitives/panel";
 import { Progress } from "../../lib/components/primitives/progress";
 import {
   RadioGroup,
@@ -297,7 +289,7 @@ import {
 // Plain object — safe to iterate with Object.keys / Object.entries in any
 // bundler (Turbopack, webpack, etc.)
 // ─────────────────────────────────────────────────────────────────────────────
-// eslint-disable-next-line --- IGNORE ---
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const componentRegistry: Record<string, React.ComponentType<any>> = {
   // Accordion
   Accordion,
@@ -416,13 +408,6 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-  // Panel
-  Panel,
-  PanelContent,
-  PanelDescription,
-  PanelFooter,
-  PanelHeader,
-  PanelTitle,
   // Progress
   Progress,
   // RadioGroup

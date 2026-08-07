@@ -88,6 +88,9 @@ export function Example() {
 
 - `@e-infra/design-system` - Components, utilities, and hooks
 - `@e-infra/design-system/setup.css` - Library CSS entry for Tailwind v4 setup
+- `@e-infra/design-system/eosc_setup.css` - EOSC branding theme
+- `@e-infra/design-system/elter_setup.css` - eLTER branding theme
+- `@e-infra/design-system/custom_setup.css` - 3-color custom theme generator
 
 ## Documentation
 

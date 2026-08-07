@@ -17,6 +17,7 @@ export default defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "storybook-static/**",
     "next-env.d.ts",
     "lib/**/*.stories.{js,cjs,mjs,ts,tsx}",
     "eslint.config.mjs",

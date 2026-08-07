@@ -21,7 +21,7 @@
     "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-heading:
-    var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif,
+    var(--font-montserrat, "Montserrat"), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Transitions */
@@ -355,33 +355,6 @@
 }
 
 @layer utilities {
-  .elter-slide-in-from-bottom {
-    animation: elterSlideInFromBottom 0.3s ease-out;
-  }
-  .elter-slide-out-to-bottom {
-    animation: elterSlideOutToBottom 0.3s ease-in;
-  }
-  .elter-animate-slideUp {
-    animation: elterSlideInFromBottom 0.3s ease-out;
-  }
-
-  @keyframes elterSlideInFromBottom {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  @keyframes elterSlideOutToBottom {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
-
   /* ELTER Transition defaults */
   .elter-transition-default {
     transition-property: all;

@@ -22,5 +22,3 @@ export const docsTypography = {
   tokenCode:
     "text-[11px] font-mono text-text-muted bg-transparent px-0 py-0 rounded-none",
 } as const;
-
-export type DocsTypographyKey = keyof typeof docsTypography;

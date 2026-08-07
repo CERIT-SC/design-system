@@ -54,20 +54,16 @@ export function Stepper({
   const previousInitialStepRef = React.useRef(initialStep);
 
   const nextStep = React.useCallback(() => {
-    setCurrentStep((prev) => {
-      const next = clampStep(prev + 1, totalSteps);
-      onStepChange?.(next);
-      return next;
-    });
-  }, [clampStep, totalSteps, onStepChange]);
+    const next = clampStep(currentStep + 1, totalSteps);
+    setCurrentStep(next);
+    onStepChange?.(next);
+  }, [clampStep, currentStep, totalSteps, onStepChange]);
 
   const previousStep = React.useCallback(() => {
-    setCurrentStep((prev) => {
-      const next = clampStep(prev - 1, totalSteps);
-      onStepChange?.(next);
-      return next;
-    });
-  }, [clampStep, totalSteps, onStepChange]);
+    const next = clampStep(currentStep - 1, totalSteps);
+    setCurrentStep(next);
+    onStepChange?.(next);
+  }, [clampStep, currentStep, totalSteps, onStepChange]);
 
   const goToStep = React.useCallback(
     (step: number) => {

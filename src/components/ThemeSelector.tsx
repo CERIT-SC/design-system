@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,19 +14,7 @@ import {
   type BrandingTheme,
   type ColorMode,
 } from "../hooks/use-theme-switcher";
-import { useTheme } from "next-themes";
 
-/**
- * Themes that are actually defined in `lib_public` and loaded by the app
- * (see `src/app/globals.css`).
- *
- * Only the color modes with a corresponding stylesheet definition are listed:
- * - Default (`setup.css`): `:root` (light) + `.dark` (dark)
- * - EOSC (`eosc_setup.css`): `[data-theme="eosc"]` (light) + `[data-theme="eosc"].dark` (dark)
- * - ELTER (`elter_setup.css`): `[data-theme="elter"]` (light) + `[data-theme="elter"].dark` (dark)
- *
- * Add a mode here only once the matching CSS exists in `lib_public`.
- */
 const AVAILABLE_THEMES: {
   branding: BrandingTheme;
   label: string;
@@ -36,19 +25,7 @@ const AVAILABLE_THEMES: {
   { branding: "elter", label: "ELTER Branding", modes: ["light", "dark"] },
 ];
 
-/**
- * ThemeSelector Component
- *
- * Lists only the branding/color-mode combinations that have a stylesheet
- * defined in `lib_public` (see {@link AVAILABLE_THEMES}). For example, EOSC
- * and ELTER have no dark theme, so their dark modes are intentionally not
- * offered.
- *
- * Usage:
- *   import { ThemeSelector } from "@/components/ThemeSelector";
- *   <ThemeSelector />
- */
-export function ThemeSelector() {
+function ThemeSelectorInner() {
   const {
     brandingTheme,
     colorMode,
@@ -56,7 +33,6 @@ export function ThemeSelector() {
     setElterTheme,
     setDefaultTheme,
   } = useThemeSwitcher();
-  const { setTheme } = useTheme();
 
   const currentBrandingLabel =
     brandingTheme === "eosc"
@@ -73,9 +49,6 @@ export function ThemeSelector() {
     } else {
       setDefaultTheme(mode);
     }
-    // Keep next-themes in sync using only real CSS class names (light/dark).
-    // Branding is managed separately via data-theme by useThemeSwitcher.
-    setTheme(mode);
   };
 
   return (
@@ -118,5 +91,13 @@ export function ThemeSelector() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+export function ThemeSelector() {
+  return (
+    <Suspense fallback={null}>
+      <ThemeSelectorInner />
+    </Suspense>
   );
 }

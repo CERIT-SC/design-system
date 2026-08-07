@@ -1,63 +1,46 @@
-import { readFileSync, readdirSync, statSync } from "fs";
-import { join } from "path";
+import { readFileSync } from "fs";
+import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 
 import { mdxComponents } from "../../../components/docs/MDXComponents";
 import { StorybookLink } from "../../../components/docs/StorybookLink";
+import {
+  DOCS_DIR,
+  collectMdxFiles,
+  resolveWithinDir,
+  toTitleCase,
+} from "../../../lib/docs-nav";
 import { pagefindBodyAttrs, sectionForSlug } from "../../../lib/docs-search";
 import { storybookUrlForSlug } from "../../../lib/storybook";
 
-import { H1, P } from "../../../../lib/components/foundations/typography";
-
-const DOCS_DIR = join(process.cwd(), "docs");
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-interface PageData {
-  source: string;
-}
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-/** Recursively collect every .mdx file path under a directory. */
-function collectMdxFiles(dir: string): string[] {
-  const entries = readdirSync(dir);
-  const files: string[] = [];
-  for (const entry of entries) {
-    const full = join(dir, entry);
-    if (statSync(full).isDirectory()) {
-      files.push(...collectMdxFiles(full));
-    } else if (entry.endsWith(".mdx")) {
-      files.push(full);
-    }
-  }
-  return files;
-}
-
-/** Read and parse an MDX file by its slug segments. */
-function readMdxFile(slug: string[]): {
-  source: string;
-} | null {
-  if (slug.length === 0) return null;
-
-  const filePath = join(DOCS_DIR, `${slug.join("/")}.mdx`);
+function readMdxFile(slug: string[]): { source: string } | null {
+  const filePath = resolveWithinDir(DOCS_DIR, slug, ".mdx");
+  if (!filePath) return null;
 
   try {
-    const raw = readFileSync(filePath, "utf-8");
-    return { source: raw };
+    return { source: readFileSync(filePath, "utf-8") };
   } catch {
     return null;
   }
 }
 
 function slugToTitle(slug: string[]): string {
-  const last = slug[slug.length - 1] ?? "docs";
-  return last.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return toTitleCase(slug[slug.length - 1] ?? "docs");
 }
 
 // ─── Static Params ────────────────────────────────────────────────────────────
+
+/**
+ * Every doc page is enumerated from the filesystem below, so there is no such
+ * thing as a legitimate slug that isn't already known at build time. Refusing
+ * unknown params makes Next return a real 404 at the routing layer and means
+ * untrusted slug input never reaches `readMdxFile` in the first place.
+ */
+export const dynamicParams = false;
 
 export function generateStaticParams(): { slug: string[] }[] {
   try {
@@ -83,11 +66,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const page = readMdxFile(slug);
 
+  // Must bail here too, not just in the page component: if metadata resolves
+  // successfully Next flushes the document head and the status is locked at
+  // 200, so a later notFound() renders the 404 page under a 200 response.
   if (!page) {
-    return {
-      title: "Page Not Found",
-      description: "The requested documentation page was not found.",
-    };
+    notFound();
   }
 
   return {
@@ -105,15 +88,10 @@ export default async function DocsPage({
   const page = readMdxFile(slug);
 
   if (!page) {
-    return (
-      <article className="mx-auto p-10 space-y-8">
-        <H1>Page Not Found</H1>
-        <P>The requested documentation page could not be found.</P>
-      </article>
-    );
+    notFound();
   }
 
-  const { content } = await compileMDX<PageData>({
+  const { content } = await compileMDX({
     source: page.source,
     components: mdxComponents,
     options: {

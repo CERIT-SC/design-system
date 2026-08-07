@@ -34,6 +34,26 @@ spec:
           ports:
             - name: probe-port
               containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: /
+              port: probe-port
+            periodSeconds: 5
+            failureThreshold: 24
+          readinessProbe:
+            httpGet:
+              path: /
+              port: probe-port
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: probe-port
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
           resources:
             limits:
               memory: "1Gi"

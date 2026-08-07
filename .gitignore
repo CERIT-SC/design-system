@@ -28,10 +28,8 @@ dist-ssr
 design-system-*.tgz
 
 # Build output
-*.js
-*.js.map
-!*.config.js
-!*.config.ts
+# Scoped to the emit directories: a bare `*.js` also swallows any new
+# plain-JS source file, which is silent and very confusing to debug.
 dist/
 types/
 .next/

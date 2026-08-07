@@ -9,7 +9,7 @@ import autoprefixer from "autoprefixer";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? "/ics-design-system/" : "/",
+  base: "/",
   plugins: [
     react(),
     tailwindcss(),
@@ -62,19 +62,13 @@ export default defineConfig({
         "clsx",
         "tailwind-merge",
         "lucide-react",
-        "@hookform/resolvers",
         "react-hook-form",
-        "zod",
         "cmdk",
-        "date-fns",
         "react-day-picker",
         "embla-carousel-react",
-        "input-otp",
-        "next-themes",
         "react-resizable-panels",
         "recharts",
         "sonner",
-        "vaul",
       ],
       output: {
         // Rollup globals - Needed only for UMD builds

@@ -173,7 +173,7 @@ export function AnimatedBackground() {
       canvas.height = height * dpr;
       canvas.style.width = `${String(width)}px`;
       canvas.style.height = `${String(height)}px`;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     function drawDotGrid() {
@@ -204,14 +204,17 @@ export function AnimatedBackground() {
         if (paths[i].points.length === 0) paths.splice(i, 1);
       }
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     }
+
+    let rafId = 0;
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
     animate();
 
     return () => {
+      cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);

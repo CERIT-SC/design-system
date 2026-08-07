@@ -17,6 +17,59 @@ import '@e-infra/design-system/eosc_setup.css';   // EOSC theme
 import '@e-infra/design-system/elter_setup.css';  // ELTER theme
 ```
 
+## Theme Fonts
+
+The branding themes set a font family, but the library **does not ship the font
+files**. Each theme reads a CSS variable that your app is responsible for
+defining:
+
+| Theme | Variable | Font | Applies to |
+|-------|----------|------|------------|
+| `default` | — | inherits your app's font | everything |
+| `eosc` | `--font-roboto` | Roboto | body and headings |
+| `elter` | `--font-montserrat` | Montserrat | headings (`h1`–`h6`) only; body uses Helvetica Neue, which needs no loading |
+
+If the variable is missing the theme degrades gracefully — it falls back to a
+locally installed copy of the font, then to the system sans-serif — but you will
+not get the intended branding. To load the fonts properly:
+
+### Next.js (`next/font`)
+
+```tsx
+// app/layout.tsx
+import { Roboto, Montserrat } from 'next/font/google';
+
+const roboto = Roboto({ subsets: ['latin'], display: 'swap', variable: '--font-roboto' });
+const montserrat = Montserrat({ subsets: ['latin'], display: 'swap', variable: '--font-montserrat' });
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={`${roboto.variable} ${montserrat.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### Any other bundler
+
+Load the fonts however you normally would (a `<link>` to Google Fonts, a
+self-hosted `@font-face`, …) and point the variable at the family name:
+
+```css
+:root {
+  --font-roboto: "Roboto";
+  --font-montserrat: "Montserrat";
+}
+```
+
+> **Gotcha if you write your own theme:** always give `var()` a fallback inside a
+> `font-family` stack — `var(--font-x, "X"), sans-serif`, never `var(--font-x),
+> sans-serif`. An undefined custom property with no fallback makes the entire
+> declaration invalid at computed-value time, so the browser throws the whole
+> stack away rather than continuing to the next entry. On `<html>` that means
+> falling all the way back to the default serif (Times New Roman).
+
 ## Theme Persistence
 
 Theme preferences are automatically persisted in `localStorage`:

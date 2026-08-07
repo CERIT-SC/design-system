@@ -220,7 +220,7 @@ Focus ring: `border-border-focus`.
 |---|---|---|---|---|---|
 | `token-space-1` | `p-2` 8px | `p-3` 12px | `p-4` 16px | `p-6` 24px | Inner component padding |
 | `token-space-2` | `p-4` 16px | `p-6` 24px | `p-8` 32px | `p-12` 48px | Section gutter |
-| `token-space-3` | `p-6` 24px | `p-8` 32px | `p-12` 48px | `p-16` 64px | Card / panel padding |
+| `token-space-3` | `p-6` 24px | `p-8` 32px | `p-12` 48px | `p-16` 64px | Card padding |
 | `token-space-4` | `p-8` 32px | `p-12` 48px | `p-16` 64px | `p-24` 96px | Section vertical rhythm |
 
 Common responsive patterns:
@@ -284,7 +284,7 @@ All components accept `className` (merged with defaults) and their native HTML e
 
 All imports from `@e-infra/design-system`. Do not import anything not in this list — it does not exist in the package.
 
-**Primitives** — accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, carousel, checkbox, collapsible, dialog, dropdown-menu, form (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage), input, label, menubar, navigation-menu, progress, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, stepper, switch, table, tabs, textarea, toggle, toggle-group, tooltip, panel
+**Primitives** — accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, carousel, checkbox, collapsible, dialog, dropdown-menu, form (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage), input, label, menubar, navigation-menu, progress, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, stepper, switch, table, tabs, textarea, toggle, toggle-group, tooltip
 
 **Foundations** — H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, List, OrderedList
 
@@ -455,10 +455,12 @@ import { Content, ContentHeading, ContentSubheading, ContentBody } from '@e-infr
 
 | Component | Element | Built-in spacing |
 |---|---|---|
-| `Content` | `div` | `space-y-8 px-10 pb-10 mx-auto max-w-7xl` |
-| `ContentHeading` | wraps `H1` | — |
-| `ContentSubheading` | wraps `H2` | — |
+| `Content` | `div` | `mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-10 md:px-6 lg:px-8 xl:px-10` |
+| `ContentHeading` | wraps `H1` | `mb-6` |
+| `ContentSubheading` | wraps `H2` | `mt-12 mb-4 first:mt-0` |
 | `ContentBody` | `div` | `space-y-4` |
+
+Headings carry their own margins so a section heading sits closer to the body it introduces than to the section above it. These win over the container's `space-y-8` (Tailwind v4 wraps `space-y` in `:where()`), so pass `className` to adjust a single heading.
 
 ```tsx
 <Content>
@@ -669,7 +671,7 @@ All accept `className` (merged) and native element props.
 
 ### Component inventory — only import from this list
 
-**Primitives** — accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, carousel, checkbox, collapsible, dialog, dropdown-menu, form (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage), input, label, menubar, navigation-menu, progress, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, stepper, switch, table, tabs, textarea, toggle, toggle-group, tooltip, panel
+**Primitives** — accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, carousel, checkbox, collapsible, dialog, dropdown-menu, form (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage), input, label, menubar, navigation-menu, progress, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, stepper, switch, table, tabs, textarea, toggle, toggle-group, tooltip
 
 **Layout** — `Content` `ContentHeading` `ContentSubheading` `ContentBody` `Header` `HeaderContent` `HeaderLeft` `HeaderCenter` `HeaderRight` `Sidebar` `SidebarHeader` `SidebarContent` `SidebarFooter` `NavItem` `CollapsibleGroup`
 
