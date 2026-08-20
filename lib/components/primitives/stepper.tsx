@@ -121,6 +121,7 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
   );
   const progressPercentage =
     safeTotalSteps > 1 ? (activeStepIndex / (safeTotalSteps - 1)) * 100 : 100;
+  const isLastStep = activeStepIndex === safeTotalSteps - 1;
   const stepMarkerSize = 28;
   const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
     label: steps[index]?.label ?? `Step ${String(index + 1)}`,
@@ -165,7 +166,7 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
               <div
                 className="absolute left-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary transition-all"
                 style={{
-                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * ${String(stepMarkerSize)}px + ${String(stepMarkerSize)}px)`,
+                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * ${String(stepMarkerSize)}px + ${String(isLastStep ? 0 : stepMarkerSize)}px)`,
                 }}
               />
 
