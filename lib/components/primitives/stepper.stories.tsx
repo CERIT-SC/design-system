@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
   Stepper,
   StepperContent,
@@ -197,14 +198,14 @@ export const WithInitialStep: Story = {
 };
 
 /**
- * Shows how to add optional custom actions in the footer while
- * keeping the header as the primary navigation.
+ * Shows how to add optional custom actions in the footer; the built-in
+ * header navigation is hidden so the controls are not duplicated.
  */
 export const WithCustomFooter: Story = {
   render: () => (
     <div className="w-200">
       <Stepper totalSteps={steps.length}>
-        <StepperHeader steps={steps} />
+        <StepperHeader steps={steps} showNavigation={false} />
         <StepperContent>
           <Step1PublicationInfo />
           <Step2DuplicityCheck />
@@ -300,7 +301,7 @@ export const WithCustomNavigation: Story = {
   render: () => (
     <div className="w-200">
       <Stepper totalSteps={steps.length}>
-        <StepperHeader steps={steps} />
+        <StepperHeader steps={steps} showNavigation={false} />
         <StepperContent>
           <Step1PublicationInfo />
           <Step2DuplicityCheck />
@@ -337,4 +338,30 @@ export const WithIcons: Story = {
       </Stepper>
     </div>
   ),
+};
+
+/**
+ * The parent owns the step via the step prop; the header navigation is
+ * hidden in favor of custom footer controls.
+ */
+export const ControlledExternally: Story = {
+  render: function ControlledStory() {
+    const [step, setStep] = useState(1);
+    return (
+      <div className="w-200">
+        <Stepper step={step} totalSteps={steps.length} onStepChange={setStep}>
+          <StepperHeader steps={steps} showNavigation={false} />
+          <StepperContent>
+            <Step1PublicationInfo />
+            <Step2DuplicityCheck />
+            <Step3Authors />
+            <Step4Acknowledgements />
+          </StepperContent>
+          <StepperFooter showDefaultButtons={false}>
+            <CustomFooterActions />
+          </StepperFooter>
+        </Stepper>
+      </div>
+    );
+  },
 };
