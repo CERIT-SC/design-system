@@ -8,6 +8,7 @@ import { Button } from "./button";
 interface Step {
   label: string;
   description?: string;
+  icon?: React.ComponentType<{ className?: string }>;
 }
 
 interface StepperContextValue {
@@ -124,6 +125,7 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
   const stepMarkerSize = 28;
   const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
     label: steps[index]?.label ?? `Step ${String(index + 1)}`,
+    icon: steps[index]?.icon,
   }));
   const currentStepLabel =
     stepItems[activeStepIndex]?.label ?? `Step ${String(activeStepIndex + 1)}`;
@@ -200,7 +202,11 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
                             : "0 0 6px rgba(115, 112, 128, 0.38)",
                       }}
                     >
-                      {index + 1}
+                      {step.icon ? (
+                        <step.icon className="h-4 w-4" aria-hidden />
+                      ) : (
+                        index + 1
+                      )}
                     </button>
                   );
                 })}

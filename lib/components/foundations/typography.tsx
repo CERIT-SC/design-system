@@ -58,7 +58,12 @@ export function Lead({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn("text-lg leading-8", className)} {...props} />;
+  return (
+    <p
+      className={cn("text-lg text-text-muted leading-8", className)}
+      {...props}
+    />
+  );
 }
 
 // Strong - Bold Paragraph
@@ -79,7 +84,12 @@ export function Small({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn("text-sm leading-6", className)} {...props} />;
+  return (
+    <p
+      className={cn("text-sm text-text-muted leading-6", className)}
+      {...props}
+    />
+  );
 }
 
 // Muted - Extra Small / Caption
@@ -88,7 +98,10 @@ export function Muted({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn("text-xs text-text leading-5", className)} {...props} />
+    <p
+      className={cn("text-xs text-text-muted leading-5", className)}
+      {...props}
+    />
   );
 }
 
