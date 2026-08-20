@@ -139,10 +139,10 @@ function StepperActions() {
 
 ### StepperHeader
 
-| Prop      | Type   | Default | Description                                                       |
-| --------- | ------ | ------- | ----------------------------------------------------------------- |
-| steps     | Step[] | -       | Array of step definitions with `label` and optional `description` |
-| className | string | -       | Additional CSS classes                                            |
+| Prop      | Type   | Default | Description                                                                  |
+| --------- | ------ | ------- | ---------------------------------------------------------------------------- |
+| steps     | Step[] | -       | Array of step definitions with `label`, optional `description`, and `icon`   |
+| className | string | -       | Additional CSS classes                                                       |
 
 ### StepperContent
 
@@ -239,6 +239,21 @@ function CustomFooterActions() {
   <StepperContent>{/* Your step content */}</StepperContent>
   <CustomFooterActions />
 </Stepper>;
+```
+
+### Step Icons
+
+Show an icon in each step marker instead of the step number. Any component accepting an optional `className` works — the stepper passes marker sizing to it:
+
+```tsx
+import { FileText, FileSearch, BookUser, CircleCheck } from "lucide-react";
+
+const steps = [
+  { label: "Publication Info", icon: FileText },
+  { label: "Duplicity Check", icon: FileSearch },
+  { label: "Authors", icon: BookUser },
+  { label: "Finish", icon: CircleCheck },
+];
 ```
 
 ### On Step Change Callback

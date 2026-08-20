@@ -17,6 +17,7 @@ import { Input } from "./input";
 import { Label } from "./label";
 import { Textarea } from "./textarea";
 import { Button } from "./button";
+import { BookUser, CircleCheck, FileSearch, FileText } from "lucide-react";
 
 const meta = {
   title: "Primitives/Stepper",
@@ -307,6 +308,32 @@ export const WithCustomNavigation: Story = {
           <Step4Acknowledgements />
         </StepperContent>
         <CustomNavigationFooter />
+      </Stepper>
+    </div>
+  ),
+};
+
+const iconSteps = [
+  { label: "Publication Info", icon: FileText },
+  { label: "Duplicity Check", icon: FileSearch },
+  { label: "Authors", icon: BookUser },
+  { label: "Finish", icon: CircleCheck },
+];
+
+/**
+ * Steps can show an icon in their marker instead of the step number.
+ */
+export const WithIcons: Story = {
+  render: () => (
+    <div className="w-200">
+      <Stepper initialStep={1} totalSteps={iconSteps.length}>
+        <StepperHeader steps={iconSteps} />
+        <StepperContent>
+          <Step1PublicationInfo />
+          <Step2DuplicityCheck />
+          <Step3Authors />
+          <Step4Acknowledgements />
+        </StepperContent>
       </Stepper>
     </div>
   ),
