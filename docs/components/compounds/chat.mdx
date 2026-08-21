@@ -49,6 +49,96 @@ import {
 
 Whatever height you choose, the ancestor chain must be height-constrained too — a `h-full` inside an auto-height parent has nothing to fill.
 
+## Reply styles
+
+The shell is indifferent to how a turn looks, and there are two conventions worth knowing. Both use the same header, transcript, and composer — only the assistant's turn differs.
+
+**Plain text.** The reply is full-width prose with no bubble chrome, and carries a copy action. Reads better for long or structured answers, and matches what people expect from an assistant.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="plain" />
+</ComponentPreview>
+
+**Bubbles.** The reply sits in a muted bubble beside an avatar. Reads as a conversation between two parties, which suits short exchanges and human-to-human support.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="bubble" />
+</ComponentPreview>
+
+| | Plain text | Bubbles |
+| --- | --- | --- |
+| Assistant bubble | `variant="ghost"` | `variant="muted"` |
+| Assistant avatar | omitted | shown |
+| Body size | `text-base` | inherits `text-sm` |
+| Reply actions | supported | supported |
+| Best for | long or structured answers | short exchanges, human agents |
+
+In both cases the person's own turn stays a right-aligned bubble. That asymmetry is the point of the plain style — it separates "what I asked" from "what came back".
+
+```tsx
+{/* plain text — the assistant look */}
+<Message align="start">
+  <MessageContent>
+    <Bubble variant="ghost">
+      <BubbleContent className="text-base">{reply}</BubbleContent>
+    </Bubble>
+    <MessageActions>
+      <MessageCopyButton value={reply} />
+    </MessageActions>
+  </MessageContent>
+</Message>
+
+{/* bubbles — the messaging look */}
+<Message align="start">
+  <MessageAvatar>
+    <Avatar>
+      <AvatarFallback>AI</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <Bubble variant="muted">
+      <BubbleContent>{reply}</BubbleContent>
+    </Bubble>
+  </MessageContent>
+</Message>
+```
+
+Whichever you pick, match the typing indicator to it — a bubbled indicator followed by a plain reply makes the answer appear to jump.
+
+## Reply actions
+
+Actions are not tied to a reply style. `MessageActions` reveals on hover of the *message*, not of the bubble, and aligns itself from the `Message` alignment — so the same row works under a ghost reply, a bubbled reply, or the person's own turn, with no changes.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="bubble" replyActions="full" />
+</ComponentPreview>
+
+It is an open row: put whatever the product needs in it. Match the copy button with `variant="ghost" size="icon-sm"`, and give every icon-only control a visually hidden label.
+
+```tsx
+const replyActions = (reply: string) => (
+  <MessageActions>
+    <MessageCopyButton value={reply} />
+    <Button variant="ghost" size="icon-sm" onClick={() => regenerate(reply)}>
+      <RefreshCw />
+      <span className="sr-only">Regenerate reply</span>
+    </Button>
+  </MessageActions>
+)
+
+{/* the same row, either style */}
+<MessageContent>
+  <Bubble variant={plain ? "ghost" : "muted"}>
+    <BubbleContent className={plain ? "text-base" : undefined}>{reply}</BubbleContent>
+  </Bubble>
+  {replyActions(reply)}
+</MessageContent>
+```
+
+Lifting the row into a function of the reply, as above, is what keeps the two styles from drifting — the actions are defined once and the style only decides the bubble.
+
+See [Message Actions](/docs/components/compounds/message-actions) for the copy behaviour and reveal rules, and the `Compounds/Chat` stories in Storybook for every combination.
+
 ## Centering the conversation
 
 The shell spans the full width. Constrain the transcript and the composer to the same max width so they line up.

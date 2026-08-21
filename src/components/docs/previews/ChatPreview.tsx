@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { RefreshCw, ThumbsDown, ThumbsUp } from "lucide-react";
 
 import {
   Chat,
@@ -43,6 +44,7 @@ import {
   Bubble,
   BubbleContent,
 } from "../../../../lib/components/primitives/bubble";
+import { Button } from "../../../../lib/components/primitives/button";
 import { Small } from "../../../../lib/components/foundations/typography";
 
 interface Turn {
@@ -51,19 +53,91 @@ interface Turn {
   text: string;
 }
 
+const REPLY =
+  "Your project is currently allocated 200 GB across the shared filesystem. " +
+  "To raise it, open a ticket with your project ID and the amount you need. " +
+  "The storage team reviews requests within two working days.";
+
 const SEED: Turn[] = [
   { id: "1", role: "assistant", text: "Hello. How can I help you today?" },
-  { id: "2", role: "user", text: "I need more storage for my project." },
-  {
-    id: "3",
-    role: "assistant",
-    text: "I can help with that. Which project ID should I look at?",
-  },
+  { id: "2", role: "user", text: "How much storage does my project have?" },
+  { id: "3", role: "assistant", text: REPLY },
 ];
 
-export function ChatPreview() {
+export function ChatPreview({
+  replyStyle = "plain",
+  replyActions = "copy",
+}: {
+  replyStyle?: "bubble" | "plain";
+  replyActions?: "copy" | "full" | "none";
+}) {
   const [turns, setTurns] = useState(SEED);
   const [status, setStatus] = useState<MessageInputStatus>("ready");
+
+  // The action row is independent of the reply style — it reveals on hover of
+  // the message, not of the bubble — so both looks get the same set.
+  const actionsFor = (text: string) =>
+    replyActions === "none" ? null : (
+      <MessageActions>
+        <MessageCopyButton value={text} />
+        {replyActions === "full" && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="hover:translate-none"
+            >
+              <RefreshCw />
+              <span className="sr-only">Regenerate reply</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="hover:translate-none"
+            >
+              <ThumbsUp />
+              <span className="sr-only">Good reply</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="hover:translate-none"
+            >
+              <ThumbsDown />
+              <span className="sr-only">Bad reply</span>
+            </Button>
+          </>
+        )}
+      </MessageActions>
+    );
+
+  // The only difference between the two looks. Everything else is shared, so
+  // the styles cannot drift apart as the components change.
+  const assistantBubble = (text: string, actions: boolean) =>
+    replyStyle === "bubble" ? (
+      <Message align="start">
+        <MessageAvatar>
+          <Avatar>
+            <AvatarFallback>AI</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+        <MessageContent>
+          <Bubble variant="muted">
+            <BubbleContent>{text}</BubbleContent>
+          </Bubble>
+          {actions && actionsFor(text)}
+        </MessageContent>
+      </Message>
+    ) : (
+      <Message align="start">
+        <MessageContent>
+          <Bubble variant="ghost">
+            <BubbleContent className="text-base">{text}</BubbleContent>
+          </Bubble>
+          {actions && actionsFor(text)}
+        </MessageContent>
+      </Message>
+    );
 
   return (
     <Chat className="border-border h-[32rem] overflow-hidden rounded-lg border">
@@ -96,32 +170,38 @@ export function ChatPreview() {
                     </MessageScrollerItem>
                   ) : (
                     <MessageScrollerItem key={turn.id} messageId={turn.id}>
-                      <Message align="start">
-                        <MessageContent>
-                          <Bubble variant="ghost">
-                            <BubbleContent className="text-base">
-                              {turn.text}
-                            </BubbleContent>
-                          </Bubble>
-                          <MessageActions>
-                            <MessageCopyButton value={turn.text} />
-                          </MessageActions>
-                        </MessageContent>
-                      </Message>
+                      {assistantBubble(turn.text, true)}
                     </MessageScrollerItem>
                   )
                 )}
                 {status === "streaming" && (
                   <MessageScrollerItem messageId="typing">
-                    <Message align="start">
-                      <MessageContent>
-                        <Bubble variant="ghost">
-                          <BubbleContent>
-                            <MessageTyping />
-                          </BubbleContent>
-                        </Bubble>
-                      </MessageContent>
-                    </Message>
+                    {replyStyle === "bubble" ? (
+                      <Message align="start">
+                        <MessageAvatar>
+                          <Avatar>
+                            <AvatarFallback>AI</AvatarFallback>
+                          </Avatar>
+                        </MessageAvatar>
+                        <MessageContent>
+                          <Bubble variant="muted">
+                            <BubbleContent>
+                              <MessageTyping />
+                            </BubbleContent>
+                          </Bubble>
+                        </MessageContent>
+                      </Message>
+                    ) : (
+                      <Message align="start">
+                        <MessageContent>
+                          <Bubble variant="ghost">
+                            <BubbleContent>
+                              <MessageTyping />
+                            </BubbleContent>
+                          </Bubble>
+                        </MessageContent>
+                      </Message>
+                    )}
                   </MessageScrollerItem>
                 )}
               </MessageScrollerContent>
@@ -150,7 +230,7 @@ export function ChatPreview() {
                 {
                   id: `a-${String(current.length)}`,
                   role: "assistant",
-                  text: "Thanks — checking that now.",
+                  text: REPLY,
                 },
               ]);
             }, 1800);
