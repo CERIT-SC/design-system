@@ -1,0 +1,159 @@
+# Bubble
+
+Bubbles wrap a single piece of conversational content. They provide the visual container for chat messages and pair with [Message](/docs/components/compounds/message) to build conversation interfaces.
+
+<ComponentPreview>
+  <div className="flex w-full max-w-sm flex-col gap-3">
+    <Bubble variant="muted">
+      <BubbleContent>How can I help you today?</BubbleContent>
+    </Bubble>
+    <Bubble align="end">
+      <BubbleContent>I need to increase my storage quota.</BubbleContent>
+    </Bubble>
+  </div>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import { Bubble, BubbleContent } from "@e-infra/design-system"
+
+<Bubble variant="muted">
+  <BubbleContent>How can I help you today?</BubbleContent>
+</Bubble>
+```
+
+## Variants
+
+<ComponentPreview>
+  <div className="flex w-full max-w-sm flex-col gap-3">
+    <Bubble variant="default">
+      <BubbleContent>Default</BubbleContent>
+    </Bubble>
+    <Bubble variant="secondary">
+      <BubbleContent>Secondary</BubbleContent>
+    </Bubble>
+    <Bubble variant="muted">
+      <BubbleContent>Muted</BubbleContent>
+    </Bubble>
+    <Bubble variant="tinted">
+      <BubbleContent>Tinted</BubbleContent>
+    </Bubble>
+    <Bubble variant="outline">
+      <BubbleContent>Outline</BubbleContent>
+    </Bubble>
+    <Bubble variant="ghost">
+      <BubbleContent>Ghost</BubbleContent>
+    </Bubble>
+    <Bubble variant="error">
+      <BubbleContent>Something went wrong.</BubbleContent>
+    </Bubble>
+  </div>
+</ComponentPreview>
+
+| Variant   | Background            | Text                   |
+| --------- | --------------------- | ---------------------- |
+| default   | `primary`             | `primary-foreground`   |
+| secondary | `secondary`           | `secondary-foreground` |
+| muted     | `surface-raised`      | inherited              |
+| tinted    | derived from `primary`  | `text`                 |
+| outline   | `background` + border | inherited              |
+| ghost     | `transparent`         | inherited              |
+| error     | `error/10`            | `error`                |
+
+## Reactions
+
+`BubbleReactions` is absolutely positioned against its parent `Bubble`, so leave vertical room for the overhang.
+
+<ComponentPreview>
+  <Bubble variant="muted" className="mb-4">
+    <BubbleContent>Deployment finished in 42 seconds.</BubbleContent>
+    <BubbleReactions>🎉 2</BubbleReactions>
+  </Bubble>
+</ComponentPreview>
+
+```tsx
+<Bubble variant="muted" className="mb-4">
+  <BubbleContent>Deployment finished in 42 seconds.</BubbleContent>
+  <BubbleReactions>🎉 2</BubbleReactions>
+</Bubble>
+```
+
+## Interactive bubbles
+
+Use `asChild` on `BubbleContent` to render a button or link. Hover and focus styles are applied automatically.
+
+<ComponentPreview>
+  <Bubble variant="outline">
+    <BubbleContent asChild>
+      <button type="button">Open the deployment log</button>
+    </BubbleContent>
+  </Bubble>
+</ComponentPreview>
+
+```tsx
+<Bubble variant="outline">
+  <BubbleContent asChild>
+    <button type="button">Open the deployment log</button>
+  </BubbleContent>
+</Bubble>
+```
+
+## Grouping
+
+`BubbleGroup` stacks consecutive bubbles from the same sender with tighter spacing.
+
+<ComponentPreview>
+  <BubbleGroup className="w-full max-w-sm">
+    <Bubble variant="muted">
+      <BubbleContent>I have two questions.</BubbleContent>
+    </Bubble>
+    <Bubble variant="muted">
+      <BubbleContent>The first one is about storage quotas.</BubbleContent>
+    </Bubble>
+  </BubbleGroup>
+</ComponentPreview>
+
+## Components
+
+| Component         | Description                                       |
+| ----------------- | ------------------------------------------------- |
+| `Bubble`          | Container that applies the variant and alignment  |
+| `BubbleContent`   | The content surface — carries the variant styling |
+| `BubbleReactions` | Overlay pill for reactions on a bubble            |
+| `BubbleGroup`     | Stacks consecutive bubbles from the same sender   |
+
+## Props
+
+### Bubble
+
+| Prop      | Type                                                                                     | Default   | Description                    |
+| --------- | ---------------------------------------------------------------------------------------- | --------- | ------------------------------ |
+| variant   | `default` \| `secondary` \| `muted` \| `tinted` \| `outline` \| `ghost` \| `error`        | `default` | Visual style variant           |
+| align     | `start` \| `end`                                                                         | `start`   | Self-alignment within a column |
+| className | string                                                                                   | -         | Additional CSS classes         |
+| ...props  | React.HTMLAttributes                                                                     | -         | Native div props               |
+
+### BubbleContent
+
+| Prop      | Type                 | Default | Description               |
+| --------- | -------------------- | ------- | ------------------------- |
+| asChild   | boolean              | `false` | Render as child component |
+| className | string               | -       | Additional CSS classes    |
+| ...props  | React.HTMLAttributes | -       | Native div props          |
+
+### BubbleReactions
+
+| Prop      | Type                 | Default  | Description                    |
+| --------- | -------------------- | -------- | ------------------------------ |
+| side      | `top` \| `bottom`    | `bottom` | Edge the overlay attaches to   |
+| align     | `start` \| `end`     | `end`    | Horizontal position on that edge |
+| className | string               | -        | Additional CSS classes         |
+| ...props  | React.HTMLAttributes | -        | Native div props               |
+
+### BubbleGroup
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |

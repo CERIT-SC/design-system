@@ -41,6 +41,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../../lib/components/primitives/breadcrumb";
+import {
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  BubbleReactions,
+} from "../../lib/components/primitives/bubble";
 import { Button } from "../../lib/components/primitives/button";
 import {
   Calendar,
@@ -245,6 +251,14 @@ import {
 import { CookiesBanner } from "../../lib/components/compounds/cookies-banner";
 import { FeedbackForm } from "../../lib/components/compounds/feedback-form";
 import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+} from "../../lib/components/compounds/message";
+import {
   Searchbar,
   SearchbarTrigger,
 } from "../../lib/components/compounds/searchbar";
@@ -314,6 +328,11 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  // Bubble
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  BubbleReactions,
   // Button
   Button,
   // Calendar
@@ -503,6 +522,12 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   // Mid-level / Compounds
   CookiesBanner,
   FeedbackForm,
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
   Searchbar,
   SearchbarTrigger,
   // Typography

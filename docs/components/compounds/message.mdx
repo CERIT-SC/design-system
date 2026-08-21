@@ -1,0 +1,216 @@
+# Message
+
+Messages lay out a single turn in a conversation — avatar, content, and optional header and footer metadata. Compose them with [Bubble](/docs/components/primitives/bubble) and [Avatar](/docs/components/primitives/avatar).
+
+<ComponentPreview>
+  <Message className="w-full max-w-sm">
+    <MessageAvatar>
+      <Avatar>
+        <AvatarFallback>AI</AvatarFallback>
+      </Avatar>
+    </MessageAvatar>
+    <MessageContent>
+      <Bubble variant="muted">
+        <BubbleContent>How can I help you today?</BubbleContent>
+      </Bubble>
+    </MessageContent>
+  </Message>
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import {
+  Avatar,
+  AvatarFallback,
+  Bubble,
+  BubbleContent,
+  Message,
+  MessageAvatar,
+  MessageContent,
+} from "@e-infra/design-system"
+
+<Message>
+  <MessageAvatar>
+    <Avatar>
+      <AvatarFallback>AI</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <Bubble variant="muted">
+      <BubbleContent>How can I help you today?</BubbleContent>
+    </Bubble>
+  </MessageContent>
+</Message>
+```
+
+## Alignment
+
+Set `align="end"` to mirror the layout for the current user. The avatar moves to the opposite side and the content aligns to the trailing edge.
+
+<ComponentPreview>
+  <div className="flex w-full max-w-sm flex-col gap-6">
+    <Message align="start">
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>AI</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="muted">
+          <BubbleContent>How can I help you today?</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+    <Message align="end">
+      <MessageAvatar>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="Jane Doe" />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble align="end">
+          <BubbleContent>I need to increase my storage quota.</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+  </div>
+</ComponentPreview>
+
+```tsx
+<Message align="end">
+  <MessageAvatar>
+    <Avatar>
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <Bubble align="end">
+      <BubbleContent>I need to increase my storage quota.</BubbleContent>
+    </Bubble>
+  </MessageContent>
+</Message>
+```
+
+## Header and footer
+
+Use `MessageHeader` for the sender name and `MessageFooter` for timestamps or actions. When a footer is present the avatar shifts up to stay level with the bubble.
+
+<ComponentPreview>
+  <Message className="w-full max-w-sm">
+    <MessageAvatar>
+      <Avatar>
+        <AvatarFallback>AI</AvatarFallback>
+      </Avatar>
+    </MessageAvatar>
+    <MessageContent>
+      <MessageHeader>Assistant</MessageHeader>
+      <Bubble variant="muted">
+        <BubbleContent>Your quota has been increased to 500 GB.</BubbleContent>
+      </Bubble>
+      <MessageFooter>Just now</MessageFooter>
+    </MessageContent>
+  </Message>
+</ComponentPreview>
+
+```tsx
+<Message>
+  <MessageAvatar>
+    <Avatar>
+      <AvatarFallback>AI</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <MessageHeader>Assistant</MessageHeader>
+    <Bubble variant="muted">
+      <BubbleContent>Your quota has been increased to 500 GB.</BubbleContent>
+    </Bubble>
+    <MessageFooter>Just now</MessageFooter>
+  </MessageContent>
+</Message>
+```
+
+## Grouping
+
+`MessageGroup` stacks consecutive messages from the same sender. Omit `MessageAvatar` on the follow-up messages and indent the content to keep the bubbles aligned.
+
+<ComponentPreview>
+  <MessageGroup className="w-full max-w-sm">
+    <Message>
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>AI</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="muted">
+          <BubbleContent>I found three matching clusters.</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+    <Message>
+      <MessageContent className="ps-10">
+        <Bubble variant="muted">
+          <BubbleContent>Would you like me to list them?</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+  </MessageGroup>
+</ComponentPreview>
+
+## Components
+
+| Component        | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| `Message`        | Row container that controls alignment                  |
+| `MessageAvatar`  | Avatar slot, bottom-anchored next to the content       |
+| `MessageContent` | Column holding the header, bubbles, and footer         |
+| `MessageHeader`  | Metadata above the content, e.g. the sender name       |
+| `MessageFooter`  | Metadata below the content, e.g. a timestamp           |
+| `MessageGroup`   | Stacks consecutive messages from the same sender        |
+
+## Props
+
+### Message
+
+| Prop      | Type                 | Default | Description                        |
+| --------- | -------------------- | ------- | ---------------------------------- |
+| align     | `start` \| `end`     | `start` | Side the message is laid out from  |
+| className | string               | -       | Additional CSS classes             |
+| ...props  | React.HTMLAttributes | -       | Native div props                   |
+
+### MessageAvatar
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+### MessageContent
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+### MessageHeader
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+### MessageFooter
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+### MessageGroup
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
