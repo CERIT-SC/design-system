@@ -133,16 +133,18 @@ function StepperActions() {
 | Prop         | Type                   | Default | Description                                                                                                                         |
 | ------------ | ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | children     | React.ReactNode        | -       | Step content and child components                                                                                                   |
-| initialStep  | number                 | `0`     | Starting step index                                                                                                                 |
+| initialStep  | number                 | `0`     | Starting step index (uncontrolled mode)                                                                                             |
+| step         | number                 | -       | Controlled current step (0-based). When set, the parent owns the step and receives updates through onStepChange                      |
 | totalSteps   | number                 | -       | Total number of steps. If omitted, it is inferred from Stepper direct children, so pass explicitly when your content count differs. |
 | onStepChange | (step: number) => void | -       | Callback when step changes                                                                                                          |
 
 ### StepperHeader
 
-| Prop      | Type   | Default | Description                                                                  |
-| --------- | ------ | ------- | ---------------------------------------------------------------------------- |
-| steps     | Step[] | -       | Array of step definitions with `label`, optional `description`, and `icon`   |
-| className | string | -       | Additional CSS classes                                                       |
+| Prop           | Type    | Default | Description                                                                    |
+| -------------- | ------- | ------- | ------------------------------------------------------------------------------ |
+| steps          | Step[]  | -       | Array of step definitions with `label`, optional `description`, and `icon`     |
+| className      | string  | -       | Additional CSS classes                                                         |
+| showNavigation | boolean | `true`  | Show the built-in Previous/Next buttons. Hide them when providing custom navigation |
 
 ### StepperContent
 
@@ -165,21 +167,22 @@ function StepperActions() {
 
 ## Controlled vs Uncontrolled
 
-The Stepper works as an uncontrolled component by default, managing its own internal state. You can also use it in a controlled manner by managing the step externally:
+The Stepper works as an uncontrolled component by default, managing its own internal state from `initialStep`. For full external control — e.g. when the step lives in a parent form, a store, or the URL — pass `step` together with `onStepChange` and hide the built-in header buttons in favor of your own navigation:
 
 ```tsx
 function ControlledStepper() {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   return (
-    <Stepper initialStep={currentStep} onStepChange={setCurrentStep}>
-      <StepperHeader steps={steps} />
+    <Stepper
+      step={currentStep}
+      totalSteps={steps.length}
+      onStepChange={setCurrentStep}
+    >
+      <StepperHeader steps={steps} showNavigation={false} />
       <StepperContent>{/* Your step content */}</StepperContent>
-      <StepperFooter
-        onFinish={() => console.log("Finished")}
-        showDefaultButtons={false}
-      >
-        {/* Custom controls using currentStep */}
+      <StepperFooter showDefaultButtons={false}>
+        {/* Custom controls via useStepper() */}
       </StepperFooter>
     </Stepper>
   );
@@ -235,7 +238,7 @@ function CustomFooterActions() {
 }
 
 <Stepper totalSteps={steps.length}>
-  <StepperHeader steps={steps} />
+  <StepperHeader steps={steps} showNavigation={false} />
   <StepperContent>{/* Your step content */}</StepperContent>
   <CustomFooterActions />
 </Stepper>;
