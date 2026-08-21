@@ -1,0 +1,201 @@
+# Message Input
+
+The composer for a chat interface: an auto-growing textarea, a send button that becomes a stop button while a reply streams, file attachments, and an open toolbar for your own controls.
+
+<ComponentPreview>
+  <MessageInputPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import {
+  MessageInput,
+  MessageInputAttachButton,
+  MessageInputAttachments,
+  MessageInputSubmit,
+  MessageInputTextarea,
+  MessageInputToolbar,
+} from "@e-infra/design-system"
+
+<MessageInput onSubmit={(text, files) => send(text, files)}>
+  <MessageInputAttachments />
+  <MessageInputTextarea placeholder="Send a message…" />
+  <MessageInputToolbar>
+    <MessageInputAttachButton />
+    <MessageInputSubmit />
+  </MessageInputToolbar>
+</MessageInput>
+```
+
+The textarea grows with its content up to a limit and then scrolls. No JavaScript measurement is involved — it uses the CSS `field-sizing` property.
+
+## Keyboard
+
+| Key                | Behaviour                                  |
+| ------------------ | ------------------------------------------ |
+| `Enter`            | Submits the message                        |
+| `Shift` + `Enter`  | Inserts a newline                          |
+| `Enter` during IME | Commits the composition without submitting |
+
+The IME guard matters for any input method with a candidate window — the Enter that closes it will not send a half-composed message.
+
+## Streaming and stopping
+
+`status` drives the submit button. While `"streaming"`, it renders a stop control and calls `onStop` instead of submitting.
+
+```tsx
+<MessageInput
+  status={isStreaming ? "streaming" : "ready"}
+  onStop={() => abortController.abort()}
+  onSubmit={(text) => send(text)}
+>
+```
+
+The two icons stay mounted and stacked, so switching status crossfades between them
+rather than swapping instantly.
+
+| Status      | Submit button                              |
+| ----------- | ------------------------------------------ |
+| `ready`     | Send. Disabled while the input is empty.   |
+| `submitted` | Send, disabled — the request is in flight. |
+| `streaming` | Stop. Clicking it calls `onStop`.          |
+
+<ComponentPreview>
+  <MessageInputPreview status="streaming" />
+</ComponentPreview>
+
+## Controlled value
+
+Uncontrolled by default. Pass `value` and `onValueChange` to drive it yourself — useful for drafts, slash commands, or prefilling from a template.
+
+```tsx
+const [value, setValue] = useState("")
+
+<MessageInput value={value} onValueChange={setValue} onSubmit={send}>
+```
+
+On submit the component clears its own value and attachments. When controlled, `onValueChange("")` fires so your state clears with it.
+
+## Attachments
+
+`MessageInputAttachButton` opens a file picker; `MessageInputAttachments` renders the pending files as removable chips and disappears when there are none. Files arrive as the second argument to `onSubmit`.
+
+```tsx
+<MessageInput onSubmit={(text, files) => upload(text, files)}>
+  <MessageInputAttachments />
+  <MessageInputTextarea />
+  <MessageInputToolbar>
+    <MessageInputAttachButton accept="image/*,.pdf" />
+    <MessageInputSubmit />
+  </MessageInputToolbar>
+</MessageInput>
+```
+
+Attachment state is held by the component. A message with no text but at least one file is still submittable.
+
+## Custom toolbar controls
+
+`MessageInputToolbar` is an open slot. Anything you put in it sits alongside the built-in controls — group your own on the left and leave the submit button last.
+
+Match the height of the built-in controls so the row reads as one cluster: the attach button is 32px, so trim a `size="sm"` button to `h-8`.
+
+<ComponentPreview>
+  <MessageInput className="w-full">
+    <MessageInputTextarea placeholder="Ask about your allocation…" />
+    <MessageInputToolbar>
+      <div className="flex items-center gap-1">
+        <MessageInputAttachButton />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button type="button" variant="outline" size="sm" className="h-8 gap-1 px-2.5 text-xs">
+              Default
+              <ChevronDownIcon className="size-3.5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="min-w-36">
+            <DropdownMenuItem>Default</DropdownMenuItem>
+            <DropdownMenuItem>Concise</DropdownMenuItem>
+            <DropdownMenuItem>Detailed</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <MessageInputSubmit />
+    </MessageInputToolbar>
+  </MessageInput>
+</ComponentPreview>
+
+```tsx
+<MessageInputToolbar>
+  <div className="flex items-center gap-1">
+    <MessageInputAttachButton />
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm" className="h-8 gap-1 px-2.5 text-xs">
+          {model}
+          <ChevronDown className="size-3.5" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start">
+        <DropdownMenuRadioGroup value={model} onValueChange={setModel}>
+          <DropdownMenuRadioItem value="default">Default</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="concise">Concise</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  </div>
+  <MessageInputSubmit />
+</MessageInputToolbar>
+```
+
+## Components
+
+| Component                  | Description                                                    |
+| -------------------------- | -------------------------------------------------------------- |
+| `MessageInput`             | Form container. Owns the value, attachments, and submit state. |
+| `MessageInputTextarea`     | Auto-growing textarea with the keyboard handling               |
+| `MessageInputAttachments`  | Removable chips for pending files                              |
+| `MessageInputToolbar`      | Control row beneath the textarea                               |
+| `MessageInputAttachButton` | Opens the file picker                                          |
+| `MessageInputSubmit`       | Send control, toggling to stop while streaming                 |
+
+## Props
+
+### MessageInput
+
+| Prop          | Type                                   | Default | Description                                   |
+| ------------- | -------------------------------------- | ------- | --------------------------------------------- |
+| value         | string                                 | -       | Controlled value                              |
+| defaultValue  | string                                 | `""`    | Initial value when uncontrolled               |
+| onValueChange | (value: string) => void                | -       | Fires on every edit and on clear after submit |
+| onSubmit      | (value: string, files: File[]) => void | -       | Fires on Enter or the submit button           |
+| onStop        | () => void                             | -       | Fires when the stop control is pressed        |
+| status        | `ready` \| `submitted` \| `streaming`  | `ready` | Drives the submit button                      |
+| disabled      | boolean                                | `false` | Disables the whole composer                   |
+| className     | string                                 | -       | Additional CSS classes                        |
+
+### MessageInputAttachButton
+
+| Prop     | Type           | Default   | Description                         |
+| -------- | -------------- | --------- | ----------------------------------- |
+| accept   | string         | -         | Passed to the underlying file input |
+| multiple | boolean        | `true`    | Allow selecting several files       |
+| variant  | Button variant | `ghost`   | Passed through to `Button`          |
+| size     | Button size    | `icon-sm` | Passed through to `Button`          |
+
+### MessageInputSubmit
+
+| Prop      | Type        | Default | Description                |
+| --------- | ----------- | ------- | -------------------------- |
+| size      | Button size | `icon`  | Passed through to `Button` |
+| className | string      | -       | Additional CSS classes     |
+
+`MessageInputTextarea` accepts every `Textarea` prop, and `MessageInputAttachments` and `MessageInputToolbar` accept native `ul` and `div` props respectively.
+
+## Accessibility
+
+Every icon-only control carries a visually hidden label — "Send message", "Stop generating", "Attach files", and `Remove {filename}` per chip. The composer is a real `<form>`, so Enter submission and browser autofill behave as expected, and the focus ring is drawn around the whole composer via `focus-within` rather than the bare textarea.
+
+## Related
+
+Pair this with [Message Scroller](/docs/components/compounds/message-scroller) for the transcript, and [Chat](/docs/components/compounds/chat) for the surrounding layout.

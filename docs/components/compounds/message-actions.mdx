@@ -1,0 +1,171 @@
+# Message Actions
+
+Controls attached to a message — copy, regenerate, rate. They sit under the content and reveal on hover, so a transcript stays quiet until you reach for them.
+
+<ComponentPreview>
+  <MessageActionsPreview />
+</ComponentPreview>
+
+## Plain-text replies
+
+An assistant reply usually reads better as plain prose than as a bubble: full width, no
+tinted background, and text you can select straight out of the page. Use
+`Bubble variant="ghost"`, which drops the background, border, radius, and padding while
+keeping the alignment and spacing behaviour.
+
+The convention that reads best is asymmetric — the person's turn stays a bubble, the
+reply does not:
+
+```tsx
+{/* the person asks — a bubble, right-aligned */}
+<Message align="end">
+  <MessageAvatar>
+    <Avatar>
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <Bubble variant="default" align="end">
+      <BubbleContent>How much storage do I have?</BubbleContent>
+    </Bubble>
+  </MessageContent>
+</Message>
+
+{/* the reply — plain prose, full width, copyable */}
+<Message align="start">
+  <MessageContent>
+    <Bubble variant="ghost">
+      <BubbleContent className="text-base">{reply}</BubbleContent>
+    </Bubble>
+    <MessageActions>
+      <MessageCopyButton value={reply} />
+    </MessageActions>
+  </MessageContent>
+</Message>
+```
+
+Two details make it look right. Drop `MessageAvatar` from the reply so the prose starts
+at the same left edge as everything else, and bump `BubbleContent` to `text-base` —
+the bubble default of `text-sm` is tuned for short bubbled turns, not for reading a
+long answer.
+
+`MessageHeader` and `MessageFooter` already remove their horizontal padding when a
+ghost bubble is present, so metadata lines up with the prose without adjustment.
+
+## Rich replies
+
+`BubbleContent` styles no children of its own, so render the answer with the typography
+components and it inherits the prose treatment.
+
+```tsx
+<Bubble variant="ghost">
+  <BubbleContent className="flex flex-col gap-3 text-base">
+    <P>Here are the three steps:</P>
+    <OrderedList>
+      <li>Open a ticket.</li>
+      <li>Include your project ID.</li>
+    </OrderedList>
+    <Code>quota --project 4711</Code>
+  </BubbleContent>
+</Bubble>
+```
+
+### Markdown
+
+Rendering markdown is left to the consumer — the design system takes no markdown
+dependency, so you keep the choice of renderer and its plugins.
+
+One thing to know before you wire one up: Tailwind's reset flattens `h1`–`h6`,
+`ul`, `ol`, and `p`, so piping a renderer's raw HTML into `BubbleContent` produces
+headings at body size and lists with no markers. Map the nodes to the typography
+components instead, and replies match the rest of the system for free.
+
+```tsx
+<Bubble variant="ghost">
+  <BubbleContent className="flex flex-col gap-3 text-base">
+    <Markdown
+      components={{
+        p: P,
+        h3: H3,
+        ul: List,
+        ol: OrderedList,
+        code: Code,
+        a: Link,
+        blockquote: Blockquote,
+      }}
+    >
+      {reply}
+    </Markdown>
+  </BubbleContent>
+</Bubble>
+```
+
+## Reveal behaviour
+
+Actions fade in when the message is hovered or when anything inside it takes keyboard
+focus, so they are reachable by tab without being visible at rest.
+
+The reveal is gated on `pointer-fine`. Touch devices have no hover to trigger it, so
+there the actions are simply always visible rather than invisible-but-tappable.
+
+To pin them open — a single-reply view, or a demo — override the resting opacity:
+
+```tsx
+<MessageActions className="pointer-fine:opacity-100">
+```
+
+## More than copy
+
+`MessageActions` is an open row. Anything you put in it lines up with the copy button;
+use `variant="ghost" size="icon-sm"` to match, and give every icon-only control a
+visually hidden label.
+
+<ComponentPreview>
+  <MessageActionsPreview extraActions />
+</ComponentPreview>
+
+## Copy behaviour
+
+`MessageCopyButton` writes `value` to the clipboard, swaps to a tick for two seconds,
+then returns. The icons crossfade rather than snapping.
+
+If the clipboard is unavailable — it needs a secure context, and the user can refuse
+permission — the button stays in its resting state instead of showing a success it did
+not achieve.
+
+```tsx
+<MessageCopyButton value={reply} copyLabel="Copy answer" copiedLabel="Answer copied" />
+```
+
+The accessible name switches between the two labels, which is what announces the result
+to a screen reader.
+
+## Components
+
+| Component            | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| `MessageActions`     | Hover-revealed row of controls under a message           |
+| `MessageCopyButton`  | Copies a string, confirming with a tick                   |
+
+## Props
+
+### MessageActions
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+### MessageCopyButton
+
+| Prop        | Type           | Default        | Description                          |
+| ----------- | -------------- | -------------- | ------------------------------------ |
+| value       | string         | —              | Text written to the clipboard        |
+| copyLabel   | string         | `Copy message` | Hidden label at rest                 |
+| copiedLabel | string         | `Copied`       | Hidden label after a successful copy |
+| variant     | Button variant | `ghost`        | Passed through to `Button`           |
+| size        | Button size    | `icon-sm`      | Passed through to `Button`           |
+
+## Related
+
+[Message](/docs/components/compounds/message) and [Bubble](/docs/components/primitives/bubble) build the turn, and [Chat](/docs/components/compounds/chat) shows the plain-reply style in a full interface.

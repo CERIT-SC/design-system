@@ -1,0 +1,199 @@
+# Message Scroller
+
+A chat transcript scroller built for streaming conversations. It follows new messages while the reader is at the live edge, backs off the moment they scroll away, and holds their position when older history loads above.
+
+The scroller fills its parent, so give it a height-constrained container. It needs no card or frame of its own — see [Chat](/docs/components/compounds/chat) for the full-screen layout.
+
+<ComponentPreview>
+  <MessageScrollerPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from "@e-infra/design-system"
+
+<div className="h-96">
+  <MessageScrollerProvider>
+    <MessageScroller>
+      <MessageScrollerViewport>
+        <MessageScrollerContent>
+          {messages.map((message) => (
+            <MessageScrollerItem key={message.id} messageId={message.id}>
+              <Message align={message.role === "user" ? "end" : "start"}>
+                {/* … */}
+              </Message>
+            </MessageScrollerItem>
+          ))}
+        </MessageScrollerContent>
+      </MessageScrollerViewport>
+      <MessageScrollerButton />
+    </MessageScroller>
+  </MessageScrollerProvider>
+</div>
+```
+
+## Behaviour
+
+| Behaviour                 | What happens                                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------- |
+| Follow the live edge      | While the viewport sits at the bottom, appended content scrolls into view automatically.          |
+| Back off on reader intent | A wheel, touch drag, or scroll key that moves away from the bottom stops the following.           |
+| Re-engage                 | Scrolling back to the bottom resumes following, however the reader got there.                     |
+| Preserve position         | Content added _above_ the reader shifts `scrollTop` to match, so the row they are on stays fixed. |
+| Scroll affordance         | `MessageScrollerButton` fades in only when there is content to scroll toward.                     |
+| Animate new arrivals      | Rows added after the first paint fade and rise in. The opening backlog does not animate.          |
+
+Following is never switched off by the component's own scrolling, only by reader-driven scrolling. That is what keeps a streamed reply from cancelling its own auto-scroll.
+
+## Streaming state
+
+Pass `busy` to `MessageScrollerContent` while a reply is streaming. It sets `aria-busy`, which tells screen readers the log is still being written.
+
+```tsx
+<MessageScrollerContent busy={status === "streaming"}>
+  {/* … */}
+</MessageScrollerContent>
+```
+
+## Entrance animation
+
+Rows that arrive after the first paint fade and rise into place. Rows present on the
+first render — the backlog of a reopened thread — appear immediately, so opening a
+long transcript does not cascade.
+
+The animation moves only `opacity` and `transform`, never layout, so it cannot
+interfere with autoscroll or with position preservation. It is skipped under
+`prefers-reduced-motion`.
+
+Override per row with `animateOnEnter` when you know better than the default — for
+example forcing it off on a row you replace in place while streaming.
+
+```tsx
+<MessageScrollerItem messageId={message.id} animateOnEnter={false}>
+```
+
+## Removing a message
+
+A row cannot animate out after React has unmounted it, so hand the row a chance to
+finish first: mark it `exiting`, and remove it from your list when `onExited` fires.
+
+```tsx
+const [removing, setRemoving] = useState<string | null>(null)
+
+<MessageScrollerItem
+  messageId={message.id}
+  exiting={removing === message.id}
+  onExited={() => {
+    setMessages((current) => current.filter((m) => m.id !== message.id))
+    setRemoving(null)
+  }}
+>
+```
+
+`onExited` is guaranteed to fire exactly once, whether or not the animation runs — it
+is backed by a deadline, so a row can never be stranded because motion is reduced or
+the animation event was missed.
+
+The row keeps its height while fading, then collapses when it is removed. Animating
+the height instead would move every row below it mid-scroll, which is why it is left
+to snap.
+
+## Scroll commands
+
+`useMessageScroller` returns imperative commands. It must be called from inside a `MessageScrollerProvider`.
+
+```tsx
+const { scrollToEnd, scrollToStart, scrollToMessage } = useMessageScroller();
+
+scrollToEnd(); // jump to the latest message
+scrollToMessage("msg-42", { align: "center" }); // reveal a specific message
+```
+
+`useMessageScrollerScrollable` reports which edges are still reachable — useful for your own scroll affordances.
+
+```tsx
+const { start, end } = useMessageScrollerScrollable();
+```
+
+## Loading older messages
+
+Prepend to your message array and the reader's position is preserved automatically. No extra wiring is needed — `preserveScrollOnPrepend` is on by default.
+
+```tsx
+<MessageScrollerViewport preserveScrollOnPrepend={false}>
+```
+
+Set it to `false` only when you want prepends to move the viewport.
+
+## Components
+
+| Component                 | Description                                                      |
+| ------------------------- | ---------------------------------------------------------------- |
+| `MessageScrollerProvider` | Owns scroll state. Renders no DOM.                               |
+| `MessageScroller`         | Positioning frame for the viewport and controls                  |
+| `MessageScrollerViewport` | The scrollable element. Owns scroll events and prepend handling. |
+| `MessageScrollerContent`  | Transcript container, announced as a live region                 |
+| `MessageScrollerItem`     | One transcript row — a message, marker, or separator             |
+| `MessageScrollerButton`   | Scroll-to-edge control, inert when that edge is already reached  |
+
+## Props
+
+### MessageScrollerProvider
+
+| Prop                  | Type             | Default | Description                                                  |
+| --------------------- | ---------------- | ------- | ------------------------------------------------------------ |
+| autoScroll            | boolean          | `true`  | Follow appended content while parked at the live edge        |
+| defaultScrollPosition | `start` \| `end` | `end`   | Opening position, applied once on the first non-empty render |
+| scrollEdgeThreshold   | number           | `8`     | Pixels from an edge that still count as being at that edge   |
+
+### MessageScrollerViewport
+
+| Prop                    | Type                 | Default | Description                                    |
+| ----------------------- | -------------------- | ------- | ---------------------------------------------- |
+| preserveScrollOnPrepend | boolean              | `true`  | Hold the reader's row when content loads above |
+| className               | string               | -       | Additional CSS classes                         |
+| ...props                | React.HTMLAttributes | -       | Native div props                               |
+
+### MessageScrollerContent
+
+| Prop      | Type                 | Default | Description                                 |
+| --------- | -------------------- | ------- | ------------------------------------------- |
+| busy      | boolean              | `false` | Sets `aria-busy` while a reply is streaming |
+| className | string               | -       | Additional CSS classes                      |
+| ...props  | React.HTMLAttributes | -       | Native div props                            |
+
+### MessageScrollerItem
+
+| Prop           | Type                 | Default | Description                                         |
+| -------------- | -------------------- | ------- | --------------------------------------------------- |
+| messageId      | string               | -       | Stable row id, required for `scrollToMessage`       |
+| animateOnEnter | boolean              | -       | Force the entrance animation on or off for this row |
+| className      | string               | -       | Additional CSS classes                              |
+| ...props       | React.HTMLAttributes | -       | Native div props                                    |
+
+### MessageScrollerButton
+
+| Prop      | Type             | Default   | Description                          |
+| --------- | ---------------- | --------- | ------------------------------------ |
+| direction | `start` \| `end` | `end`     | Which edge the button scrolls toward |
+| behavior  | ScrollBehavior   | `smooth`  | Native scroll behavior               |
+| variant   | Button variant   | `outline` | Passed through to `Button`           |
+| size      | Button size      | `icon`    | Passed through to `Button`           |
+
+## Accessibility
+
+The viewport is a focusable `role="region"` labelled "Messages", so keyboard users can scroll the transcript with arrows, Page Up/Down, and Home/End. The content is a `role="log"` with `aria-relevant="additions"`, so assistive technology announces new messages rather than re-reading the transcript. The scroll button is `inert` and `aria-hidden` when its edge is already reached, keeping it out of the tab order.
+
+## Differences from shadcn/ui
+
+This is an e-INFRA implementation rather than a port. It uses the same part names and prop names, so the shadcn documentation transfers, but the scroll engine is our own — the upstream behaviour package requires React 19, while this library supports React 18 and 19.
+
+Not implemented: `defaultScrollPosition="last-anchor"`, the `scrollAnchor` prop and its anchored-streaming mode, and `useMessageScrollerVisibility`.

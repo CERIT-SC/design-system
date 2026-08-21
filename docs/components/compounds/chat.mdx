@@ -1,0 +1,94 @@
+# Chat
+
+The layout shell for a full-screen chat interface. It puts a fixed header and composer at the edges and gives the transcript the remaining height, so the scroller has a bounded parent to fill.
+
+<ComponentPreview>
+  <ChatPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import {
+  Chat,
+  ChatFooter,
+  ChatHeader,
+  ChatMessages,
+} from "@e-infra/design-system"
+
+<Chat>
+  <ChatHeader>
+    <H4 className="m-0">Support assistant</H4>
+  </ChatHeader>
+  <ChatMessages>
+    <MessageScrollerProvider>{/* … */}</MessageScrollerProvider>
+  </ChatMessages>
+  <ChatFooter>
+    <MessageInput onSubmit={send}>{/* … */}</MessageInput>
+  </ChatFooter>
+</Chat>
+```
+
+`ChatHeader` is optional. `ChatMessages` takes the remaining height and is already `min-h-0`, which is what lets the scroller inside it scroll rather than stretch its parent.
+
+## Sizing
+
+`Chat` defaults to `h-dvh` for a standalone chat route. Override the height when embedding it inside your own layout.
+
+| Context                                    | Class                   |
+| ------------------------------------------ | ----------------------- |
+| A dedicated chat page                      | default (`h-dvh`)       |
+| Inside `Header` + `Content` or a `Sidebar` | `className="h-full"`    |
+| A bounded panel                            | `className="h-[32rem]"` |
+
+```tsx
+<Content>
+  <Chat className="h-full">{/* … */}</Chat>
+</Content>
+```
+
+Whatever height you choose, the ancestor chain must be height-constrained too — a `h-full` inside an auto-height parent has nothing to fill.
+
+## Centering the conversation
+
+The shell spans the full width. Constrain the transcript and the composer to the same max width so they line up.
+
+```tsx
+<ChatMessages>
+  <MessageScrollerProvider>
+    <MessageScroller>
+      <MessageScrollerViewport>
+        <MessageScrollerContent className="mx-auto w-full max-w-3xl p-4">
+          {/* … */}
+        </MessageScrollerContent>
+      </MessageScrollerViewport>
+      <MessageScrollerButton />
+    </MessageScroller>
+  </MessageScrollerProvider>
+</ChatMessages>
+<ChatFooter>
+  <MessageInput className="mx-auto max-w-3xl">{/* … */}</MessageInput>
+</ChatFooter>
+```
+
+## Components
+
+| Component      | Description                                             |
+| -------------- | ------------------------------------------------------- |
+| `Chat`         | Full-height flex column                                 |
+| `ChatHeader`   | Fixed top bar with a bottom border. Optional.           |
+| `ChatMessages` | Flexible middle region that hosts the scroller          |
+| `ChatFooter`   | Fixed bottom region with a top border, for the composer |
+
+## Props
+
+All four accept native `div` props plus `className`.
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+## Related
+
+[Message Scroller](/docs/components/compounds/message-scroller) for the transcript, [Message Input](/docs/components/compounds/message-input) for the composer, and [Message](/docs/components/compounds/message) with [Bubble](/docs/components/primitives/bubble) for the turns themselves.

@@ -39,8 +39,15 @@ import ThemeColorsPreview from "./foundations/ThemeColorsPreview";
 // MDX is compiled in a Server Component, so event handlers cannot be written
 // inline in .mdx. Previews that need callbacks live in a "use client" wrapper
 // here and are used as a single self-contained tag inside <ComponentPreview>.
+// Icons used inside MDX previews must be registered here too.
+import { ChevronDown as ChevronDownIcon } from "lucide-react";
+
+import ChatPreview from "./previews/ChatPreview";
 import CookiesBannerPreview from "./previews/CookiesBannerPreview";
 import FeedbackFormPreview from "./previews/FeedbackFormPreview";
+import MessageActionsPreview from "./previews/MessageActionsPreview";
+import MessageInputPreview from "./previews/MessageInputPreview";
+import MessageScrollerPreview from "./previews/MessageScrollerPreview";
 import Image from "next/image";
 import { Children } from "react";
 
@@ -210,8 +217,13 @@ export const mdxComponents: MDXComponents = {
   CodeBlock,
   ThemeColorsPreview,
   ...libraryComponents,
+  ChevronDownIcon,
+  ChatPreview,
   CookiesBannerPreview,
   FeedbackFormPreview,
+  MessageActionsPreview,
+  MessageInputPreview,
+  MessageScrollerPreview,
 };
 
 export default mdxComponents;

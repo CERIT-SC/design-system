@@ -33,6 +33,16 @@
  * Chrome 119+, Safari 16.4+, Firefox 128+.
  */
 
+@theme {
+  /* One dot of a typing indicator. Stagger siblings with animation-delay. */
+  --animate-typing-dot: typing-dot 1.4s ease-in-out infinite;
+
+  @keyframes typing-dot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30%           { opacity: 1;   transform: translateY(-25%); }
+  }
+}
+
 @layer base {
   [data-theme="custom"] {
     --brand-fg-threshold: 0.62;
