@@ -1,6 +1,6 @@
 # Message Input
 
-The composer for a chat interface: an auto-growing textarea, a send button that becomes a stop button while a reply streams, file attachments, and an open toolbar for your own controls.
+The composer for a chat interface: an auto-growing textarea, a send button that becomes a stop button while a reply streams, file attachments, and a toolbar that splits into a left and a right side for your own controls.
 
 <ComponentPreview>
   <MessageInputPreview />
@@ -16,14 +16,20 @@ import {
   MessageInputSubmit,
   MessageInputTextarea,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
 } from "@e-infra/design-system"
 
 <MessageInput onSubmit={(text, files) => send(text, files)}>
   <MessageInputAttachments />
   <MessageInputTextarea placeholder="Send a message…" />
   <MessageInputToolbar>
-    <MessageInputAttachButton />
-    <MessageInputSubmit />
+    <MessageInputToolbarLeft>
+      <MessageInputAttachButton />
+    </MessageInputToolbarLeft>
+    <MessageInputToolbarRight>
+      <MessageInputSubmit />
+    </MessageInputToolbarRight>
   </MessageInputToolbar>
 </MessageInput>
 ```
@@ -86,8 +92,12 @@ On submit the component clears its own value and attachments. When controlled, `
   <MessageInputAttachments />
   <MessageInputTextarea />
   <MessageInputToolbar>
-    <MessageInputAttachButton accept="image/*,.pdf" />
-    <MessageInputSubmit />
+    <MessageInputToolbarLeft>
+      <MessageInputAttachButton accept="image/*,.pdf" />
+    </MessageInputToolbarLeft>
+    <MessageInputToolbarRight>
+      <MessageInputSubmit />
+    </MessageInputToolbarRight>
   </MessageInputToolbar>
 </MessageInput>
 ```
@@ -96,7 +106,7 @@ Attachment state is held by the component. A message with no text but at least o
 
 ## Custom toolbar controls
 
-`MessageInputToolbar` is an open slot. Anything you put in it sits alongside the built-in controls — group your own on the left and leave the submit button last.
+`MessageInputToolbar` holds two slots — `MessageInputToolbarLeft` and `MessageInputToolbarRight` — the same left/right split as `Header` and `Footer`. Your own controls go on the left; the submit button goes on the right, which pushes itself to the trailing edge.
 
 Match the height of the built-in controls so the row reads as one cluster: the attach button is 32px, so trim a `size="sm"` button to `h-8`.
 
@@ -104,7 +114,7 @@ Match the height of the built-in controls so the row reads as one cluster: the a
   <MessageInput className="w-full">
     <MessageInputTextarea placeholder="Ask about your allocation…" />
     <MessageInputToolbar>
-      <div className="flex items-center gap-1">
+      <MessageInputToolbarLeft>
         <MessageInputAttachButton />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -119,15 +129,17 @@ Match the height of the built-in controls so the row reads as one cluster: the a
             <DropdownMenuItem>Detailed</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-      <MessageInputSubmit />
+      </MessageInputToolbarLeft>
+      <MessageInputToolbarRight>
+        <MessageInputSubmit />
+      </MessageInputToolbarRight>
     </MessageInputToolbar>
   </MessageInput>
 </ComponentPreview>
 
 ```tsx
 <MessageInputToolbar>
-  <div className="flex items-center gap-1">
+  <MessageInputToolbarLeft>
     <MessageInputAttachButton />
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -143,8 +155,10 @@ Match the height of the built-in controls so the row reads as one cluster: the a
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  </div>
-  <MessageInputSubmit />
+  </MessageInputToolbarLeft>
+  <MessageInputToolbarRight>
+    <MessageInputSubmit />
+  </MessageInputToolbarRight>
 </MessageInputToolbar>
 ```
 
@@ -156,6 +170,8 @@ Match the height of the built-in controls so the row reads as one cluster: the a
 | `MessageInputTextarea`     | Auto-growing textarea with the keyboard handling               |
 | `MessageInputAttachments`  | Removable chips for pending files                              |
 | `MessageInputToolbar`      | Control row beneath the textarea                               |
+| `MessageInputToolbarLeft`  | Leading control group inside the toolbar                       |
+| `MessageInputToolbarRight` | Trailing control group, pushed to the end of the row           |
 | `MessageInputAttachButton` | Opens the file picker                                          |
 | `MessageInputSubmit`       | Send control, toggling to stop while streaming                 |
 
@@ -190,7 +206,7 @@ Match the height of the built-in controls so the row reads as one cluster: the a
 | size      | Button size | `icon`  | Passed through to `Button` |
 | className | string      | -       | Additional CSS classes     |
 
-`MessageInputTextarea` accepts every `Textarea` prop, and `MessageInputAttachments` and `MessageInputToolbar` accept native `ul` and `div` props respectively.
+`MessageInputTextarea` accepts every `Textarea` prop, `MessageInputAttachments` accepts native `ul` props, and `MessageInputToolbar`, `MessageInputToolbarLeft`, and `MessageInputToolbarRight` accept native `div` props.
 
 ## Accessibility
 

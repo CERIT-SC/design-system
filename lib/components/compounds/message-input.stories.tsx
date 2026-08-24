@@ -9,8 +9,9 @@ import {
   MessageInputSubmit,
   MessageInputTextarea,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
 } from "./message-input";
-import type { MessageInputStatus } from "./message-input";
 import { Button } from "../primitives/button";
 import {
   DropdownMenu,
@@ -32,105 +33,137 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function Composer({
-  status = "ready",
-  disabled = false,
-}: {
-  status?: MessageInputStatus;
-  disabled?: boolean;
-}) {
-  const [sent, setSent] = useState<string[]>([]);
-
-  return (
-    <div className="flex w-[28rem] flex-col gap-3">
-      {sent.length > 0 && (
-        <ul className="text-text-muted flex flex-col gap-1 text-xs">
-          {sent.map((entry, index) => (
-            <li key={index}>Sent: {entry}</li>
-          ))}
-        </ul>
-      )}
-      <MessageInput
-        status={status}
-        disabled={disabled}
-        onSubmit={(value, files) =>
-          setSent((current) => [
-            ...current,
-            files.length > 0 ? `${value} (${files.length} file(s))` : value,
-          ])
-        }
-        onStop={() => setSent((current) => [...current, "— stopped —"])}
-      >
-        <MessageInputAttachments />
-        <MessageInputTextarea placeholder="Send a message…" />
-        <MessageInputToolbar>
-          <MessageInputAttachButton />
-          <MessageInputSubmit />
-        </MessageInputToolbar>
-      </MessageInput>
-    </div>
-  );
-}
-
 export const Default: Story = {
-  render: () => <Composer />,
+  render: function Default() {
+    const [sent, setSent] = useState<string[]>([]);
+
+    return (
+      <div className="flex w-md flex-col gap-3">
+        {sent.length > 0 && (
+          <ul className="text-text-muted flex flex-col gap-1 text-xs">
+            {sent.map((entry, index) => (
+              <li key={index}>Sent: {entry}</li>
+            ))}
+          </ul>
+        )}
+        <MessageInput
+          onSubmit={(value, files) => {
+            setSent((current) => [
+              ...current,
+              files.length > 0 ? `${value} (${files.length} file(s))` : value,
+            ]);
+          }}
+        >
+          <MessageInputAttachments />
+          <MessageInputTextarea placeholder="Send a message…" />
+          <MessageInputToolbar>
+            <MessageInputToolbarLeft>
+              <MessageInputAttachButton />
+            </MessageInputToolbarLeft>
+            <MessageInputToolbarRight>
+              <MessageInputSubmit />
+            </MessageInputToolbarRight>
+          </MessageInputToolbar>
+        </MessageInput>
+      </div>
+    );
+  },
 };
 
 export const Streaming: Story = {
-  render: () => <Composer status="streaming" />,
+  render: function Streaming() {
+    const [sent, setSent] = useState<string[]>([]);
+
+    return (
+      <div className="flex w-md flex-col gap-3">
+        {sent.length > 0 && (
+          <ul className="text-text-muted flex flex-col gap-1 text-xs">
+            {sent.map((entry, index) => (
+              <li key={index}>Sent: {entry}</li>
+            ))}
+          </ul>
+        )}
+        <MessageInput
+          status="streaming"
+          onStop={() => {
+            setSent((current) => [...current, "— stopped —"]);
+          }}
+        >
+          <MessageInputAttachments />
+          <MessageInputTextarea placeholder="Send a message…" />
+          <MessageInputToolbar>
+            <MessageInputToolbarLeft>
+              <MessageInputAttachButton />
+            </MessageInputToolbarLeft>
+            <MessageInputToolbarRight>
+              <MessageInputSubmit />
+            </MessageInputToolbarRight>
+          </MessageInputToolbar>
+        </MessageInput>
+      </div>
+    );
+  },
 };
 
 export const Disabled: Story = {
-  render: () => <Composer disabled />,
+  render: () => (
+    <MessageInput className="w-md" disabled>
+      <MessageInputAttachments />
+      <MessageInputTextarea placeholder="Send a message…" />
+      <MessageInputToolbar>
+        <MessageInputToolbarLeft>
+          <MessageInputAttachButton />
+        </MessageInputToolbarLeft>
+        <MessageInputToolbarRight>
+          <MessageInputSubmit />
+        </MessageInputToolbarRight>
+      </MessageInputToolbar>
+    </MessageInput>
+  ),
 };
 
 export const WithCustomToolbarControls: Story = {
-  render: () => {
-    const Demo = () => {
-      const [model, setModel] = useState("default");
+  render: function WithCustomToolbarControls() {
+    const [model, setModel] = useState("default");
 
-      return (
-        <MessageInput className="w-[28rem]">
-          <MessageInputTextarea placeholder="Ask about your allocation…" />
-          <MessageInputToolbar>
-            <div className="flex items-center gap-1">
-              <MessageInputAttachButton accept="image/*,.pdf" />
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    className="h-8 gap-1 px-2.5 text-xs capitalize"
-                  >
-                    {model}
-                    <ChevronDown className="size-3.5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="min-w-36">
-                  <DropdownMenuRadioGroup
-                    value={model}
-                    onValueChange={setModel}
-                  >
-                    <DropdownMenuRadioItem value="default">
-                      Default
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="concise">
-                      Concise
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="detailed">
-                      Detailed
-                    </DropdownMenuRadioItem>
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+    return (
+      <MessageInput className="w-[28rem]">
+        <MessageInputTextarea placeholder="Ask about your allocation…" />
+        <MessageInputToolbar>
+          <MessageInputToolbarLeft>
+            <MessageInputAttachButton accept="image/*,.pdf" />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="h-8 gap-1 px-2.5 text-xs capitalize"
+                >
+                  {model}
+                  <ChevronDown className="size-3.5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="min-w-36">
+                <DropdownMenuRadioGroup value={model} onValueChange={setModel}>
+                  <DropdownMenuRadioItem value="default">
+                    Default
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="concise">
+                    Concise
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="detailed">
+                    Detailed
+                  </DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </MessageInputToolbarLeft>
+          <MessageInputToolbarRight>
             <MessageInputSubmit />
-          </MessageInputToolbar>
-        </MessageInput>
-      );
-    };
-
-    return <Demo />;
+          </MessageInputToolbarRight>
+        </MessageInputToolbar>
+      </MessageInput>
+    );
   },
 };

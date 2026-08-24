@@ -24,6 +24,8 @@ import {
   MessageInputSubmit,
   MessageInputTextarea,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
 } from "../../../../lib/components/compounds/message-input";
 import type { MessageInputStatus } from "../../../../lib/components/compounds/message-input";
 import {
@@ -239,8 +241,12 @@ export function ChatPreview({
           <MessageInputAttachments />
           <MessageInputTextarea placeholder="Send a message…" />
           <MessageInputToolbar>
-            <MessageInputAttachButton />
-            <MessageInputSubmit />
+            <MessageInputToolbarLeft>
+              <MessageInputAttachButton />
+            </MessageInputToolbarLeft>
+            <MessageInputToolbarRight>
+              <MessageInputSubmit />
+            </MessageInputToolbarRight>
           </MessageInputToolbar>
         </MessageInput>
       </ChatFooter>

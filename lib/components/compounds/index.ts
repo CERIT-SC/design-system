@@ -17,6 +17,8 @@ export {
   MessageInputSubmit,
   MessageInputTextarea,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
 } from "./message-input";
 export type { MessageInputStatus } from "./message-input";
 export {

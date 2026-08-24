@@ -275,6 +275,8 @@ import {
   MessageInputSubmit,
   MessageInputTextarea,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
 } from "../../lib/components/compounds/message-input";
 import {
   MessageScroller,
@@ -567,6 +569,8 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   MessageInputSubmit,
   MessageInputTextarea,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
   MessageScroller,
   MessageScrollerButton,
   MessageScrollerContent,

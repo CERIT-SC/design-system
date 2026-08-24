@@ -249,6 +249,32 @@ function MessageInputToolbar({
   );
 }
 
+function MessageInputToolbarLeft({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-input-toolbar-left"
+      className={cn("flex min-w-0 items-center gap-1", className)}
+      {...props}
+    />
+  );
+}
+
+function MessageInputToolbarRight({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-input-toolbar-right"
+      className={cn("ms-auto flex shrink-0 items-center gap-1", className)}
+      {...props}
+    />
+  );
+}
+
 function MessageInputAttachButton({
   className,
   variant = "ghost",
@@ -362,6 +388,8 @@ export {
   MessageInputTextarea,
   MessageInputAttachments,
   MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
   MessageInputAttachButton,
   MessageInputSubmit,
 };
