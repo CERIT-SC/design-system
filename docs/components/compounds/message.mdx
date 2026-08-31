@@ -1,6 +1,6 @@
 # Message
 
-Messages lay out a single turn in a conversation — avatar, content, and optional header and footer metadata. Compose them with [Bubble](/docs/components/primitives/bubble) and [Avatar](/docs/components/primitives/avatar).
+A message lays out a single turn in a conversation: avatar, content, and optional header and footer metadata. Compose it with [Bubble](/docs/components/primitives/bubble) and [Avatar](/docs/components/primitives/avatar).
 
 <ComponentPreview>
   <Message className="w-full max-w-sm">
@@ -95,7 +95,7 @@ Set `align="end"` to mirror the layout for the current user. The avatar moves to
 
 ## Header and footer
 
-Use `MessageHeader` for the sender name and `MessageFooter` for timestamps or actions. When a footer is present the avatar shifts up to stay level with the bubble.
+Use `MessageHeader` for the sender name and `MessageFooter` for timestamps or actions. With a footer present the avatar shifts up to stay level with the bubble.
 
 <ComponentPreview>
   <Message className="w-full max-w-sm">
@@ -130,6 +130,95 @@ Use `MessageHeader` for the sender name and `MessageFooter` for timestamps or ac
   </MessageContent>
 </Message>
 ```
+
+## Timestamps
+
+`MessageTimestamp` renders a `<time>` element and fades in when the message is hovered or focused. It takes the label to show as its children and the machine-readable value as `dateTime` — formatting stays with the caller, so the locale and the granularity are yours to pick.
+
+### Beside the bubble
+
+`placement="beside"` parks the timestamp in the gutter next to the bubble. Put it inside the `Bubble`, which is what it anchors to; it picks up the message alignment on its own and sits out of the flow, so revealing it never moves the transcript.
+
+<ComponentPreview>
+  <div className="flex w-full max-w-sm flex-col gap-6">
+    <Message align="start">
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>AI</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="muted">
+          <BubbleContent>How can I help you today?</BubbleContent>
+          <MessageTimestamp placement="beside" dateTime="2026-08-25T14:31:00">14:31</MessageTimestamp>
+        </Bubble>
+      </MessageContent>
+    </Message>
+    <Message align="end">
+      <MessageAvatar>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="Jane Doe" />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble align="end">
+          <BubbleContent>I need to increase my storage quota.</BubbleContent>
+          <MessageTimestamp placement="beside" dateTime="2026-08-25T14:32:00">14:32</MessageTimestamp>
+        </Bubble>
+      </MessageContent>
+    </Message>
+  </div>
+</ComponentPreview>
+
+```tsx
+<Bubble variant="muted">
+  <BubbleContent>{message.text}</BubbleContent>
+  <MessageTimestamp placement="beside" dateTime={message.sentAt}>
+    {formatTime(message.sentAt)}
+  </MessageTimestamp>
+</Bubble>
+```
+
+The gutter is what a bubble's `max-w-[80%]` leaves over, so keep the label short — a clock time, not a full date. Reach for a `Tooltip` on the bubble if the exact date matters.
+
+### Without a bubble
+
+A ghost bubble fills the row, so there is no gutter to lean into. The default `placement="inline"` puts the timestamp in a row of its own below the text — the `MessageActions` row when there is one, a `MessageFooter` when there is not. Below rather than in front: in front it competes with the text for the start of the line and reads like a log, while below it joins the metadata that is already there.
+
+<ComponentPreview>
+  <Message className="w-full max-w-sm">
+    <MessageContent>
+      <Bubble variant="ghost">
+        <BubbleContent className="text-base">Your quota has been increased to 500 GB. The change is already live on the shared filesystem.</BubbleContent>
+      </Bubble>
+      <MessageFooter>
+        <MessageTimestamp dateTime="2026-08-25T14:33:00">14:33</MessageTimestamp>
+      </MessageFooter>
+    </MessageContent>
+  </Message>
+</ComponentPreview>
+
+```tsx
+{/* on its own, in a footer */}
+<MessageFooter>
+  <MessageTimestamp dateTime={reply.sentAt}>
+    {formatTime(reply.sentAt)}
+  </MessageTimestamp>
+</MessageFooter>
+
+{/* or trailing the action row, which already fades in */}
+<MessageActions>
+  <MessageCopyButton value={reply.text} />
+  <MessageTimestamp reveal="always" dateTime={reply.sentAt} className="ms-1">
+    {formatTime(reply.sentAt)}
+  </MessageTimestamp>
+</MessageActions>
+```
+
+Inside `MessageActions` use `reveal="always"`: that row already fades in on hover, and letting both fade would apply the transition twice.
+
+Either way the reveal is opacity-only, so the timestamp stays in the accessibility tree and screen readers announce it with the message. On touch devices there is no hover to reveal it with, so it stays visible.
 
 ## Grouping
 
@@ -168,6 +257,7 @@ Use `MessageHeader` for the sender name and `MessageFooter` for timestamps or ac
 | `MessageContent` | Column holding the header, bubbles, and footer         |
 | `MessageHeader`  | Metadata above the content, e.g. the sender name       |
 | `MessageFooter`  | Metadata below the content, e.g. a timestamp           |
+| `MessageTimestamp` | `<time>` element revealed on hover, beside or below the bubble |
 | `MessageGroup`   | Stacks consecutive messages from the same sender        |
 
 ## Props
@@ -207,6 +297,16 @@ Use `MessageHeader` for the sender name and `MessageFooter` for timestamps or ac
 | --------- | -------------------- | ------- | ---------------------- |
 | className | string               | -       | Additional CSS classes |
 | ...props  | React.HTMLAttributes | -       | Native div props       |
+
+### MessageTimestamp
+
+| Prop      | Type                  | Default  | Description                                            |
+| --------- | --------------------- | -------- | ------------------------------------------------------ |
+| placement | `inline` \| `beside`  | `inline` | In the flow below the content, or in the bubble gutter  |
+| reveal    | `hover` \| `always`   | `hover`  | Fade in with the message, or leave the fading to its row |
+| dateTime  | string                | -        | Machine-readable value for the `<time>` element         |
+| className | string                | -        | Additional CSS classes                                  |
+| ...props  | React.HTMLAttributes  | -        | Native `time` props                                     |
 
 ### MessageGroup
 

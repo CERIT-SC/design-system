@@ -1,6 +1,6 @@
 # Searchbar
 
-Searchbar is a search input with a leading magnifier icon, a clear button that appears once the field is non-empty, an optional loading spinner, and an optional keyboard hint. It is purely presentational — it holds no search logic, so you can wire it to any search backend.
+Searchbar is a search input with a leading magnifier icon, a clear button that appears once the field is non-empty, an optional loading spinner, and an optional keyboard hint. It holds no search logic, so you can wire it to any backend.
 
 `SearchbarTrigger` is a companion button that looks like a Searchbar but opens a search surface (typically a dialog) instead of accepting text.
 
@@ -70,7 +70,7 @@ const { query, setQuery, isLoading } = useSearch()
 
 ### Trigger Variant
 
-Use `SearchbarTrigger` where a live input would mislead — a site header whose results open in a command palette, for example. It matches the Searchbar shell exactly, so the two read as one control across the transition.
+Use `SearchbarTrigger` where a live input would mislead, such as a site header whose results open in a command palette. It matches the Searchbar shell, so the two read as one control.
 
 <ComponentPreview>
   <SearchbarTrigger placeholder="Search documentation…" shortcut="⌘ K" />

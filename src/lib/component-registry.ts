@@ -263,6 +263,7 @@ import {
   MessageFooter,
   MessageGroup,
   MessageHeader,
+  MessageTimestamp,
 } from "../../lib/components/compounds/message";
 import {
   MessageActions,
@@ -577,6 +578,7 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   MessageScrollerItem,
   MessageScrollerProvider,
   MessageScrollerViewport,
+  MessageTimestamp,
   MessageTyping,
   Searchbar,
   SearchbarTrigger,

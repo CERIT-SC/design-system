@@ -8,6 +8,8 @@ export {
   MessageFooter,
   MessageGroup,
   MessageHeader,
+  MessageTimestamp,
+  messageTimestampVariants,
 } from "./message";
 export { MessageActions, MessageCopyButton } from "./message-actions";
 export {

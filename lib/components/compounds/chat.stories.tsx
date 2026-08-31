@@ -22,7 +22,13 @@ import {
   MessageInputToolbarRight,
 } from "./message-input";
 import type { MessageInputStatus } from "./message-input";
-import { Message, MessageAvatar, MessageContent } from "./message";
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageTimestamp,
+} from "./message";
 import { MessageActions, MessageCopyButton } from "./message-actions";
 import { MessageTyping } from "./message-typing";
 import { Avatar, AvatarFallback } from "../primitives/avatar";
@@ -42,7 +48,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type Turn = { id: string; role: "user" | "assistant"; text: string };
+type Turn = {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+  at: string;
+};
 
 const REPLY =
   "Your project is currently allocated 200 GB across the shared filesystem. " +
@@ -51,10 +62,27 @@ const REPLY =
   "to 1 TB are usually granted automatically.";
 
 const SEED: Turn[] = [
-  { id: "1", role: "assistant", text: "Hello. How can I help you today?" },
-  { id: "2", role: "user", text: "How much storage does my project have?" },
-  { id: "3", role: "assistant", text: REPLY },
+  {
+    id: "1",
+    role: "assistant",
+    text: "Hello. How can I help you today?",
+    at: "2026-08-25T09:12:00",
+  },
+  {
+    id: "2",
+    role: "user",
+    text: "How much storage does my project have?",
+    at: "2026-08-25T09:13:00",
+  },
+  { id: "3", role: "assistant", text: REPLY, at: "2026-08-25T09:13:00" },
 ];
+
+function clockLabel(at: string) {
+  return new Date(at).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
 
 function useDemoChat() {
   const [turns, setTurns] = useState(SEED);
@@ -63,7 +91,12 @@ function useDemoChat() {
   const send = (value: string) => {
     setTurns((current) => [
       ...current,
-      { id: `u-${String(current.length)}`, role: "user", text: value },
+      {
+        id: `u-${String(current.length)}`,
+        role: "user",
+        text: value,
+        at: new Date().toISOString(),
+      },
     ]);
     setStatus("streaming");
 
@@ -71,7 +104,12 @@ function useDemoChat() {
       setStatus("ready");
       setTurns((current) => [
         ...current,
-        { id: `a-${String(current.length)}`, role: "assistant", text: REPLY },
+        {
+          id: `a-${String(current.length)}`,
+          role: "assistant",
+          text: REPLY,
+          at: new Date().toISOString(),
+        },
       ]);
     }, 1800);
   };
@@ -112,6 +150,12 @@ export const BubbleReplies: Story = {
                           <MessageContent>
                             <Bubble variant="default" align="end">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                           </MessageContent>
                         </Message>
@@ -125,6 +169,12 @@ export const BubbleReplies: Story = {
                           <MessageContent>
                             <Bubble variant="muted">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                             <MessageActions>
                               <MessageCopyButton value={turn.text} />
@@ -211,6 +261,12 @@ export const PlainTextReplies: Story = {
                           <MessageContent>
                             <Bubble variant="default" align="end">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                           </MessageContent>
                         </Message>
@@ -224,6 +280,13 @@ export const PlainTextReplies: Story = {
                             </Bubble>
                             <MessageActions>
                               <MessageCopyButton value={turn.text} />
+                              <MessageTimestamp
+                                reveal="always"
+                                dateTime={turn.at}
+                                className="ms-1"
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </MessageActions>
                           </MessageContent>
                         </Message>
@@ -302,6 +365,12 @@ export const CustomReplyActionsPlain: Story = {
                           <MessageContent>
                             <Bubble variant="default" align="end">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                           </MessageContent>
                         </Message>
@@ -341,6 +410,13 @@ export const CustomReplyActionsPlain: Story = {
                                 <ThumbsDown />
                                 <span className="sr-only">Bad reply</span>
                               </Button>
+                              <MessageTimestamp
+                                reveal="always"
+                                dateTime={turn.at}
+                                className="ms-1"
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </MessageActions>
                           </MessageContent>
                         </Message>
@@ -420,6 +496,12 @@ export const CustomReplyActionsBubble: Story = {
                           <MessageContent>
                             <Bubble variant="default" align="end">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                           </MessageContent>
                         </Message>
@@ -433,6 +515,12 @@ export const CustomReplyActionsBubble: Story = {
                           <MessageContent>
                             <Bubble variant="muted">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                             <MessageActions>
                               <MessageCopyButton value={turn.text} />
@@ -545,6 +633,12 @@ export const WithoutReplyActions: Story = {
                           <MessageContent>
                             <Bubble variant="default" align="end">
                               <BubbleContent>{turn.text}</BubbleContent>
+                              <MessageTimestamp
+                                placement="beside"
+                                dateTime={turn.at}
+                              >
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
                             </Bubble>
                           </MessageContent>
                         </Message>
@@ -556,6 +650,11 @@ export const WithoutReplyActions: Story = {
                                 {turn.text}
                               </BubbleContent>
                             </Bubble>
+                            <MessageFooter>
+                              <MessageTimestamp dateTime={turn.at}>
+                                {clockLabel(turn.at)}
+                              </MessageTimestamp>
+                            </MessageFooter>
                           </MessageContent>
                         </Message>
                       )}

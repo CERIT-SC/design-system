@@ -1,6 +1,6 @@
 # Message Input
 
-The composer for a chat interface: an auto-growing textarea, a send button that becomes a stop button while a reply streams, file attachments, and a toolbar that splits into a left and a right side for your own controls.
+The composer for a chat interface: an auto-growing textarea, a send button that becomes a stop button while a reply streams, file attachments, and a toolbar with a left and a right slot for your own controls.
 
 <ComponentPreview>
   <MessageInputPreview />
@@ -34,7 +34,7 @@ import {
 </MessageInput>
 ```
 
-The textarea grows with its content up to a limit and then scrolls. No JavaScript measurement is involved — it uses the CSS `field-sizing` property.
+The textarea grows with its content up to a limit and then scrolls. It uses the CSS `field-sizing` property, with no JavaScript measurement.
 
 ## Keyboard
 
@@ -44,7 +44,7 @@ The textarea grows with its content up to a limit and then scrolls. No JavaScrip
 | `Shift` + `Enter`  | Inserts a newline                          |
 | `Enter` during IME | Commits the composition without submitting |
 
-The IME guard matters for any input method with a candidate window — the Enter that closes it will not send a half-composed message.
+The IME guard applies to any input method with a candidate window: the Enter that closes it does not send a half-composed message.
 
 ## Streaming and stopping
 
@@ -58,8 +58,7 @@ The IME guard matters for any input method with a candidate window — the Enter
 >
 ```
 
-The two icons stay mounted and stacked, so switching status crossfades between them
-rather than swapping instantly.
+Both icons stay mounted and stacked, so a status change crossfades between them.
 
 | Status      | Submit button                              |
 | ----------- | ------------------------------------------ |
@@ -73,7 +72,7 @@ rather than swapping instantly.
 
 ## Controlled value
 
-Uncontrolled by default. Pass `value` and `onValueChange` to drive it yourself — useful for drafts, slash commands, or prefilling from a template.
+Uncontrolled by default. Pass `value` and `onValueChange` to drive it yourself, for drafts, slash commands, or prefilling from a template.
 
 ```tsx
 const [value, setValue] = useState("")
@@ -106,9 +105,9 @@ Attachment state is held by the component. A message with no text but at least o
 
 ## Custom toolbar controls
 
-`MessageInputToolbar` holds two slots — `MessageInputToolbarLeft` and `MessageInputToolbarRight` — the same left/right split as `Header` and `Footer`. Your own controls go on the left; the submit button goes on the right, which pushes itself to the trailing edge.
+`MessageInputToolbar` holds two slots, `MessageInputToolbarLeft` and `MessageInputToolbarRight`, the same split as `Header` and `Footer`. Your own controls go on the left, the submit button on the right, which pushes itself to the trailing edge.
 
-Match the height of the built-in controls so the row reads as one cluster: the attach button is 32px, so trim a `size="sm"` button to `h-8`.
+Match the height of the built-in controls: the attach button is 32px, so trim a `size="sm"` button to `h-8`.
 
 <ComponentPreview>
   <MessageInput className="w-full">
@@ -210,8 +209,8 @@ Match the height of the built-in controls so the row reads as one cluster: the a
 
 ## Accessibility
 
-Every icon-only control carries a visually hidden label — "Send message", "Stop generating", "Attach files", and `Remove {filename}` per chip. The composer is a real `<form>`, so Enter submission and browser autofill behave as expected, and the focus ring is drawn around the whole composer via `focus-within` rather than the bare textarea.
+Every icon-only control carries a visually hidden label: "Send message", "Stop generating", "Attach files", and `Remove {filename}` per chip. The composer is a real `<form>`, so Enter submission and browser autofill work as expected. The focus ring is drawn around the whole composer with `focus-within`, not the bare textarea.
 
 ## Related
 
-Pair this with [Message Scroller](/docs/components/compounds/message-scroller) for the transcript, and [Chat](/docs/components/compounds/chat) for the surrounding layout.
+[Message Scroller](/docs/components/compounds/message-scroller) for the transcript, and [Chat](/docs/components/compounds/chat) for the surrounding layout.

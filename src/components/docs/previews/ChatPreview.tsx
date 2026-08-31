@@ -32,6 +32,8 @@ import {
   Message,
   MessageAvatar,
   MessageContent,
+  MessageFooter,
+  MessageTimestamp,
 } from "../../../../lib/components/compounds/message";
 import { MessageTyping } from "../../../../lib/components/compounds/message-typing";
 import {
@@ -53,6 +55,8 @@ interface Turn {
   id: string;
   role: "user" | "assistant";
   text: string;
+  at: string;
+  clock: string;
 }
 
 const REPLY =
@@ -61,27 +65,73 @@ const REPLY =
   "The storage team reviews requests within two working days.";
 
 const SEED: Turn[] = [
-  { id: "1", role: "assistant", text: "Hello. How can I help you today?" },
-  { id: "2", role: "user", text: "How much storage does my project have?" },
-  { id: "3", role: "assistant", text: REPLY },
+  {
+    id: "1",
+    role: "assistant",
+    text: "Hello. How can I help you today?",
+    at: "2026-08-25T09:12:00",
+    clock: "09:12",
+  },
+  {
+    id: "2",
+    role: "user",
+    text: "How much storage does my project have?",
+    at: "2026-08-25T09:13:00",
+    clock: "09:13",
+  },
+  {
+    id: "3",
+    role: "assistant",
+    text: REPLY,
+    at: "2026-08-25T09:13:00",
+    clock: "09:13",
+  },
 ];
+
+function now() {
+  const at = new Date();
+
+  return {
+    at: at.toISOString(),
+    clock: at.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+  };
+}
 
 export function ChatPreview({
   replyStyle = "plain",
   replyActions = "copy",
+  timestamps = false,
 }: {
   replyStyle?: "bubble" | "plain";
   replyActions?: "copy" | "full" | "none";
+  timestamps?: boolean;
 }) {
   const [turns, setTurns] = useState(SEED);
   const [status, setStatus] = useState<MessageInputStatus>("ready");
 
-  // The action row is independent of the reply style — it reveals on hover of
-  // the message, not of the bubble — so both looks get the same set.
-  const actionsFor = (text: string) =>
-    replyActions === "none" ? null : (
+  const stampFor = (turn: Turn, placement: "beside" | "inline") =>
+    timestamps ? (
+      <MessageTimestamp
+        placement={placement}
+        // The row it shares already fades in, so it does not fade in again.
+        reveal={placement === "inline" ? "always" : "hover"}
+        dateTime={turn.at}
+        className={placement === "inline" ? "ms-1" : undefined}
+      >
+        {turn.clock}
+      </MessageTimestamp>
+    ) : null;
+
+  const metaFor = (turn: Turn) => {
+    const stamp = replyStyle === "plain" ? stampFor(turn, "inline") : null;
+
+    if (replyActions === "none") {
+      return stamp && <MessageFooter>{stamp}</MessageFooter>;
+    }
+
+    return (
       <MessageActions>
-        <MessageCopyButton value={text} />
+        <MessageCopyButton value={turn.text} />
         {replyActions === "full" && (
           <>
             <Button
@@ -110,12 +160,12 @@ export function ChatPreview({
             </Button>
           </>
         )}
+        {stamp}
       </MessageActions>
     );
+  };
 
-  // The only difference between the two looks. Everything else is shared, so
-  // the styles cannot drift apart as the components change.
-  const assistantBubble = (text: string, actions: boolean) =>
+  const assistantBubble = (turn: Turn) =>
     replyStyle === "bubble" ? (
       <Message align="start">
         <MessageAvatar>
@@ -125,18 +175,19 @@ export function ChatPreview({
         </MessageAvatar>
         <MessageContent>
           <Bubble variant="muted">
-            <BubbleContent>{text}</BubbleContent>
+            <BubbleContent>{turn.text}</BubbleContent>
+            {stampFor(turn, "beside")}
           </Bubble>
-          {actions && actionsFor(text)}
+          {metaFor(turn)}
         </MessageContent>
       </Message>
     ) : (
       <Message align="start">
         <MessageContent>
           <Bubble variant="ghost">
-            <BubbleContent className="text-base">{text}</BubbleContent>
+            <BubbleContent className="text-base">{turn.text}</BubbleContent>
           </Bubble>
-          {actions && actionsFor(text)}
+          {metaFor(turn)}
         </MessageContent>
       </Message>
     );
@@ -166,13 +217,14 @@ export function ChatPreview({
                         <MessageContent>
                           <Bubble variant="default" align="end">
                             <BubbleContent>{turn.text}</BubbleContent>
+                            {stampFor(turn, "beside")}
                           </Bubble>
                         </MessageContent>
                       </Message>
                     </MessageScrollerItem>
                   ) : (
                     <MessageScrollerItem key={turn.id} messageId={turn.id}>
-                      {assistantBubble(turn.text, true)}
+                      {assistantBubble(turn)}
                     </MessageScrollerItem>
                   )
                 )}
@@ -222,7 +274,12 @@ export function ChatPreview({
           onSubmit={(value) => {
             setTurns((current) => [
               ...current,
-              { id: `u-${String(current.length)}`, role: "user", text: value },
+              {
+                id: `u-${String(current.length)}`,
+                role: "user",
+                text: value,
+                ...now(),
+              },
             ]);
             setStatus("streaming");
             window.setTimeout(() => {
@@ -233,6 +290,7 @@ export function ChatPreview({
                   id: `a-${String(current.length)}`,
                   role: "assistant",
                   text: REPLY,
+                  ...now(),
                 },
               ]);
             }, 1800);

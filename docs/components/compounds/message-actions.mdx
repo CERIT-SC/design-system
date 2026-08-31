@@ -1,6 +1,6 @@
 # Message Actions
 
-Controls attached to a message — copy, regenerate, rate. They sit under the content and reveal on hover, so a transcript stays quiet until you reach for them.
+Controls attached to a message: copy, regenerate, rate. They sit under the content and reveal on hover, so a transcript stays uncluttered at rest.
 
 <ComponentPreview>
   <MessageActionsPreview />
@@ -9,12 +9,10 @@ Controls attached to a message — copy, regenerate, rate. They sit under the co
 ## Plain-text replies
 
 An assistant reply usually reads better as plain prose than as a bubble: full width, no
-tinted background, and text you can select straight out of the page. Use
-`Bubble variant="ghost"`, which drops the background, border, radius, and padding while
-keeping the alignment and spacing behaviour.
+tinted background, and selectable text. `Bubble variant="ghost"` drops the background,
+border, radius, and padding, and keeps the alignment and spacing.
 
-The convention that reads best is asymmetric — the person's turn stays a bubble, the
-reply does not:
+The person's turn stays a bubble; the reply does not:
 
 ```tsx
 {/* the person asks — a bubble, right-aligned */}
@@ -44,18 +42,17 @@ reply does not:
 </Message>
 ```
 
-Two details make it look right. Drop `MessageAvatar` from the reply so the prose starts
-at the same left edge as everything else, and bump `BubbleContent` to `text-base` —
-the bubble default of `text-sm` is tuned for short bubbled turns, not for reading a
-long answer.
+Drop `MessageAvatar` from the reply so the prose starts at the same left edge as
+everything else, and set `BubbleContent` to `text-base`. The bubble default of
+`text-sm` is tuned for short turns, not for long answers.
 
-`MessageHeader` and `MessageFooter` already remove their horizontal padding when a
-ghost bubble is present, so metadata lines up with the prose without adjustment.
+`MessageHeader` and `MessageFooter` drop their horizontal padding next to a ghost
+bubble, so metadata lines up with the prose.
 
 ## Rich replies
 
-`BubbleContent` styles no children of its own, so render the answer with the typography
-components and it inherits the prose treatment.
+`BubbleContent` styles none of its children. Render the answer with the typography
+components.
 
 ```tsx
 <Bubble variant="ghost">
@@ -72,13 +69,12 @@ components and it inherits the prose treatment.
 
 ### Markdown
 
-Rendering markdown is left to the consumer — the design system takes no markdown
-dependency, so you keep the choice of renderer and its plugins.
+The design system takes no markdown dependency, so the renderer and its plugins are
+your choice.
 
-One thing to know before you wire one up: Tailwind's reset flattens `h1`–`h6`,
-`ul`, `ol`, and `p`, so piping a renderer's raw HTML into `BubbleContent` produces
-headings at body size and lists with no markers. Map the nodes to the typography
-components instead, and replies match the rest of the system for free.
+Tailwind's reset flattens `h1`–`h6`, `ul`, `ol`, and `p`, so a renderer's raw HTML
+lands in `BubbleContent` with headings at body size and lists with no markers. Map the
+nodes to the typography components instead.
 
 ```tsx
 <Bubble variant="ghost">
@@ -103,12 +99,12 @@ components instead, and replies match the rest of the system for free.
 ## Reveal behaviour
 
 Actions fade in when the message is hovered or when anything inside it takes keyboard
-focus, so they are reachable by tab without being visible at rest.
+focus, so they are reachable by tab.
 
-The reveal is gated on `pointer-fine`. Touch devices have no hover to trigger it, so
-there the actions are simply always visible rather than invisible-but-tappable.
+The reveal is gated on `pointer-fine`. Touch devices have no hover, so the actions are
+always visible there.
 
-To pin them open — a single-reply view, or a demo — override the resting opacity:
+To pin them open, override the resting opacity:
 
 ```tsx
 <MessageActions className="pointer-fine:opacity-100">
@@ -116,9 +112,9 @@ To pin them open — a single-reply view, or a demo — override the resting opa
 
 ## More than copy
 
-`MessageActions` is an open row. Anything you put in it lines up with the copy button;
-use `variant="ghost" size="icon-sm"` to match, and give every icon-only control a
-visually hidden label.
+`MessageActions` is an open row. Anything in it lines up with the copy button. Use
+`variant="ghost" size="icon-sm"` to match, and give every icon-only control a visually
+hidden label.
 
 <ComponentPreview>
   <MessageActionsPreview extraActions />
@@ -127,18 +123,18 @@ visually hidden label.
 ## Copy behaviour
 
 `MessageCopyButton` writes `value` to the clipboard, swaps to a tick for two seconds,
-then returns. The icons crossfade rather than snapping.
+then returns. The icons crossfade.
 
-If the clipboard is unavailable — it needs a secure context, and the user can refuse
-permission — the button stays in its resting state instead of showing a success it did
-not achieve.
+The clipboard needs a secure context and the user can refuse permission. When the write
+fails the button stays in its resting state instead of confirming a copy that did not
+happen.
 
 ```tsx
 <MessageCopyButton value={reply} copyLabel="Copy answer" copiedLabel="Answer copied" />
 ```
 
-The accessible name switches between the two labels, which is what announces the result
-to a screen reader.
+The accessible name switches between the two labels, which announces the result to a
+screen reader.
 
 ## Components
 
@@ -168,4 +164,4 @@ to a screen reader.
 
 ## Related
 
-[Message](/docs/components/compounds/message) and [Bubble](/docs/components/primitives/bubble) build the turn, and [Chat](/docs/components/compounds/chat) shows the plain-reply style in a full interface.
+[Message](/docs/components/compounds/message) and [Bubble](/docs/components/primitives/bubble) build the turn. [Chat](/docs/components/compounds/chat) shows the plain-reply style in a full interface.
