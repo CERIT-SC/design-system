@@ -5,8 +5,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Reserve the scrollbar track so content does not shift when it appears. */
+@utility scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
 @theme {
   --breakpoint-3xl: 120rem;
+
+  /* One dot of a typing indicator. Stagger siblings with animation-delay. */
+  --animate-typing-dot: typing-dot 1.4s ease-in-out infinite;
+
+  @keyframes typing-dot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30%           { opacity: 1;   transform: translateY(-25%); }
+  }
 }
 
 @theme inline {

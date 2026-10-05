@@ -6,6 +6,7 @@ export * from "./primitives/aspect-ratio";
 export * from "./primitives/avatar";
 export * from "./primitives/badge";
 export * from "./primitives/breadcrumb";
+export * from "./primitives/bubble";
 export * from "./primitives/button";
 export * from "./primitives/calendar";
 export * from "./primitives/card";

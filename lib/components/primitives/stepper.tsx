@@ -8,6 +8,7 @@ import { Button } from "./button";
 interface Step {
   label: string;
   description?: string;
+  icon?: React.ComponentType<{ className?: string }>;
 }
 
 interface StepperContextValue {
@@ -33,6 +34,7 @@ export function useStepper() {
 interface StepperProps {
   children: React.ReactNode;
   initialStep?: number;
+  step?: number;
   totalSteps?: number;
   onStepChange?: (step: number) => void;
 }
@@ -40,6 +42,7 @@ interface StepperProps {
 export function Stepper({
   children,
   initialStep = 0,
+  step: stepProp,
   totalSteps: totalStepsProp,
   onStepChange,
 }: StepperProps) {
@@ -48,47 +51,59 @@ export function Stepper({
     return Math.max(0, Math.min(step, maxIndex));
   }, []);
 
-  const [currentStep, setCurrentStep] = React.useState(initialStep);
+  const isControlled = stepProp !== undefined;
+  const [internalStep, setInternalStep] = React.useState(initialStep);
   const steps = React.Children.toArray(children);
   const totalSteps = Math.max(totalStepsProp ?? steps.length, 1);
+  const currentStep = clampStep(
+    isControlled ? stepProp : internalStep,
+    totalSteps
+  );
   const previousInitialStepRef = React.useRef(initialStep);
 
+  const changeStep = React.useCallback(
+    (step: number) => {
+      if (!isControlled) {
+        setInternalStep(step);
+      }
+      onStepChange?.(step);
+    },
+    [isControlled, onStepChange]
+  );
+
   const nextStep = React.useCallback(() => {
-    const next = clampStep(currentStep + 1, totalSteps);
-    setCurrentStep(next);
-    onStepChange?.(next);
-  }, [clampStep, currentStep, totalSteps, onStepChange]);
+    changeStep(clampStep(currentStep + 1, totalSteps));
+  }, [changeStep, clampStep, currentStep, totalSteps]);
 
   const previousStep = React.useCallback(() => {
-    const next = clampStep(currentStep - 1, totalSteps);
-    setCurrentStep(next);
-    onStepChange?.(next);
-  }, [clampStep, currentStep, totalSteps, onStepChange]);
+    changeStep(clampStep(currentStep - 1, totalSteps));
+  }, [changeStep, clampStep, currentStep, totalSteps]);
 
   const goToStep = React.useCallback(
     (step: number) => {
-      const validStep = clampStep(step, totalSteps);
-      setCurrentStep(validStep);
-      onStepChange?.(validStep);
+      changeStep(clampStep(step, totalSteps));
     },
-    [clampStep, totalSteps, onStepChange]
+    [changeStep, clampStep, totalSteps]
   );
 
   React.useEffect(() => {
-    setCurrentStep((prev) => {
+    if (isControlled) {
+      return;
+    }
+    setInternalStep((prev) => {
       const clamped = clampStep(prev, totalSteps);
       return prev === clamped ? prev : clamped;
     });
-  }, [clampStep, totalSteps]);
+  }, [clampStep, isControlled, totalSteps]);
 
   React.useEffect(() => {
-    if (previousInitialStepRef.current === initialStep) {
+    if (isControlled || previousInitialStepRef.current === initialStep) {
       return;
     }
 
     previousInitialStepRef.current = initialStep;
-    setCurrentStep(clampStep(initialStep, totalSteps));
-  }, [clampStep, initialStep, totalSteps]);
+    setInternalStep(clampStep(initialStep, totalSteps));
+  }, [clampStep, initialStep, isControlled, totalSteps]);
 
   return (
     <StepperContext.Provider
@@ -108,9 +123,14 @@ export function Stepper({
 interface StepperHeaderProps {
   steps?: Step[];
   className?: string;
+  showNavigation?: boolean;
 }
 
-export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
+export function StepperHeader({
+  steps = [],
+  className,
+  showNavigation = true,
+}: StepperHeaderProps) {
   const { currentStep, previousStep, nextStep, goToStep, totalSteps } =
     useStepper();
   const safeTotalSteps = Math.max(totalSteps, 1);
@@ -120,9 +140,11 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
   );
   const progressPercentage =
     safeTotalSteps > 1 ? (activeStepIndex / (safeTotalSteps - 1)) * 100 : 100;
+  const isLastStep = activeStepIndex === safeTotalSteps - 1;
   const stepMarkerSize = 28;
   const stepItems = Array.from({ length: safeTotalSteps }, (_, index) => ({
     label: steps[index]?.label ?? `Step ${String(index + 1)}`,
+    icon: steps[index]?.icon,
   }));
   const currentStepLabel =
     stepItems[activeStepIndex]?.label ?? `Step ${String(activeStepIndex + 1)}`;
@@ -144,26 +166,29 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
         </p>
 
         <div className="flex w-full items-center justify-center gap-4 md:gap-10">
-          <div className="shrink-0">
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={previousStep}
-              disabled={currentStep === 0}
-              className="gap-1.5 md:min-w-26"
-            >
-              <ChevronLeft className="h-3.5 w-3.5" />
-              Previous
-            </Button>
-          </div>
+          {showNavigation && (
+            <div className="shrink-0">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={previousStep}
+                disabled={currentStep === 0}
+                className="gap-1.5 md:min-w-26"
+              >
+                <ChevronLeft className="h-3.5 w-3.5" />
+                Previous
+              </Button>
+            </div>
+          )}
 
-          <div className="relative w-full max-w-lg">
+          {/* max-w-lg only balances against the flanking Previous/Next buttons */}
+          <div className={cn("relative w-full", showNavigation && "max-w-lg")}>
             <div className="relative">
               <div className="absolute left-3 right-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-border/80" />
               <div
                 className="absolute left-3 top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary transition-all"
                 style={{
-                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * ${String(stepMarkerSize)}px + ${String(stepMarkerSize)}px)`,
+                  width: `calc(${String(progressPercentage)}% - ${String(progressPercentage / 100)} * ${String(stepMarkerSize)}px + ${String(isLastStep ? 0 : stepMarkerSize)}px)`,
                 }}
               />
 
@@ -199,7 +224,11 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
                             : "0 0 6px rgba(115, 112, 128, 0.38)",
                       }}
                     >
-                      {index + 1}
+                      {step.icon ? (
+                        <step.icon className="h-4 w-4" aria-hidden />
+                      ) : (
+                        index + 1
+                      )}
                     </button>
                   );
                 })}
@@ -207,18 +236,20 @@ export function StepperHeader({ steps = [], className }: StepperHeaderProps) {
             </div>
           </div>
 
-          <div className="shrink-0">
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={nextStep}
-              disabled={currentStep === totalSteps - 1}
-              className="gap-1.5 md:min-w-26"
-            >
-              Next
-              <ChevronRight className="h-3.5 w-3.5" />
-            </Button>
-          </div>
+          {showNavigation && (
+            <div className="shrink-0">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={nextStep}
+                disabled={currentStep === totalSteps - 1}
+                className="gap-1.5 md:min-w-26"
+              >
+                Next
+                <ChevronRight className="h-3.5 w-3.5" />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </nav>

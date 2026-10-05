@@ -1,0 +1,102 @@
+# Message Typing
+
+Three pulsing dots shown while a reply is pending. Place it where the reply will appear, so the answer replaces the indicator in the same spot.
+
+<ComponentPreview>
+  <Bubble variant="muted">
+    <BubbleContent>
+      <MessageTyping />
+    </BubbleContent>
+  </Bubble>
+</ComponentPreview>
+
+## Usage
+
+Render it as a transcript row while waiting, and drop the row once the reply lands.
+
+```tsx
+import { MessageTyping } from "@e-infra/design-system"
+
+{status === "streaming" && (
+  <MessageScrollerItem messageId="typing">
+    <Message align="start">
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>AI</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="muted">
+          <BubbleContent>
+            <MessageTyping />
+          </BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+  </MessageScrollerItem>
+)}
+```
+
+As a normal row it inherits the transcript's entrance animation, and autoscroll follows it like any other message.
+
+## Colour
+
+The dots are painted with `currentColor`, so they take the colour of the bubble they sit in.
+
+<ComponentPreview>
+  <div className="flex flex-col gap-3">
+    <Bubble variant="muted">
+      <BubbleContent>
+        <MessageTyping />
+      </BubbleContent>
+    </Bubble>
+    <Bubble variant="default">
+      <BubbleContent>
+        <MessageTyping />
+      </BubbleContent>
+    </Bubble>
+    <Bubble variant="outline">
+      <BubbleContent>
+        <MessageTyping />
+      </BubbleContent>
+    </Bubble>
+  </div>
+</ComponentPreview>
+
+## Labelling
+
+The dots are decorative and hidden from assistive technology. A visually hidden label carries the meaning, so pick one that describes what is happening.
+
+<ComponentPreview>
+  <Bubble variant="muted">
+    <BubbleContent>
+      <MessageTyping label="Searching the knowledge base" />
+    </BubbleContent>
+  </Bubble>
+</ComponentPreview>
+
+```tsx
+<MessageTyping label="Searching the knowledge base" />
+```
+
+Pair it with `busy` on `MessageScrollerContent`, which sets `aria-busy` on the transcript so the log is announced as still being written.
+
+```tsx
+<MessageScrollerContent busy={status === "streaming"}>
+```
+
+## Props
+
+| Prop      | Type                 | Default               | Description                             |
+| --------- | -------------------- | --------------------- | --------------------------------------- |
+| label     | string               | `Generating response` | Visually hidden description of the wait |
+| className | string               | -                     | Additional CSS classes                  |
+| ...props  | React.HTMLAttributes | -                     | Native span props                       |
+
+## Reduced motion
+
+The pulse is suppressed under `prefers-reduced-motion`, leaving three static dots.
+
+## Related
+
+[Message Input](/docs/components/compounds/message-input) drives the `streaming` status, and [Message Scroller](/docs/components/compounds/message-scroller) hosts the row.

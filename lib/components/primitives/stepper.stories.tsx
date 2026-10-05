@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
   Stepper,
   StepperContent,
@@ -17,6 +18,7 @@ import { Input } from "./input";
 import { Label } from "./label";
 import { Textarea } from "./textarea";
 import { Button } from "./button";
+import { BookUser, CircleCheck, FileSearch, FileText } from "lucide-react";
 
 const meta = {
   title: "Primitives/Stepper",
@@ -196,14 +198,14 @@ export const WithInitialStep: Story = {
 };
 
 /**
- * Shows how to add optional custom actions in the footer while
- * keeping the header as the primary navigation.
+ * Shows how to add optional custom actions in the footer; the built-in
+ * header navigation is hidden so the controls are not duplicated.
  */
 export const WithCustomFooter: Story = {
   render: () => (
     <div className="w-200">
       <Stepper totalSteps={steps.length}>
-        <StepperHeader steps={steps} />
+        <StepperHeader steps={steps} showNavigation={false} />
         <StepperContent>
           <Step1PublicationInfo />
           <Step2DuplicityCheck />
@@ -299,7 +301,7 @@ export const WithCustomNavigation: Story = {
   render: () => (
     <div className="w-200">
       <Stepper totalSteps={steps.length}>
-        <StepperHeader steps={steps} />
+        <StepperHeader steps={steps} showNavigation={false} />
         <StepperContent>
           <Step1PublicationInfo />
           <Step2DuplicityCheck />
@@ -310,4 +312,56 @@ export const WithCustomNavigation: Story = {
       </Stepper>
     </div>
   ),
+};
+
+const iconSteps = [
+  { label: "Publication Info", icon: FileText },
+  { label: "Duplicity Check", icon: FileSearch },
+  { label: "Authors", icon: BookUser },
+  { label: "Finish", icon: CircleCheck },
+];
+
+/**
+ * Steps can show an icon in their marker instead of the step number.
+ */
+export const WithIcons: Story = {
+  render: () => (
+    <div className="w-200">
+      <Stepper initialStep={1} totalSteps={iconSteps.length}>
+        <StepperHeader steps={iconSteps} />
+        <StepperContent>
+          <Step1PublicationInfo />
+          <Step2DuplicityCheck />
+          <Step3Authors />
+          <Step4Acknowledgements />
+        </StepperContent>
+      </Stepper>
+    </div>
+  ),
+};
+
+/**
+ * The parent owns the step via the step prop; the header navigation is
+ * hidden in favor of custom footer controls.
+ */
+export const ControlledExternally: Story = {
+  render: function ControlledStory() {
+    const [step, setStep] = useState(1);
+    return (
+      <div className="w-200">
+        <Stepper step={step} totalSteps={steps.length} onStepChange={setStep}>
+          <StepperHeader steps={steps} showNavigation={false} />
+          <StepperContent>
+            <Step1PublicationInfo />
+            <Step2DuplicityCheck />
+            <Step3Authors />
+            <Step4Acknowledgements />
+          </StepperContent>
+          <StepperFooter showDefaultButtons={false}>
+            <CustomFooterActions />
+          </StepperFooter>
+        </Stepper>
+      </div>
+    );
+  },
 };

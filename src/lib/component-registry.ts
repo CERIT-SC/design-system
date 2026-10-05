@@ -41,6 +41,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../../lib/components/primitives/breadcrumb";
+import {
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  BubbleReactions,
+} from "../../lib/components/primitives/bubble";
 import { Button } from "../../lib/components/primitives/button";
 import {
   Calendar,
@@ -242,8 +248,46 @@ import {
 } from "../../lib/components/layout/header";
 
 // ── Mid-level (Compounds) ─────────────────────────────────────────────────────
+import {
+  Chat,
+  ChatFooter,
+  ChatHeader,
+  ChatMessages,
+} from "../../lib/components/compounds/chat";
 import { CookiesBanner } from "../../lib/components/compounds/cookies-banner";
 import { FeedbackForm } from "../../lib/components/compounds/feedback-form";
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+  MessageTimestamp,
+} from "../../lib/components/compounds/message";
+import {
+  MessageActions,
+  MessageCopyButton,
+} from "../../lib/components/compounds/message-actions";
+import {
+  MessageInput,
+  MessageInputAttachButton,
+  MessageInputAttachments,
+  MessageInputSubmit,
+  MessageInputTextarea,
+  MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
+} from "../../lib/components/compounds/message-input";
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from "../../lib/components/compounds/message-scroller";
+import { MessageTyping } from "../../lib/components/compounds/message-typing";
 import {
   Searchbar,
   SearchbarTrigger,
@@ -314,6 +358,11 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  // Bubble
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  BubbleReactions,
   // Button
   Button,
   // Calendar
@@ -501,8 +550,36 @@ export const componentRegistry: Record<string, React.ComponentType<any>> = {
   HeaderLeft,
   HeaderRight,
   // Mid-level / Compounds
+  Chat,
+  ChatFooter,
+  ChatHeader,
+  ChatMessages,
   CookiesBanner,
   FeedbackForm,
+  Message,
+  MessageActions,
+  MessageAvatar,
+  MessageContent,
+  MessageCopyButton,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+  MessageInput,
+  MessageInputAttachButton,
+  MessageInputAttachments,
+  MessageInputSubmit,
+  MessageInputTextarea,
+  MessageInputToolbar,
+  MessageInputToolbarLeft,
+  MessageInputToolbarRight,
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+  MessageTimestamp,
+  MessageTyping,
   Searchbar,
   SearchbarTrigger,
   // Typography

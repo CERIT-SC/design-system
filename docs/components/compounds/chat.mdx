@@ -1,0 +1,224 @@
+# Chat
+
+Layout shell for a full-screen chat interface. The header and composer are fixed at the edges and the transcript takes the remaining height, which gives the scroller a bounded parent to fill.
+
+<ComponentPreview>
+  <ChatPreview />
+</ComponentPreview>
+
+## Usage
+
+```tsx
+import {
+  Chat,
+  ChatFooter,
+  ChatHeader,
+  ChatMessages,
+} from "@e-infra/design-system"
+
+<Chat>
+  <ChatHeader>
+    <H4 className="m-0">Support assistant</H4>
+  </ChatHeader>
+  <ChatMessages>
+    <MessageScrollerProvider>{/* … */}</MessageScrollerProvider>
+  </ChatMessages>
+  <ChatFooter>
+    <MessageInput onSubmit={send}>{/* … */}</MessageInput>
+  </ChatFooter>
+</Chat>
+```
+
+`ChatHeader` is optional. `ChatMessages` is `min-h-0`, so the scroller inside it scrolls instead of stretching its parent.
+
+## Sizing
+
+`Chat` defaults to `h-dvh` for a standalone chat route. Override the height when embedding it inside your own layout.
+
+| Context                                    | Class                   |
+| ------------------------------------------ | ----------------------- |
+| A dedicated chat page                      | default (`h-dvh`)       |
+| Inside `Header` + `Content` or a `Sidebar` | `className="h-full"`    |
+| A bounded panel                            | `className="h-[32rem]"` |
+
+```tsx
+<Content>
+  <Chat className="h-full">{/* … */}</Chat>
+</Content>
+```
+
+The ancestor chain must be height-constrained too: `h-full` inside an auto-height parent has nothing to fill.
+
+## Reply styles
+
+Two conventions, both with the same header, transcript, and composer. Only the assistant's turn differs.
+
+**Plain text.** Full-width prose with no bubble, plus a copy action. Use it for long or structured answers.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="plain" />
+</ComponentPreview>
+
+**Bubbles.** The reply sits in a muted bubble beside an avatar. Use it for short exchanges and human agents.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="bubble" />
+</ComponentPreview>
+
+| | Plain text | Bubbles |
+| --- | --- | --- |
+| Assistant bubble | `variant="ghost"` | `variant="muted"` |
+| Assistant avatar | omitted | shown |
+| Body size | `text-base` | inherits `text-sm` |
+| Reply actions | supported | supported |
+| Best for | long or structured answers | short exchanges, human agents |
+
+In both styles the person's own turn stays a right-aligned bubble.
+
+```tsx
+{/* plain text — the assistant look */}
+<Message align="start">
+  <MessageContent>
+    <Bubble variant="ghost">
+      <BubbleContent className="text-base">{reply}</BubbleContent>
+    </Bubble>
+    <MessageActions>
+      <MessageCopyButton value={reply} />
+    </MessageActions>
+  </MessageContent>
+</Message>
+
+{/* bubbles — the messaging look */}
+<Message align="start">
+  <MessageAvatar>
+    <Avatar>
+      <AvatarFallback>AI</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <Bubble variant="muted">
+      <BubbleContent>{reply}</BubbleContent>
+    </Bubble>
+  </MessageContent>
+</Message>
+```
+
+Match the typing indicator to the style you pick. A bubbled indicator followed by a plain reply makes the answer jump.
+
+## Reply actions
+
+`MessageActions` reveals on hover of the message, not the bubble, and takes its alignment from `Message`. The same row works under a ghost reply, a bubbled reply, or the person's own turn.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="bubble" replyActions="full" />
+</ComponentPreview>
+
+Put any other controls the product needs in the same row. Match the copy button with `variant="ghost" size="icon-sm"` and give every icon-only control a visually hidden label.
+
+```tsx
+const replyActions = (reply: string) => (
+  <MessageActions>
+    <MessageCopyButton value={reply} />
+    <Button variant="ghost" size="icon-sm" onClick={() => regenerate(reply)}>
+      <RefreshCw />
+      <span className="sr-only">Regenerate reply</span>
+    </Button>
+  </MessageActions>
+)
+
+{/* the same row, either style */}
+<MessageContent>
+  <Bubble variant={plain ? "ghost" : "muted"}>
+    <BubbleContent className={plain ? "text-base" : undefined}>{reply}</BubbleContent>
+  </Bubble>
+  {replyActions(reply)}
+</MessageContent>
+```
+
+Defining the row once, as above, keeps the two styles in sync: only the bubble changes.
+
+See [Message Actions](/docs/components/compounds/message-actions) for the copy behaviour and reveal rules, and the `Compounds/Chat` stories in Storybook for every combination.
+
+## Timestamps
+
+`MessageTimestamp` fades in with the message, so the transcript stays quiet until the reader looks for a time. Where it goes follows the reply style: a bubble has a gutter beside it, a plain reply does not.
+
+<ComponentPreview>
+  <ChatPreview replyStyle="bubble" timestamps />
+</ComponentPreview>
+
+<ComponentPreview>
+  <ChatPreview replyStyle="plain" timestamps />
+</ComponentPreview>
+
+| | Plain text | Bubbles |
+| --- | --- | --- |
+| Placement | `placement="inline"`, in the action row or a footer | `placement="beside"`, inside the `Bubble` |
+| Reveal | `reveal="always"` — the action row fades in | `reveal="hover"` (default) |
+| Layout shift | none, the row already exists | none, it sits out of the flow |
+
+The person's own turn is a bubble in both styles, so it takes the `beside` treatment either way.
+
+```tsx
+{/* bubbles — in the gutter, inside the bubble it belongs to */}
+<Bubble variant="muted">
+  <BubbleContent>{reply}</BubbleContent>
+  <MessageTimestamp placement="beside" dateTime={sentAt}>
+    {formatTime(sentAt)}
+  </MessageTimestamp>
+</Bubble>
+
+{/* plain text — trailing the action row under the reply */}
+<MessageActions>
+  <MessageCopyButton value={reply} />
+  <MessageTimestamp reveal="always" dateTime={sentAt} className="ms-1">
+    {formatTime(sentAt)}
+  </MessageTimestamp>
+</MessageActions>
+```
+
+Formatting is yours: pass the label as children and the ISO value as `dateTime`. Keep the label to a clock time — the gutter is only as wide as the bubble's `max-w-[80%]` leaves over. See [Message](/docs/components/compounds/message#timestamps) for the placement rules in full.
+
+## Centering the conversation
+
+The shell spans the full width. Constrain the transcript and the composer to the same max width so they line up.
+
+```tsx
+<ChatMessages>
+  <MessageScrollerProvider>
+    <MessageScroller>
+      <MessageScrollerViewport>
+        <MessageScrollerContent className="mx-auto w-full max-w-3xl p-4">
+          {/* … */}
+        </MessageScrollerContent>
+      </MessageScrollerViewport>
+      <MessageScrollerButton />
+    </MessageScroller>
+  </MessageScrollerProvider>
+</ChatMessages>
+<ChatFooter>
+  <MessageInput className="mx-auto max-w-3xl">{/* … */}</MessageInput>
+</ChatFooter>
+```
+
+## Components
+
+| Component      | Description                                             |
+| -------------- | ------------------------------------------------------- |
+| `Chat`         | Full-height flex column                                 |
+| `ChatHeader`   | Fixed top bar with a bottom border. Optional.           |
+| `ChatMessages` | Flexible middle region that hosts the scroller          |
+| `ChatFooter`   | Fixed bottom region with a top border, for the composer |
+
+## Props
+
+All four accept native `div` props plus `className`.
+
+| Prop      | Type                 | Default | Description            |
+| --------- | -------------------- | ------- | ---------------------- |
+| className | string               | -       | Additional CSS classes |
+| ...props  | React.HTMLAttributes | -       | Native div props       |
+
+## Related
+
+[Message Scroller](/docs/components/compounds/message-scroller) for the transcript, [Message Input](/docs/components/compounds/message-input) for the composer, and [Message](/docs/components/compounds/message) with [Bubble](/docs/components/primitives/bubble) for the turns.
