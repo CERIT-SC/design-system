@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.2.0
+
+- Added chat components for building conversational interfaces:
+  - `Chat` layout wrapper with `ChatHeader`, `ChatMessages` and `ChatFooter`
+  - `Message` with `MessageGroup`, `MessageAvatar`, `MessageHeader`, `MessageContent`, `MessageFooter` and `MessageTimestamp`
+  - `Bubble` primitive with `BubbleGroup`, `BubbleContent` and `BubbleReactions`, in default, secondary, muted, tinted, outline, ghost and error variants
+  - `MessageInput` composer with auto-growing textarea, file attachments, submit/stop button driven by `ready`/`submitted`/`streaming` status, and a `MessageInputToolbar` with left and right slots
+  - `MessageScroller` with auto-scroll to the latest message, scroll-to-edge button and `useMessageScroller` / `useMessageScrollerScrollable` hooks
+  - `MessageActions` with `MessageCopyButton`
+  - `MessageTyping` typing indicator
+- Added `typing-dot` animation to all theme setup CSS files and a `scrollbar-gutter-stable` utility to `setup.css`
+- Added docs, previews and Storybook stories for all chat components
+- Added controlled `step` prop to Stepper, `showNavigation` prop to `StepperHeader`, and icon support in step markers
+- Fixed Stepper progress fill protruding past the final step marker
+- Fixed `Lead`, `Small` and `Muted` typography not using the muted foreground color
+
 ## v0.1.9
 
 - Exported previously missing primitives (chart, command, context-menu, pagination, popover, resizable) from the component library
