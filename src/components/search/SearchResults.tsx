@@ -15,7 +15,7 @@ const MAX_SUB_RESULTS = 3;
 function Excerpt({ html }: { html: string }) {
   return (
     <span
-      className="text-text-muted line-clamp-1 text-xs [&_mark]:bg-transparent [&_mark]:font-medium [&_mark]:text-primary"
+      className="text-text-muted line-clamp-1 text-xs group-data-[selected=true]/command-item:text-tertiary-foreground [&_mark]:bg-transparent [&_mark]:font-semibold [&_mark]:text-text-heading group-data-[selected=true]/command-item:[&_mark]:text-tertiary-foreground"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
@@ -78,7 +78,7 @@ export function SearchResults({
               >
                 <FileText className="mt-0.5 shrink-0 opacity-60" />
                 <span className="flex min-w-0 flex-col gap-0.5">
-                  <span className="truncate text-sm font-medium">
+                  <span className="truncate text-sm font-medium group-data-[selected=true]/command-item:text-tertiary-foreground">
                     {hit.title}
                   </span>
                   <Excerpt html={hit.excerpt} />
