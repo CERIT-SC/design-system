@@ -71,12 +71,12 @@ export default function ComponentsOverview() {
           </P>
         </div>
 
-        <Link href={"/docs/components"} className="shrink-0">
-          <Button variant="default" size="sm">
+        <Button variant="default" size="sm" className="shrink-0" asChild>
+          <Link href="/docs/components">
             <Component className="w-4 h-4" />
             Full Components Overview
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 *:min-w-0">

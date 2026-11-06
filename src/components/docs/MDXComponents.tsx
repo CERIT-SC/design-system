@@ -18,6 +18,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { MDXComponents } from "mdx/types";
+import Link from "next/link";
 
 import { cn } from "../../../lib/lib/utils";
 import { CodeBlock } from "./CodeBlock";
@@ -81,9 +82,19 @@ export const mdxComponents: MDXComponents = {
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className={cn(docsTypography.bodySpaced, className)} {...props} />
   ),
-  a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-    <a className={cn(docsTypography.link, className)} {...props} />
-  ),
+  a: ({
+    className,
+    href,
+    ...props
+  }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const classes = cn(docsTypography.link, className);
+    // Internal app paths go through next/link for client-side navigation;
+    // external URLs, mailto:, and same-page #hash links stay plain anchors.
+    if (href?.startsWith("/") && !href.startsWith("//")) {
+      return <Link href={href} className={classes} {...props} />;
+    }
+    return <a href={href} className={classes} {...props} />;
+  },
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code className={cn(docsTypography.inlineCode, className)} {...props} />
   ),

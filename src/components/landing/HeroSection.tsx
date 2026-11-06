@@ -67,22 +67,19 @@ export function HeroSection() {
               featuring 30+ atomic components.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/docs/components" className="flex flex-wrap gap-4">
-                <Button variant="default" size="lg">
+              <Button variant="default" size="lg" asChild>
+                <Link href="/docs/components">
                   <Component className="w-5 h-5" />
                   Explore Components
                   <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-              <Link
-                href="/docs/getting-started/quick-start"
-                className="flex flex-wrap gap-4"
-              >
-                <Button variant="outline" size="lg">
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/docs/getting-started/quick-start">
                   <Rocket className="w-5 h-5" />
                   Quick Start
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
 

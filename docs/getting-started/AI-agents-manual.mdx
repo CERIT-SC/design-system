@@ -302,6 +302,27 @@ If the name you want doesn't exist, use: Toast → `sonner` · Popover → `dial
 
 **Sidebar layout**: the sidebar owns ALL navigation via `NavItem` and `CollapsibleGroup`. The header contains only utility controls — search, notifications, user avatar. Never put navigation in both places.
 
+### Router links
+
+`NavigationMenuLink`, `NavItem` and `Button` render a plain `<a>` when given `href`, which triggers a full page reload. In an app with a client-side router (Next.js, React Router, TanStack Router, …), pass `asChild` and put the router's link component inside, so the design system supplies the styling and the router handles navigation. Never nest a `Button` inside a link (or a link inside a `Button`) — that renders invalid `<a><button>` markup.
+
+```tsx
+import Link from 'next/link' // or: import { Link } from 'react-router-dom'
+
+// ✅ Internal navigation — client-side, no reload
+<NavigationMenuLink asChild><Link href="/dashboard">Dashboard</Link></NavigationMenuLink>
+<NavItem asChild isActive={pathname === '/docs'}><Link href="/docs">Docs</Link></NavItem>
+<Button asChild><Link href="/settings">Settings</Link></Button>
+
+// ❌ Full page reload
+<NavigationMenuLink href="/dashboard">Dashboard</NavigationMenuLink>
+
+// ❌ Invalid nesting
+<Link href="/settings"><Button>Settings</Button></Link>
+```
+
+External URLs and `mailto:` links may use `href` directly. The plain `href` examples below are framework-agnostic — swap in `asChild` + your router's link when one is available.
+
 ---
 
 ### Header
@@ -686,6 +707,8 @@ Substitutions: Toast → `sonner` · Popover → `dialog`/`sheet` · DatePicker 
 **Header-only**: navigation in `HeaderLeft` using `NavigationMenu` primitives.
 **With sidebar**: sidebar owns ALL navigation. Header has utility controls only. Never both.
 
+**Router links**: with a client-side router (Next.js, React Router, …), internal links use `asChild` + the router's link so navigation doesn't reload the page — `<NavigationMenuLink asChild><Link href="/">Home</Link></NavigationMenuLink>`, same for `NavItem` and `Button`. Never nest `<Link><Button>`. Plain `href` (as in the examples below) is fine without a router or for external URLs.
+
 ### Header
 
 ```tsx
@@ -769,6 +792,7 @@ Always wrap page body in `Content`. Built-in spacing: `space-y-8 px-10 pb-10 mx-
 6. Wrap all page body content in `Content` — do not add ad-hoc padding to `<main>`.
 7. Only import components from the inventory list. Anything else does not exist.
 8. `setup.css` must be imported before any component usage in your global CSS.
+9. With a client-side router, internal links use `asChild` + the router's link component — never `href` alone (full reload) and never `<Link><Button>` (invalid nesting).
 ````
 
 ---
