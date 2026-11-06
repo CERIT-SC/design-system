@@ -32,50 +32,54 @@ export function ComponentOverviewCard({
 }: ComponentOverviewCardProps) {
   const safeZoom = Math.min(Math.max(zoom, 0.1), 1.5);
 
+  // The link is an absolutely positioned overlay covering the whole card,
+  // rendered as a sibling of the content rather than wrapping it. Previews may
+  // contain their own links or controls (e.g. BreadcrumbLink), and those can't
+  // be nested inside an <a>. It sits directly in the Card (not inside
+  // CardHeader) because CardHeader's @container would clip the overlay to it.
   return (
-    <Link
-      href={href}
-      aria-label={`Open ${title} documentation`}
-      className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus"
+    <Card
+      className={cn(
+        "group relative rounded-xl border border-border bg-surface transition-all hover:-translate-y-0.5 hover:shadow-md py-0 gap-0 drop-shadow-none has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-border-focus",
+        className
+      )}
     >
-      <Card
-        className={cn(
-          "group rounded-xl border border-border bg-surface transition-all hover:-translate-y-0.5 hover:shadow-md py-0 gap-0 drop-shadow-none",
-          className
+      <Link
+        href={href}
+        aria-label={`Open ${title} documentation`}
+        className="absolute inset-0 z-10 rounded-xl outline-none"
+      />
+      <CardHeader className="border-b border-border px-4 py-3">
+        <CardTitle className={docsTypography.cardTitle}>{title}</CardTitle>
+        {description && (
+          <CardDescription className={docsTypography.cardDescription}>
+            {description}
+          </CardDescription>
         )}
-      >
-        <CardHeader className="border-b border-border px-4 py-3">
-          <CardTitle className={docsTypography.cardTitle}>{title}</CardTitle>
-          {description && (
-            <CardDescription className={docsTypography.cardDescription}>
-              {description}
-            </CardDescription>
-          )}
-          <CardAction>
-            <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </CardAction>
-        </CardHeader>
+        <CardAction>
+          <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </CardAction>
+      </CardHeader>
 
-        <ComponentPreview className="my-0 rounded-none border-0">
-          <div
-            className="pointer-events-none mx-auto w-full max-w-full overflow-hidden rounded-lg border border-border/60 bg-background/70"
-            aria-hidden="true"
-            inert
-          >
-            <div className="flex h-56 items-center justify-center overflow-hidden p-3">
-              <div
-                className="origin-center"
-                style={{
-                  transform: `scale(${String(safeZoom)})`,
-                }}
-              >
-                {children}
-              </div>
+      <ComponentPreview className="my-0 rounded-none border-0">
+        <div
+          className="pointer-events-none mx-auto w-full max-w-full overflow-hidden rounded-lg border border-border/60 bg-background/70"
+          aria-hidden="true"
+          inert
+        >
+          <div className="flex h-56 items-center justify-center overflow-hidden p-3">
+            <div
+              className="origin-center"
+              style={{
+                transform: `scale(${String(safeZoom)})`,
+              }}
+            >
+              {children}
             </div>
           </div>
-        </ComponentPreview>
-      </Card>
-    </Link>
+        </div>
+      </ComponentPreview>
+    </Card>
   );
 }
 

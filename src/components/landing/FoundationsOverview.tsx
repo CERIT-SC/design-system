@@ -32,12 +32,12 @@ export default function FoundationsOverview() {
           </P>
         </div>
 
-        <Link href={"/docs/foundations"} className="shrink-0">
-          <Button variant="default" size="sm">
+        <Button variant="default" size="sm" className="shrink-0" asChild>
+          <Link href="/docs/foundations">
             <Layers className="w-4 h-4" />
             Full Foundations Overview
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
