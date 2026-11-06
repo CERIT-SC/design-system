@@ -417,7 +417,6 @@ function MessageScrollerItem({
         className
       )}
       onAnimationEnd={(event) => {
-  
         if (exiting && event.target === event.currentTarget) fireExited();
         onAnimationEnd?.(event);
       }}
