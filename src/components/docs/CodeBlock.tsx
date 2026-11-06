@@ -96,9 +96,9 @@ export function CodeBlock({
   // Highlight — fall back to plain text if language is unregistered
   let highlighted: HastNode[];
   try {
-    highlighted = lowlight.highlight(language, code).children as HastNode[];
+    highlighted = lowlight.highlight(language, code).children;
   } catch {
-    highlighted = [{ type: "text", value: code } as HastText];
+    highlighted = [{ type: "text", value: code }];
   }
 
   const lines = code.split("\n");

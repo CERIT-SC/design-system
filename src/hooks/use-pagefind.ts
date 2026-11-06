@@ -87,9 +87,13 @@ export interface UsePagefind {
  */
 export function usePagefind(): UsePagefind {
   const [query, setQuery] = useState("");
-  const [groups, setGroups] = useState<SearchGroup[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  // The last settled search. Loading and empty-query states are derived from
+  // it during render rather than set from the effect.
+  const [result, setResult] = useState<{
+    query: string;
+    groups: SearchGroup[];
+    error: string | null;
+  }>({ query: "", groups: [], error: null });
 
   // Guards against a slow earlier query overwriting a faster later one.
   const requestId = useRef(0);
@@ -111,33 +115,35 @@ export function usePagefind(): UsePagefind {
         excerpt: d.excerpt,
         subResults: d.sub_results ?? [],
       }));
-      setGroups(groupBySection(hits));
-      setError(null);
+      setResult({ query: value, groups: groupBySection(hits), error: null });
     } catch {
       if (id !== requestId.current) return;
-      setGroups([]);
-      setError("Search index not built — run `bun run build:search`.");
-    } finally {
-      if (id === requestId.current) setIsLoading(false);
+      setResult({
+        query: value,
+        groups: [],
+        error: "Search index not built — run `bun run build:search`.",
+      });
     }
   }, []);
 
+  const value = query.trim();
+
   useEffect(() => {
-    const value = query.trim();
+    // Bump even for an empty query so any in-flight search is discarded.
     const id = ++requestId.current;
+    if (!value) return;
 
-    if (!value) {
-      setGroups([]);
-      setIsLoading(false);
-      return;
-    }
-
-    setIsLoading(true);
     const timer = setTimeout(() => void runSearch(value, id), DEBOUNCE_MS);
     return () => {
       clearTimeout(timer);
     };
-  }, [query, runSearch]);
+  }, [value, runSearch]);
 
-  return { query, setQuery, groups, isLoading, error };
+  return {
+    query,
+    setQuery,
+    groups: value ? result.groups : [],
+    isLoading: value !== "" && result.query !== value,
+    error: result.error,
+  };
 }

@@ -8,8 +8,6 @@ import { cn } from "../../lib/utils";
 
 const ITEM_SELECTOR = '[data-slot="message-scroller-item"]';
 
-// Keys that scroll the viewport, and so count as the reader deliberately
-// moving away from the live edge.
 const SCROLL_KEYS = new Set([
   "ArrowDown",
   "ArrowUp",
@@ -20,10 +18,7 @@ const SCROLL_KEYS = new Set([
   " ",
 ]);
 
-// How long after a wheel/touch/key event a scroll still counts as reader-driven.
 const INTENT_WINDOW = 200;
-
-// Deadline for removing an exiting row if its animation never reports back.
 const EXIT_FALLBACK = 600;
 
 type ScrollPosition = "start" | "end";
@@ -39,6 +34,33 @@ interface Scrollable {
   start: boolean;
   end: boolean;
 }
+interface MountedStore {
+  subscribe: (onChange: () => void) => () => void;
+  getSnapshot: () => boolean;
+  setMounted: (mounted: boolean) => void;
+}
+
+function createMountedStore(): MountedStore {
+  let mounted = false;
+  const listeners = new Set<() => void>();
+
+  return {
+    subscribe(onChange) {
+      listeners.add(onChange);
+      return () => {
+        listeners.delete(onChange);
+      };
+    },
+    getSnapshot: () => mounted,
+    setMounted(next) {
+      if (mounted === next) return;
+      mounted = next;
+      for (const listener of listeners) listener();
+    },
+  };
+}
+
+const getServerMounted = () => false;
 
 interface MessageScrollerContextValue {
   viewportRef: React.RefObject<HTMLDivElement | null>;
@@ -46,16 +68,11 @@ interface MessageScrollerContextValue {
   autoScroll: boolean;
   defaultScrollPosition: ScrollPosition;
   scrollEdgeThreshold: number;
-  // Whether the viewport is pinned to the live edge. A ref rather than state:
-  // nothing renders from it, and it must be readable from observer callbacks
-  // without waiting for a commit.
   followingRef: React.RefObject<boolean>;
   intentAtRef: React.RefObject<number>;
   scrollable: Scrollable;
   setScrollable: React.Dispatch<React.SetStateAction<Scrollable>>;
-  // False until after the first paint. Rows rendered while it is false are the
-  // existing transcript; rows rendered after it are new arrivals.
-  mounted: boolean;
+  mountedStore: MountedStore;
 }
 
 const MessageScrollerContext =
@@ -94,11 +111,14 @@ function MessageScrollerProvider({
     start: false,
     end: false,
   });
-  const [mounted, setMounted] = React.useState(false);
+  const [mountedStore] = React.useState(createMountedStore);
 
   React.useEffect(() => {
-    setMounted(true);
-  }, []);
+    mountedStore.setMounted(true);
+    return () => {
+      mountedStore.setMounted(false);
+    };
+  }, [mountedStore]);
 
   const value = React.useMemo(
     () => ({
@@ -111,14 +131,14 @@ function MessageScrollerProvider({
       intentAtRef,
       scrollable,
       setScrollable,
-      mounted,
+      mountedStore,
     }),
     [
       autoScroll,
       defaultScrollPosition,
       scrollEdgeThreshold,
       scrollable,
-      mounted,
+      mountedStore,
     ]
   );
 
@@ -162,9 +182,6 @@ function MessageScrollerViewport({
     setScrollable,
   } = useMessageScrollerContext("MessageScrollerViewport");
 
-  // The topmost row still intersecting the viewport, with the offset it had when
-  // we last looked. Comparing against it is how content added above the reader
-  // is detected without needing to diff the children.
   const anchorRef = React.useRef<{ el: HTMLElement; offsetTop: number } | null>(
     null
   );
@@ -213,9 +230,6 @@ function MessageScrollerViewport({
       const atEnd = readScrollable();
       measureAnchor();
 
-      // Reaching the live edge always re-engages following, however the reader
-      // got there. Leaving it only counts when they drove the scroll themselves,
-      // so our own scrollTo calls do not switch following off.
       if (atEnd) {
         if (autoScroll) followingRef.current = true;
       } else if (Date.now() - intentAtRef.current < INTENT_WINDOW) {
@@ -256,9 +270,6 @@ function MessageScrollerViewport({
     measureAnchor();
   });
 
-  // Content growth has two meanings. Below the reader it is a new message, which
-  // we follow only while pinned to the live edge. Above the reader it is loaded
-  // history, which must not move the page under them.
   React.useEffect(() => {
     const viewport = viewportRef.current;
     const content = contentRef.current;
@@ -357,10 +368,14 @@ function MessageScrollerItem({
   exiting?: boolean;
   onExited?: () => void;
 }) {
-  const { mounted } = useMessageScrollerContext("MessageScrollerItem");
-  // Captured on this row's first render, so opening a saved thread does not
-  // animate the whole backlog at once — only rows that arrive later.
-  const [isNewArrival] = React.useState(() => mounted);
+  const { mountedStore } = useMessageScrollerContext("MessageScrollerItem");
+  const mounted = React.useSyncExternalStore(
+    mountedStore.subscribe,
+    mountedStore.getSnapshot,
+    getServerMounted
+  );
+
+  const [isNewArrival] = React.useState(mounted);
   const animate = animateOnEnter ?? isNewArrival;
   const firedRef = React.useRef(false);
 
@@ -370,9 +385,6 @@ function MessageScrollerItem({
     onExited?.();
   }, [onExited]);
 
-  // Removal must never depend on an animation event arriving. Reduced motion
-  // suppresses the animation entirely, and a custom duration outlives the
-  // default, so back the transition with an explicit deadline.
   React.useEffect(() => {
     if (!exiting) {
       firedRef.current = false;
@@ -405,8 +417,6 @@ function MessageScrollerItem({
         className
       )}
       onAnimationEnd={(event) => {
-        // Entrance animations on nested content bubble up here too, so only
-        // react to this row's own animation.
         if (exiting && event.target === event.currentTarget) fireExited();
         onAnimationEnd?.(event);
       }}
@@ -442,8 +452,6 @@ function MessageScrollerButton({
       variant={variant}
       size={size}
       className={cn(
-        // Centred with auto margins rather than a translate, because several
-        // Button variants set hover:translate-none and would drop the offset.
         "bg-background absolute inset-x-0 mx-auto rounded-full shadow-md transition-[opacity,scale] duration-200 data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-0 data-[direction=end]:bottom-4 data-[direction=start]:top-4 [&_svg]:data-[direction=start]:rotate-180",
         className
       )}
