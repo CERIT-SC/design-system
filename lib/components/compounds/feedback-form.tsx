@@ -138,18 +138,24 @@ function FeedbackModal({
     null
   );
 
-  // Reset form when modal opens/closes
-  useEffect(() => {
+  // Reset form when the modal closes.
+  const [wasOpen, setWasOpen] = useState(isOpen);
+  if (wasOpen !== isOpen) {
+    setWasOpen(isOpen);
     if (!isOpen) {
       setSatisfaction(null);
       setRecommendations("");
       setSubmitStatus("idle");
       setErrorMessage("");
       setProgress(0);
-      if (progressIntervalRef.current) {
-        clearInterval(progressIntervalRef.current);
-        progressIntervalRef.current = null;
-      }
+    }
+  }
+
+  // Stop the auto-close progress timer when the modal closes.
+  useEffect(() => {
+    if (!isOpen && progressIntervalRef.current) {
+      clearInterval(progressIntervalRef.current);
+      progressIntervalRef.current = null;
     }
   }, [isOpen]);
 

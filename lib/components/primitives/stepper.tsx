@@ -59,7 +59,8 @@ export function Stepper({
     isControlled ? stepProp : internalStep,
     totalSteps
   );
-  const previousInitialStepRef = React.useRef(initialStep);
+  const [previousInitialStep, setPreviousInitialStep] =
+    React.useState(initialStep);
 
   const changeStep = React.useCallback(
     (step: number) => {
@@ -86,24 +87,14 @@ export function Stepper({
     [changeStep, clampStep, totalSteps]
   );
 
-  React.useEffect(() => {
-    if (isControlled) {
-      return;
+  if (!isControlled) {
+    if (previousInitialStep !== initialStep) {
+      setPreviousInitialStep(initialStep);
+      setInternalStep(clampStep(initialStep, totalSteps));
+    } else if (internalStep !== clampStep(internalStep, totalSteps)) {
+      setInternalStep(clampStep(internalStep, totalSteps));
     }
-    setInternalStep((prev) => {
-      const clamped = clampStep(prev, totalSteps);
-      return prev === clamped ? prev : clamped;
-    });
-  }, [clampStep, isControlled, totalSteps]);
-
-  React.useEffect(() => {
-    if (isControlled || previousInitialStepRef.current === initialStep) {
-      return;
-    }
-
-    previousInitialStepRef.current = initialStep;
-    setInternalStep(clampStep(initialStep, totalSteps));
-  }, [clampStep, initialStep, isControlled, totalSteps]);
+  }
 
   return (
     <StepperContext.Provider
