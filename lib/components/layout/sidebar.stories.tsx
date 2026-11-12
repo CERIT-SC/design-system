@@ -7,6 +7,7 @@ import {
   NavItem,
   CollapsibleGroup,
 } from "./sidebar";
+import { Header, HeaderContent, HeaderRight } from "./header";
 import { Home, FileText, Settings } from "lucide-react";
 
 const meta = {
@@ -271,6 +272,52 @@ export const CustomStyling: Story = {
           </p>
         </div>
       </main>
+    </div>
+  ),
+};
+
+export const BesideHeader: Story = {
+  render: () => (
+    <div className="flex min-h-screen w-full">
+      <Sidebar fullHeight>
+        <SidebarHeader>
+          <span className="font-semibold">e-INFRA</span>
+        </SidebarHeader>
+        <SidebarContent>
+          <CollapsibleGroup title="Navigation" defaultOpen>
+            <NavItem href="/" isActive>
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </NavItem>
+            <NavItem href="/docs">
+              <FileText className="h-4 w-4" />
+              <span>Documentation</span>
+            </NavItem>
+            <NavItem href="/settings">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </NavItem>
+          </CollapsibleGroup>
+        </SidebarContent>
+      </Sidebar>
+      <div className="flex flex-1 flex-col">
+        <Header>
+          <HeaderContent container={false}>
+            <HeaderRight>
+              <span className="text-sm text-text-muted">User actions</span>
+            </HeaderRight>
+          </HeaderContent>
+        </Header>
+        <main className="flex-1 p-8">
+          <div className="h-[150vh] rounded-lg border border-dashed p-8 text-center">
+            <h2 className="text-xl font-bold">Sidebar beside the header</h2>
+            <p className="mt-2 text-text">
+              With fullHeight, the sidebar spans the whole viewport and the
+              header only covers the content column. Scroll to see both stick.
+            </p>
+          </div>
+        </main>
+      </div>
     </div>
   ),
 };

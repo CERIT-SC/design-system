@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added `fullHeight` prop to `Sidebar` so it can sit beside the `Header` (full viewport height) instead of below it
+- Rewrote the AI agents manual as a single skill matching v0.2.0: full component inventory (chat components, Footer, Popover, Command, …), branding themes, corrected Sidebar/NavItem/typography details, all three page layouts, and a fixed worked example
+- Added `check:ai-manual` script (run in `check` and PR checks) that fails when the manual's component inventory drifts from the library exports
+- Fixed outdated Sidebar styling notes in the Sidebar docs
+
 ## v0.2.0
 
 - Added chat components for building conversational interfaces:

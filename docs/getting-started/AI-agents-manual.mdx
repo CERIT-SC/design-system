@@ -1,19 +1,21 @@
 # Using AI Assistants with the e-INFRA CZ Design System
 
-If you use an AI coding assistant — Cursor, Roo Code, GitHub Copilot, or similar — this guide shows you how to configure it to understand the design system correctly. Without this setup the agents will no use the design system properly.
+> Last verified against `@e-infra/design-system` **v0.2.0**.
 
-With the right configuration (`skill.md` and `agents.md` files), it will generate correct component imports, use the token system properly, apply responsive spacing, follow the layout composition rules, and avoid the most common mistakes automatically.
+If you use an AI coding assistant — Claude Code, Cursor, GitHub Copilot, Roo Code, or similar — this guide shows you how to configure it to understand the design system correctly. Without this setup, assistants will not use the design system properly: they guess component names, hard-code colors, and invent layouts.
+
+With the skill below in place, the assistant will generate correct component imports, use the token system properly, apply responsive spacing, follow the layout composition rules, and avoid the most common mistakes automatically.
 
 ---
 
-## What `skill.md` and `agents.md` does
+## What the skill does
 
-You add a small configuration file to your project that tells the assistant:
+You add one instruction file to your project that tells the assistant:
 
 - Which components exist in `@e-infra/design-system` (and which don't, so it stops hallucinating them)
-- How the color token system works
+- How the color token system and the branding themes work
 - How spacing scales across breakpoints
-- How to compose correct layouts with the header, sidebar, and content components
+- How to compose layouts with the header, sidebar, footer, and content components
 - What the surface elevation hierarchy is and how to apply it
 
 You do this once per project. From then on, every chat session and inline completion is grounded in the actual library, not the assistant's best guess.
@@ -22,64 +24,47 @@ You do this once per project. From then on, every chat session and inline comple
 
 ## Setup by tool
 
-### Roo Code
+Every tool below uses the same content: the [skill](#the-skill) at the end of this page. Only the file location differs.
 
-Create a Markdown file inside `.roo/rules/` at your project root. You can use one file or two — Roo Code injects everything in that folder into every session.
+### Claude Code
 
-**One file:**
-
-```
-your-project/
-└── .roo/
-    └── rules/
-        └── e-infra-design-system.md   ← paste the Combined skill here
-```
-
-**Two files (easier to maintain):**
+Paste the skill into `CLAUDE.md` at your project root. Claude Code loads it into every session.
 
 ```
 your-project/
-└── .roo/
-    └── rules/
-        ├── e-infra-foundations.md     ← paste the Foundations skill here
-        └── e-infra-layout.md          ← paste the Layout skill here
+└── CLAUDE.md
 ```
 
-Both approaches work identically for the assistant. The split is useful for you: when the library releases a new version, you'll likely only need to update one of the two files.
+Alternatively, add it as a skill so it loads only when UI work comes up. Create `.claude/skills/e-infra-design-system/SKILL.md` and start the file with:
+
+```markdown
+---
+name: e-infra-design-system
+description: Rules for building UI with @e-infra/design-system — components, tokens, spacing, and layouts. Use for any React UI work in this project.
+---
+```
 
 ---
 
 ### Cursor
 
-Cursor 0.45+ supports per-project rules in `.cursor/rules/`. Create one `.mdc` file per skill, each starting with a frontmatter block:
-
-```
-your-project/
-└── .cursor/
-    └── rules/
-        ├── e-infra-foundations.mdc
-        └── e-infra-layout.mdc
-```
-
-Each file should start with:
+Create `.cursor/rules/e-infra-design-system.mdc` and start it with a frontmatter block:
 
 ```
 ---
-description: e-INFRA CZ Design System — foundations
+description: e-INFRA CZ Design System
 globs: **/*.tsx, **/*.ts, **/*.css
 alwaysApply: true
 ---
 ```
 
-Then paste the skill content after the frontmatter. Set `alwaysApply: true` on both files.
-
-If you are on an older Cursor version that uses a single `.cursorrules` file at the project root, paste the Combined skill there instead.
+Paste the skill after the frontmatter. Cursor also reads `AGENTS.md` (see below).
 
 ---
 
 ### GitHub Copilot (VS Code)
 
-Add a `copilot-instructions.md` file to `.github/` at your project root:
+Paste the skill into `.github/copilot-instructions.md`:
 
 ```
 your-project/
@@ -87,103 +72,126 @@ your-project/
     └── copilot-instructions.md
 ```
 
-Paste the Combined skill into that file. Copilot picks it up automatically for all chat and inline completions in the repository.
+Copilot picks it up automatically for chat and inline completions in the repository.
+
+---
+
+### Roo Code
+
+Paste the skill into a Markdown file inside `.roo/rules/`. Roo Code injects everything in that folder into every session.
+
+```
+your-project/
+└── .roo/
+    └── rules/
+        └── e-infra-design-system.md
+```
 
 ---
 
 ### Claude Projects
 
-If you use Claude.ai Projects for your development work, open your project's settings and paste the Combined skill into the **Project Instructions** field. Every conversation in that project will have this context from the start.
+Open your project's settings on claude.ai and paste the skill into the **Project Instructions** field. Every conversation in that project will have this context from the start.
 
 ---
 
 ### AGENTS.md (OpenAI Codex, Jules, and others)
 
-Several agent tools look for a file called `AGENTS.md` at the repository root. Paste the Combined skill there, optionally preceded by a short line about your project:
+Many agent tools look for a file called `AGENTS.md` at the repository root. Paste the skill there, optionally preceded by a short line about your project:
 
 ```markdown
 This project uses the e-INFRA CZ Design System. All UI code must follow the rules below.
 
 ---
 
-[paste combined skill here]
+[paste the skill here]
 ```
 
 ---
 
-## The skills
+## The skill
 
-Copy the content that matches your setup.
-
----
-
-### Foundations skill
-
-*For Roo Code / Cursor multi-file setup → `e-infra-foundations.md` / `e-infra-foundations.mdc`*
+Copy everything in the block below.
 
 ````markdown
-## e-INFRA CZ Design System — Foundations
+## e-INFRA CZ Design System
 
-### Package & CSS setup
+This project uses `@e-infra/design-system` (v0.2.0). Follow these rules for all UI code.
+
+### Setup
 
 ```bash
 bun add @e-infra/design-system
-# peer deps: react@18|19, react-dom@18|19, tailwindcss@v4
 ```
 
+Requires React 18 or 19 and Tailwind CSS v4 (v3 is not supported). The other peer dependencies (Radix UI packages, `class-variance-authority`, `clsx`, `tailwind-merge`, `sonner`, `react-hook-form`, `react-day-picker`, `cmdk`, `embla-carousel-react`, `react-resizable-panels`, `recharts`) are listed in the package's `package.json`; install any your package manager does not install automatically. Icons come from `lucide-react`, which ships with the library.
+
 ```css
-/* Add to your global CSS file, after the Tailwind import */
+/* Global CSS file, right after the Tailwind import */
 @import "tailwindcss";
 @import "@e-infra/design-system/setup.css";
 @source "../node_modules/@e-infra/design-system/dist";
 ```
 
-Without `setup.css`, all token classes (`bg-surface`, `text-primary`, etc.) resolve to nothing — components render with no styling. Tailwind v4 is required; the library is incompatible with v3.
+`setup.css` is required — without it, no token class (`bg-surface`, `text-primary`, …) resolves to any value.
 
-Exports:
-- `@e-infra/design-system` — components, utilities, hooks
-- `@e-infra/design-system/setup.css` — CSS entry point
+Package exports:
+- `@e-infra/design-system` — components, utilities (`cn`), hooks
+- `@e-infra/design-system/setup.css` — required base CSS and default e-INFRA CZ theme
+- `@e-infra/design-system/eosc_setup.css` — EOSC theme (optional, on top of `setup.css`)
+- `@e-infra/design-system/elter_setup.css` — eLTER theme (optional, on top of `setup.css`)
+- `@e-infra/design-system/custom_setup.css` — 3-color custom theme generator (optional, on top of `setup.css`)
+
+Use `cn(...)` from the package to merge class names (`clsx` + `tailwind-merge`).
 
 ---
 
-### Dark mode
+### Dark mode and themes
 
-Dark mode is toggled by adding the `.dark` class to a parent element (typically `<html>` or `<body>`). There is no React provider or context — it is a pure CSS class strategy.
+Dark mode is the `.dark` class on `<html>`. There is no React provider — it is a pure CSS class strategy. All tokens switch automatically.
 
 ```tsx
-// Imperatively
 document.documentElement.classList.toggle('dark')
-
-// In JSX
-<html className={isDark ? 'dark' : ''}>
+// or: <html className={isDark ? 'dark' : ''}>
 ```
 
-All token values switch automatically. Never write `dark:` overrides for semantic token classes — they are already theme-aware. `dark:bg-[#191820]` next to `bg-surface` is always wrong.
+Never write `dark:` overrides on semantic token classes — they are already theme-aware.
+
+Branding themes are switched with `data-theme` on the **same element** as `.dark`:
+
+```tsx
+<html data-theme="eosc" className="dark">   {/* "eosc" | "elter" | "custom"; omit for the default theme */}
+```
+
+- EOSC needs the app to load Roboto and set `--font-roboto`; eLTER needs Montserrat and `--font-montserrat` (headings only). The library ships no font files.
+- Custom theme: import `custom_setup.css`, then define three colors — everything else (ramps, foregrounds, dark mode) is derived:
+
+```css
+[data-theme="custom"] {
+  --brand-primary:   #6d28d9;
+  --brand-secondary: #db2777;
+  --brand-tertiary:  #0d9488;
+}
+```
 
 ---
 
-### Color tokens
+### Color tokens — never use raw hex or generic Tailwind colors
 
-Never use raw hex or generic Tailwind color classes like `bg-gray-100`. Always use token classes.
-
-#### Surface hierarchy — use in this order, never skip or reverse
+**Surfaces — use in order, never skip or reverse:**
 
 | Token | Role | Light | Dark |
 |---|---|---|---|
 | `bg-background` | Page canvas, app shell | `#f4f5f9` | `#0f0e14` |
-| `bg-surface` | Cards, sidebars, inputs | `#eaebf1` | `#191820` |
-| `bg-surface-raised` | Dropdowns, popovers, modals | `#dddee6` | `#242330` |
+| `bg-surface` | Cards, inputs, sidebar | `#eaebf1` | `#191820` |
+| `bg-surface-raised` | Popovers, modals, dropdowns | `#dddee6` | `#242330` |
 
-Elevation steps are 10–12 lightness units apart. Pair every surface with:
+Text: `text-text` (body) · `text-text-muted` (secondary / helper) · `text-text-heading` (headings)
+Border: `border-border` (strokes) · `border-border-focus` (focus ring)
 
-- `border-border` — stroke color
-- `text-text` — body copy
-- `text-text-muted` — secondary / helper copy
-- `text-text-heading` — headings
+**Brand and semantic tokens + ramps:**
 
-#### Semantic tokens
-
-| Token | Filled usage | Shade ramp |
+| Token | Filled | Ramp |
 |---|---|---|
 | `primary` | `bg-primary text-primary-foreground` | `primary-50` … `primary-950` |
 | `secondary` | `bg-secondary text-secondary-foreground` | `secondary-50` … `secondary-950` |
@@ -193,62 +201,39 @@ Elevation steps are 10–12 lightness units apart. Pair every surface with:
 | `warning` | `bg-warning text-warning-foreground` | `warning-50` … `warning-950` |
 | `error` | `bg-error text-error-foreground` | `error-50` … `error-950` |
 
-Ramp guidance: `50–200` subtle tints · `300–600` interactive / hover states · `700–950` strong accents and text on light backgrounds.
+Ramps: `50–200` subtle tints · `300–600` interactive / hover states · `700–950` strong accents and text on light backgrounds.
+Neutral: `base-50` … `base-950` (theme-independent cool grey). Charts: `chart-1` … `chart-7`.
 
-Base neutral ramp: `base-50` … `base-950` (theme-independent cool grey).
-Chart tokens: `chart-1` … `chart-5`.
-Focus ring: `border-border-focus`.
+Always write token classes as complete literal strings. Tailwind only generates classes it finds in source, so `` `bg-${status}-100` `` produces no CSS — map values to full class names instead.
 
 ---
 
-### Spacing
+### Spacing — always responsive for layout containers
 
-8px base grid. Always apply spacing responsively — never a single fixed value.
+8px base grid. Breakpoints: phone (default) · `md:` 768px · `lg:` 1024px · `xl:` 1280px · `3xl:` 1920px.
 
-#### Breakpoints
-
-| Breakpoint | Min width | Prefix | Columns | Gutter | Page margin |
+| Token | Phone | Tablet `md:` | Desktop `lg:` | XL `xl:` | Role |
 |---|---|---|---|---|---|
-| Phone | — | _(default)_ | 4 | `gap-4` | `px-4` |
-| Tablet | 768px | `md:` | 8 | `gap-6` | `px-6` |
-| Desktop | 1024px | `lg:` | 12 | `gap-8` | `px-8` |
-| XL | 1280px | `xl:` | 12 | `gap-8` | `px-16` |
+| `token-space-1` | `p-2` | `p-3` | `p-4` | `p-6` | Inner padding |
+| `token-space-2` | `p-4` | `p-6` | `p-8` | `p-12` | Section gutter |
+| `token-space-3` | `p-6` | `p-8` | `p-12` | `p-16` | Card padding |
+| `token-space-4` | `p-8` | `p-12` | `p-16` | `p-24` | Section rhythm |
 
-#### Spacing tokens per breakpoint
+The `token-space-*` names are conceptual — apply them as the responsive Tailwind class stacks above (e.g. card padding = `p-6 md:p-8 lg:p-12`).
 
-| Token | Phone | Tablet | Desktop | XL | Role |
-|---|---|---|---|---|---|
-| `token-space-1` | `p-2` 8px | `p-3` 12px | `p-4` 16px | `p-6` 24px | Inner component padding |
-| `token-space-2` | `p-4` 16px | `p-6` 24px | `p-8` 32px | `p-12` 48px | Section gutter |
-| `token-space-3` | `p-6` 24px | `p-8` 32px | `p-12` 48px | `p-16` 64px | Card padding |
-| `token-space-4` | `p-8` 32px | `p-12` 48px | `p-16` 64px | `p-24` 96px | Section vertical rhythm |
+Page margin: `px-4 md:px-6 lg:px-8 xl:px-16`
+Grid: `grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8`
 
-Common responsive patterns:
+Library components already carry their own padding (e.g. `Card` uses `py-6` / `px-6`). Apply responsive spacing to your own layout containers; don't override component padding unless the design calls for it.
 
-```tsx
-{/* Page margin */}
-<main className="px-4 md:px-6 lg:px-8 xl:px-16">
-
-{/* Card padding (token-space-3) */}
-<div className="bg-surface border border-border rounded-xl p-6 md:p-8 lg:p-12">
-
-{/* Section rhythm (token-space-4) */}
-<section className="py-8 md:py-12 lg:py-16 xl:py-24">
-
-{/* Column grid */}
-<div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
-```
+Extra utilities from `setup.css`: `transition-default`, `transition-default-colors`, `transition-default-opacity`, `transition-default-transform`, `duration-default`, `ease-default`, `scrollbar-gutter-stable`, `animate-typing-dot`, `animate-slideUp`.
 
 ---
 
 ### Typography
 
 ```tsx
-import {
-  H1, H2, H3, H4,
-  P, Lead, Strong, Small, Muted,
-  Code, Link, Blockquote, List, OrderedList,
-} from '@e-infra/design-system'
+import { H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, List, OrderedList } from '@e-infra/design-system'
 ```
 
 | Component | Element | Default classes |
@@ -258,53 +243,113 @@ import {
 | `H3` | `h3` | `text-2xl font-semibold` |
 | `H4` | `h4` | `text-xl font-semibold` |
 | `P` | `p` | `text-base leading-7` |
-| `Lead` | `p` | `text-lg leading-8` |
+| `Lead` | `p` | `text-lg text-text-muted leading-8` |
 | `Strong` | `p` | `text-base font-semibold leading-7` |
-| `Small` | `p` | `text-sm leading-6` |
-| `Muted` | `p` | `text-xs leading-5` |
+| `Small` | `p` | `text-sm text-text-muted leading-6` |
+| `Muted` | `p` | `text-xs text-text-muted leading-5` |
 | `Code` | `code` | `text-sm font-mono bg-surface px-2 py-1 rounded` |
 | `Link` | `a` | `text-primary underline hover:no-underline` |
 | `Blockquote` | `blockquote` | `border-l-4 border-primary pl-4 italic` |
 | `List` | `ul` | `list-disc list-inside space-y-2` |
 | `OrderedList` | `ol` | `list-decimal list-inside space-y-2` |
 
-All components accept `className` (merged with defaults) and their native HTML element props.
-````
+All accept `className` (merged) and native element props. `Lead`, `Small` and `Muted` are already muted — don't add `text-text-muted`. `Strong`, `Small` and `Muted` render a `<p>`, so don't nest them inside another `<p>`.
 
 ---
 
-### Layout skill
+### Component inventory — only import from this list
 
-*For Roo Code / Cursor multi-file setup → `e-infra-layout.md` / `e-infra-layout.mdc`*
+All imports come from `@e-infra/design-system`. Anything not listed here does not exist in the package.
 
-````markdown
-## e-INFRA CZ Design System — Layout & Components
+**Primitives**
+- **accordion** — Accordion, AccordionItem, AccordionTrigger, AccordionContent
+- **alert** — Alert, AlertTitle, AlertDescription
+- **alert-dialog** — AlertDialog, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel
+- **aspect-ratio** — AspectRatio
+- **avatar** — Avatar, AvatarImage, AvatarFallback
+- **badge** — Badge, badgeVariants
+- **breadcrumb** — Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis
+- **bubble** — Bubble, BubbleGroup, BubbleContent, BubbleReactions, bubbleVariants, bubbleReactionsVariants
+- **button** — Button, buttonVariants
+- **calendar** — Calendar, CalendarDayButton
+- **card** — Card, CardHeader, CardTitle, CardDescription, CardAction, CardContent, CardFooter, CardIcon, CardMedia
+- **carousel** — Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
+- **chart** — ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle
+- **checkbox** — Checkbox
+- **collapsible** — Collapsible, CollapsibleTrigger, CollapsibleContent
+- **command** — Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandShortcut, CommandSeparator
+- **context-menu** — ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuGroup, ContextMenuPortal, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuRadioGroup
+- **dialog** — Dialog, DialogTrigger, DialogPortal, DialogOverlay, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose
+- **dropdown-menu** — DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuGroup, DropdownMenuPortal, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuRadioGroup
+- **form** — Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, useFormField
+- **input** — Input
+- **label** — Label
+- **menubar** — Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem, MenubarRadioItem, MenubarLabel, MenubarSeparator, MenubarShortcut, MenubarGroup, MenubarPortal, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarRadioGroup
+- **navigation-menu** — NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, NavigationMenuIndicator, NavigationMenuViewport, NavigationMenuTriggerStyle
+- **pagination** — Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis
+- **popover** — Popover, PopoverTrigger, PopoverContent, PopoverAnchor
+- **progress** — Progress
+- **radio-group** — RadioGroup, RadioGroupItem
+- **resizable** — ResizablePanelGroup, ResizablePanel, ResizableHandle
+- **scroll-area** — ScrollArea, ScrollBar
+- **select** — Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator, SelectScrollUpButton, SelectScrollDownButton
+- **separator** — Separator
+- **sheet** — Sheet, SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetClose
+- **skeleton** — Skeleton
+- **slider** — Slider
+- **sonner** — Toaster
+- **stepper** — Stepper, StepperHeader, StepperContent, StepperFooter, useStepper
+- **switch** — Switch
+- **table** — Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption
+- **tabs** — Tabs, TabsList, TabsTrigger, TabsContent
+- **textarea** — Textarea
+- **toggle** — Toggle, toggleVariants
+- **toggle-group** — ToggleGroup, ToggleGroupItem
+- **tooltip** — Tooltip, TooltipTrigger, TooltipContent, TooltipProvider
 
-### Component inventory
+**Typography**
+- **typography** — H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, List, OrderedList
 
-All imports from `@e-infra/design-system`. Do not import anything not in this list — it does not exist in the package.
+**Layout**
+- **content** — Content, ContentHeading, ContentSubheading, ContentBody
+- **header** — Header, HeaderContent, HeaderLeft, HeaderCenter, HeaderRight
+- **sidebar** — Sidebar, SidebarHeader, SidebarContent, SidebarFooter, NavItem, CollapsibleGroup
+- **footer** — Footer, FooterContent, FooterLeft, FooterLogo, FooterLeftText, FooterRight, FooterNavHeading, FooterNavLink, FooterMeta
 
-**Primitives** — accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, carousel, checkbox, collapsible, dialog, dropdown-menu, form (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage), input, label, menubar, navigation-menu, progress, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, stepper, switch, table, tabs, textarea, toggle, toggle-group, tooltip
+**Compounds**
+- **chat** — Chat, ChatHeader, ChatMessages, ChatFooter
+- **message** — Message, MessageGroup, MessageAvatar, MessageHeader, MessageContent, MessageFooter, MessageTimestamp, messageTimestampVariants
+- **message-input** — MessageInput, MessageInputTextarea, MessageInputAttachments, MessageInputAttachButton, MessageInputSubmit, MessageInputToolbar, MessageInputToolbarLeft, MessageInputToolbarRight
+- **message-scroller** — MessageScroller, MessageScrollerProvider, MessageScrollerViewport, MessageScrollerContent, MessageScrollerItem, MessageScrollerButton, useMessageScroller, useMessageScrollerScrollable
+- **message-actions** — MessageActions, MessageCopyButton
+- **message-typing** — MessageTyping
+- **searchbar** — Searchbar, SearchbarTrigger
+- **cookies-banner** — CookiesBanner
+- **feedback-form** — FeedbackForm
 
-**Foundations** — H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, List, OrderedList
+**Utilities and hooks**
+- **utils** — cn
+- **hooks** — useIsMobile
 
-**Layout** — `Content` `ContentHeading` `ContentSubheading` `ContentBody` `Header` `HeaderContent` `HeaderLeft` `HeaderCenter` `HeaderRight` `Sidebar` `SidebarHeader` `SidebarContent` `SidebarFooter` `NavItem` `CollapsibleGroup`
-
-**Compounds** — cookies-banner, feedback-form
-
-If the name you want doesn't exist, use: Toast → `sonner` · Popover → `dialog` or `sheet` · DatePicker → `calendar` · Combobox → `select`
+Common needs that are compositions, not components:
+- Toast → render `<Toaster />` once at the app root, then call `toast()` from the `sonner` package
+- Date picker → `Popover` + `Calendar`
+- Combobox / autocomplete → `Popover` + `Command`
+- Command palette (⌘K) → `CommandDialog`
+- Search field → `Searchbar` (presentational; wire `onValueChange` to your own search)
+- Hover card → `Tooltip` for short text, `Popover` for rich content
 
 ---
 
 ### Navigation rule
 
-**Header-only layout** (no sidebar): navigation goes in `HeaderLeft` using `NavigationMenu` primitives.
-
-**Sidebar layout**: the sidebar owns ALL navigation via `NavItem` and `CollapsibleGroup`. The header contains only utility controls — search, notifications, user avatar. Never put navigation in both places.
+- **Header-only layout**: navigation goes in `HeaderLeft` using `NavigationMenu` primitives.
+- **Sidebar layout**: the sidebar owns ALL primary navigation via `NavItem` and `CollapsibleGroup`. The header contains only utility controls — search, notifications, user avatar. Never put primary navigation in both places.
+- **Footer**: secondary links only (privacy, docs, contact) via `FooterNavLink` or ghost `Button`s — never a copy of the primary navigation.
 
 ### Router links
 
-`NavigationMenuLink`, `NavItem` and `Button` render a plain `<a>` when given `href`, which triggers a full page reload. In an app with a client-side router (Next.js, React Router, TanStack Router, …), pass `asChild` and put the router's link component inside, so the design system supplies the styling and the router handles navigation. Never nest a `Button` inside a link (or a link inside a `Button`) — that renders invalid `<a><button>` markup.
+`NavigationMenuLink`, `NavItem` and `Button` render a plain `<a>`/`<button>`. With a client-side router (Next.js, React Router, TanStack Router, …), pass `asChild` and put the router's link inside, so the design system supplies the styling and the router handles navigation. Never nest a `Button` inside a link (or a link inside a `Button`) — that renders invalid `<a><button>` markup.
 
 ```tsx
 import Link from 'next/link' // or: import { Link } from 'react-router-dom'
@@ -325,394 +370,13 @@ External URLs and `mailto:` links may use `href` directly. The plain `href` exam
 
 ---
 
-### Header
+### Page layouts
 
-Sticky top bar built by composing subcomponents. There are no variant props.
+Pick one of these three shells. Examples use icons from `lucide-react` (`import { Bell } from 'lucide-react'`); `Logo` stands for your own logo component.
 
-```tsx
-import {
-  Header, HeaderContent, HeaderLeft, HeaderCenter, HeaderRight,
-  NavigationMenu, NavigationMenuList, NavigationMenuItem,
-  NavigationMenuLink, NavigationMenuTrigger, NavigationMenuContent,
-  NavigationMenuIndicator,
-} from '@e-infra/design-system'
-```
-
-| Component | Description |
-|---|---|
-| `Header` | Root sticky `<header>`, `z-50`, backdrop blur, border-bottom |
-| `HeaderContent` | Flex row, `h-14`. `container={false}` removes max-width constraint |
-| `HeaderLeft` | Left slot — branding and navigation |
-| `HeaderCenter` | Center slot — search or centered controls (optional) |
-| `HeaderRight` | Right slot — actions and user controls |
-
-**Header-only layout (with navigation):**
-```tsx
-<Header>
-  <HeaderContent>
-    <HeaderLeft>
-      <Logo />
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/dashboard">Dashboard</NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>More</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-3 p-4 w-100">...</div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-        <NavigationMenuIndicator />
-      </NavigationMenu>
-    </HeaderLeft>
-    <HeaderRight>
-      <Button variant="ghost" size="icon"><Bell className="h-4 w-4" /></Button>
-      <Avatar><AvatarImage src="..." alt="User" /><AvatarFallback>U</AvatarFallback></Avatar>
-    </HeaderRight>
-  </HeaderContent>
-</Header>
-```
-
-**Sidebar layout (no navigation in header, full-width content):**
-```tsx
-<Header>
-  <HeaderContent container={false}>
-    <HeaderRight>
-      <Button variant="ghost" size="icon"><Bell className="h-4 w-4" /></Button>
-      <Avatar>...</Avatar>
-    </HeaderRight>
-  </HeaderContent>
-</Header>
-```
-
-**With centered search:**
-```tsx
-<Header>
-  <HeaderContent>
-    <HeaderLeft><Logo /><nav>...</nav></HeaderLeft>
-    <HeaderCenter>
-      <div className="relative w-full max-w-md">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-text" />
-        <Input type="search" placeholder="Search..." className="w-full pl-8" />
-      </div>
-    </HeaderCenter>
-    <HeaderRight>...</HeaderRight>
-  </HeaderContent>
-</Header>
-```
-
-`NavigationMenuViewport` renders automatically when `viewport={true}` (default). Set `viewport={false}` to position it manually.
-
-Custom background: `<Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">`
-
----
-
-### Sidebar
-
-Sticky navigation container, fixed `w-64` (16rem / 256px).
+**1. Header only** — navigation in the header:
 
 ```tsx
-import {
-  Sidebar, SidebarHeader, SidebarContent, SidebarFooter,
-  NavItem, CollapsibleGroup,
-} from '@e-infra/design-system'
-```
-
-| Component | Description |
-|---|---|
-| `Sidebar` | Root sticky container, full viewport height, right-side shadow |
-| `SidebarHeader` | Top area with bottom border |
-| `SidebarContent` | Scrollable middle area |
-| `SidebarFooter` | Bottom area with top border |
-| `NavItem` | Navigation link. `isActive` applies active styling. `asChild` renders a child as the anchor. Hover uses `bg-tertiary/50` |
-| `CollapsibleGroup` | Animated collapsible section. `title` required; `defaultOpen` sets initial state |
-
-**Complete sidebar + header layout:**
-```tsx
-<div className="flex min-h-screen">
-  <Sidebar>
-    <SidebarHeader>
-      <span className="font-semibold">App Name</span>
-    </SidebarHeader>
-    <SidebarContent>
-      <CollapsibleGroup title="Navigation" defaultOpen>
-        <NavItem href="/" isActive>Home</NavItem>
-        <NavItem href="/docs">Documentation</NavItem>
-        <NavItem href="/settings">Settings</NavItem>
-      </CollapsibleGroup>
-    </SidebarContent>
-    <SidebarFooter>
-      <div className="px-4 py-2 text-xs text-text-muted">v1.0.0</div>
-    </SidebarFooter>
-  </Sidebar>
-
-  <div className="flex-1 flex flex-col">
-    <Header>
-      <HeaderContent container={false}>
-        <HeaderRight>
-          <Button variant="ghost" size="icon"><Bell className="h-4 w-4" /></Button>
-          <Avatar>...</Avatar>
-        </HeaderRight>
-      </HeaderContent>
-    </Header>
-    <main className="flex-1 bg-background">
-      <Content>...</Content>
-    </main>
-  </div>
-</div>
-```
-
----
-
-### Content
-
-Structured page content container with built-in spacing. Always use `Content` to wrap page body — do not add ad-hoc padding to `<main>`.
-
-```tsx
-import { Content, ContentHeading, ContentSubheading, ContentBody } from '@e-infra/design-system'
-```
-
-| Component | Element | Built-in spacing |
-|---|---|---|
-| `Content` | `div` | `mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-10 md:px-6 lg:px-8 xl:px-10` |
-| `ContentHeading` | wraps `H1` | `mb-6` |
-| `ContentSubheading` | wraps `H2` | `mt-12 mb-4 first:mt-0` |
-| `ContentBody` | `div` | `space-y-4` |
-
-Headings carry their own margins so a section heading sits closer to the body it introduces than to the section above it. These win over the container's `space-y-8` (Tailwind v4 wraps `space-y` in `:where()`), so pass `className` to adjust a single heading.
-
-```tsx
-<Content>
-  <ContentHeading>Page Title</ContentHeading>
-  <ContentSubheading>Section Heading</ContentSubheading>
-  <ContentBody>
-    <P>Your content here.</P>
-  </ContentBody>
-</Content>
-```
-
----
-
-### Anti-patterns
-
-```tsx
-// ❌ Raw hex — ignores dark mode, drifts from brand
-<div style={{ background: '#eaebf1' }}>
-<div className="bg-[#2f2557] text-white">
-
-// ❌ Generic Tailwind grays — outside the token system
-<div className="bg-gray-100 text-gray-900">
-
-// ✅ Token classes adapt to light and dark automatically
-<div className="bg-surface text-text">
-<div className="bg-primary text-primary-foreground">
-```
-
-```tsx
-// ❌ Reversed surfaces — modal visually below its parent
-<div className="bg-surface">
-  <div className="bg-background"> {/* darker than parent */}
-
-// ❌ Skipped level — card jumping straight to floating-overlay token
-<main className="bg-background">
-  <div className="bg-surface-raised"> {/* no bg-surface step */}
-
-// ✅ Always progress in order
-<main className="bg-background">
-  <div className="bg-surface">
-    <div className="bg-surface-raised"> {/* popovers and modals only */}
-```
-
-```tsx
-// ❌ Fixed spacing — doesn't follow spacing tokens
-<div className="p-6">
-
-// ✅ Responsive stack following the spacing token scale
-<div className="p-6 md:p-8 lg:p-12">
-```
-
-```tsx
-// ❌ Manual dark overrides — tokens already handle this
-<div className="bg-surface dark:bg-[#191820]">
-
-// ✅ Semantic tokens are theme-aware — no dark: prefix ever needed
-<div className="bg-surface text-text">
-```
-
----
-
-### Worked example — full page section
-
-```tsx
-import {
-  Badge, Button, Card, CardContent, CardHeader, CardTitle,
-  H2, H4, Lead, P, Muted, Code, Separator,
-} from '@e-infra/design-system'
-
-const features = [
-  { title: 'GPU Computing', description: 'High-performance GPU nodes for ML workloads.', badge: 'Available', status: 'success' },
-  { title: 'JupyterHub', description: 'Managed notebooks with persistent storage.', badge: 'Beta', status: 'warning' },
-  { title: 'Object Storage', description: 'S3-compatible storage for datasets.', badge: 'Coming soon', status: 'info' },
-]
-
-export function FeatureSection() {
-  return (
-    // bg-background — outermost layer, page canvas
-    <section className="bg-background py-8 md:py-12 lg:py-16 xl:py-24 px-4 md:px-6 lg:px-8 xl:px-16">
-      <div className="mb-8 md:mb-12">
-        <H2 className="text-text-heading">Platform capabilities</H2>
-        <Lead className="text-text-muted mt-2">Everything you need to run research workloads at scale.</Lead>
-      </div>
-
-      <Separator className="mb-8 md:mb-12" />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-        {features.map((f) => (
-          // bg-surface — card layer, one step above background
-          <Card key={f.title} className="bg-surface border border-border">
-            <CardHeader className="p-6 md:p-8">
-              <div className="flex items-center justify-between gap-3">
-                <CardTitle><H4>{f.title}</H4></CardTitle>
-                {/* Semantic ramp: tinted badge with status-100 bg and status-900 text */}
-                <Badge className={`bg-${f.status}-100 text-${f.status}-900`}>{f.badge}</Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="px-6 pb-6 md:px-8 md:pb-8 flex flex-col gap-4">
-              <P className="text-text-muted">{f.description}</P>
-              <div className="flex items-center justify-between">
-                <Muted><Code>e-infra/{f.title.toLowerCase().replace(' ', '-')}</Code></Muted>
-                <Button size="sm">Learn more</Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-  )
-}
-```
-````
-
----
-
-### Combined skill
-
-*For single-file tools: `.windsurfrules`, `.cursorrules`, `copilot-instructions.md`, `AGENTS.md`, Claude Projects*
-
-````markdown
-## e-INFRA CZ Design System
-
-This project uses `@e-infra/design-system`. Follow these rules for all UI code.
-
-### Setup
-
-```bash
-bun add @e-infra/design-system
-# requires react@18|19, tailwindcss@v4
-```
-
-```css
-@import "tailwindcss";
-@import "@e-infra/design-system/setup.css";
-@source "../node_modules/@e-infra/design-system/dist";
-```
-
-`setup.css` is required — without it, no token class resolves to any value. Tailwind v3 is not supported.
-
-### Dark mode
-
-`.dark` class on `<html>` or `<body>`. No React provider. All tokens switch automatically.
-
-```tsx
-document.documentElement.classList.toggle('dark')
-// or: <html className={isDark ? 'dark' : ''}>
-```
-
-Never write `dark:` overrides on semantic token classes — they are already theme-aware.
-
----
-
-### Color tokens — never use raw hex or generic Tailwind colors
-
-**Surfaces — use in order, never skip or reverse:**
-
-| Token | Role | Light | Dark |
-|---|---|---|---|
-| `bg-background` | Page canvas | `#f4f5f9` | `#0f0e14` |
-| `bg-surface` | Cards, inputs, sidebar | `#eaebf1` | `#191820` |
-| `bg-surface-raised` | Popovers, modals, dropdowns | `#dddee6` | `#242330` |
-
-Text: `text-text` · `text-text-muted` · `text-text-heading`
-Border: `border-border` · `border-border-focus`
-
-**Semantic tokens + ramps:**
-
-| Token | Filled | Ramp |
-|---|---|---|
-| `primary` | `bg-primary text-primary-foreground` | `primary-50` … `primary-950` |
-| `secondary` | `bg-secondary text-secondary-foreground` | `secondary-50` … `secondary-950` |
-| `tertiary` | `bg-tertiary text-tertiary-foreground` | `tertiary-50` … `tertiary-950` |
-| `info` | `bg-info text-info-foreground` | `info-50` … `info-950` |
-| `success` | `bg-success text-success-foreground` | `success-50` … `success-950` |
-| `warning` | `bg-warning text-warning-foreground` | `warning-50` … `warning-950` |
-| `error` | `bg-error text-error-foreground` | `error-50` … `error-950` |
-
-Ramps: `50–200` subtle tints · `300–600` interactive states · `700–950` strong accents
-Neutral: `base-50` … `base-950`. Charts: `chart-1` … `chart-5`.
-
----
-
-### Spacing — always responsive, never a single fixed value
-
-| Token | Phone | Tablet `md:` | Desktop `lg:` | XL `xl:` | Role |
-|---|---|---|---|---|---|
-| `token-space-1` | `p-2` | `p-3` | `p-4` | `p-6` | Inner padding |
-| `token-space-2` | `p-4` | `p-6` | `p-8` | `p-12` | Section gutter |
-| `token-space-3` | `p-6` | `p-8` | `p-12` | `p-16` | Card padding |
-| `token-space-4` | `p-8` | `p-12` | `p-16` | `p-24` | Section rhythm |
-
-Page margin: `px-4 md:px-6 lg:px-8 xl:px-16`
-Grid: `grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8`
-
----
-
-### Typography
-
-```tsx
-import { H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, List, OrderedList } from '@e-infra/design-system'
-```
-
-H1 `text-4xl font-bold tracking-tight` · H2 `text-3xl font-semibold` · H3 `text-2xl font-semibold` · H4 `text-xl font-semibold` · P `text-base leading-7` · Lead `text-lg leading-8` · Strong `text-base font-semibold leading-7` · Small `text-sm leading-6` · Muted `text-xs leading-5` · Code `text-sm font-mono bg-surface px-2 py-1 rounded` · Link `text-primary underline hover:no-underline`
-
-All accept `className` (merged) and native element props.
-
----
-
-### Component inventory — only import from this list
-
-**Primitives** — accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb, button, calendar, card, carousel, checkbox, collapsible, dialog, dropdown-menu, form (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage), input, label, menubar, navigation-menu, progress, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner, stepper, switch, table, tabs, textarea, toggle, toggle-group, tooltip
-
-**Layout** — `Content` `ContentHeading` `ContentSubheading` `ContentBody` `Header` `HeaderContent` `HeaderLeft` `HeaderCenter` `HeaderRight` `Sidebar` `SidebarHeader` `SidebarContent` `SidebarFooter` `NavItem` `CollapsibleGroup`
-
-**Compounds** — cookies-banner, feedback-form
-
-Substitutions: Toast → `sonner` · Popover → `dialog`/`sheet` · DatePicker → `calendar` · Combobox → `select`
-
----
-
-### Navigation rule
-
-**Header-only**: navigation in `HeaderLeft` using `NavigationMenu` primitives.
-**With sidebar**: sidebar owns ALL navigation. Header has utility controls only. Never both.
-
-**Router links**: with a client-side router (Next.js, React Router, …), internal links use `asChild` + the router's link so navigation doesn't reload the page — `<NavigationMenuLink asChild><Link href="/">Home</Link></NavigationMenuLink>`, same for `NavItem` and `Button`. Never nest `<Link><Button>`. Plain `href` (as in the examples below) is fine without a router or for external URLs.
-
-### Header
-
-```tsx
-// Header-only with navigation
 <Header>
   <HeaderContent>
     <HeaderLeft>
@@ -729,29 +393,41 @@ Substitutions: Toast → `sonner` · Popover → `dialog`/`sheet` · DatePicker 
       </NavigationMenu>
     </HeaderLeft>
     <HeaderRight>
-      <Button variant="ghost" size="icon"><Bell className="h-4 w-4" /></Button>
+      <Button variant="ghost" size="icon" aria-label="Notifications"><Bell className="h-4 w-4" /></Button>
       <Avatar><AvatarImage src="..." alt="User" /><AvatarFallback>U</AvatarFallback></Avatar>
     </HeaderRight>
   </HeaderContent>
 </Header>
+<main className="bg-background"><Content>...</Content></main>
+```
 
-// With sidebar — no nav, container={false} removes max-width
+**2. Header on top, sidebar below** — full-width header with branding and utilities; the sidebar sticks under it (default `Sidebar`):
+
+```tsx
 <Header>
   <HeaderContent container={false}>
+    <HeaderLeft><Logo /></HeaderLeft>
     <HeaderRight>...</HeaderRight>
   </HeaderContent>
 </Header>
+<div className="flex">
+  <Sidebar>
+    <SidebarContent>
+      <CollapsibleGroup title="Navigation" defaultOpen>
+        <NavItem href="/" isActive>Home</NavItem>
+        <NavItem href="/docs">Docs</NavItem>
+      </CollapsibleGroup>
+    </SidebarContent>
+  </Sidebar>
+  <main className="flex-1 bg-background"><Content>...</Content></main>
+</div>
 ```
 
-Custom background: `<Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">`
-
-### Sidebar
-
-Fixed `w-64`. `NavItem` props: `isActive` (active style), `asChild` (child as anchor). `CollapsibleGroup` props: `title` (required), `defaultOpen`.
+**3. Sidebar beside the header** — the sidebar spans the full viewport height and owns the branding; the header only covers the content column. Pass `fullHeight`:
 
 ```tsx
 <div className="flex min-h-screen">
-  <Sidebar>
+  <Sidebar fullHeight>
     <SidebarHeader><span className="font-semibold">App Name</span></SidebarHeader>
     <SidebarContent>
       <CollapsibleGroup title="Navigation" defaultOpen>
@@ -759,18 +435,83 @@ Fixed `w-64`. `NavItem` props: `isActive` (active style), `asChild` (child as an
         <NavItem href="/docs">Docs</NavItem>
       </CollapsibleGroup>
     </SidebarContent>
-    <SidebarFooter><div className="px-4 py-2 text-xs text-text-muted">v1.0.0</div></SidebarFooter>
+    <SidebarFooter><Muted>v1.0.0</Muted></SidebarFooter>
   </Sidebar>
-  <div className="flex-1 flex flex-col">
-    <Header><HeaderContent container={false}><HeaderRight>...</HeaderRight></HeaderContent></Header>
+  <div className="flex flex-1 flex-col">
+    <Header>
+      <HeaderContent container={false}>
+        <HeaderRight>...</HeaderRight>
+      </HeaderContent>
+    </Header>
     <main className="flex-1 bg-background"><Content>...</Content></main>
   </div>
 </div>
 ```
 
+The sidebar has no built-in mobile behavior. On small screens hide it with `className="hidden lg:flex"` and render the same `NavItem`s inside a `Sheet` opened from a header button (`useIsMobile()` is available if you need the breakpoint in JS).
+
+### Header
+
+Sticky top bar (`h-16`, `z-50`, backdrop blur, bottom border) built by composing subcomponents. No variant props.
+
+| Component | Description |
+|---|---|
+| `Header` | Root sticky `<header>` |
+| `HeaderContent` | Flex row, `h-14`, `container mx-auto` by default. `container={false}` removes the max-width (use it next to a sidebar) |
+| `HeaderLeft` | Left slot — branding and navigation |
+| `HeaderCenter` | Center slot — search or centered controls (optional) |
+| `HeaderRight` | Right slot (`ml-auto`) — actions and user controls |
+
+Centered search: `<HeaderCenter><Searchbar className="max-w-md" /></HeaderCenter>`.
+`NavigationMenuViewport` renders automatically when `viewport={true}` (default). Set `viewport={false}` to position it manually.
+Custom background: `<Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">`
+
+### Sidebar
+
+Sticky, `w-64`, `bg-surface` with a right border, `p-6`.
+
+| Prop / component | Description |
+|---|---|
+| `Sidebar` `fullHeight` | `false` (default): below a full-width header — `top-16`, height `100vh - 64px`. `true`: beside the header — `top-0`, `h-screen` |
+| `SidebarHeader` / `SidebarContent` / `SidebarFooter` | Top area with bottom border / scrollable middle / bottom area with top border |
+| `NavItem` | Link. `isActive` → `bg-secondary text-secondary-foreground`; hover → `bg-secondary/70`. `asChild` renders a child as the anchor |
+| `CollapsibleGroup` | Animated collapsible section. `title` (required), `defaultOpen` |
+
+### Footer
+
+Same composition model as the header. `FooterMeta` (copyright row) is a **sibling** of `FooterContent`, not a child. `container={false}` on `FooterContent` / `FooterMeta` removes the max-width.
+
+```tsx
+<Footer>
+  <FooterContent>
+    <FooterLeft>
+      <FooterLogo><Logo /></FooterLogo>
+      <FooterLeftText>Operated by CERIT-SC, ICS MUNI</FooterLeftText>
+    </FooterLeft>
+    <FooterRight>
+      <div className="flex flex-col gap-2">
+        <FooterNavHeading>Resources</FooterNavHeading>
+        <FooterNavLink href="/docs">Documentation</FooterNavLink>
+        <FooterNavLink href="/privacy">Privacy Policy</FooterNavLink>
+      </div>
+    </FooterRight>
+  </FooterContent>
+  <FooterMeta copyright={`© ${new Date().getFullYear()} e-INFRA CZ`} />
+</Footer>
+```
+
 ### Content
 
-Always wrap page body in `Content`. Built-in spacing: `space-y-8 px-10 pb-10 mx-auto max-w-7xl` on container, `space-y-4` on body.
+Always wrap page body in `Content` — do not add ad-hoc padding to `<main>`.
+
+| Component | Element | Built-in spacing |
+|---|---|---|
+| `Content` | `div` | `mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-10 md:px-6 lg:px-8 xl:px-10` |
+| `ContentHeading` | wraps `H1` | `mb-6` |
+| `ContentSubheading` | wraps `H2` | `mt-12 mb-4 first:mt-0` |
+| `ContentBody` | `div` | `space-y-4` |
+
+Heading margins win over the container's `space-y-8`, so pass `className` to adjust a single heading.
 
 ```tsx
 <Content>
@@ -782,29 +523,137 @@ Always wrap page body in `Content`. Built-in spacing: `space-y-8 px-10 pb-10 mx-
 
 ---
 
+### Anti-patterns
+
+```tsx
+// ❌ Raw hex or generic Tailwind colors — ignore dark mode and themes
+<div style={{ background: '#eaebf1' }}>
+<div className="bg-gray-100 text-gray-900">
+
+// ✅ Token classes adapt to light, dark and every theme
+<div className="bg-surface text-text">
+```
+
+```tsx
+// ❌ Dynamic class names — Tailwind never generates them
+<Badge className={`bg-${status}-100`}>
+
+// ✅ Map to complete literal class strings
+const statusClass = { success: 'bg-success-100 text-success-900', warning: 'bg-warning-100 text-warning-900' }
+<Badge className={statusClass[status]}>
+```
+
+```tsx
+// ❌ Reversed or skipped surfaces
+<div className="bg-surface"><div className="bg-background">        {/* darker than parent */}
+<main className="bg-background"><div className="bg-surface-raised"> {/* skipped bg-surface */}
+
+// ✅ Always progress in order
+<main className="bg-background">
+  <div className="bg-surface">
+    <div className="bg-surface-raised"> {/* popovers and modals only */}
+```
+
+```tsx
+// ❌ Fixed spacing on a layout container
+<section className="p-6">
+
+// ✅ Responsive stack following the spacing token scale
+<section className="p-6 md:p-8 lg:p-12">
+```
+
+```tsx
+// ❌ Manual dark overrides — tokens already handle this
+<div className="bg-surface dark:bg-[#191820]">
+```
+
+```tsx
+// ❌ Invalid heading nesting — CardTitle already renders an <h3>
+<CardTitle><H4>Title</H4></CardTitle>
+
+// ✅
+<CardTitle>Title</CardTitle>
+```
+
+---
+
+### Worked example — feature section
+
+```tsx
+import {
+  Badge, Button, Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle,
+  H2, Lead, Separator,
+} from '@e-infra/design-system'
+
+const statusClass = {
+  success: 'bg-success-100 text-success-900',
+  warning: 'bg-warning-100 text-warning-900',
+  info: 'bg-info-100 text-info-900',
+} as const
+
+const features = [
+  { title: 'GPU Computing', description: 'High-performance GPU nodes for ML workloads.', badge: 'Available', status: 'success' },
+  { title: 'JupyterHub', description: 'Managed notebooks with persistent storage.', badge: 'Beta', status: 'warning' },
+  { title: 'Object Storage', description: 'S3-compatible storage for datasets.', badge: 'Coming soon', status: 'info' },
+] as const
+
+export function FeatureSection() {
+  return (
+    // bg-background — page canvas; responsive section rhythm and page margin
+    <section className="bg-background py-8 md:py-12 lg:py-16 xl:py-24 px-4 md:px-6 lg:px-8 xl:px-16">
+      <div className="mb-8 md:mb-12">
+        <H2 className="text-text-heading">Platform capabilities</H2>
+        <Lead className="mt-2">Everything you need to run research workloads at scale.</Lead>
+      </div>
+
+      <Separator className="mb-8 md:mb-12" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+        {features.map((f) => (
+          // Card is already bg-surface with its own padding — one step above the background
+          <Card key={f.title} animation="translate">
+            <CardHeader>
+              <CardTitle>{f.title}</CardTitle>
+              <CardAction>
+                <Badge className={statusClass[f.status]}>{f.badge}</Badge>
+              </CardAction>
+              <CardDescription>{f.description}</CardDescription>
+            </CardHeader>
+            <CardFooter>
+              <Button size="sm">Learn more</Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </section>
+  )
+}
+```
+
+---
+
 ### Key rules
 
-1. Never use raw hex or generic Tailwind colors — always use token classes.
+1. Never use raw hex or generic Tailwind colors — always use token classes, written as complete literal strings.
 2. Surfaces must progress in order: `bg-background` → `bg-surface` → `bg-surface-raised`. Never skip or reverse.
-3. Always apply spacing responsively: `p-6 md:p-8 lg:p-12`, not a single fixed value.
-4. Dark mode = `.dark` class on a parent. No `dark:` overrides on token classes, ever.
-5. Navigation belongs in either the header OR the sidebar — never both.
-6. Wrap all page body content in `Content` — do not add ad-hoc padding to `<main>`.
-7. Only import components from the inventory list. Anything else does not exist.
-8. `setup.css` must be imported before any component usage in your global CSS.
-9. With a client-side router, internal links use `asChild` + the router's link component — never `href` alone (full reload) and never `<Link><Button>` (invalid nesting).
+3. Apply spacing responsively on layout containers: `p-6 md:p-8 lg:p-12`, not a single fixed value. Don't override component padding without reason.
+4. Dark mode = `.dark` class on `<html>`; themes = `data-theme` on the same element. No `dark:` overrides on token classes, ever.
+5. Primary navigation belongs in either the header OR the sidebar — never both. Footer holds secondary links only.
+6. Sidebar below a full-width header → `<Sidebar>`; sidebar beside the header → `<Sidebar fullHeight>`.
+7. Wrap all page body content in `Content` — do not add ad-hoc padding to `<main>`.
+8. Only import names from the inventory list. Anything else does not exist — compose it from primitives.
+9. `setup.css` must be imported in your global CSS, right after Tailwind, before any theme CSS.
+10. With a client-side router, internal links use `asChild` + the router's link component — never `href` alone (full reload) and never `<Link><Button>` (invalid nesting).
 ````
 
 ---
 
 ## When the library updates
 
-When you update `@e-infra/design-system` in your project, check the release notes for changes to tokens or components, then update your skill files accordingly. The most common things that change between releases:
+The version at the top of this page and in the skill's first line tells you which release the skill matches. When you update `@e-infra/design-system`, check the [changelog](https://github.com/CERIT-SC/design-system/blob/main/CHANGELOG.md) and re-copy the skill from this page if it has changed. The most common changes between releases:
 
-- New components added to primitives — add them to the inventory list
-- New layout component props — update the relevant props table
-- Token value changes — update the surface hex values in the foundations file
+- New components or subcomponents — they appear in the inventory list
+- New layout props — they appear in the layout sections
+- Token value changes — they appear in the color tables
 
-The split-file structure (Roo Code / Cursor) makes this easier: a new component only touches the layout file, and a token change only touches the foundations file.
-
-To verify your skills are working correctly after any update, open a fresh session and ask your assistant: *"Which components are available in @e-infra/design-system?"* and *"How should I structure a page with a sidebar layout?"* The answers should match what you wrote.
+To verify the skill is working after any update, open a fresh session and ask your assistant: *"Which components are available in @e-infra/design-system?"* and *"How should I structure a page with a sidebar beside the header?"* The answers should match this page.

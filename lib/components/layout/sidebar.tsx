@@ -6,19 +6,29 @@ import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "../../lib/utils";
 
-const Sidebar = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "sticky lg:sticky text-text top-16 h-[calc(100vh-64px)] w-64 bg-surface border-r border-border p-6 flex flex-col z-40 transition-transform duration-300 lg:translate-x-0",
-      className
-    )}
-    {...props}
-  />
-));
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Layout the sidebar is placed in.
+   * - `false` (default): sits below a full-width `Header` — sticks under its 64px height.
+   * - `true`: sits beside the `Header` — spans the full viewport height from the top.
+   */
+  fullHeight?: boolean;
+}
+
+const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
+  ({ className, fullHeight = false, ...props }, ref) => (
+    <div
+      ref={ref}
+      data-full-height={fullHeight || undefined}
+      className={cn(
+        "sticky lg:sticky text-text w-64 bg-surface border-r border-border p-6 flex flex-col z-40 transition-transform duration-300 lg:translate-x-0",
+        fullHeight ? "top-0 h-screen" : "top-16 h-[calc(100vh-64px)]",
+        className
+      )}
+      {...props}
+    />
+  )
+);
 Sidebar.displayName = "Sidebar";
 
 const SidebarHeader = React.forwardRef<
