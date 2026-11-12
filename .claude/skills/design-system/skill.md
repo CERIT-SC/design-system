@@ -10,10 +10,12 @@ Before answering, read the **skill block** in `docs/getting-started/AI-agents-ma
 - color tokens, surface hierarchy and spacing scale
 - typography components and their default classes
 - the complete component inventory (checked against the library exports by `bun run check:ai-manual`)
+- the component API cheat-sheet (`variant`, `size` and other prop values)
 - page layouts (header only, header + sidebar below, sidebar beside header with `fullHeight`), header, sidebar, footer and content composition
+- chat interfaces (`Chat`, `MessageScroller*`, `Message`, `Bubble`, `MessageInput`)
 - anti-patterns and key rules
 
-Do not rely on memory for component names, props or variants. If the manual doesn't cover a detail (e.g. a variant list), read the component source in `lib/components/` — exports are re-exported from `lib/components/index.ts`.
+Do not rely on memory for component names, props or variants. If the manual doesn't cover a detail, read the component source in `lib/components/` — exports are re-exported from `lib/components/index.ts`.
 
 ## Core principle
 
