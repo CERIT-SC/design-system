@@ -2,7 +2,7 @@
 
 > Last verified against `@e-infra/design-system` **v0.2.0**.
 
-If you use an AI coding assistant — Claude Code, Cursor, GitHub Copilot, Roo Code, or similar — this guide shows you how to configure it to understand the design system correctly. Without this setup, assistants will not use the design system properly: they guess component names, hard-code colors, and invent layouts.
+If you use an AI coding assistant — Claude Code, Cursor, GitHub Copilot, Zoo Code, or similar — this guide shows you how to configure it to understand the design system correctly. Without this setup, assistants will not use the design system properly: they guess component names, hard-code colors, and invent layouts.
 
 With the skill below in place, the assistant will generate correct component imports, use the token system properly, apply responsive spacing, follow the layout composition rules, and avoid the most common mistakes automatically.
 
@@ -78,9 +78,11 @@ Copilot picks it up automatically for chat and inline completions in the reposit
 
 ---
 
-### Roo Code
+### Zoo Code
 
-Paste the skill into a Markdown file inside `.roo/rules/`. Roo Code injects everything in that folder into every session.
+[Zoo Code](https://marketplace.visualstudio.com/items?itemName=ZooCodeOrganization.zoo-code) is the community-maintained continuation of Roo Code, which is no longer updated. If you still use Roo Code, switch to Zoo Code. Its [Roo→Zoo migration guide](https://docs.zoocode.dev/roo-to-zoo-migration) covers moving your settings.
+
+Paste the skill into a Markdown file inside `.roo/rules/`. Zoo Code kept Roo Code's folder name, so existing Roo rules keep working. It loads every file in that folder into every session.
 
 ```
 your-project/
@@ -88,6 +90,8 @@ your-project/
     └── rules/
         └── e-infra-design-system.md
 ```
+
+Zoo Code also reads `AGENTS.md` (see below), so you can use that file instead.
 
 ---
 
@@ -97,7 +101,7 @@ Open your project's settings on claude.ai and paste the skill into the **Project
 
 ---
 
-### AGENTS.md (OpenAI Codex, Jules, and others)
+### AGENTS.md (OpenAI Codex, Jules, Zoo Code, and others)
 
 Many agent tools look for a file called `AGENTS.md` at the repository root. Paste the skill there, optionally preceded by a short line about your project:
 
