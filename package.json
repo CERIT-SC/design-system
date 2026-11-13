@@ -56,7 +56,8 @@
     "typecheck:showcase": "tsc --noEmit --project tsconfig.next.json",
     "typecheck:stories": "tsc --noEmit --project tsconfig.stories.json",
     "tsc": "tsc --noEmit --watch",
-    "check": "bun run type:check && bun run lint && bun run format:check"
+    "check:ai-manual": "node scripts/check-ai-manual.mjs",
+    "check": "bun run type:check && bun run lint && bun run format:check && bun run check:ai-manual"
   },
   "exports": {
     ".": {

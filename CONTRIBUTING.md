@@ -83,8 +83,18 @@ bun run format
 
 bun run type:check
 
+bun run check:ai-manual
+
 bun run check
 ```
+
+### AI Agents Manual
+
+[`docs/getting-started/AI-agents-manual.mdx`](docs/getting-started/AI-agents-manual.mdx) contains the skill users paste into their AI coding assistants. When you add, rename or remove an export, or change a component's props, default styles or tokens, update the skill in the same PR:
+
+- `bun run check:ai-manual` fails when the component inventory doesn't match the library's exports. It runs in `bun run check` and in PR checks.
+- On a release, review the manual and bump its "Last verified against" version line (the check warns when it differs from `package.json`).
+- The repo's own Claude skill ([`.claude/skills/design-system/skill.md`](.claude/skills/design-system/skill.md)) reads the manual instead of duplicating it, so it needs no separate update.
 
 ## Commit Conventions
 

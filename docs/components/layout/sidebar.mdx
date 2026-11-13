@@ -154,6 +154,7 @@ import {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| fullHeight | `boolean` | `false` | `false`: sits below a full-width `Header` (sticky at `top-16`, height `100vh - 64px`). `true`: sits beside the `Header` (sticky at `top-0`, full viewport height) |
 | className | `string` | - | Additional CSS classes |
 | ...props | `React.HTMLAttributes<HTMLDivElement>` | - | Native `div` props |
 
@@ -200,12 +201,138 @@ import {
 
 The sidebar uses the following default styles:
 
-- **Width**: 72 (18rem / 288px)
-- **Position**: Sticky at top
-- **Height**: Full viewport height
-- **Background**: `bg-sidebar/50` (semi-transparent sidebar color)
+- **Width**: `w-64` (16rem / 256px)
+- **Position**: Sticky — below the 64px header by default, at the very top with `fullHeight`
+- **Height**: `calc(100vh - 64px)` by default, `100vh` with `fullHeight`
+- **Background**: `bg-surface` with a right border (`border-r border-border`)
+- **Padding**: `p-6`
 - **Text**: `text-text`
-- **Shadow**: Right-side shadow for depth
+- **NavItem**: hover `bg-secondary/70`, active `bg-secondary text-secondary-foreground`
+
+## Layouts
+
+The previews below override the sticky positioning (`static h-full`) so each layout fits inside the page. In an app, leave the positioning as it is.
+
+**Header on top, sidebar below** (default) — the header spans the full width and the sidebar sticks under it:
+
+<ComponentPreview>
+<div className="flex h-96 w-full flex-col overflow-hidden rounded-lg border border-border bg-background">
+  <Header className="static lg:static">
+    <HeaderContent container={false} className="w-full">
+      <HeaderLeft>
+        <span className="font-semibold">App Name</span>
+      </HeaderLeft>
+      <HeaderRight>
+        <Button variant="ghost" size="icon" aria-label="Notifications">
+          <Bell className="h-4 w-4" />
+        </Button>
+        <Avatar>
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+      </HeaderRight>
+    </HeaderContent>
+  </Header>
+  <div className="flex min-h-0 flex-1">
+    <Sidebar className="static lg:static h-full">
+      <SidebarContent>
+        <CollapsibleGroup title="Navigation" defaultOpen={true}>
+          <NavItem href="#" isActive>
+            <Home className="h-4 w-4" />
+            <span>Home</span>
+          </NavItem>
+          <NavItem href="#">
+            <FileText className="h-4 w-4" />
+            <span>Documentation</span>
+          </NavItem>
+          <NavItem href="#">
+            <Settings className="h-4 w-4" />
+            <span>Settings</span>
+          </NavItem>
+        </CollapsibleGroup>
+      </SidebarContent>
+    </Sidebar>
+    <div className="flex flex-1 items-center justify-center p-6">
+      <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-border text-sm text-text-muted">
+        Page content
+      </div>
+    </div>
+  </div>
+</div>
+</ComponentPreview>
+
+```tsx
+<Header>...</Header>
+<div className="flex">
+  <Sidebar>...</Sidebar>
+  <main className="flex-1 bg-background">
+    <Content>...</Content>
+  </main>
+</div>
+```
+
+**Sidebar beside the header** — the sidebar spans the full viewport height and the header only covers the content column:
+
+<ComponentPreview>
+<div className="flex h-96 w-full overflow-hidden rounded-lg border border-border bg-background">
+  <Sidebar fullHeight className="static lg:static h-full">
+    <SidebarHeader>
+      <span className="font-semibold">App Name</span>
+    </SidebarHeader>
+    <SidebarContent>
+      <CollapsibleGroup title="Navigation" defaultOpen={true}>
+        <NavItem href="#" isActive>
+          <Home className="h-4 w-4" />
+          <span>Home</span>
+        </NavItem>
+        <NavItem href="#">
+          <FileText className="h-4 w-4" />
+          <span>Documentation</span>
+        </NavItem>
+        <NavItem href="#">
+          <Settings className="h-4 w-4" />
+          <span>Settings</span>
+        </NavItem>
+      </CollapsibleGroup>
+    </SidebarContent>
+    <SidebarFooter>
+      <Muted>v1.0.0</Muted>
+    </SidebarFooter>
+  </Sidebar>
+  <div className="flex min-w-0 flex-1 flex-col">
+    <Header className="static lg:static">
+      <HeaderContent container={false} className="w-full">
+        <HeaderRight>
+          <Button variant="ghost" size="icon" aria-label="Notifications">
+            <Bell className="h-4 w-4" />
+          </Button>
+          <Avatar>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </HeaderRight>
+      </HeaderContent>
+    </Header>
+    <div className="flex flex-1 items-center justify-center p-6">
+      <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-border text-sm text-text-muted">
+        Page content
+      </div>
+    </div>
+  </div>
+</div>
+</ComponentPreview>
+
+```tsx
+<div className="flex min-h-screen">
+  <Sidebar fullHeight>...</Sidebar>
+  <div className="flex flex-1 flex-col">
+    <Header>
+      <HeaderContent container={false}>...</HeaderContent>
+    </Header>
+    <main className="flex-1 bg-background">
+      <Content>...</Content>
+    </main>
+  </div>
+</div>
+```
 
 ## Behavior
 

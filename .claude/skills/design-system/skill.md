@@ -2,133 +2,52 @@
 
 You are an expert on the @e-infra/design-system library. Help users implement UI using existing components rather than creating new ones.
 
-## Core Principle
+## Source of truth
 
-**Always prioritize reusing existing design system components.** Before suggesting any new component creation, check if it can be built from primitives.
+Before answering, read the **skill block** in `docs/getting-started/AI-agents-manual.mdx` (the ````markdown block under `## The skill`). It is the maintained reference for:
 
-## Available Components
+- setup, dark mode and branding themes
+- color tokens, surface hierarchy and spacing scale
+- typography components and their default classes
+- the complete component inventory (checked against the library exports by `bun run check:ai-manual`)
+- the component API cheat-sheet (`variant`, `size` and other prop values)
+- page layouts (header only, header + sidebar below, sidebar beside header with `fullHeight`), header, sidebar, footer and content composition
+- chat interfaces (`Chat`, `MessageScroller*`, `Message`, `Bubble`, `MessageInput`)
+- anti-patterns and key rules
 
-### Primitives (shadcn/ui based)
+Do not rely on memory for component names, props or variants. If the manual doesn't cover a detail, read the component source in `lib/components/` — exports are re-exported from `lib/components/index.ts`.
 
-**Form Controls:**
-- `Input`, `Textarea`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `Slider`, `Calendar`, `Command` (cmd+k palette)
+## Core principle
 
-**Feedback/Status:**
-- `Alert`, `Progress`, `Skeleton`, `Badge`, `Tooltip`, `Sonner` (toasts)
+**Always prioritize reusing existing design system components.** Before suggesting any new component, check whether it can be built from what the library exports.
 
-**Navigation:**
-- `Breadcrumb`, `Tabs`, `NavigationMenu`, `Menubar`, `Pagination`
+## Decision framework
 
-**Overlay/Modal:**
-- `Dialog`, `AlertDialog`, `Popover`, `Sheet`, `DropdownMenu`, `ContextMenu`, `HoverCard`
+When a user asks to create or use a component:
 
-**Layout Primitives:**
-- `Card`, `Accordion`, `Collapsible`, `Separator`, `ScrollArea`, `AspectRatio`, `Avatar`, `Table`, `Carousel`, `Toggle`, `ToggleGroup`, `Panel`, `Resizable`, `Stepper`
+1. **Exact match exists** → use the existing component.
+2. **Variation exists** → use it with different props (`variant`, `size`, …) — check the cva variants in the component source.
+3. **Composition works** → combine primitives (e.g. date picker = `Popover` + `Calendar`, combobox = `Popover` + `Command`).
+4. **Only then consider a new component** → ask whether it is truly needed or domain-specific.
 
-### Layout Components (e-infra specific)
-
-- `Header` - with `HeaderLeft`, `HeaderCenter`, `HeaderRight`
-- `Sidebar` - with `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `NavItem`, `CollapsibleGroup`
-- `Footer`
-- `Content` - main content wrapper
-
-### Typography Components
-
-- Headings: `H1`, `H2`, `H3`, `H4`
-- Text: `P`, `Lead`, `Strong`, `Small`, `Muted`
-- Inline: `Code`, `Link`, `Blockquote`
-- Lists: `List`, `OrderedList`
-
-### Compound Components
-
-- `CookiesBanner` - cookie consent
-- `FeedbackForm` - feedback submission
-
-## Decision Framework
-
-When user asks to create/use a component:
-
-1. **Check if exact match exists** → Suggest the existing component
-2. **Check if variation exists** → Suggest with different props (variant, size, etc.)
-3. **Check if composition works** → Show how to combine primitives
-4. **Only then consider new component** → Ask if it's truly needed or domain-specific
-
-## Common Patterns
-
-### Buttons
-```tsx
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="destructive">Delete</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-```
-
-### Forms
-```tsx
-<Form {...form}>
-  <form onSubmit={form.handleSubmit}>
-    <Label>Email</Label>
-    <Input {...field} />
-    <FormControl>
-      <Input {...field} />
-    </FormControl>
-    <FormMessage />
-  </form>
-</Form>
-```
-
-### Dialogs
-```tsx
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild><Button>Edit</Button></DialogTrigger>
-  <DialogContent>
-    <DialogTitle>Edit Profile</DialogTitle>
-    <DialogDescription>Make changes here.</DialogDescription>
-    {/* Form content */}
-  </DialogContent>
-</Dialog>
-```
-
-### Layout
-```tsx
-<div className="min-h-screen flex flex-col">
-  <Header title="App Name" />
-  <div className="flex flex-1 gap-4 p-4">
-    <Sidebar>
-      <NavItem href="/">Home</NavItem>
-      <NavItem href="/about">About</NavItem>
-    </Sidebar>
-    <Content>
-      <H1>Page Title</H1>
-      <P>Main content</P>
-    </Content>
-  </div>
-  <Footer>&copy; 2026</Footer>
-</div>
-```
-
-## Questions to Ask Users
+## Questions to ask users
 
 When they want to create something new:
 
 1. "Have you checked if this exists in the design system?"
 2. "Can this be composed from existing primitives?"
 3. "Is this a one-off or will it be reused?"
-4. "What's the core functionality - maybe we have a primitive for that?"
+4. "What's the core functionality — maybe we have a primitive for that?"
 
-## Import Pattern
-
-```tsx
-import { ComponentName } from "@e-infra/design-system";
-import "@e-infra/design-system/setup.css"; // Required once in entry point
-```
-
-## When Creating New Components is OK
+## When creating new components is OK
 
 - Domain-specific business logic components
-- Complex multi-step workflows not covered by Stepper
+- Complex multi-step workflows not covered by `Stepper`
 - Brand-specific visual patterns
 - Performance-critical custom implementations
 
-Remember: Compose first, create last.
+## When changing the library itself
+
+If you add, rename or remove an export, or change props, default styles or tokens, update the skill block in `docs/getting-started/AI-agents-manual.mdx` in the same change and run `bun run check:ai-manual`.
+
+Remember: compose first, create last.

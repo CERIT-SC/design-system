@@ -402,14 +402,14 @@ If you need to place the viewport manually, disable the automatic viewport and r
 
 ### Sidebar layouts
 
-When a sidebar already owns branding, use `container={false}` so the header can span the full width without an extra max-width wrapper.
+When a sidebar already owns branding, use `container={false}` so the header can span the full width without an extra max-width wrapper. Pass `fullHeight` to the `Sidebar` so it spans the whole viewport beside the header instead of sticking below it.
 
 ```tsx
 import { Header, HeaderContent, HeaderRight } from "@e-infra/design-system";
 import { Sidebar, SidebarHeader, SidebarContent } from "@e-infra/design-system";
 
 <div className="flex min-h-screen">
-  <Sidebar>
+  <Sidebar fullHeight>
     <SidebarHeader>
       <span className="font-semibold">Lab Management</span>
     </SidebarHeader>

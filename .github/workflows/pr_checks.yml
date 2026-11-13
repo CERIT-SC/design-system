@@ -30,3 +30,6 @@ jobs:
 
       - name: Run Formatting Check
         run: bun run format:check
+
+      - name: Check AI Agents Manual Inventory
+        run: bun run check:ai-manual

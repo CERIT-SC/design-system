@@ -89,8 +89,8 @@ const steps = [
   { label: "Step 3", description: "Third step description" },
 ]
 
-// Basic usage
-<Stepper>
+// Basic usage — always pass totalSteps
+<Stepper totalSteps={steps.length}>
   <StepperHeader steps={steps} />
   <StepperContent>
     <YourStep1Content />
@@ -135,7 +135,7 @@ function StepperActions() {
 | children     | React.ReactNode        | -       | Step content and child components                                                                                                   |
 | initialStep  | number                 | `0`     | Starting step index (uncontrolled mode)                                                                                             |
 | step         | number                 | -       | Controlled current step (0-based). When set, the parent owns the step and receives updates through onStepChange                      |
-| totalSteps   | number                 | -       | Total number of steps. If omitted, it is inferred from Stepper direct children, so pass explicitly when your content count differs. |
+| totalSteps   | number                 | -       | Total number of steps. **Always pass it** (e.g. `steps.length`). If omitted, it is inferred from the number of `Stepper`'s direct children — usually `StepperHeader`, `StepperContent` and `StepperFooter` — not from your steps. |
 | onStepChange | (step: number) => void | -       | Callback when step changes                                                                                                          |
 
 ### StepperHeader
@@ -205,7 +205,7 @@ The Stepper component includes built-in accessibility features:
 Start the stepper at a specific step:
 
 ```tsx
-<Stepper initialStep={2}>
+<Stepper initialStep={2} totalSteps={steps.length}>
   <StepperHeader steps={steps} />
   <StepperContent>{/* Your step content */}</StepperContent>
   <StepperFooter onFinish={() => console.log("Done")} />
@@ -265,6 +265,7 @@ Track or validate before step changes:
 
 ```tsx
 <Stepper
+  totalSteps={steps.length}
   onStepChange={(step) => {
     console.log(`Moving to step ${step}`);
     // Perform validation or analytics here
