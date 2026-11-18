@@ -45,6 +45,8 @@ import { Package } from "lucide-react";
 const atkinsonNext = Atkinson_Hyperlegible_Next({
   subsets: ["latin", "latin-ext"],
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
   variable: "--font-atkinson-hyperlegible-next",
 });
 const sourceSans = Source_Sans_3({
@@ -56,6 +58,8 @@ const sourceSans = Source_Sans_3({
 const atkinsonMono = Atkinson_Hyperlegible_Mono({
   subsets: ["latin", "latin-ext"],
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
   variable: "--font-atkinson-hyperlegible-mono",
 });
 
