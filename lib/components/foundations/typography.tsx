@@ -128,7 +128,10 @@ export function Link({
 }: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
-      className={cn("text-primary underline hover:no-underline", className)}
+      className={cn(
+        "text-primary dark:text-primary-300 underline hover:no-underline",
+        className
+      )}
       {...props}
     />
   );

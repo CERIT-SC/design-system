@@ -22,7 +22,7 @@ export default function DocsIndexPage() {
                 <li key={item.path}>
                   <Link
                     href={item.path}
-                    className="text-primary hover:underline"
+                    className="text-primary dark:text-primary-300 hover:underline"
                   >
                     {item.title}
                   </Link>

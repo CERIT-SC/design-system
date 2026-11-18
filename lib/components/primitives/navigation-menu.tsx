@@ -52,7 +52,7 @@ function NavigationMenuItem({
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
       className={cn(
-        "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors",
+        "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary dark:after:bg-primary-300 after:transition-all after:duration-300 hover:after:w-full hover:text-primary dark:hover:text-primary-300 transition-colors",
         className
       )}
       {...props}

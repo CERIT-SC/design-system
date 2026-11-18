@@ -3,7 +3,7 @@
  */
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 
 /* Reserve the scrollbar track so content does not shift when it appears. */
 @utility scrollbar-gutter-stable {
@@ -199,7 +199,7 @@
 
   /* Text */
   --text:         #130f23;
-  --text-muted:   #6e6a82; 
+  --text-muted:   #625e76;
   --text-heading: #2f2557; 
 
   /* Brand */

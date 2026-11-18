@@ -7,12 +7,14 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-info/50 border-info supports-backdrop-filter:bg-info/60",
+        default:
+          "bg-info/50 border-info supports-backdrop-filter:bg-info/60 dark:bg-info/40 dark:supports-backdrop-filter:bg-info/40",
         success:
-          "bg-success/50 border-success supports-backdrop-filter:bg-success/60",
+          "bg-success/50 border-success supports-backdrop-filter:bg-success/60 dark:bg-success/40 dark:supports-backdrop-filter:bg-success/40",
         warning:
-          "bg-warning/50 border-warning supports-backdrop-filter:bg-warning/60",
-        error: " bg-error/50 border-error supports-backdrop-filter:bg-error/60",
+          "bg-warning/50 border-warning supports-backdrop-filter:bg-warning/60 dark:bg-warning/40 dark:supports-backdrop-filter:bg-warning/40",
+        error:
+          " bg-error/50 border-error supports-backdrop-filter:bg-error/60 dark:bg-error/40 dark:supports-backdrop-filter:bg-error/40",
       },
     },
     defaultVariants: {
