@@ -141,6 +141,8 @@ Requires React 18 or 19 and Tailwind CSS v4 (v3 is not supported). The other pee
 
 `setup.css` is required — without it, no token class (`bg-surface`, `text-primary`, …) resolves to any value.
 
+Fonts: the library ships no font files. The app must load Atkinson Hyperlegible Next (headings), Source Sans 3 (body) and Atkinson Hyperlegible Mono (code, used by every theme) and set `--font-atkinson-hyperlegible-next`, `--font-source-sans-3` and `--font-atkinson-hyperlegible-mono` — e.g. with `next/font/google` and its `variable` option on `<html>`. Don't put a font class on `<body>`; it would override the theme fonts.
+
 Package exports:
 - `@e-infra/design-system` — components, utilities (`cn`), hooks
 - `@e-infra/design-system/setup.css` — required base CSS and default e-INFRA CZ theme
@@ -169,7 +171,7 @@ Branding themes are switched with `data-theme` on the **same element** as `.dark
 <html data-theme="eosc" className="dark">   {/* "eosc" | "elter" | "custom"; omit for the default theme */}
 ```
 
-- EOSC needs the app to load Roboto and set `--font-roboto`; eLTER needs Montserrat and `--font-montserrat` (headings only). The library ships no font files.
+- EOSC needs the app to load Roboto and set `--font-roboto` (body and headings); eLTER needs Montserrat and `--font-montserrat` (headings only). Code text in both still uses Atkinson Hyperlegible Mono.
 - Custom theme: import `custom_setup.css`, then define three colors — everything else (ramps, foregrounds, dark mode) is derived:
 
 ```css
