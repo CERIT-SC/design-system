@@ -20,6 +20,7 @@
   --font-sans:
     var(--font-roboto, "Roboto"), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-sans);
 
   /* Transitions */
   --transition-duration: 300ms;

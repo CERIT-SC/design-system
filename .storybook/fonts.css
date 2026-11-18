@@ -1,0 +1,11 @@
+/* Fonts for storybook */
+@import "@fontsource-variable/atkinson-hyperlegible-next";
+@import "@fontsource-variable/source-sans-3";
+@import "@fontsource-variable/source-sans-3/wght-italic.css"; /* Blockquote, <em> */
+@import "@fontsource-variable/atkinson-hyperlegible-mono";
+
+:root {
+  --font-atkinson-hyperlegible-next: "Atkinson Hyperlegible Next Variable";
+  --font-source-sans-3: "Source Sans 3 Variable";
+  --font-atkinson-hyperlegible-mono: "Atkinson Hyperlegible Mono Variable";
+}

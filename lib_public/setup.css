@@ -22,6 +22,20 @@
   }
 }
 
+@theme static {
+  --font-sans:
+    var(--font-source-sans-3, "Source Sans 3"), ui-sans-serif, system-ui,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --font-heading:
+    var(--font-atkinson-hyperlegible-next, "Atkinson Hyperlegible Next"),
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    var(--font-atkinson-hyperlegible-mono, "Atkinson Hyperlegible Mono"),
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
 @theme inline {
   --radius-sm:  calc(var(--radius) - 4px);
   --radius-md:  calc(var(--radius) - 2px);
@@ -400,6 +414,14 @@
   }
   body {
     @apply bg-background text-text;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
   }
 }
 

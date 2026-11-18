@@ -82,6 +82,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@fontsource-variable/atkinson-hyperlegible-mono": "^5.3.0",
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource-variable/source-sans-3": "^5.3.1",
     "@radix-ui/react-slot": "^1.5.0",
     "@storybook/addon-docs": "^10.6.6",
     "@storybook/react": "^10.6.6",
