@@ -66,12 +66,12 @@
 
   /* Semantic */
   --info: #3F8ED4;
-  --info-foreground: #ffffff;
+  --info-foreground: #0a2033; /* 4.76:1 — white fails */
   --success: #96CE58;
-  --success-foreground: #ffffff;
+  --success-foreground: #0a2033; /* 8.89:1 — white fails */
   --warning: #d37e1e;
-  --warning-foreground: #ffffff;
-  --error: #CC4F4B;
+  --warning-foreground: #0a2033; /* 5.34:1 — white fails */
+  --error: #BC3534; /* --color-error-600 — 500 was 4.38:1 with white */
   --error-foreground: #ffffff;
 
   /* Charts — ELTER palette */
@@ -201,8 +201,8 @@
   --surface-raised: #253d56; /* --base-800 */
 
   /* Text */
-  --text: #f1f1f1;; /* --base-50 */
-  --text-muted: #516a88; /* --base-600 */
+  --text: #f1f1f1; /* --base-50 */
+  --text-muted: #aab1bc; /* --base-300 — 600 was 2.65–2.97:1 on dark surfaces */
   --text-heading: #4fb6f8; /* --primary-300 */
 
   /* Brand — eLTER primary colors */
@@ -221,11 +221,11 @@
 
   /* Semantic */
   --info: #3F8ED4;
-  --info-foreground: #ffffff;
+  --info-foreground: #0a2033; /* 4.76:1 — white fails */
   --success: #96CE58;
-  --success-foreground: #ffffff;
+  --success-foreground: #0a2033; /* 8.89:1 — white fails */
   --warning: #d37e1e;
-  --warning-foreground: #ffffff;
+  --warning-foreground: #0a2033; /* 5.34:1 — white fails */
   --error: #BC3534;
   --error-foreground: #ffffff;
 

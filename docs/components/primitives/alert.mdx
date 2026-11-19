@@ -83,9 +83,11 @@ import { Alert, AlertTitle, AlertDescription } from "@e-infra/design-system"
 
 ## Variants
 
-| Variant | Background    | Border     | Text                 |
-| ------- | ------------- | ---------- | -------------------- |
-| default | `tertiary/50` | `tertiary` | `text`               |
-| success | `success/50`  | `success`  | `success-foreground` |
-| warning | `warning/50`  | `warning`  | `warning-foreground` |
-| error   | `error/50`    | `error`    | `error-foreground`   |
+| Variant | Background (light) | Background (dark) | Border    | Text   |
+| ------- | ------------------ | ----------------- | --------- | ------ |
+| default | `info/60`          | `info/40`         | `info`    | `text` |
+| success | `success/60`       | `success/40`      | `success` | `text` |
+| warning | `warning/60`       | `warning/40`      | `warning` | `text` |
+| error   | `error/60`         | `error/40`        | `error`   | `text` |
+
+Text uses `text`, not `*-foreground`, fue to usage of tints in dark mode.
