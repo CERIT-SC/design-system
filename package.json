@@ -46,6 +46,7 @@
     "preview:showcase": "next start",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
+    "test:a11y": "vitest run",
     "build:lib": "tsc -b && vite build --config vite.config.lib.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -86,7 +87,9 @@
     "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
     "@fontsource-variable/source-sans-3": "^5.3.1",
     "@radix-ui/react-slot": "^1.5.0",
+    "@storybook/addon-a11y": "^10.6.7",
     "@storybook/addon-docs": "^10.6.6",
+    "@storybook/addon-vitest": "^10.6.7",
     "@storybook/react": "^10.6.6",
     "@storybook/react-vite": "^10.6.6",
     "@tailwindcss/postcss": "^4.3.4",
@@ -112,7 +115,11 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.72.1",
     "vite": "^7.3.7",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^5.1.1",
+    "@vitest/browser-playwright": "^5.1.1",
+    "@vitest/coverage-v8": "^5.1.1",
+    "playwright": "^1.65.1"
   },
   "peerDependencies": {
     "@radix-ui/react-accordion": "^1.0.0",

@@ -129,7 +129,7 @@ export function Link({
   return (
     <a
       className={cn(
-        "text-primary dark:text-primary-300 underline hover:no-underline",
+        "text-link dark:text-primary-300 underline hover:no-underline",
         className
       )}
       {...props}

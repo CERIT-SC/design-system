@@ -63,6 +63,9 @@
   --color-tertiary:             var(--tertiary);
   --color-tertiary-foreground:  var(--tertiary-foreground);
 
+
+  --color-link: var(--link, var(--primary));
+
   /* Shades Ramp */
   --color-base-50:  var(--color-base-50);
   --color-base-100: var(--color-base-100);

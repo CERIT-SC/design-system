@@ -89,7 +89,9 @@ function Step2DuplicityCheck() {
           <p className="text-sm text-text">
             Checking for duplicate publications...
           </p>
-          <p className="text-sm text-green-600 mt-4">No duplicates found!</p>
+          <p className="text-sm text-success-800 dark:text-success-300 mt-4">
+            No duplicates found!
+          </p>
         </div>
       </CardContent>
     </Card>

@@ -50,7 +50,9 @@
 
   /* Brand — eLTER primary colors */
   --primary: #ED9632;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #0a2033; /* 7.11:1 on primary — white is only 2.33:1 */
+
+  --link: #8c510c;
 
   --secondary: #BADFFD;
   --secondary-foreground: #0a2033;
@@ -205,7 +207,7 @@
 
   /* Brand — eLTER primary colors */
   --primary: #ED9632;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #0a2033; /* 7.11:1 on primary — white is only 2.33:1 */
 
   --secondary: #BADFFD;
   --secondary-foreground: #0a2033;

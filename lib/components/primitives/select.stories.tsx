@@ -23,7 +23,7 @@ export const Default: Story = {
   render: () => (
     <div className="w-80">
       <Select>
-        <SelectTrigger>
+        <SelectTrigger aria-label="Fruit">
           <SelectValue placeholder="Select a fruit" />
         </SelectTrigger>
         <SelectContent>
@@ -41,7 +41,7 @@ export const Grouped: Story = {
   render: () => (
     <div className="w-80">
       <Select>
-        <SelectTrigger>
+        <SelectTrigger aria-label="Fruit">
           <SelectValue placeholder="Choose an option" />
         </SelectTrigger>
         <SelectContent>

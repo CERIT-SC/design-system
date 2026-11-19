@@ -194,7 +194,7 @@ Branding themes are switched with `data-theme` on the **same element** as `.dark
 | `bg-surface` | Cards, inputs, sidebar | `#eaebf1` | `#191820` |
 | `bg-surface-raised` | Popovers, modals, dropdowns | `#dddee6` | `#242330` |
 
-Text: `text-text` (body) · `text-text-muted` (secondary / helper) · `text-text-heading` (headings)
+Text: `text-text` (body) · `text-text-muted` (secondary / helper) · `text-text-heading` (headings) · `text-link` (inline links — use instead of `text-primary` for text; it falls back to primary and is darkened in themes whose primary is too light to read)
 Border: `border-border` (strokes) · `border-border-focus` (focus ring)
 
 **Brand and semantic tokens + ramps:**
@@ -256,7 +256,7 @@ import { H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, 
 | `Small` | `p` | `text-sm text-text-muted leading-6` |
 | `Muted` | `p` | `text-xs text-text-muted leading-5` |
 | `Code` | `code` | `text-sm font-mono bg-surface px-2 py-1 rounded` |
-| `Link` | `a` | `text-primary dark:text-primary-300 underline hover:no-underline` |
+| `Link` | `a` | `text-link dark:text-primary-300 underline hover:no-underline` |
 | `Blockquote` | `blockquote` | `border-l-4 border-primary pl-4 italic` |
 | `List` | `ul` | `list-disc list-inside space-y-2` |
 | `OrderedList` | `ol` | `list-decimal list-inside space-y-2` |

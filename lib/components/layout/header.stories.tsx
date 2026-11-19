@@ -104,7 +104,7 @@ export const Default: Story = {
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -204,7 +204,7 @@ export const WithDropdown: Story = {
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -261,7 +261,7 @@ export const WithSearch: Story = {
             </div>
           </HeaderCenter>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -316,7 +316,7 @@ export const WithSidebar: Story = {
         <Header>
           <HeaderContent container={false}>
             <HeaderRight>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="Notifications">
                 <Bell className="h-4 w-4" />
               </Button>
               <Avatar>
@@ -375,6 +375,7 @@ export const CustomBackground: Story = {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="Notifications"
               className="text-white hover:bg-white/20"
             >
               <Bell className="h-4 w-4" />
@@ -420,7 +421,7 @@ export const WithoutContainer: Story = {
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>

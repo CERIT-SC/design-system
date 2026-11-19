@@ -31,7 +31,7 @@ const bubbleVariants = cva(
         ghost:
           "border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-surface-raised [&>[data-slot=bubble-content]:is(button,a):hover]:text-text dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-surface-raised/50",
         error:
-          "*:data-[slot=bubble-content]:bg-error/10 *:data-[slot=bubble-content]:text-error-700 dark:*:data-[slot=bubble-content]:text-error dark:*:data-[slot=bubble-content]:bg-error/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-error/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-error/30",
+          "*:data-[slot=bubble-content]:bg-error/10 *:data-[slot=bubble-content]:text-error-700 dark:*:data-[slot=bubble-content]:text-error-300 dark:*:data-[slot=bubble-content]:bg-error/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-error/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-error/30",
       },
     },
     defaultVariants: {

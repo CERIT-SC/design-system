@@ -213,7 +213,7 @@
   --success-foreground: #051909; /* --color-success-950 */
   --warning: #CB9A47; /* --color-warning-600 */
   --warning-foreground: #1F1505; /* --color-warning-950 */
-  --error: #D13838; /* --color-error-600 */
+  --error: #F65953; /* --color-error-500 — 600 was only 3.83:1 with the foreground */
   --error-foreground: #290806; /* --color-error-950 */
 
   /* Charts — EOSC dark mode chart palette */

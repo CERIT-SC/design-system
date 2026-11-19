@@ -22,6 +22,7 @@ export const Default: Story = {
 export const WithValue: Story = {
   args: {
     defaultValue: "This is some default text in the textarea.",
+    "aria-label": "Example textarea",
   },
 };
 
