@@ -28,7 +28,10 @@ export const Default: Story = {
       <Carousel aria-label="Numbered slides" className="w-full max-w-xs">
         <CarouselContent>
           {SLIDES.map((n) => (
-            <CarouselItem key={n} aria-label={`Slide ${n} of ${SLIDES.length}`}>
+            <CarouselItem
+              key={n}
+              aria-label={`Slide ${String(n)} of ${String(SLIDES.length)}`}
+            >
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
                   <span className="text-4xl font-semibold">{n}</span>
@@ -56,7 +59,7 @@ export const MultipleItems: Story = {
           {SLIDES.map((n) => (
             <CarouselItem
               key={n}
-              aria-label={`Slide ${n} of ${SLIDES.length}`}
+              aria-label={`Slide ${String(n)} of ${String(SLIDES.length)}`}
               className="basis-1/2"
             >
               <Card>
@@ -87,7 +90,7 @@ export const Vertical: Story = {
           {SLIDES.map((n) => (
             <CarouselItem
               key={n}
-              aria-label={`Slide ${n} of ${SLIDES.length}`}
+              aria-label={`Slide ${String(n)} of ${String(SLIDES.length)}`}
               className="basis-1/2"
             >
               <Card>

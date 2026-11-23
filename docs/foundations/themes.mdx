@@ -214,3 +214,16 @@ raw tokens directly — see the shipped [setup.css](https://github.com/CERIT-SC/
 [eosc_setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/eosc_setup.css),
 and [elter_setup.css](https://github.com/CERIT-SC/design-system/blob/main/lib_public/elter_setup.css)
 as references for the complete token list.
+
+Set every token in **both** your light block and your `[data-theme="yourtheme"].dark`
+block — including `--link`, `--control`, `--control-foreground` and
+`--border-control`. A token missing from the dark block resolves to either the
+default theme's dark value or your light value, depending on stylesheet order —
+neither is reliably readable. To stay WCAG 2.2 AA,
+check each against `--background`, `--surface` and `--surface-raised`:
+
+| Token | Minimum contrast |
+|-------|------------------|
+| `--text`, `--text-muted`, `--text-heading`, `--link` | 4.5:1 |
+| `--control`, `--border-control`, `--border-focus`, `--chart-1` … `--chart-7` | 3:1 |
+| `--control-foreground` on `--control` | 4.5:1 |

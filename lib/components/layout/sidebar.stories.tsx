@@ -217,65 +217,6 @@ export const WithoutGroups: Story = {
   ),
 };
 
-export const CustomStyling: Story = {
-  render: () => (
-    <div className="flex h-screen w-full">
-      <Sidebar className="bg-linear-to-br from-tertiary to-secondary">
-        <SidebarHeader className="">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold">e-INFRA CZ</span>
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <CollapsibleGroup title="Navigation" defaultOpen={true}>
-            <NavItem
-              href="/"
-              className="hover:bg-primary hover:text-primary-foreground"
-            >
-              <Home className="h-4 w-4" />
-              <span>Home</span>
-            </NavItem>
-            <NavItem
-              href="/docs"
-              className="hover:bg-primary hover:text-primary-foreground"
-            >
-              <FileText className="h-4 w-4" />
-              <span>Documentation</span>
-            </NavItem>
-            <NavItem
-              href="/settings"
-              className="hover:bg-primary hover:text-primary-foreground"
-            >
-              <Settings className="h-4 w-4" />
-              <span>Settings</span>
-            </NavItem>
-          </CollapsibleGroup>
-        </SidebarContent>
-        <SidebarFooter>
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium">
-              JD
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xs font-medium">John Doe</span>
-              <span className="text-xs">john@example.com</span>
-            </div>
-          </div>
-        </SidebarFooter>
-      </Sidebar>
-      <main className="flex-1 p-8">
-        <div className="h-96 rounded-lg border border-dashed p-8 text-center">
-          <h2 className="text-xl font-bold">Custom Styling</h2>
-          <p className="mt-2 text-text">
-            The sidebar can be customized with different colors using the
-            className prop.
-          </p>
-        </div>
-      </main>
-    </div>
-  ),
-};
-
 export const BesideHeader: Story = {
   render: () => (
     <div className="flex min-h-screen w-full">

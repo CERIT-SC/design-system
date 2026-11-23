@@ -73,6 +73,11 @@
 
     /* Tie headings to the brand primary. */
     --text-heading: var(--_p);
+    /* Links and form-control indicators follow the brand primary. Set
+       explicitly so the default theme's dark-mode values never leak in. */
+    --link: var(--_p);
+    --control: var(--_p);
+    --control-foreground: var(--primary-foreground);
 
     /* ── Generated ramps (oklab keeps the steps perceptually even) ──────────
        Defined once; they re-derive automatically when --_p/--_s/--_t change. */

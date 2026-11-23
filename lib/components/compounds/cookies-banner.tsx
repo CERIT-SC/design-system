@@ -27,7 +27,7 @@ const defaultMessage = (
 const defaultLearnMoreLink = (
   <a
     href="/cookies"
-    className="text-link dark:text-primary-300 underline hover:no-underline font-medium transition-colors duration-200"
+    className="text-link underline hover:no-underline font-medium transition-colors duration-200"
   >
     Learn more
   </a>

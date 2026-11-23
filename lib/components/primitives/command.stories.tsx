@@ -91,7 +91,12 @@ function CommandDialogDemo() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button variant="outline" onClick={() => setOpen(true)}>
+      <Button
+        variant="outline"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
         Open command palette
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>

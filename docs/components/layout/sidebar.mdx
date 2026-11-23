@@ -19,47 +19,6 @@ Sidebar is a composable navigation container with support for header, content, a
     <div className="px-4 py-2 text-sm text-text">v1.0.0</div>
   </SidebarFooter>
 </Sidebar>
-<Sidebar className="h-92 bg-linear-to-br from-tertiary to-secondary">
-        <SidebarHeader className="">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold">Custom Colored Sidebar</span>
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <CollapsibleGroup title="Navigation" defaultOpen={true}>
-            <NavItem
-              href="/"
-              className="hover:bg-primary hover:text-primary-foreground"
-            >
-              <Home className="h-4 w-4" />
-              <span>Home</span>
-            </NavItem>
-            <NavItem
-              href="/docs"
-              className="hover:bg-primary hover:text-primary-foreground"
-            >
-              <FileText className="h-4 w-4" />
-              <span>Documentation</span>
-            </NavItem>
-            <NavItem
-              href="/settings"
-              className="hover:bg-primary hover:text-primary-foreground"
-            >
-              <Settings className="h-4 w-4" />
-              <span>Settings</span>
-            </NavItem>
-          </CollapsibleGroup>
-        </SidebarContent>
-        <SidebarFooter>
-          <div className="flex items-center gap-2">
-            
-            <div className="flex flex-col">
-              <span className="text-xs font-medium">John Doe</span>
-              <span className="text-xs">john@example.com</span>
-            </div>
-          </div>
-        </SidebarFooter>
-      </Sidebar>
       </div>
 </ComponentPreview>
 
@@ -88,51 +47,6 @@ import {
   </SidebarContent>
   <SidebarFooter>
     <div className="px-4 py-2 text-sm text-text">v1.0.0</div>
-  </SidebarFooter>
-</Sidebar>
-```
-
-## Usage - Custom Sidebar
-
-```tsx
-<Sidebar className="bg-linear-to-br from-tertiary to-secondary">
-  <SidebarHeader className="">
-    <div className="flex items-center gap-2">
-      <span className="font-semibold">Custom Colored Sidebar</span>
-    </div>
-  </SidebarHeader>
-  <SidebarContent>
-    <CollapsibleGroup title="Navigation" defaultOpen={true}>
-      <NavItem
-        href="/"
-        className="hover:bg-primary hover:text-primary-foreground"
-      >
-        <Home className="h-4 w-4" />
-        <span>Home</span>
-      </NavItem>
-      <NavItem
-        href="/docs"
-        className="hover:bg-primary hover:text-primary-foreground"
-      >
-        <FileText className="h-4 w-4" />
-        <span>Documentation</span>
-      </NavItem>
-      <NavItem
-        href="/settings"
-        className="hover:bg-primary hover:text-primary-foreground"
-      >
-        <Settings className="h-4 w-4" />
-        <span>Settings</span>
-      </NavItem>
-    </CollapsibleGroup>
-  </SidebarContent>
-  <SidebarFooter>
-    <div className="flex items-center gap-2">        
-      <div className="flex flex-col">
-        <span className="text-xs font-medium">John Doe</span>
-        <span className="text-xs">john@example.com</span>
-      </div>
-    </div>
   </SidebarFooter>
 </Sidebar>
 ```

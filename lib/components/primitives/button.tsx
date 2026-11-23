@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-500 cursor-pointer hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-border-focus focus-visible:ring-border-focus/50 focus-visible:ring-[3px]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-500 cursor-pointer hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-border-focus focus-visible:ring-border-focus focus-visible:ring-[3px]",
   {
     variants: {
       variant: {
@@ -24,9 +24,9 @@ const buttonVariants = cva(
         outline:
           "bg-background border border-border hover:bg-surface hover:translate-none",
         ghost: "hover:bg-surface-raised hover:translate-none",
-        link: "text-link dark:text-primary-300 underline-offset-4 hover:underline hover:translate-none",
+        link: "text-link underline-offset-4 hover:underline hover:translate-none",
         "animated-underline":
-          "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary dark:after:bg-primary-300 after:transition-all after:duration-300 hover:text-link dark:hover:text-primary-300 hover:after:w-full hover:translate-none",
+          "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-control after:transition-all after:duration-300 hover:text-link hover:after:w-full hover:translate-none",
       },
       size: {
         default: "h-10 px-6 py-2 has-[>svg]:px-3",

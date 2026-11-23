@@ -54,6 +54,10 @@
 
   --link: #8c510c;
 
+  /* Form-control indicators — the orange primary is only 2.05:1 on background */
+  --control: #9f5c0e; /* --primary-700 */
+  --control-foreground: #ffffff; /* 5.24:1 */
+
   --secondary: #BADFFD;
   --secondary-foreground: #0a2033;
 
@@ -63,6 +67,7 @@
   /* Borders */
   --border: #e0e0eb;
   --border-focus: #054a76;
+  --border-control: #787878; /* --base-500 (#808080) was 2.86:1 on surface-raised */
 
   /* Semantic */
   --info: #3F8ED4;
@@ -74,13 +79,13 @@
   --error: #BC3534; /* --color-error-600 — 500 was 4.38:1 with white */
   --error-foreground: #ffffff;
 
-  /* Charts — ELTER palette */
-  --chart-1: #40907A;
-  --chart-2: #96CE58;
+  /* Charts — ELTER palette, darkened to >= 3:1 on every light surface */
+  --chart-1: #388973;
+  --chart-2: #578903;
   --chart-3: #003972;
-  --chart-4: #BADFFD;
+  --chart-4: #5D7F9A;
   --chart-5: #0879C0;
-  --chart-6: #ED9632;
+  --chart-6: #B36A04;
   --chart-7: #D7412F;
 
   /* ── Primary Ramp ── */
@@ -209,6 +214,12 @@
   --primary: #ED9632;
   --primary-foreground: #0a2033; /* 7.11:1 on primary — white is only 2.33:1 */
 
+  --link: #4fb6f8; /* --primary-300 — the light-mode #8c510c is 2.6:1 here */
+
+  /* Form-control indicators */
+  --control: #ED9632; /* --primary */
+  --control-foreground: #0a2033;
+
   --secondary: #BADFFD;
   --secondary-foreground: #0a2033;
 
@@ -217,7 +228,8 @@
 
   /* Borders */
   --border: #3b5471; /* --base-700 */
-  --border-focus: #6b809c; /* --base-500 */
+  --border-focus: #899ab1; /* --base-400 — 500 was 2.76:1 on surface-raised */
+  --border-control: #899ab1; /* --base-400 */
 
   /* Semantic */
   --info: #3F8ED4;
@@ -229,14 +241,14 @@
   --error: #BC3534;
   --error-foreground: #ffffff;
 
-  /* Charts — ELTER palette */
-  --chart-1: #40907A;
+  /* Charts — ELTER palette, lightened to >= 3:1 on every dark surface */
+  --chart-1: #44947E;
   --chart-2: #96CE58;
-  --chart-3: #003972;
+  --chart-3: #5589C8;
   --chart-4: #BADFFD;
-  --chart-5: #0879C0;
+  --chart-5: #298CD4;
   --chart-6: #ED9632;
-  --chart-7: #D7412F;
+  --chart-7: #E9523F;
 
   /* ── Primary Ramp ── */
   --color-primary-50: #e2f3fe;

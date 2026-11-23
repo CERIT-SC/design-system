@@ -50,7 +50,9 @@ export const Default: Story = {
           onSubmit={(value, files) => {
             setSent((current) => [
               ...current,
-              files.length > 0 ? `${value} (${files.length} file(s))` : value,
+              files.length > 0
+                ? `${value} (${String(files.length)} file(s))`
+                : value,
             ]);
           }}
         >

@@ -50,6 +50,14 @@ Folder `./lib` is mainly concerned with the library itself.
 
 Folder `./src` is for testing the library components.
 
+### Accessibility Tests
+
+```bash
+bun run test:a11y
+```
+
+Renders every Storybook story in each brand (e-INFRA CZ, EOSC, eLTER) × light/dark theme and fails on any WCAG 2.2 A/AA violation. It also runs in PR checks. Uses axe (`@storybook/addon-a11y`) to check contrast, labels, ARIA and structure.
+
 ### Local Testing
 
 Link the package locally:

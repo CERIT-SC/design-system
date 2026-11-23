@@ -52,18 +52,6 @@ Cards display related content and actions in a structured container with header,
         <Button variant="default">Action</Button>
       </CardFooter>
     </Card>
-    <Card variant="gradient" className="w-full ">
-      <CardHeader>
-        <CardTitle>Gradient</CardTitle>
-        <CardDescription>Gradient background.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <P>Features a gradient from secondary to tertiary.</P>
-      </CardContent>
-      <CardFooter>
-        <Button variant="default">Action</Button>
-      </CardFooter>
-    </Card>
     <Card animation="translate" className="w-full ">
       <CardHeader>
         <CardTitle>Animated</CardTitle>
@@ -194,17 +182,6 @@ import {
     <p>Content with tertiary color scheme.</p>
   </CardContent>
 </Card>
-
-// Gradient variant
-<Card variant="gradient" className="w-full max-w-sm">
-  <CardHeader>
-    <CardTitle>Gradient Card</CardTitle>
-    <CardDescription>Gradient background</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p>Features a gradient from secondary to tertiary colors.</p>
-  </CardContent>
-</Card>
 ```
 
 ### Card with Animation
@@ -330,7 +307,7 @@ When `asChild` is `true`, CardMedia will clone and render the child element inst
 
 | Prop      | Type                                                              | Default   | Description              |
 | --------- | ----------------------------------------------------------------- | --------- | ------------------------ |
-| variant   | `default` \| `primary` \| `secondary` \| `tertiary` \| `gradient` | `default` | Visual style variant     |
+| variant   | `default` \| `primary` \| `secondary` \| `tertiary` | `default` | Visual style variant     |
 | animation | `static` \| `translate`                                           | `static`  | Hover animation behavior |
 | className | string                                                            | -         | Additional CSS classes   |
 | ...props  | React.ComponentProps                                              | -         | Native div props         |

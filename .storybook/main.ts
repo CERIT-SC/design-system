@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
+import preserveDirectives from "rollup-preserve-directives";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -26,6 +27,11 @@ const config: StorybookConfig = {
       resolve: {
         alias: {
           "@": path.resolve(__dirname, "../lib"),
+        },
+      },
+      build: {
+        rollupOptions: {
+          plugins: [preserveDirectives()],
         },
       },
     });

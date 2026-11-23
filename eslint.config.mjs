@@ -11,43 +11,73 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 // import eslintNextPlugin from "@next/eslint-plugin-next";
 import nextVitals from "eslint-config-next/core-web-vitals";
 
-export default defineConfig([globalIgnores([
-  "dist",
-  ".build/**",
-  "index.cjs.js",
-  "index.es.js",
-  ".next/**",
-  "out/**",
-  "build/**",
-  "storybook-static/**",
-  "next-env.d.ts",
-  "lib/**/*.stories.{js,cjs,mjs,ts,tsx}",
-  "eslint.config.mjs",
-  "scripts/**",
-  "public/pagefind/**",
-]), eslint.configs.recommended, // eslintNextPlugin.configs.recommended,
-nextVitals, reactHooks.configs.flat.recommended, {
-  languageOptions: {
-    parserOptions: {
-      projectService: {
-        allowDefaultProject: ["*.mjs", "*.cjs"],
+export default defineConfig([
+  globalIgnores([
+    "dist",
+    ".build/**",
+    "index.cjs.js",
+    "index.es.js",
+    ".next/**",
+    "out/**",
+    "build/**",
+    "storybook-static/**",
+    "next-env.d.ts",
+    "eslint.config.mjs",
+    "scripts/**",
+    "public/pagefind/**",
+  ]),
+
+  eslint.configs.recommended,
+
+  // eslintNextPlugin.configs.recommended,
+  nextVitals,
+  reactHooks.configs.flat.recommended,
+
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ["*.mjs", "*.cjs"],
+        },
+        tsConfigRootDir: import.meta.dirname,
       },
-      tsConfigRootDir: import.meta.dirname,
     },
   },
-}, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked, {
-  files: ["**/*.{ts,tsx}"],
-  plugins: {
-    react,
+  tseslint.configs.strictTypeChecked,
+  tseslint.configs.stylisticTypeChecked,
+
+  {
+    files: ["**/*.{ts,tsx}"],
+    plugins: {
+      react,
+    },
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
   },
-  languageOptions: {
-    ecmaVersion: 2020,
-    globals: globals.browser,
+  {
+    files: ["lib/**/*.{ts,tsx}"],
+    rules: {
+      "@next/next/no-html-link-for-pages": "off",
+      "@next/next/no-img-element": "off",
+    },
   },
-}, {
-  files: ["lib/**/*.{ts,tsx}"],
-  rules: {
-    "@next/next/no-html-link-for-pages": "off",
-    "@next/next/no-img-element": "off",
+
+  // Stories are excluded from tsconfig.lib.json (so they stay out of the
+  // published build), which leaves them outside every project the project
+  // service knows about. Type-check them against tsconfig.stories.json instead.
+  {
+    files: ["lib/**/*.stories.{ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: ["./tsconfig.stories.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
   },
-}, eslintPluginPrettierRecommended, ...storybook.configs["flat/recommended"]]);
+
+  eslintPluginPrettierRecommended,
+  storybook.configs["flat/recommended"],
+]);

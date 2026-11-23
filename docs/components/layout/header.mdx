@@ -196,19 +196,19 @@ Header is a sticky top navigation bar built as a compound component. It is meant
     </div>
 
     <div className="rounded-lg border border-dashed overflow-hidden">
-      <Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
+      <Header className="bg-linear-to-r from-primary-900 to-primary-700 border-transparent">
         <HeaderContent>
           <HeaderLeft>
             <img src="/e-INFRA_logo_RGB_bila.svg" alt="e-INFRA CZ" className="h-12 w-auto" />
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="#" className="text-white/90 hover:text-white">
+                  <NavigationMenuLink href="#" className="text-white hover:text-white focus-visible:ring-white">
                     Dashboard
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="#" className="text-white/90 hover:text-white">
+                  <NavigationMenuLink href="#" className="text-white hover:text-white focus-visible:ring-white">
                     Projects
                   </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -216,7 +216,7 @@ Header is a sticky top navigation bar built as a compound component. It is meant
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+            <Button variant="ghost" size="icon" aria-label="Notifications" className="text-white hover:bg-white/20 focus-visible:ring-white">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -429,15 +429,15 @@ import { Sidebar, SidebarHeader, SidebarContent } from "@e-infra/design-system";
 
 ### Full-width and custom backgrounds
 
-`Header` accepts native `className` overrides, so you can apply gradients, transparent borders, or other visual treatments without changing the component implementation.
+`Header` accepts native `className` overrides, so you can apply gradients, transparent borders, or other visual treatments without changing the component implementation. Keep every point of a gradient dark enough for white text (4.5:1) — a gradient that fades into a light `secondary` tint leaves icons and links unreadable at that end — and switch the focus ring to white so it stays visible on the dark background.
 
 ```tsx
-<Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
+<Header className="bg-linear-to-r from-primary-900 to-primary-700 border-transparent">
   <HeaderContent>
     <HeaderLeft>
       <Logo />
-      <nav className="flex items-center gap-4 text-sm font-medium text-white/90">
-        <a href="#" className="hover:text-white">
+      <nav className="flex items-center gap-4 text-sm font-medium text-white">
+        <a href="#" className="hover:underline focus-visible:ring-2 focus-visible:ring-white">
           Dashboard
         </a>
       </nav>
@@ -520,6 +520,6 @@ import { Sidebar, SidebarHeader, SidebarContent } from "@e-infra/design-system";
 ## Notes
 
 - `HeaderCenter` is optional, but it is the supported way to place centered content in this layout.
-- The previews above swap the e-INFRA CZ logo by theme with a `dark:hidden` / `hidden dark:block` image pair. Hidden elements are excluded from the accessibility tree, so both images carry the same `alt` and the logo is announced exactly once in either theme. The gradient header is dark in both themes, so it always takes the white logo.
+- The previews above swap the e-INFRA CZ logo by theme with a `dark:hidden` / `hidden dark:block` image pair. Hidden elements are excluded from the accessibility tree, so both images carry the same `alt` and the logo is announced exactly once in either theme. The gradient header (`primary-900` → `primary-700`) is dark in every theme, so it always takes the white logo.
 - `NavigationMenuViewport` is rendered automatically by `NavigationMenu` unless you set `viewport={false}`.
 - The header implementation is intentionally small; prefer composing the existing subcomponents over adding new header-specific props.

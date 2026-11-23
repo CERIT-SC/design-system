@@ -41,7 +41,9 @@ function ProfileForm() {
     <Form {...form}>
       <form
         noValidate
-        onSubmit={form.handleSubmit(() => undefined)}
+        onSubmit={(event) => {
+          void form.handleSubmit(() => undefined)(event);
+        }}
         className="w-[360px] space-y-6"
       >
         <FormField

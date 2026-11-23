@@ -2,8 +2,6 @@ import type { Preview } from "@storybook/react-vite";
 import "./fonts.css";
 import "../src/app/globals.css";
 
-// Injected by vitest.config.ts so each a11y test project renders one theme.
-// Undefined in the regular Storybook UI, where the toolbar drives the theme.
 declare const __SB_BRAND__: string | undefined;
 declare const __SB_MODE__: string | undefined;
 
@@ -70,17 +68,13 @@ const preview: Preview = {
     },
 
     a11y: {
-      // Restrict axe to WCAG 2.x level A + AA rules.
       options: {
         runOnly: {
           type: "tag",
           values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"],
         },
       },
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: "todo",
+      test: "error",
     },
   },
 };

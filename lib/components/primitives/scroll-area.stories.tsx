@@ -15,7 +15,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const TAGS = Array.from({ length: 50 }, (_, i) => `v1.2.0-beta.${50 - i}`);
+const TAGS = Array.from(
+  { length: 50 },
+  (_, i) => `v1.2.0-beta.${String(50 - i)}`
+);
 
 export const Vertical: Story = {
   render: () => (

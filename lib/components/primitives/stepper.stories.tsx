@@ -232,7 +232,9 @@ export const OnStepChange: Story = {
     <div className="w-200">
       <Stepper
         totalSteps={steps.length}
-        onStepChange={(step) => console.log(`Step changed to: ${step}`)}
+        onStepChange={(step) => {
+          console.log(`Step changed to: ${String(step)}`);
+        }}
       >
         <StepperHeader steps={steps} />
         <StepperContent>
@@ -256,7 +258,15 @@ function CustomFooterActions() {
       <Button variant="outline" onClick={previousStep} disabled={isFirstStep}>
         Back
       </Button>
-      <Button onClick={isLastStep ? () => alert("Finished!") : nextStep}>
+      <Button
+        onClick={
+          isLastStep
+            ? () => {
+                alert("Finished!");
+              }
+            : nextStep
+        }
+      >
         {isLastStep ? "Submit" : "Continue"}
       </Button>
     </div>
@@ -285,14 +295,24 @@ function CustomNavigationFooter() {
             key={i}
             variant={currentStep === i ? "default" : "outline"}
             size="sm"
-            onClick={() => goToStep(i)}
-            aria-label={`Go to step ${i + 1}`}
+            onClick={() => {
+              goToStep(i);
+            }}
+            aria-label={`Go to step ${String(i + 1)}`}
           >
             {i + 1}
           </Button>
         ))}
       </div>
-      <Button onClick={isLastStep ? () => alert("Finished!") : nextStep}>
+      <Button
+        onClick={
+          isLastStep
+            ? () => {
+                alert("Finished!");
+              }
+            : nextStep
+        }
+      >
         {isLastStep ? "Finish" : "Next"}
       </Button>
     </div>

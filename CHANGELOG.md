@@ -11,6 +11,8 @@
 - Added `check:ai-manual` script (run in `check` and PR checks) that fails when the manual's component inventory drifts from the library exports
 - Fixed outdated Sidebar styling notes in the Sidebar docs
 - Fixed Stepper docs examples that omitted `totalSteps`, which made the step count come from the number of child components instead of the steps
+- **Breaking:** removed the `gradient` variant from `Card`
+- **Breaking (visual):** WCAG 2.2 AA colour fixes across all themes (default, EOSC, eLTER, light and dark): added `--control`, `--control-foreground` and `--border-control` tokens, `text-link` for brand-coloured text, and darker/lighter chart colours
 
 ## v0.2.0
 

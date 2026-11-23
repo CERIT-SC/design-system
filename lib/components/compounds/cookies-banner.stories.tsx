@@ -19,9 +19,15 @@ export const Default: Story = {
 
 export const WithCallbacks: Story = {
   args: {
-    onReject: () => console.log("Reject clicked"),
-    onFunctional: () => console.log("Functional clicked"),
-    onAccept: () => console.log("Accept clicked"),
+    onReject: () => {
+      console.log("Reject clicked");
+    },
+    onFunctional: () => {
+      console.log("Functional clicked");
+    },
+    onAccept: () => {
+      console.log("Accept clicked");
+    },
   },
 };
 
@@ -33,8 +39,14 @@ export const CustomMessage: Story = {
         for your application.{" "}
       </>
     ),
-    onReject: () => console.log("Reject clicked"),
-    onFunctional: () => console.log("Functional clicked"),
-    onAccept: () => console.log("Accept clicked"),
+    onReject: () => {
+      console.log("Reject clicked");
+    },
+    onFunctional: () => {
+      console.log("Functional clicked");
+    },
+    onAccept: () => {
+      console.log("Accept clicked");
+    },
   },
 };

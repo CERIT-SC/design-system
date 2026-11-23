@@ -194,8 +194,9 @@ Branding themes are switched with `data-theme` on the **same element** as `.dark
 | `bg-surface` | Cards, inputs, sidebar | `#eaebf1` | `#191820` |
 | `bg-surface-raised` | Popovers, modals, dropdowns | `#dddee6` | `#242330` |
 
-Text: `text-text` (body) · `text-text-muted` (secondary / helper) · `text-text-heading` (headings) · `text-link` (inline links — use instead of `text-primary` for text; it falls back to primary and is darkened in themes whose primary is too light to read)
-Border: `border-border` (strokes) · `border-border-focus` (focus ring)
+Text: `text-text` (body) · `text-text-muted` (secondary / helper) · `text-text-heading` (headings) · `text-link` (inline links and any brand-coloured text — never use `text-primary` for text: `primary` is a fill colour and fails contrast as text in several themes, while `link` is ≥ 4.5:1 on every surface in light and dark)
+Border: `border-border` (decorative strokes, dividers) · `border-border-control` (outline of inputs, selects, radios, switches — ≥ 3:1 on every surface) · `border-border-focus` (focus ring, used at full opacity)
+Form-control indicators: `bg-control` / `text-control-foreground` for checked, selected or filled states of custom controls (checkbox, switch, slider range, progress). `primary` is not guaranteed 3:1 against the page; `control` is.
 
 **Brand and semantic tokens + ramps:**
 
@@ -210,7 +211,7 @@ Border: `border-border` (strokes) · `border-border-focus` (focus ring)
 | `error` | `bg-error text-error-foreground` | `error-50` … `error-950` |
 
 Ramps: `50–200` subtle tints · `300–600` interactive / hover states · `700–950` strong accents and text on light backgrounds.
-Neutral: `base-50` … `base-950` (theme-independent cool grey). Charts: `chart-1` … `chart-7`.
+Neutral: `base-50` … `base-950` (theme-independent cool grey). Charts: `chart-1` … `chart-7` (each ≥ 3:1 against `background`, `surface` and `surface-raised` in every theme).
 
 Always write token classes as complete literal strings. Tailwind only generates classes it finds in source, so `` `bg-${status}-100` `` produces no CSS — map values to full class names instead.
 
@@ -256,7 +257,7 @@ import { H1, H2, H3, H4, P, Lead, Strong, Small, Muted, Code, Link, Blockquote, 
 | `Small` | `p` | `text-sm text-text-muted leading-6` |
 | `Muted` | `p` | `text-xs text-text-muted leading-5` |
 | `Code` | `code` | `text-sm font-mono bg-surface px-2 py-1 rounded` |
-| `Link` | `a` | `text-link dark:text-primary-300 underline hover:no-underline` |
+| `Link` | `a` | `text-link underline hover:no-underline` |
 | `Blockquote` | `blockquote` | `border-l-4 border-primary pl-4 italic` |
 | `List` | `ul` | `list-disc list-inside space-y-2` |
 | `OrderedList` | `ol` | `list-decimal list-inside space-y-2` |
@@ -360,7 +361,7 @@ Default value first. Values not listed here do not exist — e.g. there is no `p
 | `AlertDialogAction` / `AlertDialogCancel` | `variant`, `size` | Same as `Button`. Action defaults to `default`, Cancel to `outline` |
 | `Badge` | `variant` | `default` · `secondary` · `error` · `outline` |
 | `Alert` | `variant` | `default` · `success` · `warning` · `error` |
-| `Card` | `variant` | `default` (`bg-surface`) · `primary` · `secondary` · `tertiary` · `gradient` |
+| `Card` | `variant` | `default` (`bg-surface`) · `primary` · `secondary` · `tertiary` |
 | `Card` | `animation` | `static` · `translate` (lifts on hover) |
 | `CardMedia` | `aspectRatio` | `video` · `square` · `auto`. Renders an `<img>` (pass `src`, `alt`) or `asChild` for your own image component |
 | `Toggle` / `ToggleGroup` | `variant`, `size` | `default` · `outline`; `default` · `sm` · `lg`. `ToggleGroup` also takes `spacing` (number, default `0`) |

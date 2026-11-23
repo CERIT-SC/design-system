@@ -33,3 +33,9 @@ jobs:
 
       - name: Check AI Agents Manual Inventory
         run: bun run check:ai-manual
+
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run WCAG AA Accessibility Tests
+        run: bun run test:a11y
