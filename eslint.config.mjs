@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
+
 import eslint from "@eslint/js";
 import globals from "globals";
 import react from "eslint-plugin-react";
@@ -19,7 +22,6 @@ export default defineConfig([
     "build/**",
     "storybook-static/**",
     "next-env.d.ts",
-    "lib/**/*.stories.{js,cjs,mjs,ts,tsx}",
     "eslint.config.mjs",
     "scripts/**",
     "public/pagefind/**",
@@ -62,5 +64,20 @@ export default defineConfig([
     },
   },
 
+  // Stories are excluded from tsconfig.lib.json (so they stay out of the
+  // published build), which leaves them outside every project the project
+  // service knows about. Type-check them against tsconfig.stories.json instead.
+  {
+    files: ["lib/**/*.stories.{ts,tsx}"],
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: ["./tsconfig.stories.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+
   eslintPluginPrettierRecommended,
+  storybook.configs["flat/recommended"],
 ]);

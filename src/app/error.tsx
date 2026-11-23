@@ -49,7 +49,7 @@ export default function Error({ error, reset }: ErrorProps) {
           Need help?{" "}
           <a
             href="mailto:support@e-infra.cz"
-            className="text-primary hover:text-primary/80 hover:underline transition-colors"
+            className="text-link hover:underline transition-colors"
           >
             support@e-infra.cz
           </a>

@@ -59,7 +59,7 @@ export function MobileNav({ items, className }: MobileNavProps) {
               onClick={() => {
                 setOpen(false);
               }}
-              className="rounded-md px-3 py-2 text-base font-medium text-text transition-colors hover:bg-secondary hover:text-primary"
+              className="rounded-md px-3 py-2 text-base font-medium text-text transition-colors hover:bg-secondary hover:text-secondary-foreground"
             >
               {item.label}
             </Link>

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "./input";
 
 const meta = {
@@ -43,5 +43,6 @@ export const Disabled: Story = {
 export const WithValue: Story = {
   args: {
     defaultValue: "Default value",
+    "aria-label": "Example input",
   },
 };

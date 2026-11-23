@@ -38,7 +38,7 @@ export function SearchResults({
 }: SearchResultsProps) {
   if (error) {
     return (
-      <div className="search-state-enter py-6 text-center text-sm text-error">
+      <div className="search-state-enter py-6 text-center text-sm text-error-700 dark:text-error-300">
         {error}
       </div>
     );

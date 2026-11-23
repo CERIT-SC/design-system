@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Textarea } from "./textarea";
 
 const meta = {
@@ -22,6 +22,7 @@ export const Default: Story = {
 export const WithValue: Story = {
   args: {
     defaultValue: "This is some default text in the textarea.",
+    "aria-label": "Example textarea",
   },
 };
 

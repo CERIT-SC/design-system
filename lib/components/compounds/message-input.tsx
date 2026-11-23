@@ -130,7 +130,7 @@ function MessageInput({
         data-slot="message-input"
         data-status={status}
         className={cn(
-          "border-border bg-surface focus-within:border-border-focus focus-within:ring-border-focus/50 flex w-full min-w-0 flex-col gap-2 rounded-xl border p-2 transition-[color,box-shadow] focus-within:ring-[3px]",
+          "border-border-control bg-surface focus-within:border-border-focus focus-within:ring-border-focus flex w-full min-w-0 flex-col gap-2 rounded-xl border p-2 transition-[color,box-shadow] focus-within:ring-[3px]",
           disabled && "pointer-events-none opacity-50",
           className
         )}

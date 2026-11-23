@@ -54,7 +54,7 @@ const useFormField = () => {
   const formState = useFormState({ name: fieldContext.name });
   const fieldState = getFieldState(fieldContext.name, formState);
 
-  const { id } = itemContext;
+  const { id, ...itemState } = itemContext;
 
   return {
     id,
@@ -62,12 +62,19 @@ const useFormField = () => {
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
+    ...itemState,
     ...fieldState,
   };
 };
 
 interface FormItemContextValue {
   id: string;
+  /** Whether a FormDescription / FormMessage is currently rendered, so
+   * FormControl only references ids that exist (aria-describedby). */
+  hasDescription: boolean;
+  hasMessage: boolean;
+  setHasDescription: (present: boolean) => void;
+  setHasMessage: (present: boolean) => void;
 }
 
 const FormItemContext = React.createContext<FormItemContextValue>(
@@ -76,9 +83,21 @@ const FormItemContext = React.createContext<FormItemContextValue>(
 
 function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   const id = React.useId();
+  const [hasDescription, setHasDescription] = React.useState(false);
+  const [hasMessage, setHasMessage] = React.useState(false);
+  const value = React.useMemo(
+    () => ({
+      id,
+      hasDescription,
+      hasMessage,
+      setHasDescription,
+      setHasMessage,
+    }),
+    [id, hasDescription, hasMessage]
+  );
 
   return (
-    <FormItemContext.Provider value={{ id }}>
+    <FormItemContext.Provider value={value}>
       <div
         data-slot="form-item"
         className={cn("grid gap-2", className)}
@@ -86,6 +105,20 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
       />
     </FormItemContext.Provider>
   );
+}
+
+/** Report this element's presence to the enclosing FormItem while mounted. */
+function useRegisterInFormItem(
+  register: (present: boolean) => void,
+  present: boolean
+) {
+  React.useEffect(() => {
+    if (!present) return;
+    register(true);
+    return () => {
+      register(false);
+    };
+  }, [register, present]);
 }
 
 function FormLabel({
@@ -98,7 +131,10 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-error", className)}
+      className={cn(
+        "data-[error=true]:text-error-700 dark:data-[error=true]:text-error-300",
+        className
+      )}
       htmlFor={formItemId}
       {...props}
     />
@@ -106,16 +142,25 @@ function FormLabel({
 }
 
 function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
-  const { error, formItemId, formDescriptionId, formMessageId } =
-    useFormField();
+  const {
+    error,
+    formItemId,
+    formDescriptionId,
+    formMessageId,
+    hasDescription,
+    hasMessage,
+  } = useFormField();
+
+  const describedBy =
+    [hasDescription && formDescriptionId, hasMessage && formMessageId]
+      .filter(Boolean)
+      .join(" ") || undefined;
 
   return (
     <Slot
       data-slot="form-control"
       id={formItemId}
-      aria-describedby={
-        !error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`
-      }
+      aria-describedby={describedBy}
       aria-invalid={!!error}
       {...props}
     />
@@ -123,7 +168,8 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
 }
 
 function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
-  const { formDescriptionId } = useFormField();
+  const { formDescriptionId, setHasDescription } = useFormField();
+  useRegisterInFormItem(setHasDescription, true);
 
   return (
     <p
@@ -136,8 +182,9 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 }
 
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
-  const { error, formMessageId } = useFormField();
+  const { error, formMessageId, setHasMessage } = useFormField();
   const body = error ? String(error.message) : props.children;
+  useRegisterInFormItem(setHasMessage, Boolean(body));
 
   if (!body) {
     return null;
@@ -147,7 +194,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-error text-sm", className)}
+      className={cn("text-error-700 dark:text-error-300 text-sm", className)}
       {...props}
     >
       {body}

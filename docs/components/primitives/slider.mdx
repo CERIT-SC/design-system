@@ -4,9 +4,9 @@ Sliders allow users to select a value from a continuous or discrete range by dra
 
 <ComponentPreview>
   <div className="flex flex-col gap-6 w-full max-w-sm">
-    <Slider defaultValue={[50]} max={100} step={1} />
-    <Slider defaultValue={[25, 75]} max={100} step={1} />
-    <Slider defaultValue={[33]} max={100} step={1} disabled />
+    <Slider aria-label="Volume" defaultValue={[50]} max={100} step={1} />
+    <Slider aria-label="Price range" defaultValue={[25, 75]} max={100} step={1} />
+    <Slider aria-label="Brightness" defaultValue={[33]} max={100} step={1} disabled />
   </div>
 </ComponentPreview>
 
@@ -15,8 +15,8 @@ Sliders allow users to select a value from a continuous or discrete range by dra
 ```tsx
 import { Slider } from "@e-infra/design-system"
 
-<Slider defaultValue={[50]} max={100} step={1} />
-<Slider defaultValue={[25, 75]} min={0} max={100} />
+<Slider aria-label="Volume" defaultValue={[50]} max={100} step={1} />
+<Slider aria-label="Price range" defaultValue={[25, 75]} min={0} max={100} />
 ```
 
 ## Props
@@ -29,6 +29,8 @@ import { Slider } from "@e-infra/design-system"
 | max          | number               | `100`   | Maximum value                   |
 | step         | number               | -       | Step size for discrete values   |
 | disabled     | boolean              | `false` | Disable the slider              |
+| aria-label   | string               | -       | Accessible name, applied to every thumb (required unless `aria-labelledby` is set) |
+| aria-labelledby | string            | -       | ID of a visible label, applied to every thumb |
 | className    | string               | -       | Additional CSS classes          |
 | ...props     | React.ComponentProps | -       | Radix UI Slider props           |
 

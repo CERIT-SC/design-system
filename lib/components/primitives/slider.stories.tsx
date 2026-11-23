@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Slider } from "./slider";
 
 const meta = {
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <div className="w-100">
-      <Slider defaultValue={[50]} max={100} step={1} />
+      <Slider aria-label="Volume" defaultValue={[50]} max={100} step={1} />
     </div>
   ),
 };
@@ -24,7 +24,12 @@ export const Default: Story = {
 export const Range: Story = {
   render: () => (
     <div className="w-100">
-      <Slider defaultValue={[25, 75]} max={100} step={1} />
+      <Slider
+        aria-label="Price range"
+        defaultValue={[25, 75]}
+        max={100}
+        step={1}
+      />
     </div>
   ),
 };

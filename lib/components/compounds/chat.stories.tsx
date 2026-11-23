@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { RefreshCw, ThumbsDown, ThumbsUp } from "lucide-react";
 
@@ -48,12 +48,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type Turn = {
+interface Turn {
   id: string;
   role: "user" | "assistant";
   text: string;
   at: string;
-};
+}
 
 const REPLY =
   "Your project is currently allocated 200 GB across the shared filesystem. " +

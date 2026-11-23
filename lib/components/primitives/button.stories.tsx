@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./button";
 
 const meta = {
@@ -150,6 +150,7 @@ export const Icon: Story = {
       </svg>
     ),
     size: "icon",
+    "aria-label": "Next",
   },
 };
 
@@ -172,6 +173,7 @@ export const IconSmall: Story = {
       </svg>
     ),
     size: "icon-sm",
+    "aria-label": "Next",
   },
 };
 
@@ -194,6 +196,7 @@ export const IconLarge: Story = {
       </svg>
     ),
     size: "icon-lg",
+    "aria-label": "Next",
   },
 };
 
@@ -255,7 +258,7 @@ export const AllVariants: Story = {
         <Button size="lg">Large</Button>
       </div>
       <div className="flex flex-wrap items-center gap-2">
-        <Button size="icon-sm">
+        <Button size="icon-sm" aria-label="Next">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -271,7 +274,7 @@ export const AllVariants: Story = {
             <path d="m12 5 7 7-7 7" />
           </svg>
         </Button>
-        <Button size="icon">
+        <Button size="icon" aria-label="Next">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -287,7 +290,7 @@ export const AllVariants: Story = {
             <path d="m12 5 7 7-7 7" />
           </svg>
         </Button>
-        <Button size="icon-lg">
+        <Button size="icon-lg" aria-label="Next">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

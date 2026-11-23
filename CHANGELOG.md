@@ -2,12 +2,17 @@
 
 ## Unreleased
 
+- **Breaking (visual):** updated the default e-INFRA CZ theme fonts: Atkinson Hyperlegible Next for headings (`h1`–`h6`), Source Sans 3 for body text and Atkinson Hyperlegible Mono for code.
+- Atkinson Hyperlegible Mono is the code font in every theme, including EOSC and eLTER
+- Added `--font-sans`, `--font-heading` and `--font-mono` theme tokens to `setup.css` (and the `font-heading` utility); EOSC and eLTER headings stay the same
 - Added `fullHeight` prop to `Sidebar` so it can sit beside the `Header` (full viewport height) instead of below it
 - Rewrote the AI agents manual as a single skill matching v0.2.0: full component inventory (chat components, Footer, Popover, Command, …), branding themes, corrected Sidebar/NavItem/typography details, all three page layouts, and a fixed worked example
 - Added a component API cheat-sheet (variant, size and other prop values) and a chat interfaces section to the AI agents manual
 - Added `check:ai-manual` script (run in `check` and PR checks) that fails when the manual's component inventory drifts from the library exports
 - Fixed outdated Sidebar styling notes in the Sidebar docs
 - Fixed Stepper docs examples that omitted `totalSteps`, which made the step count come from the number of child components instead of the steps
+- **Breaking:** removed the `gradient` variant from `Card`
+- **Breaking (visual):** WCAG 2.2 AA colour fixes across all themes (default, EOSC, eLTER, light and dark): added `--control`, `--control-foreground` and `--border-control` tokens, `text-link` for brand-coloured text, and darker/lighter chart colours
 
 ## v0.2.0
 

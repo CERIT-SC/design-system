@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Montserrat, Roboto } from "next/font/google";
+import {
+  Atkinson_Hyperlegible_Mono,
+  Atkinson_Hyperlegible_Next,
+  Montserrat,
+  Roboto,
+  Source_Sans_3,
+} from "next/font/google";
 import Image from "next/image";
 import {
   Header,
@@ -35,8 +41,29 @@ import { SearchTrigger } from "../components/search/SearchTrigger";
 import { Button } from "../../lib/components/primitives/button";
 import { Package } from "lucide-react";
 
-const inter = Inter({ subsets: ["latin"] });
+// e-INFRA (default theme) fonts
+const atkinsonNext = Atkinson_Hyperlegible_Next({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  adjustFontFallback: false,
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+  variable: "--font-atkinson-hyperlegible-next",
+});
+const sourceSans = Source_Sans_3({
+  subsets: ["latin", "latin-ext"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-source-sans-3",
+});
+const atkinsonMono = Atkinson_Hyperlegible_Mono({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+  variable: "--font-atkinson-hyperlegible-mono",
+});
 
+// Branding theme fonts.
 const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
@@ -67,7 +94,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${montserrat.variable}`}
+      className={`${atkinsonNext.variable} ${sourceSans.variable} ${atkinsonMono.variable} ${roboto.variable} ${montserrat.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -135,7 +162,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Header>
           <HeaderContent container={false} className="w-full mx-4">
             <HeaderLeft>

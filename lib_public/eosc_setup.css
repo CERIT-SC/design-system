@@ -20,6 +20,7 @@
   --font-sans:
     var(--font-roboto, "Roboto"), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-sans);
 
   /* Transitions */
   --transition-duration: 300ms;
@@ -33,11 +34,16 @@
  /* Text */
   --text: #091013; /* --base-950 */
   --text-muted: #3A5860; /* --base-600 */
-  --text-heading: #2A7180; /* --primary-600 */
+  --text-heading: #005B67; /* --primary-700 — 600 was 4.18:1 on surface-raised */
 
   /* Brand — EOSC primary colors */
   --primary: #2A7180; /* --primary-600 */
   --primary-foreground: #ffffff;
+  --link: #005B67; /* --primary-700 — primary is 4.18:1 on surface-raised */
+
+  /* Form-control indicators */
+  --control: #2A7180; /* --primary-600 */
+  --control-foreground: #ffffff;
 
   --secondary: #C5E5EB; /* --secondary-200 */
   --secondary-foreground: #04424C; /* --secondary-800 */
@@ -48,6 +54,7 @@
   /* Borders */
   --border: #C1CED0; /* --base-300 */
   --border-focus: #2A7180; /* --primary-600 */
+  --border-control: #55747B; /* --base-500 */
 
   /* Semantic */
   --info: #8FC8FF; /* --color-info-500 */
@@ -59,13 +66,13 @@
   --error: #F65953; /* --color-error-500 */
   --error-foreground: #290806; /* --color-error-950 */
 
-  /* Charts — EOSC palette */
-  --chart-1: #009DB7;
-  --chart-2: #F15893;
+  /* Charts — EOSC palette, darkened to >= 3:1 on every light surface */
+  --chart-1: #0A8AA0;
+  --chart-2: #DB4481;
   --chart-3: #7F32FC;
-  --chart-4: #DC7200;
-  --chart-5: #00A52A;
-  --chart-6: #A99300;
+  --chart-4: #C26506;
+  --chart-5: #059226;
+  --chart-6: #907D04;
   --chart-7: #B10005;
 
 /* ── Primary Ramp ── */
@@ -194,6 +201,11 @@
   /* Brand — EOSC dark mode brand colours */
   --primary: #267582; /* --color-primary-600 */
   --primary-foreground: #ffffff;
+  --link: #76BBC8; /* --color-primary-300 — primary is 3.61:1 on background */
+
+  /* Form-control indicators — primary is only 2.87:1 on surface-raised */
+  --control: #52A3B2; /* --color-primary-400 */
+  --control-foreground: #091013; /* --base-950 */
 
   --secondary: #012930 ; /* --color-secondary-900 */ 
   --secondary-foreground: #A0D0DA; /* --color-secondary-200 */
@@ -203,7 +215,8 @@
 
   /* Borders — EOSC dark mode border colours */
   --border: #1D3237; /* --base-700 */
-  --border-focus: #267582; /* --color-primary-600 */
+  --border-focus: #378B9A; /* --color-primary-500 — 600 was 2.87:1 on surface-raised */
+  --border-control: #57767D; /* --base-400 — 500 was 1.99–2.51:1 on dark surfaces */
 
   /* Semantic - dark */
   --info: #609BDC; /* --color-info-600 */
@@ -212,7 +225,7 @@
   --success-foreground: #051909; /* --color-success-950 */
   --warning: #CB9A47; /* --color-warning-600 */
   --warning-foreground: #1F1505; /* --color-warning-950 */
-  --error: #D13838; /* --color-error-600 */
+  --error: #F65953; /* --color-error-500 — 600 was only 3.83:1 with the foreground */
   --error-foreground: #290806; /* --color-error-950 */
 
   /* Charts — EOSC dark mode chart palette */

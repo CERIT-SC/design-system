@@ -3,7 +3,7 @@
  */
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 
 /* Reserve the scrollbar track so content does not shift when it appears. */
 @utility scrollbar-gutter-stable {
@@ -20,6 +20,20 @@
     0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
     30%           { opacity: 1;   transform: translateY(-25%); }
   }
+}
+
+@theme static {
+  --font-sans:
+    var(--font-source-sans-3, "Source Sans 3"), ui-sans-serif, system-ui,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --font-heading:
+    var(--font-atkinson-hyperlegible-next, "Atkinson Hyperlegible Next"),
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    var(--font-atkinson-hyperlegible-mono, "Atkinson Hyperlegible Mono"),
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 @theme inline {
@@ -48,6 +62,14 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-tertiary:             var(--tertiary);
   --color-tertiary-foreground:  var(--tertiary-foreground);
+
+
+  --color-link: var(--link, var(--primary));
+
+  /* Form-control indicators (checked checkbox/switch, slider range, progress).
+     Unlike --primary, guaranteed >= 3:1 against every surface (WCAG 1.4.11). */
+  --color-control:            var(--control, var(--primary));
+  --color-control-foreground: var(--control-foreground, var(--primary-foreground));
 
   /* Shades Ramp */
   --color-base-50:  var(--color-base-50);
@@ -148,8 +170,10 @@
 
 
   /* Borders */
-  --color-border:       var(--border);
-  --color-border-focus: var(--border-focus);
+  --color-border:         var(--border);
+  --color-border-focus:   var(--border-focus);
+  /* Outline of inputs, selects, radios, switches — >= 3:1 on every surface. */
+  --color-border-control: var(--border-control);
 
   /* Semantic */
   --color-info:               var(--info);
@@ -185,7 +209,7 @@
 
   /* Text */
   --text:         #130f23;
-  --text-muted:   #6e6a82; 
+  --text-muted:   #625e76;
   --text-heading: #2f2557; 
 
   /* Brand */
@@ -198,9 +222,14 @@
   --tertiary:            #d3eef3;
   --tertiary-foreground: #0e444e;
 
+  /* Form-control indicators */
+  --control:            #2f2557; /* --primary */
+  --control-foreground: #ffffff;
+
   /* Borders */
-  --border:       #c9cad4;
-  --border-focus: #2f2557;
+  --border:         #c9cad4;
+  --border-focus:   #2f2557;
+  --border-control: #6e6a82; /* --base-500 */
 
   --info:               #7ecdf8;
   --info-foreground:    #192932;
@@ -211,13 +240,13 @@
   --error:              #f65a4f;
   --error-foreground:   #311210;
 
-  /* Charts */
+  /* Charts — each >= 3:1 against background, surface and surface-raised */
   --chart-1: #2f2557;
   --chart-2: #00688e;
-  --chart-3: #89b050;
-  --chart-4: #488f31;
-  --chart-5: #ffa600;
-  --chart-6: #e67f83;
+  --chart-3: #638825;
+  --chart-4: #2a710a;
+  --chart-5: #ae7005;
+  --chart-6: #c25f64;
   --chart-7: #c4386a;
 
   /* ── Color ramps ── */
@@ -339,9 +368,17 @@
   --tertiary:            #9cd2db;
   --tertiary-foreground: #0c1516;
 
+  /* --primary is a fill (2.46:1 on background) — text and indicators need
+     the lighter ramp step. Every brand's dark block must set these, or this
+     value leaks into it through the cascade. */
+  --link:               #9086c7; /* --primary-300 */
+  --control:            #9086c7; /* --primary-300 */
+  --control-foreground: #0f0e14;
+
   /* Borders */
-  --border:       #2e2c3c;
-  --border-focus: #d9d6e6;
+  --border:         #2e2c3c;
+  --border-focus:   #d9d6e6;
+  --border-control: #736f87;
 
   /* Semantic — identical to light, designed to work on both */
   --info:               #7ecdf8;
@@ -353,7 +390,15 @@
   --error:              #f65a4f;
   --error-foreground:   #311210;
 
-  --chart-1: #564597;
+  /* Charts — light values are darkened for light surfaces; dark mode keeps
+     the brighter originals. Each >= 3:1 on every dark surface. */
+  --chart-1: #7262b7;
+  --chart-2: #1e779e;
+  --chart-3: #89b050;
+  --chart-4: #488f31;
+  --chart-5: #ffa600;
+  --chart-6: #e67f83;
+  --chart-7: #c5396b;
 
   /* ── Color ramps ── */
 
@@ -400,6 +445,14 @@
   }
   body {
     @apply bg-background text-text;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
   }
 }
 

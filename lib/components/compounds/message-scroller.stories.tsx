@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import {
@@ -31,15 +31,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type Turn = { id: string; role: "user" | "assistant"; text: string };
+interface Turn {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+}
 
 const SEED: Turn[] = Array.from({ length: 14 }, (_, i) => ({
-  id: `seed-${i}`,
+  id: `seed-${String(i)}`,
   role: i % 2 === 0 ? "user" : "assistant",
   text:
     i % 2 === 0
-      ? `Question ${i / 2 + 1}: how do I request more storage?`
-      : `Answer ${Math.ceil(i / 2)}: open a ticket and include your project ID.`,
+      ? `Question ${String(i / 2 + 1)}: how do I request more storage?`
+      : `Answer ${String(Math.ceil(i / 2))}: open a ticket and include your project ID.`,
 }));
 
 export const Default: Story = {
@@ -189,11 +193,14 @@ export const PreservesPositionOnPrepend: Story = {
           variant="outline"
           onClick={() => {
             setTurns((current) => [
-              ...Array.from({ length: 6 }, (_, i) => ({
-                id: `older-${String(current.length)}-${String(i)}`,
-                role: (i % 2 === 0 ? "user" : "assistant") as Turn["role"],
-                text: `Older turn ${String(i + 1)} loaded from history.`,
-              })),
+              ...Array.from(
+                { length: 6 },
+                (_, i): Turn => ({
+                  id: `older-${String(current.length)}-${String(i)}`,
+                  role: i % 2 === 0 ? "user" : "assistant",
+                  text: `Older turn ${String(i + 1)} loaded from history.`,
+                })
+              ),
               ...current,
             ]);
           }}

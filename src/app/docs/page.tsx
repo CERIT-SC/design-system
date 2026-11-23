@@ -20,10 +20,7 @@ export default function DocsIndexPage() {
             <ul className="space-y-2">
               {section.items.map((item) => (
                 <li key={item.path}>
-                  <Link
-                    href={item.path}
-                    className="text-primary hover:underline"
-                  >
+                  <Link href={item.path} className="text-link hover:underline">
                     {item.title}
                   </Link>
                 </li>

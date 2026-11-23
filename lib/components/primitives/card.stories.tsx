@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Card,
   CardHeader,
@@ -24,7 +24,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "primary", "secondary", "tertiary", "gradient"],
+      options: ["default", "primary", "secondary", "tertiary"],
     },
     animation: {
       control: "select",
@@ -111,29 +111,6 @@ export const Tertiary: Story = {
         </CardHeader>
         <CardContent>
           <P>This card uses the tertiary color scheme.</P>
-        </CardContent>
-        <CardFooter>
-          <Button>Action</Button>
-        </CardFooter>
-      </>
-    ),
-  },
-};
-
-export const Gradient: Story = {
-  args: {
-    variant: "gradient",
-    className: "w-full max-w-sm",
-    children: (
-      <>
-        <CardHeader>
-          <CardTitle>Gradient Card</CardTitle>
-          <CardDescription>Uses gradient background</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <P>
-            This card features a gradient from secondary to tertiary colors.
-          </P>
         </CardContent>
         <CardFooter>
           <Button>Action</Button>
@@ -270,16 +247,6 @@ export const AllVariants: Story = {
         </CardContent>
       </Card>
 
-      <Card className="w-full max-w-70" variant="gradient">
-        <CardHeader>
-          <CardTitle>Gradient</CardTitle>
-          <CardDescription>Gradient background</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <P>Card with gradient background.</P>
-        </CardContent>
-      </Card>
-
       <Card className="w-full max-w-70" variant="default" animation="translate">
         <CardHeader>
           <CardTitle>With Animation</CardTitle>
@@ -378,7 +345,7 @@ export const WithMediaSquare: Story = {
 export const WithCustomImageComponent: Story = {
   render: () => {
     const CustomImage = (props: React.ComponentProps<"img">) => (
-      <img {...props} data-custom="true" />
+      <img alt="" {...props} data-custom="true" />
     );
 
     return (

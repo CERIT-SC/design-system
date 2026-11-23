@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Progress } from "./progress";
 
 const meta = {
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <div className="w-[400px]">
-      <Progress value={33} />
+      <Progress value={33} aria-label="Upload progress" />
     </div>
   ),
 };
@@ -24,7 +24,7 @@ export const Default: Story = {
 export const Half: Story = {
   render: () => (
     <div className="w-[400px]">
-      <Progress value={50} />
+      <Progress value={50} aria-label="Upload progress" />
     </div>
   ),
 };
@@ -32,7 +32,7 @@ export const Half: Story = {
 export const Complete: Story = {
   render: () => (
     <div className="w-[400px]">
-      <Progress value={100} />
+      <Progress value={100} aria-label="Upload progress" />
     </div>
   ),
 };

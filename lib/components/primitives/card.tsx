@@ -22,10 +22,12 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: "",
-        primary: "bg-primary text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground",
-        tertiary: "bg-tertiary text-tertiary-foreground",
-        gradient: "bg-gradient-to-br from-secondary to-tertiary",
+        primary:
+          "bg-primary text-primary-foreground [&_[data-slot=card-description]]:text-current",
+        secondary:
+          "bg-secondary text-secondary-foreground [&_[data-slot=card-description]]:text-current",
+        tertiary:
+          "bg-tertiary text-tertiary-foreground [&_[data-slot=card-description]]:text-current",
       },
       animation: {
         translate:

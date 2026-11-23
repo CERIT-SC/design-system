@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FeedbackForm } from "./feedback-form";
 
 const meta = {
@@ -95,20 +95,25 @@ export const WithError: Story = {
 
 export const Controlled: Story = {
   render: () => {
-    // eslint-disable-next-line
     const [isOpen, setIsOpen] = React.useState(false);
     return (
       <div className="p-8">
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+          }}
           className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
         >
           Open Feedback Form
         </button>
         <FeedbackForm
           isOpen={isOpen}
-          onOpen={() => setIsOpen(true)}
-          onClose={() => setIsOpen(false)}
+          onOpen={() => {
+            setIsOpen(true);
+          }}
+          onClose={() => {
+            setIsOpen(false);
+          }}
           onSubmit={async (data) => {
             console.log("Feedback submitted:", data);
             await new Promise((resolve) => setTimeout(resolve, 1000));

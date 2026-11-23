@@ -52,7 +52,7 @@ function NavigationMenuItem({
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
       className={cn(
-        "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:text-primary transition-colors",
+        "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-control after:transition-all after:duration-300 hover:after:w-full hover:text-link transition-colors",
         className
       )}
       {...props}
@@ -61,7 +61,7 @@ function NavigationMenuItem({
 }
 
 const NavigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 font-medium disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-border-focus/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
+  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 font-medium disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-border-focus outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1"
 );
 
 function NavigationMenuTrigger({

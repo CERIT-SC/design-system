@@ -13,9 +13,11 @@ function ScrollArea({
       className={cn("relative", className)}
       {...props}
     >
+      {/* Focusable so keyboard users can scroll it (WCAG 2.1.1). */}
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        className="focus-visible:ring-border-focus/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
+        tabIndex={0}
+        className="focus-visible:ring-border-focus size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
       >
         {children}
       </ScrollAreaPrimitive.Viewport>

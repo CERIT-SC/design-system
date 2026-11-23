@@ -157,7 +157,7 @@ export const mdxComponents: MDXComponents = {
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead
       className={cn(
-        "border-b border-border bg-surface text-primary [&>tr]:border-b",
+        "border-b border-border bg-surface text-link [&>tr]:border-b",
         className
       )}
       {...props}
@@ -193,7 +193,7 @@ export const mdxComponents: MDXComponents = {
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "h-12 px-4 text-left align-middle font-medium text-primary [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-left align-middle font-medium text-link [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}

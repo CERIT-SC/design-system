@@ -130,8 +130,11 @@ function CommandSeparator({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
   return (
+    // cmdk hard-codes role="separator", which a listbox may not contain
+    // (WCAG 1.3.1); the divider is purely visual, so hide it from AT.
     <CommandPrimitive.Separator
       data-slot="command-separator"
+      aria-hidden="true"
       className={cn("bg-border -mx-1 h-px", className)}
       {...props}
     />

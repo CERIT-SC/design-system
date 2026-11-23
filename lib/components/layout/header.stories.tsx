@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Header,
   HeaderContent,
@@ -58,7 +58,7 @@ const EInfraLogo = () => (
   </>
 );
 
-/** The gradient header is dark in both themes, so it always takes the white logo. */
+/** The gradient header (primary-900 → primary-700) is dark in every theme, so it always takes the white logo. */
 const EInfraLogoOnDark = () => (
   <img
     src="/e-INFRA_logo_RGB_bila.svg"
@@ -104,7 +104,7 @@ export const Default: Story = {
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -204,7 +204,7 @@ export const WithDropdown: Story = {
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -261,7 +261,7 @@ export const WithSearch: Story = {
             </div>
           </HeaderCenter>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>
@@ -316,7 +316,7 @@ export const WithSidebar: Story = {
         <Header>
           <HeaderContent container={false}>
             <HeaderRight>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="Notifications">
                 <Bell className="h-4 w-4" />
               </Button>
               <Avatar>
@@ -346,7 +346,7 @@ export const WithSidebar: Story = {
 export const CustomBackground: Story = {
   render: () => (
     <div className="min-h-screen flex flex-col">
-      <Header className="bg-linear-to-r from-primary/90 to-secondary/90 border-transparent">
+      <Header className="bg-linear-to-r from-primary-900 to-primary-700 border-transparent">
         <HeaderContent>
           <HeaderLeft>
             <EInfraLogoOnDark />
@@ -355,7 +355,7 @@ export const CustomBackground: Story = {
                 <NavigationMenuItem>
                   <NavigationMenuLink
                     href="#"
-                    className="text-white/90 hover:text-white"
+                    className="text-white hover:text-white focus-visible:ring-white"
                   >
                     Dashboard
                   </NavigationMenuLink>
@@ -363,7 +363,7 @@ export const CustomBackground: Story = {
                 <NavigationMenuItem>
                   <NavigationMenuLink
                     href="#"
-                    className="text-white/90 hover:text-white"
+                    className="text-white hover:text-white focus-visible:ring-white"
                   >
                     Projects
                   </NavigationMenuLink>
@@ -375,7 +375,8 @@ export const CustomBackground: Story = {
             <Button
               variant="ghost"
               size="icon"
-              className="text-white hover:bg-white/20"
+              aria-label="Notifications"
+              className="text-white hover:bg-white/20 focus-visible:ring-white"
             >
               <Bell className="h-4 w-4" />
             </Button>
@@ -391,9 +392,9 @@ export const CustomBackground: Story = {
           <ContentHeading>Custom Background</ContentHeading>
           <ContentSubheading>Usage</ContentSubheading>
           <ContentBody>
-            Apply custom backgrounds using the className prop on Header. This
-            example uses a gradient background with adjusted text colors for
-            contrast.
+            Apply custom backgrounds using the className prop on Header. Keep
+            every point of a gradient dark enough for white text (4.5:1) and
+            switch the focus ring to white so it stays visible.
           </ContentBody>
         </Content>
       </main>
@@ -420,7 +421,7 @@ export const WithoutContainer: Story = {
             </NavigationMenu>
           </HeaderLeft>
           <HeaderRight>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-4 w-4" />
             </Button>
             <Avatar>

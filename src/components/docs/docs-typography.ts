@@ -13,7 +13,7 @@ export const docsTypography = {
   caption: "text-xs leading-5 text-text-muted",
   inlineCode:
     "relative rounded bg-surface/50 px-[0.3rem] py-[0.2rem] font-mono text-sm text-text",
-  link: "font-medium text-primary underline underline-offset-4 hover:text-primary/80",
+  link: "font-medium text-link underline underline-offset-4 hover:no-underline",
   cardTitle: "text-sm font-semibold text-text-heading",
   cardDescription: "text-xs leading-5 text-text",
   sectionLead: "max-w-3xl text-base leading-7 text-text",
